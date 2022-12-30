@@ -14,7 +14,7 @@
 
 # 👥 Roles:
 
-**Yassine Chettouch:** Full-stack Developer - UI/UX Designer
+**Yassine Chettouch:** Full-stack Developer
 
 **Yassine Atik:** Full-stack Developer
 
