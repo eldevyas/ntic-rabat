@@ -14,15 +14,9 @@
 
 # 👥 Roles:
 
-**Yassine Chettouch:** Front-end Developer - UI/UX Designer
+**Yassine Chettouch:** Full-stack Developer - UI/UX Designer
 
-**Siffedine Edderai:** Back-end Developer - Database Administrator
-
-**Afiri Mohammed Chouaib:** Back-end Developer
-
-**Farhane Fatima-Zahra:** Back-end Developer
-
-**Ajmani Meryem:** Back-end Developer
+**Yassine Atik:** Full-stack Developer
 
 # ⌚**Project Duration:** 4 weeks Estimated (Extensible)
 
