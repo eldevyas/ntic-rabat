@@ -62,6 +62,7 @@
 .DefaultButton.White {
     $white: $C4;
     @include DefaultButton($white);
+    color: $C1;
 }
 
 .DefaultButton.Gray {
