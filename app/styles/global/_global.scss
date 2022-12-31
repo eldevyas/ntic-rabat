@@ -1,9 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;500;700;800;900;1000&family=Outfit:wght@100;200;300;400;500;600;700;800;900&display=swap");
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
 
-/* Variables Colors */
+/* Variables */
 :root {
     --C1: #000;
     --C2: #29abe2;
@@ -16,7 +13,7 @@
     box-sizing: border-box;
     padding: 0;
     margin: 0;
-    /* font-family: Outfit, Cairo, sans-serif !important; */
+    font-family: Outfit, Cairo, sans-serif !important;
 }
 
 html,
