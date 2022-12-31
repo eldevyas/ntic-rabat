@@ -1,0 +1,45 @@
+.Header {
+    background: transparent;
+    width: 100%;
+    padding: 1rem $HorizontalPadding;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
+    // All Children same width, for spacing equality.
+    .Start,
+    .Middle,
+    .End {
+        flex: 1;
+    }
+    .Logo {
+        max-height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+    }
+    .Middle {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        // row
+        flex-direction: row;
+        gap: $GlobalGap;
+        // All Buttons same width
+        .DefaultButton,
+        button {
+            min-width: 100px;
+        }
+    }
+    .End {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: $GlobalGap;
+        // Same width for the buttons
+        .DefaultButton,
+        button {
+            min-width: 135px;
+        }
+    }
+}

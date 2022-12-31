@@ -1,12 +1,60 @@
 @import url("https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;500;700;800;900;1000&family=Outfit:wght@100;200;300;400;500;600;700;800;900&display=swap");
 
 /* Variables */
+
 :root {
     --C1: #000;
     --C2: #29abe2;
     --C3: #39b54a;
     --C4: #fff;
     --C5: #303030;
+}
+
+
+/* Global */
+
+$C1: #000;
+$C2: #29abe2;
+$C3: #39b54a;
+$C4: #fff;
+$C5: #303030;
+$G1: linear-gradient(135deg,
+#000000 0%,
+#1A1A1A 100%);
+;
+$G2: linear-gradient(135deg,
+#29ABE2 0%,
+#4BB8E7 100%);
+;
+$G3: linear-gradient(135deg,
+#39B54A 0%,
+#64CE72 100%);
+;
+$G4: linear-gradient(135deg,
+#FFFFFF 0%,
+rgba(204, 204, 204, 0) 100%);
+;
+$G5: linear-gradient(135deg,
+#303030 0%,
+#666666 100%);
+;
+$GlobalGap: 0.75rem;
+$HorizontalPadding: 5%;
+// Scrollbar styling
+::-webkit-scrollbar {
+    width: 10px;
+    background-color: var(--C4);
+}
+
+::-webkit-scrollbar-track {
+    background-color: var(--C4);
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: var(--C2);
+    &:hover {
+        background-color: var(--C3);
+    }
 }
 
 * {

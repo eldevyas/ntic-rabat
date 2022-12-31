@@ -1,4 +1,11 @@
 // Global Styling
 @import './global/global';
+@import './global/components';
+// Layout Components - Header & Footer, etc.
+@import './layout/header';
+@import './layout/footer';
 // Pages
 @import "./pages/home/index";
+// Imports
+@import "./pages/home/import/landing";
+@import "./pages/home/import/service";

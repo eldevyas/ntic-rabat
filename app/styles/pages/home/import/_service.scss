@@ -1,0 +1,56 @@
+.Service {
+    width: 100%;
+    padding: 1rem $HorizontalPadding;
+    display: flex;
+    flex-direction: column;
+    .Qualities {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        gap: $GlobalGap;
+        h3 {
+            font-size: 0.9rem;
+            color: lighten($C3, 8%);
+        }
+    }
+    .Cards {
+        display: flex;
+        gap: $GlobalGap;
+        .Card {
+            padding: 15px;
+            border-radius: 10px;
+            background-color: $C1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            gap: calc( $GlobalGap + 10px);
+            .IconButton {
+                .Icon {
+                    font-size: 2rem;
+                    color: #fff;
+                }
+            }
+            .CardTitle {
+                color: $C2;
+            }
+            .CardText {
+                background: ($G2);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }
+            .ReadMore {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: flex-end;
+                padding-top: 10px;
+                * {
+                    color: $C2;
+                }
+            }
+            &:nth-child(2) {
+                background-color: lighten($C2, 30%);
+            }
+        }
+    }
+}
