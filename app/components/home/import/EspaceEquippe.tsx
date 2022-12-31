@@ -35,7 +35,7 @@ const EspaceEquippe = () => {
                     alt=""
                     src="/assets/img/Workspace.png"
                     fill
-                    style={{ objectFit: "cover" }}
+                    style={{ objectFit: "contain" }}
                 />
             </div>
         </div>

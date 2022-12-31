@@ -1,0 +1,17 @@
+.CertificatPuissant {
+    display: flex;
+    flex-direction: row;
+    gap: $GlobalGap;
+
+    .Image {
+        min-width: 500px;
+        position: relative;
+        min-height: 500px;
+
+        img {
+            position: absolute;
+            width: 500px;
+            height: 500px;
+        }
+    }
+}
