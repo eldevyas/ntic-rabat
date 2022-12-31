@@ -101,6 +101,12 @@
     @include IconButton($color);
 }
 
+.IconButton.Black {
+    $color: $C1;
+    @include IconButton($color);
+    color: $C4;
+}
+
 .OutlinedButton {
     $primary: $C2;
     @include OutlinedButton($primary);

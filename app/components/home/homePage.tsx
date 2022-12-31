@@ -7,6 +7,8 @@ import Header from "../layout/header/header";
 import Footer from "../layout/footer";
 import Landing from "./import/Landing";
 import Service from "./import/Service";
+import EspaceEquippe from "./import/EspaceEquippe";
+import CertificatPuissant from "./import/CertificatPuissant";
 
 export default class App extends React.Component {
     render() {
@@ -29,6 +31,8 @@ export default class App extends React.Component {
                     <Header />
                     <Landing />
                     <Service />
+                    <EspaceEquippe />
+                    <CertificatPuissant />
                     <Footer />
                 </div>
             </>
