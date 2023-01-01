@@ -1,4 +1,6 @@
 import React from "react";
+import { DefaultButton, IconButton } from "../../core/button";
+import ExpandCircleDownOutlinedIcon from "@mui/icons-material/ExpandCircleDownOutlined";
 import Image from "next/image";
 import { DefaultButton } from "../../core/button";
 import ModelTrainingOutlinedIcon from '@mui/icons-material/ModelTrainingOutlined';
@@ -7,42 +9,36 @@ import ApartmentOutlinedIcon from '@mui/icons-material/ApartmentOutlined';
 const CertificatPuissant = () => {
     return (
         <div className="CertificatPuissant">
-            <div className="Image">
-                <Image src="/assets/img/Table.png" width={100} height={100} alt="Certificat Puissant" object-fit="contain" />
-            </div>
             <div className="Text">
                 <div className="Title">
                     <h3>Certificat Puissant</h3>
-                    <h2>Un taux d'insertion élevé dans le monde professionnel</h2>
+                    <h2>
+                        Un taux d&apos;insertion élevé dans le monde
+                        professionnel
+                    </h2>
                 </div>
-                <p>L&apos;un des facteurs de succés de notre établissement est la facilité d'insertion des lauréats dans l&apos;entreprise. Ceci est rendu possible à travers :
+                <p>
+                    L&apos;un des facteurs de succés de notre établissement est
+                    la facilité d&apos;insertion des lauréats dans
+                    l&apos;entreprise. Ceci est rendu possible à travers:
                 </p>
-                <div className="Factors">
-                    <div className="Factor">
-                        <DefaultButton bgColor="Green" startIcon={<ModelTrainingOutlinedIcon />}>
-
-                            <span>
-                                Formation altérnée
-                            </span>
-                        </DefaultButton>
-                    </div>
-                    <div className="Factor">
-                        <DefaultButton bgColor="Green" startIcon={<WorkOutlineOutlinedIcon />}>
-
-                            <span>
-                                Stage de fin d'études
-
-                            </span>
-                        </DefaultButton>
-                    </div>
-                    <div className="Factor">
-                        <DefaultButton bgColor="Green" startIcon={<ApartmentOutlinedIcon />}>
-                            <span>
-                                Partenariats avec les professionnels
-                            </span>
-                        </DefaultButton>
-                    </div>
-                </div>
+                <DefaultButton bgColor="Green">
+                    Formation altérnée
+                </DefaultButton>
+                <DefaultButton bgColor="Green">
+                    Stage de fin d'études
+                </DefaultButton>
+                <DefaultButton bgColor="Green">
+                    Partenariats avec les professionnels
+                </DefaultButton>
+            </div>
+            <div className="ImageContainer">
+                <Image
+                    alt=""
+                    src="/assets/img/Workspace.png"
+                    layout="fill"
+                    className="Image"
+                />
             </div>
         </div>
     );

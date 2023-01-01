@@ -23,19 +23,21 @@ const EspaceEquippe = () => {
                         </DefaultButton>
                     </div>
                     <div className="Button">
-                        <IconButton bgColor="Black">
-                            <ExpandCircleDownOutlinedIcon />
-                        </IconButton>
-                        <span>Lire Plus</span>
+                        <DefaultButton
+                            bgColor="White"
+                            startIcon={<ExpandCircleDownOutlinedIcon />}
+                        >
+                            Lire Plus
+                        </DefaultButton>
                     </div>
                 </div>
             </div>
-            <div className="Image">
+            <div className="ImageContainer">
                 <Image
                     alt=""
                     src="/assets/img/Workspace.png"
-                    fill
-                    style={{ objectFit: "contain" }}
+                    layout="fill"
+                    className="Image"
                 />
             </div>
         </div>
