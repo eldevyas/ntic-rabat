@@ -39,14 +39,14 @@ const Schedule = () => {
                 <tbody>
                     {Days.map((day, index) => {
                         return (
-                            <tr>
-                                <td key={index}>
+                            <tr key={index}>
+                                <td>
                                     <div>
                                         <span>{day}</span>
                                         <span>18°C</span>
                                     </div>
                                 </td>
-                                <td>
+                                <td >
                                     {day == "Lundi" ? <ScheduleColumn name="M.Yahyaoui" class="TP1" /> : ''}
                                     {day == "Samedi" ? <ScheduleColumn name="M.Azzimani" class="TP5" /> : ''}
                                     {day == "Vendredi" ? <ScheduleColumnOnline name="Mme.Bentaleb" /> : ''}
