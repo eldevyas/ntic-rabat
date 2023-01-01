@@ -1,5 +1,6 @@
 import React from 'react'
 import Days from './Utils/ScheduleAPI'
+import ScheduleColumn from './Utils/ScheduleColumn'
 const Schedule = () => {
     return (
         <div className='Schedule'>
@@ -46,28 +47,22 @@ const Schedule = () => {
                                     </div>
                                 </td>
                                 <td>
-                                    <div>
-                                        <span>Yahyaoui</span>
-                                        <span>TP1</span>
-                                    </div>
+                                    {day == "Lundi" ? <ScheduleColumn name="M.Yahyaoui" class="TP1" /> : ''}
+                                    {day == "Samedi" ? <ScheduleColumn name="M.Azzimani" class="TP5" /> : ''}
                                 </td>
                                 <td>
-                                    <div>
-                                        <span>Yahyaoui</span>
-                                        <span>TP1</span>
-                                    </div>
+                                    {day == "Lundi" ? <ScheduleColumn name="M.Yahyaoui" class="TP1" /> : ''}
+                                    {day == "Mercredi" ? <ScheduleColumn name="M.Moustaid" class="TP1" /> : ''}
+
                                 </td>
                                 <td>
-                                    <div>
-                                        <span>Yahyaoui</span>
-                                        <span>TP1</span>
-                                    </div>
+                                    {day == "Mercredi" ? <ScheduleColumn name="Dinia" class="Cyber" /> : ''}
+                                    {day == "Jeudi" ? <ScheduleColumn name="M.Aissaoui" class="Seminaire" /> : ''}
                                 </td>
                                 <td>
-                                    <div>
-                                        <span>Moustaid</span>
-                                        <span>TP5</span>
-                                    </div>
+                                    {day == "Jeudi" ? <ScheduleColumn name="M.Aissaoui" class="Seminaire" /> : ''}
+                                    {day == "Mardi" ? <ScheduleColumn name="M.Yahyaoui" class="TP1" /> : ''}
+
                                 </td>
 
                             </tr>
