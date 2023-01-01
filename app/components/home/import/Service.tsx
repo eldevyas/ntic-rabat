@@ -13,7 +13,7 @@ import Gallery from "./utils/gallery";
 const Cards: {
     title: String;
     description: String;
-    icon: Any;
+    icon: any;
 }[] = [
     {
         title: "Se détendre et apprendre",
