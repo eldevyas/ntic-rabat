@@ -1,6 +1,5 @@
 import React from "react";
 import { DefaultButton } from "../../../core/button";
-
 export default function Link(props: any) {
     // State to define wheter the current route is the active or not
     const [active, setActive] = React.useState(false);
@@ -23,11 +22,12 @@ export default function Link(props: any) {
         <>
             {/* Show different button style based on active state */}
             {active ? (
+
                 <DefaultButton
                     variant="contained"
                     color="primary"
                     bgColor="Black"
-                    // {...props}
+                // {...props}
                 >
                     {props.children || props.text}
                 </DefaultButton>
@@ -36,7 +36,7 @@ export default function Link(props: any) {
                     variant="contained"
                     color="primary"
                     bgColor="Gray"
-                    // {...props}
+                // {...props}
                 >
                     {props.children}
                 </DefaultButton>

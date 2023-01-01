@@ -5,7 +5,6 @@ import ModelTrainingIcon from "@mui/icons-material/ModelTraining";
 import WorkIcon from "@mui/icons-material/Work";
 import ApartmentIcon from "@mui/icons-material/Apartment";
 import Image from "next/image";
-import { DefaultButton } from "../../core/button";
 import ModelTrainingOutlinedIcon from '@mui/icons-material/ModelTrainingOutlined';
 import WorkOutlineOutlinedIcon from '@mui/icons-material/WorkOutlineOutlined';
 import ApartmentOutlinedIcon from '@mui/icons-material/ApartmentOutlined';

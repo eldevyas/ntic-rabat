@@ -10,23 +10,23 @@ const MiddleLinks: {
     href: String;
     text: String;
 }[] = [
-    {
-        href: "/",
-        text: "Accueil",
-    },
-    {
-        href: "/emplois",
-        text: "Emplois",
-    },
-    {
-        href: "/forum",
-        text: "Forum",
-    },
-    {
-        href: "/contact",
-        text: "Contact",
-    },
-];
+        {
+            href: "/",
+            text: "Accueil",
+        },
+        {
+            href: "/emplois",
+            text: "Emplois",
+        },
+        {
+            href: "/forum",
+            text: "Forum",
+        },
+        {
+            href: "/contact",
+            text: "Contact",
+        },
+    ];
 
 export default function Header() {
     return (

@@ -1,0 +1,16 @@
+.SelectClass {
+    background-color: $C2;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 20px;
+
+    .SelectGroup {
+        width: 20%;
+        background-color: $C4;
+        border-radius: 12px;
+        outline: none;
+        border: none;
+    }
+}
