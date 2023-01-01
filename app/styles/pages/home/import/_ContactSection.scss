@@ -3,14 +3,17 @@
     flex-direction: column;
     padding: 5rem $HorizontalPadding;
     gap: $GlobalGap;
+
     .Title {
         text-align: center;
+
         h3 {
             color: $C3;
             font-size: 1.5rem;
             text-transform: none;
             margin-bottom: $GlobalGap;
         }
+
         p {
             font-weight: 400;
             opacity: 0.60;
@@ -19,20 +22,25 @@
             padding: 1rem $HorizontalPadding;
         }
     }
+
     .Contact {
         display: flex;
         gap: $GlobalGap;
+
         >div {
             flex: 1;
         }
+
         .ContactForm {
             width: 100%;
             display: flex;
             flex-direction: column;
             gap: $GlobalGap;
+
             .ContactInput {
                 position: relative;
                 width: 100%;
+
                 .IconButton {
                     position: absolute;
                     top: 50%;
@@ -42,6 +50,7 @@
                     color: $C4;
                     padding: 1.5rem;
                 }
+
                 input {
                     position: relative;
                     width: 100%;
@@ -51,11 +60,13 @@
                     background-color: lighten($C1, 97.5%);
                     border: transparent;
                     padding-left: 50px;
+
                     &:focus {
                         border: none;
                         outline: none;
                     }
                 }
+
                 textarea {
                     background-color: lighten($C1, 97.5%);
                     width: 100%;
@@ -65,12 +76,12 @@
                     border: none;
                     resize: none;
                 }
+
                 .DefaultButton {
                     z-index: 1;
                     width: 100%;
                 }
             }
         }
-        .ContactMap {}
     }
 }

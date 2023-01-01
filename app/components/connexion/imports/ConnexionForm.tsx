@@ -35,6 +35,10 @@ const ConnexionForm = () => {
                     <DefaultButton >
                         Mot de pass oublié ?
                     </DefaultButton >
+                    <div className='SwitchLink'>
+                        <p>Vous n'avez pas de compte ? <a href="sinscrire">Inscrivez-vous</a></p>
+
+                    </div>
                 </form>
             </div >
         </div >

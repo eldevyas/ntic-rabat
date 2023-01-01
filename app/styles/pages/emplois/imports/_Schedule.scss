@@ -20,6 +20,8 @@
             &:first-child {
                 background: $G2;
                 color: $C4;
+                //  If we want to remove the first empty div in time lines
+                // visibility: hidden;
             }
 
             div {

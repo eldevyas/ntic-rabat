@@ -3,9 +3,10 @@
     display: flex;
     justify-content: center;
     align-items: flex-start;
-    padding: 55px 25px 20px 25px;
+    padding: 5px 0;
     background-color: $C1;
-    height: 90vh;
+    height: calc(100vh - 104px);
+
 
     .LoginForm {
         padding: 20px;
@@ -16,6 +17,7 @@
         border-radius: 15px;
         width: 450px;
         gap: 20px;
+
 
         .Title {
             display: flex;
@@ -34,6 +36,13 @@
             }
         }
 
+
+        // Designing the line under the title div
+        hr {
+            background-color: darken($C4, 80%);
+            border-color: darken($C4, 80%);
+        }
+
         form {
             display: flex;
             flex-direction: column;
@@ -44,11 +53,9 @@
                 display: flex;
                 justify-content: center;
 
-                // Background color of autofill input
-
-
-
+                // Styling Inputs 
                 input {
+                    // Making it before the icon
                     margin-left: -20px;
                     padding: 5px 30px;
                     width: 90%;
@@ -58,8 +65,6 @@
                     border-radius: 10px;
                     outline: none;
                     border: none;
-
-
                 }
             }
         }
@@ -87,14 +92,17 @@
     }
 
     .DefaultButton {
+
         background: $G2;
 
+        // This one doesn't actually work , IDK why :(
         &:hover {
             background-color: lighten($C1, 20%) !important;
 
         }
 
-        &:last-child {
+        // Styling Reset Password Button
+        &:last-of-type {
             background: none;
             border: 1px solid lighten($color: #000000, $amount: 30%);
             color: darken($C4, 20%);
@@ -104,6 +112,16 @@
             }
         }
 
+        // Styling The last P
+    }
 
+    .SwitchLink {
+        text-align: center;
+        color: darken($C4, 30%);
+        font-weight: 500;
+
+        a {
+            color: $C2;
+        }
     }
 }
