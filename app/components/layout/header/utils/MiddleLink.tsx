@@ -23,24 +23,31 @@ export default function Link(props: any) {
             {/* Show different button style based on active state */}
             {active ? (
 
-                <DefaultButton
-                    variant="contained"
-                    color="primary"
-                    bgColor="Black"
-                // {...props}
-                >
-                    {props.children || props.text}
-                </DefaultButton>
+                <a href={props.href}>
+                    <DefaultButton
+                        variant="contained"
+                        color="primary"
+                        bgColor="Black"
+                    // {...props}
+                    >
+
+                        {props.children || props.text}
+                    </DefaultButton>
+                </a>
             ) : (
-                <DefaultButton
-                    variant="contained"
-                    color="primary"
-                    bgColor="Gray"
-                // {...props}
-                >
-                    {props.children}
-                </DefaultButton>
-            )}
+                <a href={props.href}>
+                    <DefaultButton
+                        variant="contained"
+                        color="primary"
+                        bgColor="Gray"
+                    // {...props}
+                    >
+
+                        {props.children}
+                    </DefaultButton>
+                </a>
+            )
+            }
         </>
     );
 }

@@ -1,5 +1,5 @@
 import React from 'react';
-import Header from '../layout/header/header';
+import { Header } from '../layout/header/header';
 import Footer from '../layout/footer';
 import Head from "next/head";
 import SelectClass from './imports/SelectClass';

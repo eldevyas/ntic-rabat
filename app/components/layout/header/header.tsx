@@ -54,9 +54,11 @@ function Header() {
                     ))}
                 </div>
                 <div className="End">
-                    <DefaultButton bgColor="LightGreen">
-                        {"S'inscrire"}
-                    </DefaultButton>
+                    <a href="/connexion">
+                        <DefaultButton bgColor="LightGreen">
+                            {"S'inscrire"}
+                        </DefaultButton>
+                    </a>
                     <DefaultButton bgColor="Green">Se Connecter</DefaultButton>
                 </div>
             </header>
