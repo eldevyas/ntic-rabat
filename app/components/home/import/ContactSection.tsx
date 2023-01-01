@@ -40,9 +40,9 @@ const ContactSection = () => {
                     <div className="ContactInput">
                         <textarea
                             name="message"
-                            id=""
-                            cols="30"
-                            rows="10"
+                            id="message"
+                            cols={30}
+                            rows={10}
                             placeholder="Saisissez votre message"
                         ></textarea>
                     </div>
@@ -64,9 +64,9 @@ const ContactSection = () => {
                             height: "100%",
                             borderRadius: "10px",
                         }}
-                        allowfullscreen=""
+                        allowFullScreen={true}
                         loading="lazy"
-                        referrerpolicy="no-referrer-when-downgrade"
+                        referrerPolicy="no-referrer-when-downgrade"
                     ></iframe>
                 </div>
             </div>
