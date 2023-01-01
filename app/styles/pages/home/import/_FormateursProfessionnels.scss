@@ -1,10 +1,10 @@
-.CertificatPuissant {
+.FormateursProfessionnels {
     position: relative;
     width: 100%;
     display: flex;
-    flex-direction: row-reverse;
+    flex-direction: row;
     justify-content: space-between;
-    align-items: stretch;
+    align-items: center;
     margin-top: 2rem;
     padding: 1rem $HorizontalPadding;
     gap: $GlobalGap;
@@ -14,12 +14,12 @@
     .Text {
         display: flex;
         flex-direction: column;
-        justify-content: flex-end;
+        justify-content: flex-start;
         align-items: flex-start;
         padding: 0rem 0;
         gap: $GlobalGap;
         h3 {
-            color: $C3;
+            color: $C2;
             font-size: 0.9rem;
             text-transform: uppercase;
             margin-bottom: $GlobalGap;
@@ -66,15 +66,16 @@
         position: relative;
         border-radius: 10px;
         overflow: hidden;
-        background-image: linear-gradient(to top, rgba($C3, 15%) 0%, rgba($C3, 0%) 50%);
+        background-image: linear-gradient(to top, rgba($C2, 15%) 0%, rgba($C2, 0%) 50%);
         display: flex;
         justify-content: center;
         align-items: center;
+        padding: 2rem 0rem;
         .Image {
             // position: absolute;
             position: relative !important;
-            width: 75% !important;
-            height: 75% !important;
+            width: 30% !important;
+            height: 30% !important;
             object-fit: contain;
             object-position: center center;
         }

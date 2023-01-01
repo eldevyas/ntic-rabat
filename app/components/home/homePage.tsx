@@ -9,6 +9,9 @@ import Landing from "./import/Landing";
 import Service from "./import/Service";
 import EspaceEquippe from "./import/EspaceEquippe";
 import CertificatPuissant from "./import/CertificatPuissant";
+import LaPenseCreative from "./import/LaPenseCreative";
+import FormateursProfessionnels from "./import/FormateursProfessionnels";
+import ContactSection from "./import/ContactSection";
 
 export default class App extends React.Component {
     render() {
@@ -33,6 +36,9 @@ export default class App extends React.Component {
                     <Service />
                     <EspaceEquippe />
                     <CertificatPuissant />
+                    <FormateursProfessionnels />
+                    <LaPenseCreative />
+                    <ContactSection />
                     <Footer />
                 </div>
             </>

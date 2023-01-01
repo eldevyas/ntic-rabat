@@ -1,6 +1,9 @@
 import React from "react";
 import { DefaultButton, IconButton } from "../../core/button";
 import ExpandCircleDownOutlinedIcon from "@mui/icons-material/ExpandCircleDownOutlined";
+import ModelTrainingIcon from "@mui/icons-material/ModelTraining";
+import WorkIcon from "@mui/icons-material/Work";
+import ApartmentIcon from "@mui/icons-material/Apartment";
 import Image from "next/image";
 const CertificatPuissant = () => {
     return (
@@ -18,20 +21,23 @@ const CertificatPuissant = () => {
                     la facilité d&apos;insertion des lauréats dans
                     l&apos;entreprise. Ceci est rendu possible à travers:
                 </p>
-                <DefaultButton bgColor="Green">
+                <DefaultButton
+                    bgColor="Green"
+                    startIcon={<ModelTrainingIcon />}
+                >
                     Formation altérnée
                 </DefaultButton>
-                <DefaultButton bgColor="Green">
-                    Stage de fin d'études
+                <DefaultButton bgColor="Green" startIcon={<WorkIcon />}>
+                    Stage de fin d&apos;études
                 </DefaultButton>
-                <DefaultButton bgColor="Green">
+                <DefaultButton bgColor="Green" startIcon={<ApartmentIcon />}>
                     Partenariats avec les professionnels
                 </DefaultButton>
             </div>
             <div className="ImageContainer">
                 <Image
                     alt=""
-                    src="/assets/img/Workspace.png"
+                    src="/assets/img/Table.png"
                     layout="fill"
                     className="Image"
                 />
