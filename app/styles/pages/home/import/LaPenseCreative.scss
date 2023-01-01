@@ -1,95 +1,73 @@
-.CertificatPuissant {
+.LaPenseCreative {
     position: relative;
     width: 100%;
     display: flex;
     flex-direction: row-reverse;
     justify-content: space-between;
-    align-items: stretch;
+    align-items: flex-end;
     margin-top: 2rem;
     padding: 1rem $HorizontalPadding;
     gap: $GlobalGap;
-
     >div {
         flex: 1;
     }
-
     .Text {
         display: flex;
         flex-direction: column;
-        justify-content: flex-end;
+        justify-content: flex-start;
         align-items: flex-start;
         padding: 0rem 0;
         gap: $GlobalGap;
-
         h3 {
-            color: $C3;
+            color: $C2;
             font-size: 0.9rem;
             text-transform: uppercase;
             margin-bottom: $GlobalGap;
         }
-
         h2 {
             font-weight: 700;
             margin-bottom: $GlobalGap;
         }
-
         p {
             font-weight: 400;
             opacity: 0.60;
             font-size: 1rem;
             margin-bottom: 2rem;
         }
-
         .Buttons {
             display: flex;
             justify-content: space-between;
             gap: $GlobalGap * 2;
-
             .Button {
                 display: flex;
                 flex-direction: row;
                 justify-content: flex-start;
                 align-items: center;
                 gap: 0.5rem;
-
-                .Icon {
-                    font-size: 1.2rem;
-                }
-
-                .IconButton {
-                    border-radius: 50px;
-                    padding: 0.25rem !important;
-
-                    .Icon,
-                    svg {
-                        font-size: 1rem !important;
+                &:last-child {
+                    .DefaultButton {
+                        color: $C2;
                     }
-                }
-
-                span {
-                    font-size: 1rem;
-                    font-weight: 600;
                 }
             }
         }
     }
-
     .ImageContainer {
         position: relative;
         border-radius: 10px;
         overflow: hidden;
-        background-image: linear-gradient(to top, rgba($C3, 15%) 0%, rgba($C3, 0%) 50%);
+        background-image: linear-gradient(to top, rgba($C2, 15%) 0%, rgba($C2, 0%) 50%);
         display: flex;
         justify-content: center;
-        align-items: center;
-
+        align-items: flex-end;
+        padding: 0rem 0rem;
         .Image {
             // position: absolute;
             position: relative !important;
-            width: 75% !important;
-            height: 75% !important;
+            width: 100% !important;
+            height: 100% !important;
             object-fit: contain;
-            object-position: center center;
+            object-position: center bottom;
         }
     }
 }

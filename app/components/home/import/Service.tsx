@@ -7,6 +7,7 @@ import WorkspacePremiumOutlinedIcon from "@mui/icons-material/WorkspacePremiumOu
 import SentimentVerySatisfiedOutlinedIcon from "@mui/icons-material/SentimentVerySatisfiedOutlined";
 import PhotoSizeSelectActualOutlinedIcon from "@mui/icons-material/PhotoSizeSelectActualOutlined";
 import { DefaultButton } from "../../core/button";
+import Gallery from "./utils/gallery";
 //
 //
 const Cards: {
@@ -62,14 +63,7 @@ const Service = () => {
                     );
                 })}
             </div>
-            <div className="ViewImages">
-                <DefaultButton
-                    bgColor="Black"
-                    startIcon={<PhotoSizeSelectActualOutlinedIcon />}
-                >
-                    Voir les photos de l&apos;institut
-                </DefaultButton>
-            </div>
+            <Gallery />
         </div>
     );
 };
