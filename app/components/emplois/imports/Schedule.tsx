@@ -1,6 +1,6 @@
 import React from 'react'
 import Days from './Utils/ScheduleAPI'
-import ScheduleColumn from './Utils/ScheduleColumn'
+import { ScheduleColumn, ScheduleColumnOnline, ScheduleColumnAbsent } from './Utils/ScheduleColumn'
 const Schedule = () => {
     return (
         <div className='Schedule'>
@@ -49,20 +49,25 @@ const Schedule = () => {
                                 <td>
                                     {day == "Lundi" ? <ScheduleColumn name="M.Yahyaoui" class="TP1" /> : ''}
                                     {day == "Samedi" ? <ScheduleColumn name="M.Azzimani" class="TP5" /> : ''}
+                                    {day == "Vendredi" ? <ScheduleColumnOnline name="Mme.Bentaleb" /> : ''}
+                                    {day == "Jeudi" ? <ScheduleColumnAbsent name="Mme.Bouzarzar" /> : ''}
                                 </td>
                                 <td>
                                     {day == "Lundi" ? <ScheduleColumn name="M.Yahyaoui" class="TP1" /> : ''}
                                     {day == "Mercredi" ? <ScheduleColumn name="M.Moustaid" class="TP1" /> : ''}
+                                    {day == "Vendredi" ? <ScheduleColumnOnline name="Mme.Bentaleb" /> : ''}
 
                                 </td>
                                 <td>
                                     {day == "Mercredi" ? <ScheduleColumn name="Dinia" class="Cyber" /> : ''}
                                     {day == "Jeudi" ? <ScheduleColumn name="M.Aissaoui" class="Seminaire" /> : ''}
+                                    {day == "Vendredi" ? <ScheduleColumnOnline name="M.Yahyaoui" /> : ''}
+
                                 </td>
                                 <td>
                                     {day == "Jeudi" ? <ScheduleColumn name="M.Aissaoui" class="Seminaire" /> : ''}
                                     {day == "Mardi" ? <ScheduleColumn name="M.Yahyaoui" class="TP1" /> : ''}
-
+                                    {day == "Vendredi" ? <ScheduleColumnOnline name="M.Yahyaoui" /> : ''}
                                 </td>
 
                             </tr>

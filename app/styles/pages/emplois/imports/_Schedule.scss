@@ -93,3 +93,25 @@
     }
 
 }
+
+.Online {
+    background-color: $C3 !important;
+
+    span {
+        &:last-child {
+
+            color: $C3 !important;
+        }
+    }
+}
+
+.Absent {
+    background-color: red !important;
+
+    span {
+        &:last-child {
+
+            color: red !important;
+        }
+    }
+}
