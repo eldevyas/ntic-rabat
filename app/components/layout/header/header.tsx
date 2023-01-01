@@ -28,7 +28,7 @@ const MiddleLinks: {
         },
     ];
 
-export default function Header() {
+function Header() {
     return (
         <>
             {/* Tailwind header, logo Image, 4 middle button links, and 2 buttons in the end */}
@@ -62,4 +62,36 @@ export default function Header() {
             </header>
         </>
     );
+
 }
+function DarkHeader() {
+    return (
+        <>
+            {/* Tailwind header, logo Image, 4 middle button links, and 2 buttons in the end */}
+            <header className="DarkHeader">
+                <div className="Start Logo">
+                    <Image
+                        src="/logo.png"
+                        width={100}
+                        height={100}
+                        alt="Logo"
+                        priority
+                    />
+                </div>
+                <div className="End">
+                    {MiddleLinks.map((middleLink, index) => (
+                        <Link
+                            key={index}
+                            href={middleLink.href}
+                            text={middleLink.text}
+                        >
+                            {middleLink.text}
+                        </Link>
+                    ))}
+                </div>
+            </header>
+        </>
+    );
+}
+
+export { DarkHeader, Header };

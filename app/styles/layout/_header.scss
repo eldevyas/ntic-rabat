@@ -6,18 +6,21 @@
     align-items: center;
     justify-content: space-between;
     flex-direction: row;
+
     // All Children same width, for spacing equality.
     .Start,
     .Middle,
     .End {
         flex: 1;
     }
+
     .Logo {
         max-height: 50px;
         display: flex;
         align-items: center;
         justify-content: flex-start;
     }
+
     .Middle {
         display: flex;
         align-items: center;
@@ -25,21 +28,48 @@
         // row
         flex-direction: row;
         gap: $GlobalGap;
+
         // All Buttons same width
         .DefaultButton,
         button {
             min-width: 100px;
         }
     }
+
     .End {
         display: flex;
         align-items: center;
         justify-content: flex-end;
         gap: $GlobalGap;
+
         // Same width for the buttons
         .DefaultButton,
         button {
             min-width: 135px;
+        }
+    }
+}
+
+
+// Styling dark header for login & signup page
+.DarkHeader {
+    background: $C1;
+    width: 100%;
+    padding: 0 $HorizontalPadding;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
+
+    .End {
+        display: flex;
+        justify-content: space-between;
+        gap: 10px;
+
+        .DefaultButton,
+        button {
+            background-color: lighten($C1, 10%);
+            color: lighten($C1, 60%);
         }
     }
 }
