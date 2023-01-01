@@ -1,0 +1,85 @@
+.Schedule {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    background-color: darken($color: $C4, $amount: 10%);
+
+    table {
+
+        border-spacing: 10px;
+
+        thead>tr>td {
+            width: 200px;
+            background-color: $C4;
+            padding: 10px;
+            border-radius: 10px;
+            color: $C1;
+            font-weight: 500;
+            font-size: 0.9rem;
+
+            &:first-child {
+                background: $G2;
+                color: $C4;
+            }
+
+            div {
+                display: flex;
+                justify-content: space-between;
+                width: 100%;
+            }
+        }
+
+        tbody>tr>td {
+            width: 200px;
+            background-color: $C4;
+            padding: 10px 20px;
+            border-radius: 15px;
+            color: $C1;
+            font-weight: 500;
+            font-size: 0.9rem;
+
+            &:first-child {
+                background: $G2;
+                color: $C4;
+
+                span {
+                    font-weight: 400;
+
+                    &:last-child {
+                        font-weight: 400;
+                        color: lighten($color: #000000, $amount: 90%);
+                        background: none;
+                        padding: 0px;
+
+                        border-radius: 30%;
+                    }
+                }
+            }
+
+            div {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                align-items: center;
+                gap: 10px;
+
+
+                span {
+                    font-weight: 600;
+
+                    &:last-child {
+                        font-weight: 600;
+                        color: lighten($color: #000000, $amount: 90%);
+                        background-color: $C1;
+                        padding: 7px;
+
+                        border-radius: 30%;
+                    }
+                }
+            }
+
+        }
+    }
+
+}

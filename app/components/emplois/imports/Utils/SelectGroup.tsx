@@ -4,8 +4,13 @@ import SelectUnstyled, {
     selectUnstyledClasses,
 } from '@mui/base/SelectUnstyled';
 import OptionUnstyled, { optionUnstyledClasses } from '@mui/base/OptionUnstyled';
+import OptionGroupUnstyled, {
+    OptionGroupUnstyledProps,
+} from '@mui/base/OptionGroupUnstyled';
 import PopperUnstyled from '@mui/base/PopperUnstyled';
 import { styled } from '@mui/system';
+import ComputerIcon from '@mui/icons-material/Computer';
+import BrushIcon from '@mui/icons-material/Brush';
 
 const blue = {
     100: '#DAECFF',
@@ -35,7 +40,7 @@ const StyledButton = styled('button')(
   font-size: 0.875rem;
   box-sizing: border-box;
   min-height: calc(1.5em + 22px);
-  min-width: 320px;
+  min-width: 220px;
   padding: 12px;
   border-radius: 12px;
   text-align: left;
@@ -78,14 +83,13 @@ const StyledListbox = styled('ul')(
   box-sizing: border-box;
   padding: 6px;
   margin: 12px 0;
-  min-width: 320px;
+  min-width: 220px;
   border-radius: 12px;
   overflow: auto;
   outline: 0px;
   background: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
   border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
   color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
-  box-shadow: 0px 4px 30px ${theme.palette.mode === 'dark' ? grey[900] : grey[200]};
   `,
 );
 
@@ -126,32 +130,73 @@ const StyledOption = styled(OptionUnstyled)(
   `,
 );
 
+const StyledGroupRoot = styled('li')`
+  list-style: none;
+`;
+
+const StyledGroupHeader = styled('span')`
+  display: flex;
+  padding: 15px 0 5px 10px;
+  font-size: 0.75em;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05rem;
+  color: ${grey[600]};
+`;
+
+const StyledGroupOptions = styled('ul')`
+  list-style: none;
+  margin-left: 0;
+  padding: 0;
+
+  > li {
+    padding-left: 20px;
+  }
+`;
+
+
 const StyledPopper = styled(PopperUnstyled)`
   z-index: 1;
 `;
 
-const CustomSelect = React.forwardRef(function CustomSelect<TValue extends {}>(
-    props: SelectUnstyledProps<TValue>,
-    ref: React.ForwardedRef<HTMLButtonElement>,
-) {
-    const slots: SelectUnstyledProps<TValue>['slots'] = {
+function CustomSelect(props: SelectUnstyledProps<string>) {
+    const slots: SelectUnstyledProps<string>['slots'] = {
         root: StyledButton,
         listbox: StyledListbox,
         popper: StyledPopper,
         ...props.slots,
     };
 
-    return <SelectUnstyled {...props} ref={ref} slots={slots} />;
-}) as <TValue extends {}>(
-    props: SelectUnstyledProps<TValue> & React.RefAttributes<HTMLButtonElement>,
-) => JSX.Element;
+    return <SelectUnstyled {...props} slots={slots} />;
+}
 
-export default function UnstyledSelectSimple() {
+const CustomOptionGroup = React.forwardRef(function CustomOptionGroup(
+    props: OptionGroupUnstyledProps,
+    ref: React.ForwardedRef<any>,
+) {
+    const slots: OptionGroupUnstyledProps['slots'] = {
+        root: StyledGroupRoot,
+        label: StyledGroupHeader,
+        list: StyledGroupOptions,
+        ...props.slots,
+    };
+
+    return <OptionGroupUnstyled {...props} ref={ref} slots={slots} />;
+});
+
+export default function UnstyledSelectGrouping() {
     return (
-        <CustomSelect defaultValue={10}>
-            <StyledOption value={10}>Ten</StyledOption>
-            <StyledOption value={20}>Twenty</StyledOption>
-            <StyledOption value={30}>Thirty</StyledOption>
-        </CustomSelect>
+        <CustomSelect>
+            <CustomOptionGroup label={<ComputerIcon />}  >
+                <StyledOption value="Dev201">Dev201</StyledOption>
+                <StyledOption value="Dev202">Dev202</StyledOption>
+                <StyledOption value="Dev203">Dev203</StyledOption>
+                <StyledOption value="Dev204">Dev204</StyledOption>
+            </CustomOptionGroup>
+            <CustomOptionGroup label={<BrushIcon />}>
+                <StyledOption value="Info201">Info201</StyledOption>
+                <StyledOption value="Info203">Info203</StyledOption>
+            </CustomOptionGroup>
+        </CustomSelect >
     );
 }

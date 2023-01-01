@@ -3,6 +3,7 @@ import Header from '../layout/header/header';
 import Footer from '../layout/footer';
 import Head from "next/head";
 import SelectClass from './imports/SelectClass';
+import Schedule from './imports/Schedule';
 
 const EmploisPage = () => {
     return (
@@ -23,6 +24,7 @@ const EmploisPage = () => {
             <div className="EmploisPage">
                 <Header />
                 <SelectClass />
+                <Schedule />
                 <Footer />
             </div>
         </>
