@@ -2,8 +2,10 @@ import React from "react";
 import { DefaultButton, IconButton } from "../../core/button";
 import ArrowCircleUpIcon from "@mui/icons-material/ArrowCircleUp";
 import Image from "next/image";
+import Router, { useRouter } from "next/router";
 
 const LaPenseCreative = () => {
+    const Router = useRouter();
     return (
         <div className="LaPenseCreative">
             <div className="Text">
@@ -23,7 +25,7 @@ const LaPenseCreative = () => {
                 </p>
                 <div className="Buttons">
                     <div className="Button">
-                        <DefaultButton bgColor="Blue">
+                        <DefaultButton bgColor="Blue" onClick={() => Router.push("/#contact")}>
                             Contactez nous
                         </DefaultButton>
                     </div>

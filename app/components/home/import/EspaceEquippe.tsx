@@ -2,7 +2,9 @@ import React from "react";
 import { DefaultButton, IconButton } from "../../core/button";
 import ExpandCircleDownOutlinedIcon from "@mui/icons-material/ExpandCircleDownOutlined";
 import Image from "next/image";
+import Router, { useRouter } from "next/router";
 const EspaceEquippe = () => {
+    const Router = useRouter();
     return (
         <div className="EspaceEquippe">
             <div className="Text">
@@ -18,7 +20,10 @@ const EspaceEquippe = () => {
                 </p>
                 <div className="Buttons">
                     <div className="Button">
-                        <DefaultButton bgColor="Black">
+                        <DefaultButton bgColor="Black"
+                            onClick={() => Router.push('/inscription')}
+
+                        >
                             S&apos;inscrire maintenant
                         </DefaultButton>
                     </div>

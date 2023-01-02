@@ -5,17 +5,17 @@ import FaceIcon from "@mui/icons-material/Face";
 import SendIcon from "@mui/icons-material/Send";
 const ContactSection = () => {
     return (
-        <div className="ContactSection" id="contact">
+        <div className="ContactSection" >
             <div className="Title">
                 <h3>Contactez nous pour plus d&apos;informations</h3>
-                <p>
+                <p id="contact">
                     Besoin de plus d&apos;informations? Vous pouvez nous envoyer
                     un courrier en utilisant le formulaire ci-dessous, ou vous
                     pouvez nous rendre visite localement en utilisant notre
                     carte de localisation affichée.
                 </p>
             </div>
-            <div className="Contact">
+            <div className="Contact" >
                 <div className="ContactForm">
                     <div className="ContactInput">
                         <IconButton bgColor="Green">

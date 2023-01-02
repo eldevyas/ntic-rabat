@@ -2,7 +2,9 @@ import React from "react";
 import { DefaultButton, OutlinedButton } from "../../core/button";
 import CalendarMonthOutlinedIcon from "@mui/icons-material/CalendarMonthOutlined";
 import GroupsOutlinedIcon from "@mui/icons-material/GroupsOutlined";
+import Router, { useRouter } from "next/router";
 export default function Landing() {
+    const Router = useRouter();
     return (
         <div className="Landing">
             <div className="Title">
@@ -20,12 +22,14 @@ export default function Landing() {
                 <OutlinedButton
                     startIcon={<CalendarMonthOutlinedIcon />}
                     bgColor="Blue"
+                    onClick={() => Router.push('/emplois')}
                 >
                     Consulter les emplois
                 </OutlinedButton>
                 <OutlinedButton
                     startIcon={<GroupsOutlinedIcon />}
                     bgColor="LightBlue"
+                    onClick={() => Router.push('/forum')}
                 >
                     Consultez le Forum
                 </OutlinedButton>
