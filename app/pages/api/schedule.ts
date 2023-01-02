@@ -18,27 +18,12 @@ export default async function handler(
     let TargetURL = "https://nticrabat.com/";
 
     // Send Get Request to the Website - Retrieve data as HTML
-    const { data } = await axios.get(TargetURL + "emploi/index.php");
+    const { data } = await axios.get(TargetURL + "emploi/index.php?groupe=244");
     const $ = cheerio.load(data);
 
 
-    const fetchedSelectBox: any = $('[name=groupe]').html();
-
-    const Groups: Data= [];
-
-    // Loop through each option
-    $(fetchedSelectBox).each((i, el) => {
-        const option = $(el);
-
-        const optionName: string = option.text();
-        const optionValue: string = String(option.attr('value'));
-
-        Groups.push({
-            name: optionName,
-            value: optionValue
-        });
-    });
+    const fetchedTable: any = $('table>table').html();
 
     // Create HTML Elements
-    res.status(200).json(Groups);
+    res.status(200).json(fetchedTable);
 }
