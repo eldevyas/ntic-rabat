@@ -2,7 +2,9 @@ import React from 'react'
 import { DefaultButton, IconButton } from '../../core/button'
 import EmailIcon from '@mui/icons-material/Email';
 import LockIcon from '@mui/icons-material/Lock';
+import { useRouter } from 'next/router';
 const ConnexionForm = () => {
+    const Router = useRouter();
     return (
         <div className='ConnexionForm'>
             <div className='LoginForm'>
@@ -36,7 +38,7 @@ const ConnexionForm = () => {
                         Mot de pass oublié ?
                     </DefaultButton >
                     <div className='SwitchLink'>
-                        <p>Vous n'avez pas de compte ? <a href="sinscrire">Inscrivez-vous</a></p>
+                        <p>Vous n'avez pas de compte ? <span onClick={() => Router.push('/inscription')}>Inscrivez-vous</span></p>
 
                     </div>
                 </form>

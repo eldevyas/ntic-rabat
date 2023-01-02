@@ -120,8 +120,9 @@
         color: darken($C4, 30%);
         font-weight: 500;
 
-        a {
+        span {
             color: $C2;
+            cursor: pointer;
         }
     }
 }

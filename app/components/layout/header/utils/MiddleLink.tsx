@@ -1,51 +1,53 @@
 import React from "react";
 import { DefaultButton } from "../../../core/button";
+import { useRouter } from "next/router";
+
+
+
 export default function Link(props: any) {
     // State to define wheter the current route is the active or not
     const [active, setActive] = React.useState(false);
+    const Router = useRouter();
 
-    // Function to check if the current route is the active one
-    const checkActive = () => {
+    // Check if the current route is the active one on page load
+    React.useEffect(() => {
         if (props.href === window.location.pathname) {
             return setActive(true);
         }
         setActive(false);
-    };
-
-    // Check if the current route is the active one on page load
-    React.useEffect(() => {
-        checkActive();
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
+
+    // ChangeRoute function
+    const changeRoute = (e: any) => {
+        e.preventDefault();
+        Router.push(props.href);
+    };
 
     return (
         <>
             {/* Show different button style based on active state */}
             {active ? (
 
-                <a href={props.href}>
-                    <DefaultButton
-                        variant="contained"
-                        color="primary"
-                        bgColor="Black"
-                    // {...props}
-                    >
+                <DefaultButton
+                    variant="contained"
+                    color="primary"
+                    bgColor="Black"
+                // {...props}
+                >
 
-                        {props.children || props.text}
-                    </DefaultButton>
-                </a>
+                    {props.children || props.text}
+                </DefaultButton>
             ) : (
-                <a href={props.href}>
-                    <DefaultButton
-                        variant="contained"
-                        color="primary"
-                        bgColor="Gray"
-                    // {...props}
-                    >
+                <DefaultButton
+                    variant="contained"
+                    color="primary"
+                    bgColor="Gray"
+                    onClick={(e: any) => { changeRoute(e) }}
+                // {...props}
+                >
 
-                        {props.children}
-                    </DefaultButton>
-                </a>
+                    {props.children}
+                </DefaultButton>
             )
             }
         </>
