@@ -23,7 +23,7 @@ const MiddleLinks: {
             text: "Forum",
         },
         {
-            href: "/contact",
+            href: "/#contact",
             text: "Contact",
         },
     ];
