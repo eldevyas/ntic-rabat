@@ -36,7 +36,7 @@ function Header() {
             <header className="Header">
                 <div className="Start Logo">
                     <Image
-                        src="/logo.png"
+                        src="/Logo.png"
                         width={100}
                         height={100}
                         alt="Logo"
@@ -74,7 +74,7 @@ function DarkHeader() {
             <header className="DarkHeader">
                 <div className="Start Logo">
                     <Image
-                        src="/logo.png"
+                        src="/Logo.png"
                         width={100}
                         height={100}
                         alt="Logo"
