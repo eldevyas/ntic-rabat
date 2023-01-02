@@ -13,3 +13,7 @@
     @import "./import/FormateursProfessionnels";
     @import "./import/ContactSection";
 }
+
+html {
+    scroll-behavior: smooth !important;
+}

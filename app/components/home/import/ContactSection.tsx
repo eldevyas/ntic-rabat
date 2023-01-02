@@ -5,7 +5,7 @@ import FaceIcon from "@mui/icons-material/Face";
 import SendIcon from "@mui/icons-material/Send";
 const ContactSection = () => {
     return (
-        <div className="ContactSection" id="#contact">
+        <div className="ContactSection" id="contact">
             <div className="Title">
                 <h3>Contactez nous pour plus d&apos;informations</h3>
                 <p>

@@ -59,7 +59,6 @@ function Header() {
                     <DefaultButton bgColor="LightGreen" onClick={() => { Router.push('/inscription') }}>
                         {"S'inscrire"}
                     </DefaultButton>
-
                     <DefaultButton bgColor="Green" onClick={() => { Router.push('/connexion') }}>Se Connecter</DefaultButton>
                 </div>
             </header>
