@@ -1,0 +1,105 @@
+.InscriptionForm {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 5px 0;
+    background-color: $C1;
+    height: calc(100vh - 104px);
+
+
+
+    .SignupForm {
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        border: 0.5px solid darken($C4, 20%) !important;
+        border-radius: 15px;
+        width: 450px;
+        gap: 20px;
+
+
+        .Title {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            color: darken($C4, 20%);
+
+
+            span {
+                color: $C2;
+            }
+
+            p {
+                font-weight: 300;
+                color: darken($C4, 20%);
+            }
+        }
+
+
+        // Designing the line under the title div
+        hr {
+            background-color: darken($C4, 80%);
+            border-color: darken($C4, 80%);
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+
+            .FormControl {
+                width: 100%;
+                display: flex;
+                justify-content: center;
+
+                // Styling Inputs 
+                input {
+                    // Making it before the icon
+                    margin-left: -20px;
+                    padding: 0px 30px;
+                    width: 90%;
+                    font-size: 1rem;
+                    background-color: darken($C4, 80%);
+                    color: lighten($C1, 80%);
+                    border-radius: 10px;
+                    outline: none;
+                    border: none;
+                }
+            }
+        }
+
+    }
+
+    .IconButton {
+        // position: absolute;
+        color: white !important;
+        padding: 12px !important;
+    }
+
+    .DefaultButton {
+
+        background: $G2;
+
+        // This one doesn't actually work , IDK why :(
+        &:hover {
+            background-color: lighten($C1, 20%) !important;
+
+        }
+
+
+
+        // Styling The last P
+    }
+
+    .SwitchLink {
+        text-align: center;
+        color: darken($C4, 30%);
+        font-weight: 500;
+
+        span {
+            color: $C2;
+            cursor: pointer;
+        }
+    }
+}
