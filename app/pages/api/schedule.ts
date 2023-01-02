@@ -11,19 +11,32 @@ type Data = {
 }[]
 
 export default async function handler(
-    req: NextApiRequest,
-    res: NextApiResponse<Data>
+  req: NextApiRequest,
+  res: NextApiResponse<Data>
 ) {
-    // Get All Groups from "www.nticrabat.com"'s select menu.
-    let TargetURL = "https://nticrabat.com/";
+  // Get All Groups from "www.nticrabat.com"'s select menu.
+  let TargetURL = "https://nticrabat.com/";
 
-    // Send Get Request to the Website - Retrieve data as HTML
-    const { data } = await axios.get(TargetURL + "emploi/index.php?groupe=244");
-    const $ = cheerio.load(data);
+  // Send Get Request to the Website - Retrieve data as HTML
+  const { data } = await axios.get(TargetURL + "emploi/index.php?groupe=244");
+  const $ = cheerio.load(data);
 
 
-    const fetchedTable: any = $('table>table').html();
 
-    // Create HTML Elements
-    res.status(200).json(fetchedTable);
+  const fetchedTable: any = [];
+  for (let index = 3; index <= 8; index++) {
+    const featchedDay = ($(`table[bordercolor="#336699"]>tbody>tr:nth-child(${index})>td:nth-child(1)`).text())
+    fetchedTable.push({ day: featchedDay });
+    for (let td = 2; td <= 5; td++) {
+      const featchedTiming = ($(`table[bordercolor="#336699"]>tbody>tr:nth-child(${index})>td:nth-child(${td})`).text())
+      fetchedTable.push({ time: featchedTiming })
+    }
+  }
+
+  // const fetchedTable = $(`table[bordercolor="#336699"]>tbody>tr:nth-child(3)>td:nth-child(5)`).text()
+
+
+
+  // Create HTML Elements
+  res.status(200).json(fetchedTable);
 }
