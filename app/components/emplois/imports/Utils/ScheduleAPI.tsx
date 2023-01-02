@@ -1,5 +1,5 @@
-import React from 'react'
+import React from "react";
 
-const Days = ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'];
+const Days = ["Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi"];
 
-export default Days
+export default Days;
