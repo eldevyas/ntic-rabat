@@ -1,22 +1,44 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Header } from '../layout/header/header';
 import Footer from '../layout/footer';
 import Head from "next/head";
 import SelectClass from './imports/SelectClass';
 import Schedule from './imports/Schedule';
-import { Provider, useSelector, useDispatch } from "react-redux";
-import { createStore } from "redux";
+import axios from 'axios';
 
-// Store to gather Group ID
+// Group Context
+import { GroupContext } from './Context/GroupContext';
 
-
-
-
-
+// Configure Group Context
 
 
 
 const EmploisPage = () => {
+    const [GroupID, SetGroupID] = useState('');
+
+    // Update context's schedule
+    const [GroupSchedule, setGroupSchedule] = useState([]);
+
+
+    const Value = {
+        GroupID: GroupID,
+        SetGroupID: SetGroupID,
+        Schedule: GroupSchedule,
+        SetSchedule: async () => {
+            // Send request with group id, then update the Schedule
+            if (GroupID && GroupID != null) {
+                const res = await axios.get(`/api/groups/${GroupID}`)
+                const resData = res.data;
+                setGroupSchedule(resData);
+            } else {
+                console.log("No Group ID found");
+            }
+        }
+    };
+
+
+
+
     return (
         <>
             <Head>
@@ -34,8 +56,10 @@ const EmploisPage = () => {
 
             <div className="EmploisPage">
                 <Header />
-                <SelectClass />
-                <Schedule />
+                <GroupContext.Provider value={Value}>
+                    <SelectClass />
+                    <Schedule />
+                </GroupContext.Provider>
                 <Footer />
             </div>
         </>

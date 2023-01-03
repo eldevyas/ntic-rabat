@@ -1,7 +1,7 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from 'next';
 import axios from 'axios';
-import { useSelector } from 'react-redux'
+import { useSelector } from 'react-redux';
 
 
 import cheerio from "cheerio";
@@ -21,7 +21,7 @@ export default async function handler(
   let TargetURL = "https://nticrabat.com/";
 
   // Send Get Request to the Website - Retrieve data as HTML
-  const { data } = await axios.get(TargetURL + "emploi/index.php?groupe=244");
+  const { data } = await axios.get(TargetURL + "/emploi/index.php?groupe=244");
   const $ = cheerio.load(data);
 
 
