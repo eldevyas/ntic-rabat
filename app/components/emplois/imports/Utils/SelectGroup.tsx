@@ -14,7 +14,7 @@ import CalculateIcon from "@mui/icons-material/Calculate";
 export default function SelectGroup(props: any) {
     // Set Group state to type array with object of name and value
     const [Groups, setGroups] = React.useState<
-        { name: String; value: Number }[]
+        { name: String; value: number }[]
     >([]);
 
     // Fetch /api/groups with axios
