@@ -4,6 +4,17 @@ import Footer from '../layout/footer';
 import Head from "next/head";
 import SelectClass from './imports/SelectClass';
 import Schedule from './imports/Schedule';
+import { Provider, useSelector, useDispatch } from "react-redux";
+import { createStore } from "redux";
+
+// Store to gather Group ID
+
+
+
+
+
+
+
 
 const EmploisPage = () => {
     return (

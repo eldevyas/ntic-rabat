@@ -20,7 +20,7 @@ function ScheduleColumnAbsent(props: any) {
     return (
         <div className='Absent'>
             <span>{props.name}</span>
-            <span>Absent</span>
+            <span>{props.class}</span>
         </div>
     )
 }

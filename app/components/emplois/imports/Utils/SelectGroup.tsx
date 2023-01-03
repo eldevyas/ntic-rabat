@@ -17,6 +17,7 @@ import axios from "axios";
 import SignalCellularAltIcon from "@mui/icons-material/SignalCellularAlt";
 import CalculateIcon from "@mui/icons-material/Calculate";
 import { Button } from "@mui/material";
+import { useDispatch } from 'react-redux';
 
 const blue = {
     100: "#DAECFF",
@@ -193,6 +194,8 @@ const CustomOptionGroup = React.forwardRef(function CustomOptionGroup(
 });
 
 export default function UnstyledSelectGrouping() {
+
+
     // Set Group state to type array with object of name and value
     const [Groups, setGroups] = React.useState<
         { name: String; value: Number }[]
@@ -213,7 +216,7 @@ export default function UnstyledSelectGrouping() {
     React.useEffect(() => {
         SendRequest();
         console.log(Groups);
-    }, [Groups]);
+    }, []);
 
     return (
         <CustomSelect>
