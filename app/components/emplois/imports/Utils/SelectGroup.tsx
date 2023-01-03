@@ -37,12 +37,17 @@ export default function SelectGroup(props: any) {
     return (
         <>
             <select className="SelectGroup" {...props}>
+                <option value="" selected >Selectionnez un emplois</option>
                 {/* Loop all groups */}
                 {Groups.map((group, index) => {
                     return (
-                        <option key={index} value={group.value}>
-                            {group.name}
-                        </option>
+                        <>
+                            {
+                                group.name == '' ? "" : (<option key={index} value={group.value} >
+                                    {group.name}
+                                </option>)
+                            }
+                        </>
                     );
                 })}
             </select>

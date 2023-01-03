@@ -5,18 +5,20 @@
     justify-content: center;
     align-items: center;
     padding: 0px;
+
     .SelectGroup {
         // A reset of styles, including removing the default dropdown arrow
         appearance: none;
         // Additional resets for further consistency
         background-color: transparent;
-        border: none;
-        padding: 0 1em 0 0;
-        margin: 0;
-        width: 100%;
+        // padding: 0 1em 0 0;
+        padding: 0.25rem 0.50rem;
+        margin: auto;
+        margin-bottom: 10px;
         font-family: inherit;
         font-size: inherit;
         cursor: inherit;
         line-height: inherit;
+
     }
 }

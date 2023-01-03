@@ -17,6 +17,7 @@ export default function Emploi() {
     // async function
     const SetSchedule = async () => {
         // Send request with group id, then update the Schedule
+        setGroupSchedule([]);
         if (GroupID && GroupID != null) {
             const res = await axios.get(`/api/groups/${GroupID}`);
             const resData = res.data;
