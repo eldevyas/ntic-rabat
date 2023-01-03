@@ -1,32 +1,27 @@
-import React, { useEffect } from 'react';
-import SelectUnstyled from '@mui/base/SelectUnstyled';
-import OptionUnstyled from '@mui/base/OptionUnstyled';
-import SelectGroup from './Utils/SelectGroup';
-import { GroupContext } from '../Context/GroupContext';
+import React, { useEffect, useState } from "react";
+import SelectGroup from "./Utils/SelectGroup";
+import axios from "axios";
 
-const SelectClass = () => {
-    // use Context
-    const { GroupID, SetGroupID, Schedule, SetSchedule } = React.useContext(GroupContext);
-
+const SelectClass = (props: any) => {
+    const setGroup = props.setGroup;
 
     // Handle Change
     const handleChange = (e: any) => {
-        // Change Context Value
-        SetGroupID(e.target.value);
-
-        // 
-        console.log(GroupID);
-        SetSchedule();
-        console.log(Schedule);
-    }
+        // Change
+        setGroup(e.target.value);
+    };
 
     return (
-        <div className='SelectClass'>
-            <div className='SelectGroup'>
-                <SelectGroup onChange={(e: any) => { handleChange(e) }} />
+        <div className="SelectClass">
+            <div className="SelectGroup">
+                <SelectGroup
+                    onChange={(e: any) => {
+                        handleChange(e);
+                    }}
+                />
             </div>
-        </div >
-    )
-}
+        </div>
+    );
+};
 
-export default SelectClass
+export default SelectClass;

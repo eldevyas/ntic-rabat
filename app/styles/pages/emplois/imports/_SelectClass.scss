@@ -1,16 +1,22 @@
 .SelectClass {
-    background-color: $C2;
+    background-color: transparent;
     width: 100%;
     display: flex;
     justify-content: center;
-    align-items: flex-start;
-    padding: 20px;
-
+    align-items: center;
+    padding: 0px;
     .SelectGroup {
-        width: 220px;
-        background-color: $C4;
-        border-radius: 12px;
-        outline: none;
+        // A reset of styles, including removing the default dropdown arrow
+        appearance: none;
+        // Additional resets for further consistency
+        background-color: transparent;
         border: none;
+        padding: 0 1em 0 0;
+        margin: 0;
+        width: 100%;
+        font-family: inherit;
+        font-size: inherit;
+        cursor: inherit;
+        line-height: inherit;
     }
 }

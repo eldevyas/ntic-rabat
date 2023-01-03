@@ -1,8 +1,7 @@
 import * as React from "react";
 import axios from "axios";
 import { Button } from "@mui/material";
-import { useDispatch } from 'react-redux';
-
+import { useDispatch } from "react-redux";
 
 // Icons
 import ComputerIcon from "@mui/icons-material/Computer";
@@ -35,12 +34,9 @@ export default function SelectGroup(props: any) {
         console.log(Groups);
     }, []);
 
-
-
-
     return (
         <>
-            <select {...props}>
+            <select className="SelectGroup" {...props}>
                 {/* Loop all groups */}
                 {Groups.map((group, index) => {
                     return (

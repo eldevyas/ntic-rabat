@@ -4,10 +4,8 @@
     align-items: center;
     width: 100%;
     background-color: darken($color: $C4, $amount: 10%);
-
     table {
         border-spacing: 10px;
-
         thead>tr>td {
             width: 200px;
             background-color: $C4;
@@ -16,21 +14,18 @@
             font-weight: 500;
             font-size: 0.9rem;
             padding: 10px;
-
             &:first-child {
                 background: $G2;
                 color: $C4;
                 //  If we want to remove the first empty div in time lines
                 // visibility: hidden;
             }
-
             div {
                 display: flex;
                 justify-content: space-between;
                 width: 100%;
             }
         }
-
         tbody>tr>td {
             width: 200px;
             background-color: $C4;
@@ -40,20 +35,14 @@
             font-weight: 500;
             font-size: 0.9rem;
             border-radius: 15px;
-
-
-
             &:first-child {
                 background: $G2;
                 color: $C4;
-
                 div {
                     background: none;
                 }
-
                 span {
                     font-weight: 400;
-
                     &:last-child {
                         font-weight: 400;
                         color: lighten($color: #000000, $amount: 90%);
@@ -63,7 +52,6 @@
                     }
                 }
             }
-
             div {
                 display: flex;
                 flex-direction: column;
@@ -74,34 +62,28 @@
                 width: 100%;
                 height: 100%;
                 border-radius: 15px;
-                padding: 8px 10px;
-
-
+                padding: 0.75rem 0.75rem;
                 span {
                     font-weight: 600;
-
+                    font-size: 0.8rem;
                     &:last-child {
                         font-weight: 600;
+                        font-size: 0.8rem;
                         color: darken($color: #000000, $amount: 90%);
                         background-color: $C4;
-                        padding: 7px;
-
-                        border-radius: 10px;
+                        padding: 0.25rem 0.5rem;
+                        border-radius: 5px;
                     }
                 }
             }
-
         }
     }
-
 }
 
 .Online {
     background-color: $C3 !important;
-
     span {
         &:last-child {
-
             color: $C3 !important;
         }
     }
@@ -109,10 +91,8 @@
 
 .Absent {
     background-color: red !important;
-
     span {
         &:last-child {
-
             color: red !important;
         }
     }
