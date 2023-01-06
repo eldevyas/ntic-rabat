@@ -2,8 +2,8 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 import axios from 'axios';
 
 export default async function handler(
-  req: NextApiRequest,
-  res: NextApiResponse
+    req: NextApiRequest,
+    res: NextApiResponse
 ) {
     // API  Data
     const apiKey = "f8e21ece8f005c43bba568195d4bd3e3";
@@ -18,24 +18,23 @@ export default async function handler(
 
 
 
+    // console.log(data);
     let filteredData = data.list.map((item: any) => {
-        if (item.dt_txt.includes('12:00:00')){
+        if (item.dt_txt.includes('12:00:00')) {
             return {
                 icon: item.weather[0].icon,
                 temperature: item.main.temp,
                 humidity: item.main.humidity,
-                description: item.weather.description,
+                description: item.weather[0].description,
+                date: item.dt_txt,
             };
         }
         return;
     });
 
-    // remove null values
-    filteredData = filteredData.filter((item: any) => {
-        return item!== null;
-    });
+    // Remove null values from the array
+    filteredData = filteredData.filter((item: any) => item !== undefined);
 
     // res.status(200).json(data);
     res.status(200).json(filteredData);
-
 }
