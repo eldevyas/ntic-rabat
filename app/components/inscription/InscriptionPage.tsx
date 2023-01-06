@@ -1,12 +1,10 @@
-import React from 'react'
+import React from "react";
 
-import { DarkHeader } from '../layout/header/header';
-import Footer from '../layout/footer';
+import Header from "../layout/header/header";
+import Footer from "../layout/footer";
 import Head from "next/head";
-import InscriptionForm from './imports/InscriptionForm';
+import InscriptionForm from "./imports/InscriptionForm";
 const InscriptionPage = () => {
-
-
     return (
         <>
             <Head>
@@ -23,12 +21,11 @@ const InscriptionPage = () => {
             </Head>
 
             <div className="InscriptionPage">
-                <DarkHeader />
+                <Header data-theme="dark" />
                 <InscriptionForm />
             </div>
         </>
-    )
-}
+    );
+};
 
-
-export default InscriptionPage
+export default InscriptionPage;

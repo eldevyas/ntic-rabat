@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 
 function ScheduleColumn(props: any) {
     return (
@@ -6,23 +6,23 @@ function ScheduleColumn(props: any) {
             <span>{props.name}</span>
             <span>{props.class}</span>
         </div>
-    )
+    );
 }
 function ScheduleColumnOnline(props: any) {
     return (
-        <div className='Online'>
+        <div className="Online">
             <span>{props.name}</span>
             <span>Online</span>
         </div>
-    )
+    );
 }
 function ScheduleColumnAbsent(props: any) {
     return (
-        <div className='Absent'>
+        <div className="Absent">
             <span>{props.name}</span>
             <span>{props.class}</span>
         </div>
-    )
+    );
 }
 
-export { ScheduleColumn, ScheduleColumnOnline, ScheduleColumnAbsent }
+export { ScheduleColumn, ScheduleColumnOnline, ScheduleColumnAbsent };

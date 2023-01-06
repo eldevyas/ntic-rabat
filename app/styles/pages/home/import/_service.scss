@@ -1,9 +1,9 @@
     .Service {
         width: 100%;
-        padding: 1rem $HorizontalPadding;
         display: flex;
         gap: $GlobalGap;
         flex-direction: column;
+        @include GlobalPadding();
         .Qualities {
             display: flex;
             flex-direction: column;
@@ -16,21 +16,24 @@
             }
         }
         .Cards {
-            display: flex;
-            flex-direction: row;
-            justify-content: space-between;
+            display: grid;
+            grid-gap: $GlobalGap;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             align-items: stretch;
-            gap: $GlobalGap;
             .Card {
                 padding: 2rem;
                 border-radius: 10px;
                 background-color: $C1;
+                background: $G1;
                 display: flex;
                 flex-direction: column;
                 justify-content: space-between;
                 flex: 1;
                 gap: 1rem;
+                user-select: none;
                 .IconButton {
+                    pointer-events: none;
+                    border-radius: 15px;
                     .Icon {
                         font-size: 2rem;
                         color: #fff;
@@ -52,42 +55,100 @@
                     align-items: flex-end;
                     margin-top: 2rem;
                     font-size: 0.85rem;
+                    padding: 0.75rem 0rem;
+                    transition: all 0.3s ease;
+                    color: $C2;
                     * {
-                        color: $C2;
+                        color: inherit;
                     }
                     svg {
                         font-size: 1.2rem;
                     }
                 }
+                &:hover {
+                    background: lighten($C1, 5%);
+                    .ReadMore {
+                        cursor: pointer;
+                        background-color: white;
+                        color: $C1;
+                        border-radius: 15px;
+                        padding: 0.75rem 1rem;
+                    }
+                }
                 &:nth-child(2) {
-                    background-color: lighten($C2, 30%);
+                    background: lighten($C2, 35%);
+                    &:hover {
+                        background: $G2;
+                        color: #fff;
+                        .IconButton {
+                            color: $C2;
+                            background-color: $C4;
+                            .Icon {
+                                color: $C2;
+                            }
+                        }
+                        .CardTitle,
+                        .CardText {
+                            color: $C4;
+                        }
+                        .ReadMore {
+                            background-color: $C4;
+                            color: $C2 !important;
+                        }
+                    }
                 }
                 &:nth-child(3) {
-                    background-color: lighten($C3, 40%);
+                    background: lighten($C3, 35%);
                     .IconButton {
                         color: $C4;
                         background-color: $C3;
                     }
                     .CardTitle,
-                    .ReadMore * {
-                        color: $C3;
-                    }
                     .CardText {
                         color: $C3;
                     }
+                    .ReadMore {
+                        color: $C3;
+                    }
+                    &:hover {
+                        background: $G3;
+                        color: #fff;
+                        .IconButton {
+                            color: $C3;
+                            background-color: $C4;
+                            .Icon {
+                                color: $C3;
+                            }
+                        }
+                        .CardTitle,
+                        .CardText {
+                            color: $C4;
+                        }
+                        .ReadMore {
+                            background-color: $C4;
+                            color: $C3 !important;
+                        }
+                    }
                 }
                 &:nth-child(4) {
-                    background-color: darken($color: $C4, $amount: 2.5%);
+                    background: darken($color: $C4, $amount: 2.5%);
                     .IconButton {
                         color: $C4;
                         background-color: $C1;
                     }
                     .CardTitle,
-                    .ReadMore * {
+                    .ReadMore {
                         color: $C1;
                     }
                     .CardText {
                         color: $C5;
+                    }
+                    &:hover {
+                        background: darken($color: $C4, $amount: 7.5%);
+                        .ReadMore {
+                            background-color: $C1;
+                            color: $C4 !important;
+                        }
                     }
                 }
             }
@@ -116,10 +177,15 @@
                 justify-content: center;
                 align-items: center;
                 min-height: 200px;
+                &:hover {
+                    cursor: pointer;
+                    filter: brightness(0.9);
+                }
                 img {
                     width: 100%;
                     height: 100%;
                     object-fit: cover;
+                    object-position: center;
                 }
                 .Skeleton {
                     width: 100%;

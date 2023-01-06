@@ -13,13 +13,13 @@ import CalculateIcon from "@mui/icons-material/Calculate";
 export default function SelectGroup(props: any) {
     // Set Group state to type array with object of name and value
     const [Groups, setGroups] = React.useState<
-        { name: String; value: number }[]
+        { name: string; value: number }[]
     >([]);
 
     // Fetch /api/groups with axios
     const SendRequest = async () => {
         try {
-            const response = await axios.get("/api/groups");
+            const response = await axios.get("/api/V2/groups");
             setGroups(response.data);
             return response.data;
         } catch (e) {
@@ -43,7 +43,7 @@ export default function SelectGroup(props: any) {
                             {group.name == "" ? (
                                 ""
                             ) : (
-                                <option key={index} value={group.value}>
+                                <option key={index} value={group.name}>
                                     {group.name}
                                 </option>
                             )}

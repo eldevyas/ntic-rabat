@@ -16,7 +16,7 @@ const FormateursProfessionnels = () => {
                 <p>
                     Nous avons amené les meilleurs formateurs dans notre
                     institut, non seulement pour améliorer la qualité de
-                    l&aposenseignement, mais aussi la qualité de
+                    l&apos;enseignement, mais aussi la qualité de
                     l&apos;apprentissage des stagiaires. La façon dont
                     l&apos;information leur est envoyée est la clé de leur
                     compréhension et de leur amour pour leur domaine de travail.
