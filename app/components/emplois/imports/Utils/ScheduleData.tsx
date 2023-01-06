@@ -44,12 +44,12 @@ const ScheduleData = (props: any) => {
 
     return (
         <>
-            {Weather.length == 6 && Data.length == 6 ? (
+            {Data.length >= 6 ? (
                 Data.map((Row: any, Index: number) => {
                     return (
                         <tr key={Index}>
                             <td>
-                                {Weather ? (
+                                {Weather && Weather.length >= 6 ? (
                                     <>
                                         <WeatherCell
                                             dataDay={Row.Day}
@@ -63,10 +63,13 @@ const ScheduleData = (props: any) => {
                                     </>
                                 ) : (
                                     <>
-                                        <div>
-                                            <span>{Row.Day}</span>
-                                            <span>18° C</span>
-                                        </div>
+                                        <WeatherCell
+                                            dataDay={Row.Day}
+                                            dataDate={new Date()}
+                                            dataTemperature={18}
+                                            dataIcon={"Sunny"}
+                                            dataWeather={"Sunny"}
+                                        />
                                     </>
                                 )}
                             </td>

@@ -18,7 +18,6 @@ const Schedule = (props: any) => {
     // useEffect
     useEffect(() => {
         setData(props.Data);
-        console.log(props.Data);
     }, [props.Data]);
 
     return (

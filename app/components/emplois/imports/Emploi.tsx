@@ -25,7 +25,6 @@ export default function Emploi() {
                 const res = await axios.get(`/api/V2/groups/${GroupID}`);
                 const resData = res.data;
                 setGroupSchedule(resData);
-                console.log(resData);
             } else {
                 console.log("No Group ID found");
             }
