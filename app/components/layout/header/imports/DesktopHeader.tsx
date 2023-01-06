@@ -23,6 +23,7 @@ export default function DesktopHeader(props: any) {
                     height={100}
                     alt="Logo"
                     priority
+                    onClick={() => Router.push("/")}
                 />
             </div>
             <div className="Middle">

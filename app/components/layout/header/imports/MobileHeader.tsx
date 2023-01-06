@@ -3,6 +3,7 @@ import Image from "next/image";
 import Button from "@mui/material/Button";
 import MenuIcon from "@mui/icons-material/Menu";
 import MobileMenu from "./../utils/MobileMenu";
+import { useRouter } from "next/router";
 
 // Framer Motion
 import { motion, AnimatePresence } from "framer-motion";
@@ -12,6 +13,7 @@ export interface IOpenMenu {
 }
 
 export default function DesktopHeader(props: any) {
+    const Router = useRouter();
     var { links, ...other } = props;
 
     const [OpenMenu, setOpenMenu] = useState(false);
@@ -47,6 +49,7 @@ export default function DesktopHeader(props: any) {
                         alt="Logo"
                         layout="fill"
                         objectFit="cover"
+                        onClick={() => Router.push("/")}
                     />
                 </div>
 
