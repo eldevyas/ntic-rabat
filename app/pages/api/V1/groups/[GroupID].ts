@@ -44,7 +44,7 @@ export default async function handler(
         //   fetchedTable.push({ time: featchedTiming })
         // }
 
-        let DayObject = { Day: "", Time: [] };
+        let DayObject: { Day: string, Time: any } = { Day: "", Time: [] };
 
 
         const fetchedDay = ($(`table[bordercolor="#336699"]>tbody>tr:nth-child(${index})>td:nth-child(1)`).text());
@@ -83,19 +83,10 @@ export default async function handler(
                 Former = fetchedTiming.slice(0, fetchedTiming.lastIndexOf(' '));
             }
 
-
-
-            // Push the last word into Hall
-            // Get the last word from the end until the space
-            let Day = {
-                Former: Former,
-                Hall: Hall
-            }
-
-
-
-
-            DayObject.Time.push(Day);
+            DayObject.Time.push({
+                Hall: Hall,
+                Former: Former
+            });
         }
 
         fetchedTable.push(DayObject);

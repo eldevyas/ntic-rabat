@@ -2,46 +2,77 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: calc(100vh - 50px);
+    min-height: 80vh;
     flex-direction: column;
     width: 100%;
-    padding: 1rem $HorizontalPadding;
     gap: 2rem;
+    @include GlobalPadding();
     .Title {
-        width: 60%;
+        width: 75%;
+        @include respond-to('large') {
+            width: 75%;
+            // margin-top: 2rem;
+        }
+        @include respond-to('medium') {
+            width: 100%;
+            // margin-top: 3rem;
+        }
+        @include respond-to('small') {
+            width: 100%;
+            // margin-top: 4rem;
+            h3 {
+                font-size: 1.8rem !important;
+            }
+        }
         display: flex;
         flex-direction: column;
-        gap: 20px;
+        gap: $GlobalGap;
         text-align: center;
         span {
             color: $C3;
         }
         h3,
         span {
-            font-size: 40px;
-            font-weight: 700;
+            font-size: 2.25rem;
+            font-weight: 800;
         }
         p {
             font-weight: 300;
             font-size: 1rem;
+            font-weight: 400;
+            opacity: 0.75;
+            padding-top: 0.5rem;
+            padding-bottom: 1.5rem;
         }
     }
     .APIs {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: $GlobalGap;
+        width: 100%;
+        @include respond-to('large') {
+            width: 50%;
+        }
+        @include respond-to('medium') {
+            width: 100%;
+        }
+        @include respond-to('small') {
+            width: 100%;
+        }
+        display: grid;
+        grid-gap: $GlobalGap;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
         // Same Width for buttons
         .DefaultButton,
         button {
-            min-width: 250px;
+            min-width: auto;
+            padding-left: 2rem;
+            padding-right: 2rem;
+            // no word wrap
+            white-space: nowrap;
         }
     }
     .Cards {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        gap: $GlobalGap;
+        display: grid;
+        grid-gap: $GlobalGap;
+        grid-template-columns: repeat(auto-fit, minmax(125px, 1fr));
         width: 100%;
         $CardMargin: 0;
         $CardPadding: 50px 1rem;
@@ -59,6 +90,7 @@
             border: $CardBorder;
             border-radius: 0.6rem;
             color: $C2;
+            text-align: center;
             h5 {
                 font-weight: 700;
                 margin-top: 0.8rem;
@@ -69,18 +101,14 @@
                 font-size: 25px;
             }
             &:hover {
-                background-color: $C2;
-                background-image: $G2;
-                color: $C4;
+                background: lighten($C2, 30%);
+                color: $C2;
             }
             // Last child
             &:last-child {
                 background-color: $C2;
                 background-image: $G2;
                 color: $C4;
-                &:hover {
-                    background: lighten($C2, 15%);
-                }
             }
         }
     }

@@ -1,7 +1,6 @@
 import * as React from "react";
 import axios from "axios";
 import { Button } from "@mui/material";
-import { useDispatch } from "react-redux";
 
 // Icons
 import ComputerIcon from "@mui/icons-material/Computer";
@@ -14,13 +13,13 @@ import CalculateIcon from "@mui/icons-material/Calculate";
 export default function SelectGroup(props: any) {
     // Set Group state to type array with object of name and value
     const [Groups, setGroups] = React.useState<
-        { name: String; value: number }[]
+        { name: string; value: number }[]
     >([]);
 
     // Fetch /api/groups with axios
     const SendRequest = async () => {
         try {
-            const response = await axios.get("/api/groups");
+            const response = await axios.get("/api/V2/groups");
             setGroups(response.data);
             return response.data;
         } catch (e) {
@@ -31,15 +30,12 @@ export default function SelectGroup(props: any) {
 
     React.useEffect(() => {
         SendRequest();
-        console.log(Groups);
     }, []);
 
     return (
         <>
             <select className="SelectGroup" {...props}>
-                <option value="" selected>
-                    Selectionnez un emplois
-                </option>
+                <option defaultValue="">Selectionnez un emplois</option>
                 {/* Loop all groups */}
                 {Groups.map((group, index) => {
                     return (
@@ -47,7 +43,7 @@ export default function SelectGroup(props: any) {
                             {group.name == "" ? (
                                 ""
                             ) : (
-                                <option key={index} value={group.value}>
+                                <option key={index} value={group.name}>
                                     {group.name}
                                 </option>
                             )}

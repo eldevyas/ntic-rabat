@@ -18,6 +18,7 @@ const Schedule = (props: any) => {
     // useEffect
     useEffect(() => {
         setData(props.Data);
+        console.log(props.Data);
     }, [props.Data]);
 
     return (
@@ -27,7 +28,7 @@ const Schedule = (props: any) => {
                 <tbody>
                     {
                         // Data shall be an array with more than one record
-                        Data?.length > 1 ? (
+                        Data.length > 1 ? (
                             <ScheduleData Data={Data} />
                         ) : (
                             <ScheduleSkeleton />

@@ -1,0 +1,24 @@
+// function to manage responsiveness
+// Usage: @include respond-to($breakpoint) { ... }
+@mixin respond-to($breakpoint) {
+    @if $breakpoint==small {
+        @media (max-width: 420px) {
+            @content;
+        }
+    }
+    @else if $breakpoint==medium {
+        @media (max-width: 768px) {
+            @content;
+        }
+    }
+    @else if $breakpoint==large {
+        @media (max-width: 1024px) {
+            @content;
+        }
+    }
+    @else if $breakpoint==xlarge {
+        @media (max-width: 1200px) {
+            @content;
+        }
+    }
+}

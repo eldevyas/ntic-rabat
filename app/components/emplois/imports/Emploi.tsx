@@ -15,20 +15,21 @@ export default function Emploi() {
     };
 
     // async function
-    const SetSchedule = async () => {
-        // Send request with group id, then update the Schedule
-        setGroupSchedule([]);
-        if (GroupID && GroupID != null) {
-            const res = await axios.get(`/api/groups/${GroupID}`);
-            const resData = res.data;
-            setGroupSchedule(resData);
-        } else {
-            console.log("No Group ID found");
-        }
-    };
 
     // useEffect
     useEffect(() => {
+        const SetSchedule = async () => {
+            // Send request with group id, then update the Schedule
+            setGroupSchedule([]);
+            if (GroupID && GroupID != null) {
+                const res = await axios.get(`/api/V2/groups/${GroupID}`);
+                const resData = res.data;
+                setGroupSchedule(resData);
+                console.log(resData);
+            } else {
+                console.log("No Group ID found");
+            }
+        };
         SetSchedule();
     }, [GroupID]);
 

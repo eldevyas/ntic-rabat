@@ -40,6 +40,11 @@ $G5: linear-gradient(135deg,
 ;
 $GlobalGap: 0.75rem;
 $HorizontalPadding: 5%;
+@mixin GlobalPadding() {
+    padding: 1rem 2rem;
+}
+
+;
 // Scrollbar styling
 ::-webkit-scrollbar {
     width: 10px;
@@ -51,9 +56,11 @@ $HorizontalPadding: 5%;
 }
 
 ::-webkit-scrollbar-thumb {
-    background-color: var(--C2);
+    border-radius: 10px;
+    background-color: $C2;
     &:hover {
-        background-color: var(--C3);
+        background-color: lighten($C2, 10%);
+        cursor: grabbing !important;
     }
 }
 

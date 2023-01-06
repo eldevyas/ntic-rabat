@@ -40,13 +40,27 @@ export default function Footer() {
                         d&apos;informations de contact
                     </p>
                     <div className="Informations">
-                        <div className="Developer" onClick={() => window.open("https://www.linkedin.com/in/yassinechettouch")}>
+                        <div
+                            className="Developer"
+                            onClick={() =>
+                                window.open(
+                                    "https://www.linkedin.com/in/yassinechettouch"
+                                )
+                            }
+                        >
                             <IconButton bgColor="Green">
                                 <AccountTreeOutlinedIcon className="Icon" />
                             </IconButton>
                             <div className="Name">Yassine Chettouch</div>
                         </div>
-                        <div className="Developer" onClick={() => window.open("https://www.linkedin.com/in/yassine-atik")}>
+                        <div
+                            className="Developer"
+                            onClick={() =>
+                                window.open(
+                                    "https://www.linkedin.com/in/yassineatik"
+                                )
+                            }
+                        >
                             <IconButton bgColor="Green">
                                 <AccountTreeOutlinedIcon className="Icon" />
                             </IconButton>

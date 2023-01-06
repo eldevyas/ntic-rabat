@@ -1,12 +1,10 @@
-import React from 'react'
+import React from "react";
 
-import { DarkHeader } from '../layout/header/header';
-import Footer from '../layout/footer';
+import Header from "../layout/header/header";
+import Footer from "../layout/footer";
 import Head from "next/head";
-import ConnexionForm from './imports/ConnexionForm';
+import ConnexionForm from "./imports/ConnexionForm";
 const ConnexionPage = () => {
-
-
     return (
         <>
             <Head>
@@ -23,12 +21,11 @@ const ConnexionPage = () => {
             </Head>
 
             <div className="ConnexionPage">
-                <DarkHeader />
+                <Header data-theme="dark" />
                 <ConnexionForm />
             </div>
         </>
-    )
-}
+    );
+};
 
-
-export default ConnexionPage
+export default ConnexionPage;
