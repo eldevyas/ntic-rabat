@@ -44,7 +44,7 @@ export default async function handler(
         //   fetchedTable.push({ time: featchedTiming })
         // }
 
-        let DayObject = { Day: "", Time: [] };
+        let DayObject: { Day: string, Time: {}[] } = { Day: "", Time: [] };
 
 
         const fetchedDay = ($(`table[bordercolor="#336699"]>tbody>tr:nth-child(${index})>td:nth-child(1)`).text());
