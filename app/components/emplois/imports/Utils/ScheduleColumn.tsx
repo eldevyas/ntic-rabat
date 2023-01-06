@@ -25,4 +25,13 @@ function ScheduleColumnAbsent(props: any) {
     );
 }
 
-export { ScheduleColumn, ScheduleColumnOnline, ScheduleColumnAbsent };
+function ScheduleColumnFree() {
+    return <div className="Free"></div>;
+}
+
+export {
+    ScheduleColumn,
+    ScheduleColumnOnline,
+    ScheduleColumnAbsent,
+    ScheduleColumnFree,
+};

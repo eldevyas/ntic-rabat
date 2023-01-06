@@ -5,7 +5,9 @@ import {
     ScheduleColumn,
     ScheduleColumnOnline,
     ScheduleColumnAbsent,
+    ScheduleColumnFree,
 } from "./ScheduleColumn";
+import ScheduleSkeleton from "./ScheduleSkeleton";
 import WeatherCell from "./WeatherCell";
 
 const ScheduleData = (props: any) => {
@@ -23,17 +25,15 @@ const ScheduleData = (props: any) => {
             icon: string;
             weather: string;
         }[]
-    >();
+    >([]);
 
     // send request with axios to API ("api/weather");
     const getWeather = async () => {
         let res = await axios.get("/api/weather");
         if (res.status === 200) {
             setWeather(res.data);
-            console.log(res.data);
             return;
         } else {
-            console.log(res.data);
             setWeather([]);
         }
     };
@@ -41,70 +41,79 @@ const ScheduleData = (props: any) => {
     useEffect(() => {
         getWeather();
     }, []);
+
     return (
         <>
-            {Data.map((Row, Index) => {
-                return (
-                    <tr key={Index}>
-                        <td>
-                            {Weather ? (
-                                <>
-                                    <WeatherCell
-                                        dataDay={Row.Day}
-                                        dataDate={Weather[Index].date}
-                                        dataTemperature={
-                                            Weather[Index].temperature.avg
-                                        }
-                                        dataIcon={Weather[Index].icon}
-                                        dataWeather={Weather[Index].weather}
-                                    />
-                                </>
-                            ) : (
-                                <>
-                                    <div>
-                                        <span>{Row.Day}</span>
-                                        <span>18° C</span>
-                                    </div>
-                                </>
-                            )}
-                        </td>
-                        {Row.Time.map((Cell, Index) => {
-                            if (Cell.Hall == "") {
-                                return <td key={Index}></td>;
-                            } else if (
-                                Cell.Hall == "Absente" ||
-                                Cell.Hall == "Absent"
-                            ) {
-                                return (
-                                    <td key={Index}>
-                                        <ScheduleColumnAbsent
-                                            name={Cell.Former}
-                                            class={Cell.Hall}
+            {Weather.length == 6 && Data.length == 6 ? (
+                Data.map((Row: any, Index: number) => {
+                    return (
+                        <tr key={Index}>
+                            <td>
+                                {Weather ? (
+                                    <>
+                                        <WeatherCell
+                                            dataDay={Row.Day}
+                                            dataDate={Weather[Index].date}
+                                            dataTemperature={
+                                                Weather[Index].temperature.avg
+                                            }
+                                            dataIcon={Weather[Index].icon}
+                                            dataWeather={Weather[Index].weather}
                                         />
-                                    </td>
-                                );
-                            } else if (Cell.Hall == "dist") {
-                                return (
-                                    <td key={Index}>
-                                        <ScheduleColumnOnline
-                                            name={Cell.Former}
-                                        />
-                                    </td>
-                                );
-                            } else {
-                                return (
-                                    <td key={Index}>
-                                        <ScheduleColumn
-                                            name={Cell.Former}
-                                            class={Cell.Hall}
-                                        />
-                                    </td>
-                                );
-                            }
-                        })}
-                    </tr>
-                );
-            })}
+                                    </>
+                                ) : (
+                                    <>
+                                        <div>
+                                            <span>{Row.Day}</span>
+                                            <span>18° C</span>
+                                        </div>
+                                    </>
+                                )}
+                            </td>
+                            {Row.Time.map((Cell: any, index: number) => {
+                                if (Cell.Hall == "") {
+                                    return (
+                                        <td key={Index}>
+                                            <ScheduleColumnFree />
+                                        </td>
+                                    );
+                                } else if (
+                                    Cell.Hall == "Absente" ||
+                                    Cell.Hall == "Absent"
+                                ) {
+                                    return (
+                                        <td key={Index}>
+                                            <ScheduleColumnAbsent
+                                                name={Cell.Former}
+                                                class={Cell.Hall}
+                                            />
+                                        </td>
+                                    );
+                                } else if (Cell.Hall == "dist") {
+                                    return (
+                                        <td key={Index}>
+                                            <ScheduleColumnOnline
+                                                name={Cell.Former}
+                                            />
+                                        </td>
+                                    );
+                                } else {
+                                    return (
+                                        <td key={Index}>
+                                            <ScheduleColumn
+                                                name={Cell.Former}
+                                                class={Cell.Hall}
+                                            />
+                                        </td>
+                                    );
+                                }
+                            })}
+                        </tr>
+                    );
+                })
+            ) : (
+                <ScheduleSkeleton />
+            )}
         </>
     );
 };

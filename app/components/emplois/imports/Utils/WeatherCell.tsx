@@ -4,6 +4,7 @@ import Image from "next/image";
 export default function WeatherCell(props: any) {
     const Day = props.dataDay;
     const Temperature = props.dataTemperature;
+    const Weather = props.dataWeather;
 
     // Switch function
     function SwitchIcon(Icon: string) {
@@ -29,9 +30,8 @@ export default function WeatherCell(props: any) {
     const FinalWeatherIcon = SwitchIcon(props.dataIcon);
 
     // Date from props dataDate - formatted to (01 Jan 2023);
-    const PassedDate = props.dataDate;
     // Convert date to (01 Jan 2023)
-    const date = new Date(String(PassedDate));
+    const date = new Date(String(props.dataDate));
 
     const FinalDate = date.toLocaleDateString("fr-FR", {
         weekday: "long",
@@ -51,7 +51,7 @@ export default function WeatherCell(props: any) {
                 title={"Rabat - " + CapitalizedFinalDate}
             >
                 <span>{Day}</span>
-                <span>{Temperature}° C</span>
+                <span>{Weather + " - " + Temperature}° C</span>
                 <div className="Icon">{FinalWeatherIcon}</div>
 
                 <div className="Banner">
