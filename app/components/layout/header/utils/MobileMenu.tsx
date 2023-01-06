@@ -79,7 +79,6 @@ export default function MobileMenu(props: any) {
 
     useEffect(() => {
         let CurrentURL = "/" + Router.pathname.split("/")[1];
-        console.log("Current URL: ", CurrentURL);
 
         Items.forEach((item) => {
             if (item.href == CurrentURL) {

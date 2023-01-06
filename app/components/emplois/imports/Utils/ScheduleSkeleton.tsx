@@ -24,7 +24,6 @@ const ScheduleSkeleton = (props: any) => {
         let res = await axios.get("/api/weather");
         if (res.status === 200) {
             setWeather(res.data);
-            console.log(res.data);
             return;
         } else {
             console.log(res.data);
