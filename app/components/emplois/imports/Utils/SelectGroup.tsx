@@ -87,9 +87,7 @@ export default function SelectGroup(props: any) {
                     }),
                     option: (base: any, state: any) => ({
                         ...base,
-                        backgroundColor: state.isFocused
-                            ? "rgba(0,0,0, 0.5)"
-                            : "#fff",
+                        backgroundColor: state.isFocused ? "#4BB8E7" : "#fff",
                         borderColor: state.isFocused ? "#f5f5f5" : "#fff",
                         color: state.isFocused ? "#fff" : "#303030",
                         fontFamily: "Outfit, sans-serif",
@@ -97,6 +95,20 @@ export default function SelectGroup(props: any) {
                         fontWeight: "400",
                         padding: "0.75rem 1.25rem",
                         zIndex: "10000",
+                        borderRadius: "10px",
+                        // hover
+                        "&:hover": {
+                            backgroundColor: state.isFocused
+                                ? "#4BB8E7"
+                                : "#fff",
+                            borderColor: state.isFocused ? "#f5f5f5" : "#fff",
+                        },
+                        "&:active": {
+                            backgroundColor: state.isFocused
+                                ? "#4BB8E7"
+                                : "#fff",
+                            borderColor: state.isFocused ? "#f5f5f5" : "#fff",
+                        },
                     }),
                 }}
             />
