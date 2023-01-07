@@ -4,11 +4,12 @@ import axios from "axios";
 
 const SelectClass = (props: any) => {
     const setGroup = props.setGroup;
+    const GroupID = props.GroupID;
 
     return (
         <div className="SelectClass">
             <div className="SelectGroup">
-                <SelectGroup setGroup={setGroup} />
+                <SelectGroup GroupID={GroupID} setGroup={setGroup} />
             </div>
         </div>
     );

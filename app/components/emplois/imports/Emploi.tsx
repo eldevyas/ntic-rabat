@@ -4,12 +4,12 @@ import SelectClass from "./SelectClass";
 import axios from "axios";
 import { useRouter } from "next/router";
 
-export default function Emploi() {
+export default function Emploi(props: any) {
     const Router = useRouter();
     // State fro data
     // GroupID state
-    const [GroupID, setGroupID] = useState(Router.query.GroupID as string);
-    const [GroupSchedule, setGroupSchedule] = useState([]);
+    const [GroupID, setGroupID] = useState(props["data-GroupID"]);
+    const [GroupSchedule, setGroupSchedule] = useState(props["data-Schedule"]);
 
     // Change group function
     const setGroup = (Group: string) => {
@@ -28,13 +28,19 @@ export default function Emploi() {
             // Send request with group id, then update the Schedule
             setGroupSchedule([]);
             if (GroupID != "" && GroupID != null) {
-                const res = await axios.get(
-                    `/api/V2/groups/${Router.query.GroupID}`
-                );
+                const res = await axios.get(`/api/V2/groups/${GroupID}`);
                 const resData = res.data;
                 setGroupSchedule(resData);
             } else {
-                console.log("No Group ID found");
+                if (Router.query.GroupID) {
+                    const res = await axios.get(
+                        `/api/V2/groups/${Router.query.GroupID}`
+                    );
+                    const resData = res.data;
+                    setGroupSchedule(resData);
+                } else {
+                    console.log("No Group ID found");
+                }
             }
         };
         SetSchedule();
@@ -42,7 +48,7 @@ export default function Emploi() {
 
     return (
         <>
-            <SelectClass setGroup={setGroup} />
+            <SelectClass GroupID={GroupID} setGroup={setGroup} />
             <Schedule Data={GroupSchedule} />
         </>
     );

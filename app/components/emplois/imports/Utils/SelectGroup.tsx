@@ -13,6 +13,7 @@ import CalculateIcon from "@mui/icons-material/Calculate";
 
 export default function SelectGroup(props: any) {
     const router = useRouter();
+    const CurrentGroup = props.GroupID;
     // Set Group state to type array with object of name and value
     const [Groups, setGroups] = React.useState<
         { name: string; value: number }[]

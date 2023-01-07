@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Header from "../layout/header/header";
 import Footer from "../layout/footer";
 import Head from "next/head";
@@ -11,7 +11,11 @@ import Emploi from "./imports/Emploi";
 
 // Configure Group Context
 
-const EmploisPage = () => {
+const EmploisPage = (props: any) => {
+    useEffect(() => {
+        console.table(props);
+    }, []);
+
     return (
         <>
             <Head>
@@ -29,7 +33,10 @@ const EmploisPage = () => {
 
             <div className="EmploisPage">
                 <Header />
-                <Emploi />
+                <Emploi
+                    data-GroupID={props["data-GroupID"]}
+                    data-Schedule={props["data-Schedule"]}
+                />
                 <Footer />
             </div>
         </>
