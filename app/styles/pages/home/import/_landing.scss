@@ -10,11 +10,11 @@
     .Title {
         width: 75%;
         @include respond-to('large') {
-            width: 75%;
+            width: 50%;
             // margin-top: 2rem;
         }
         @include respond-to('medium') {
-            width: 100%;
+            width: 75%;
             // margin-top: 3rem;
         }
         @include respond-to('small') {
@@ -46,9 +46,9 @@
         }
     }
     .APIs {
-        width: 100%;
+        width: 50%;
         @include respond-to('large') {
-            width: 50%;
+            width: calc(50% * 99/100);
         }
         @include respond-to('medium') {
             width: 100%;

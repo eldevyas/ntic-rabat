@@ -47,7 +47,7 @@ const ScheduleData = (props: any) => {
             {Data.length >= 6 ? (
                 Data.map((Row: any, Index: number) => {
                     return (
-                        <tr key={Index}>
+                        <tr key={"R" + Index}>
                             <td>
                                 {Weather && Weather.length >= 6 ? (
                                     <>
@@ -76,7 +76,7 @@ const ScheduleData = (props: any) => {
                             {Row.Time.map((Cell: any, index: number) => {
                                 if (Cell.Hall == "") {
                                     return (
-                                        <td key={Index}>
+                                        <td key={"C" + index}>
                                             <ScheduleColumnFree />
                                         </td>
                                     );
@@ -85,7 +85,7 @@ const ScheduleData = (props: any) => {
                                     Cell.Hall == "Absent"
                                 ) {
                                     return (
-                                        <td key={Index}>
+                                        <td key={"C" + index}>
                                             <ScheduleColumnAbsent
                                                 name={Cell.Former}
                                                 class={Cell.Hall}
@@ -94,7 +94,7 @@ const ScheduleData = (props: any) => {
                                     );
                                 } else if (Cell.Hall == "dist") {
                                     return (
-                                        <td key={Index}>
+                                        <td key={"C" + index}>
                                             <ScheduleColumnOnline
                                                 name={Cell.Former}
                                             />
@@ -102,7 +102,7 @@ const ScheduleData = (props: any) => {
                                     );
                                 } else {
                                     return (
-                                        <td key={Index}>
+                                        <td key={"R" + index}>
                                             <ScheduleColumn
                                                 name={Cell.Former}
                                                 class={Cell.Hall}

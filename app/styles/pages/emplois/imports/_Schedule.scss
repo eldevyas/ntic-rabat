@@ -7,11 +7,9 @@
     overflow-x: auto;
     background-color: darken($color: $C4, $amount: 10%);
     user-select: none;
-
     table {
         border-spacing: $GlobalGap;
         margin: 0 auto;
-
         thead>tr>td {
             min-width: 150px;
             min-width: min-content;
@@ -22,25 +20,21 @@
             font-weight: 500;
             font-size: 0.9rem;
             padding: 10px;
-
             &:first-child {
                 background: $G2;
                 color: $C4;
                 //  If we want to remove the first empty div in time lines
                 // visibility: hidden;
             }
-
             div {
                 display: flex;
                 justify-content: space-between;
                 width: 100%;
             }
-
             &:hover {
                 background-color: darken($color: $C4, $amount: 5%);
             }
         }
-
         tbody>tr>td {
             position: relative;
             overflow: hidden;
@@ -54,31 +48,24 @@
             font-size: 0.9rem;
             border-radius: 15px;
             height: 1rem;
-
             &:hover {
                 opacity: 0.75;
             }
-
             &:has(> .WeatherCell) {
                 background: $G2;
             }
-
             &:first-child {
                 min-width: 200px;
                 background: $G2;
                 color: $C4;
-
                 div {
                     background: none;
                 }
-
                 span {
                     font-weight: 400;
-
                     &:first-child {
                         font-weight: 800;
                     }
-
                     &:last-child {
                         font-weight: 400;
                         color: lighten($color: #000000, $amount: 90%);
@@ -87,12 +74,10 @@
                         border-radius: 30%;
                     }
                 }
-
                 &:hover {
                     background-color: darken($color: $C2, $amount: 5%);
                 }
             }
-
             div {
                 display: flex;
                 flex-direction: column;
@@ -104,11 +89,9 @@
                 height: 100%;
                 border-radius: 15px;
                 padding: 0.75rem 0.75rem;
-
                 span {
                     font-weight: 600;
                     font-size: 0.8rem;
-
                     &:last-child {
                         font-weight: 600;
                         font-size: 0.8rem;
@@ -118,34 +101,28 @@
                         border-radius: 5px;
                     }
                 }
-
                 // &:hover {
                 //     background-color: darken($color: $C1, $amount: 5%);
                 // }
             }
         }
     }
-
     .Online {
         background-color: $C3 !important;
-
         span {
             &:last-child {
                 color: $C3 !important;
             }
         }
     }
-
     .Absent {
         background-color: red !important;
-
         span {
             &:last-child {
                 color: red !important;
             }
         }
     }
-
     .Free {
         background-color: white !important;
         height: 100%;
@@ -154,7 +131,6 @@
         min-width: 150px;
         min-height: 75px;
     }
-
     .WeatherCell {
         position: absolute;
         top: 0;
@@ -168,12 +144,11 @@
         align-items: center;
         padding: 0;
         overflow: hidden;
-        background: transparent !important;
-
+        background: $G4 !important;
+        backdrop-filter: brightness(0.85);
         span {
             z-index: 6;
         }
-
         .Icon {
             position: absolute;
             top: 0;
@@ -185,7 +160,6 @@
             align-items: center;
             background: transparent !important;
             z-index: 5;
-
             svg {
                 width: auto;
                 height: 100%;
@@ -193,25 +167,20 @@
                 top: 0;
                 left: -10%;
             }
-
             // float animation
             animation: float 3s ease-in-out infinite;
-
             @keyframes float {
                 0% {
                     transform: translatey(0px);
                 }
-
                 50% {
                     transform: translatey(-5px);
                 }
-
                 100% {
                     transform: translatey(0px);
                 }
             }
         }
-
         .Banner {
             position: absolute;
             top: 0;
@@ -220,7 +189,6 @@
             height: 100%;
             width: 100%;
             opacity: 0.65;
-
             .Clouds {
                 position: absolute;
                 bottom: 0%;
@@ -232,28 +200,22 @@
                 justify-content: center;
                 align-items: center;
                 background: transparent !important;
-
                 // img vars
                 img:nth-child(1) {
                     --i: 1;
                 }
-
                 img:nth-child(2) {
                     --i: 2;
                 }
-
                 img:nth-child(3) {
                     --i: 3;
                 }
-
                 img:nth-child(4) {
                     --i: 4;
                 }
-
                 img:nth-child(5) {
                     --i: 5;
                 }
-
                 img {
                     // each image has a unique variable
                     position: absolute;
@@ -261,12 +223,10 @@
                     max-width: 100%;
                     animation: animate calc(16s * var(--i)) linear infinite;
                 }
-
                 @keyframes animate {
                     0% {
                         transform: translateX(-100%);
                     }
-
                     100% {
                         transform: translateX(100%);
                     }
@@ -277,18 +237,15 @@
 }
 
 @include respond-to("small") {
-
     .EmploisPage .Schedule table tbody>tr>td>div>span {
-        margin-left: 15px !important;
-
+        // &:first-of-type {
+        //     margin-left: 15px !important;
+        // }
         &:last-of-type {
             font-weight: 450 !important;
         }
     }
-
     .EmploisPage .Schedule table tbody>tr>td:first-child {
         min-width: 170px !important;
     }
-
-
 }

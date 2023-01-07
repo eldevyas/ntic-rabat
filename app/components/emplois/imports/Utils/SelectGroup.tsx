@@ -1,6 +1,7 @@
 import * as React from "react";
 import axios from "axios";
 import Select, { StylesConfig } from "react-select";
+import Router, { useRouter } from "next/router";
 
 // Icons
 import ComputerIcon from "@mui/icons-material/Computer";
@@ -11,6 +12,7 @@ import CalculateIcon from "@mui/icons-material/Calculate";
 // ----------------------------------------------------------------------
 
 export default function SelectGroup(props: any) {
+    const router = useRouter();
     // Set Group state to type array with object of name and value
     const [Groups, setGroups] = React.useState<
         { name: string; value: number }[]
@@ -35,13 +37,28 @@ export default function SelectGroup(props: any) {
 
     const setGroup = props.setGroup;
 
+    const ChangeGroup = (Group: string) => {
+        // Give the new GroupID to the query
+        if (router.query.GroupID != Group) {
+            setGroupID(Group);
+            router.push({
+                pathname: router.pathname,
+                query: {
+                    GroupID: Group,
+                },
+            });
+            // on route change complete
+            Router.events.on("routeChangeComplete", () => {
+                setGroup(Group);
+            });
+        }
+    };
+
     React.useEffect(() => {
         if (!(Groups.length > 0)) {
             SendRequest();
         }
-        // console.log(GroupID)
-        setGroup(GroupID);
-    }, [GroupID, Groups.length, setGroup]);
+    }, [GroupID, Groups.length, router, setGroup]);
 
     let options = Groups.map((group: { name: string; value: number }) => ({
         label: group.name,
@@ -58,7 +75,7 @@ export default function SelectGroup(props: any) {
                 placeholder="Sélectionnez un groupe:"
                 isSearchable={false}
                 isLoading={isLoading}
-                onChange={(choice: any) => setGroupID(choice.value)}
+                onChange={(choice: any) => ChangeGroup(choice.value)}
                 // default value
                 defaultValue={GroupID ? { label: GroupID, value: GroupID } : ""}
                 // custom style
