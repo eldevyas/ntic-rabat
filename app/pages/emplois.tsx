@@ -23,9 +23,11 @@ function Emplois({ props }: any) {
 }
 
 Emplois.getInitialProps = async (ctx: any) => {
+    const { req, query, res, asPath, pathname } = ctx;
+
     // Get GroupID from URL if found
     let Schedule: {}[] = [];
-    let GroupID = ctx.query.GroupID ? ctx.query.GroupID : "";
+    let GroupID = query.GroupID ? query.GroupID : "";
 
     // Check validity
     if (!GroupID && GroupID == "") {
@@ -37,14 +39,11 @@ Emplois.getInitialProps = async (ctx: any) => {
             notFound: true,
         };
     }
-    if (GroupID != "" && GroupID != null) {
+    if (GroupID != "" && GroupID != null && req) {
         // get domaine name
-        let URL = "";
-        // URL = ctx.req.url;
+        let Hostname = req.headers.host;
 
-        const res = await axios.get(
-            `http://localhost:3000/api/V2/groups/${GroupID}`
-        );
+        const res = await axios.get(`${Hostname}/api/V2/groups/${GroupID}`);
         const resData: {}[] = res.data;
         Schedule = resData;
     }
