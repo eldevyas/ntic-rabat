@@ -9,9 +9,11 @@
     user-select: none;
     border-radius: 0px;
     @include GlobalPadding();
+
     table {
         border-spacing: $GlobalGap;
         margin: 0 auto;
+
         thead>tr>td {
             min-width: 150px;
             min-width: min-content;
@@ -22,6 +24,7 @@
             font-weight: 500;
             font-size: 0.9rem;
             padding: 10px;
+
             &:first-child {
                 background: $G2;
                 color: $C4;
@@ -29,15 +32,18 @@
                 font-weight: 800;
                 color: transparent;
             }
+
             div {
                 display: flex;
                 justify-content: space-between;
                 width: 100%;
             }
+
             &:hover {
                 background-color: darken($color: $C4, $amount: 5%);
             }
         }
+
         tbody>tr>td {
             position: relative;
             overflow: hidden;
@@ -51,21 +57,27 @@
             font-size: 0.9rem;
             border-radius: 15px;
             height: 1rem;
+
             &:has(> .WeatherCell) {
                 background: $G2;
             }
+
             &:first-child {
                 min-width: 200px;
                 background: $G2;
                 color: $C4;
+
                 div {
                     background: none;
                 }
+
                 span {
                     font-weight: 400;
+
                     &:first-child {
                         font-weight: 800;
                     }
+
                     &:last-child {
                         font-weight: 400;
                         color: lighten($color: #000000, $amount: 90%);
@@ -75,6 +87,7 @@
                     }
                 }
             }
+
             div {
                 display: flex;
                 flex-direction: column;
@@ -86,9 +99,11 @@
                 height: 100%;
                 border-radius: 15px;
                 padding: 0.75rem 0.75rem;
+
                 span {
                     font-weight: 600;
                     font-size: 0.8rem;
+
                     &:last-child {
                         font-weight: 600;
                         font-size: 0.8rem;
@@ -101,17 +116,21 @@
             }
         }
     }
+
     .Online {
         background: $G3 !important;
+
         span {
             &:last-child {
                 color: $C3 !important;
             }
         }
+
         &:hover {
             background: darken($color: $C3, $amount: 5%) !important;
         }
     }
+
     .Absent {
         // linear red gradient
         background: #ff4b1f;
@@ -119,16 +138,19 @@
         background: -webkit-linear-gradient(to right, #ff9068, #ff4b1f);
         /* Chrome 10-25, Safari 5.1-6 */
         background: linear-gradient(to right, #ff9068, #ff4b1f);
+
         /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
         span {
             &:last-child {
                 color: orangered !important;
             }
         }
+
         &:hover {
             background: darken($color: orangered, $amount: 5%) !important;
         }
     }
+
     .Free {
         background: white !important;
         height: 100%;
@@ -136,10 +158,12 @@
         // width: 200px;
         min-width: 150px;
         min-height: 75px;
+
         &:hover {
             background: darken(white, 2.5%) !important;
         }
     }
+
     .WeatherCell {
         position: absolute;
         top: 0;
@@ -154,43 +178,53 @@
         padding: 0;
         overflow: hidden;
         background: $G2 !important;
+
         // if Has Rainy icon classname
         &:has(svg.Rainy) {
             background: desaturate(darken($C2, 0%), 25%) !important;
         }
+
         // if Has Snowy icon classname
         &:has(svg.Snowy) {
             background: desaturate(darken($C2, 0%), 50%) !important;
         }
+
         // if Has Thunder icon classname
         &:has(svg.Thunder) {
             background: desaturate(darken($C2, 0%), 50%) !important;
         }
+
         // if has fog
         &:has(svg.Fog) {
             background: desaturate(darken($C2, 0%), 25%) !important;
         }
+
         // if has cloudy
         &:has(svg.Cloudy) {
             background: saturate(darken($C2, 0%), 25%) !important;
         }
+
         // if has sunny
         &:has(svg.Sunny) {
             background: saturate(darken($C2, 0%), 50%) !important;
         }
+
         span {
             z-index: 6;
             // color: #ffbb3b !important;
             color: #fff;
             // box shadow
             text-shadow: 0 0 50px 10px #000;
+
             &:nth-child(2) {
                 color: #fff !important;
             }
         }
+
         &:hover {
             background: darken($color: $C2, $amount: 5%) !important;
         }
+
         .Icon {
             position: absolute;
             top: 0;
@@ -202,6 +236,7 @@
             align-items: center;
             background: transparent !important;
             z-index: 5;
+
             svg {
                 width: auto;
                 height: 100%;
@@ -210,30 +245,37 @@
                 transform: translateY(-50%);
                 left: -10%;
             }
+
             .Rainy,
             .Snowy,
             .Thunder {
                 width: auto;
                 height: 70% !important;
             }
+
             .Fog {
                 width: auto;
                 height: 75% !important;
             }
+
             // float animation
             animation: float 3s ease-in-out infinite;
+
             @keyframes float {
                 0% {
                     transform: translatey(0px);
                 }
+
                 50% {
                     transform: translatey(-5px);
                 }
+
                 100% {
                     transform: translatey(0px);
                 }
             }
         }
+
         .Banner {
             position: absolute;
             top: 0;
@@ -242,6 +284,7 @@
             height: 100%;
             width: 100%;
             opacity: 0.35;
+
             .Clouds {
                 position: absolute;
                 bottom: 0%;
@@ -253,22 +296,28 @@
                 justify-content: center;
                 align-items: center;
                 background: transparent !important;
+
                 // img vars
                 img:nth-child(1) {
                     --i: 1;
                 }
+
                 img:nth-child(2) {
                     --i: 2;
                 }
+
                 img:nth-child(3) {
                     --i: 3;
                 }
+
                 img:nth-child(4) {
                     --i: 4;
                 }
+
                 img:nth-child(5) {
                     --i: 5;
                 }
+
                 img {
                     // each image has a unique variable
                     position: absolute;
@@ -276,10 +325,12 @@
                     max-width: 100%;
                     animation: animate calc(16s * var(--i)) linear infinite;
                 }
+
                 @keyframes animate {
                     0% {
                         transform: translateX(-100%);
                     }
+
                     100% {
                         transform: translateX(100%);
                     }
@@ -291,6 +342,7 @@
 
 @include respond-to("small") {
     .EmploisPage .Schedule table tbody>tr>td>div>span {
+
         // &:first-of-type {
         //     margin-left: 15px !important;
         // }
@@ -298,6 +350,7 @@
             font-weight: 450 !important;
         }
     }
+
     .EmploisPage .Schedule table tbody>tr>td:first-child {
         min-width: 200px !important;
     }
