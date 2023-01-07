@@ -12,7 +12,7 @@ export default function WeatherCell(props: any) {
             case "Sun":
                 return <WeatherIcon.Sunny />;
             case "Fog":
-                return <WeatherIcon.Thunder />;
+                return <WeatherIcon.Fog />;
             case "Rain":
                 return <WeatherIcon.Rainy />;
             case "Thunder":
