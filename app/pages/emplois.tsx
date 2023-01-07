@@ -43,7 +43,9 @@ Emplois.getInitialProps = async (ctx: any) => {
         // get domaine name
         let Hostname = req.headers.host;
 
-        const res = await axios.get(`${Hostname}api/V2/groups/${GroupID}`);
+        const res = await axios.get(
+            `http://${Hostname}/api/V2/groups/${GroupID}`
+        );
         const resData: {}[] = res.data;
         Schedule = resData;
     }
