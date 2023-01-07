@@ -12,7 +12,7 @@ export default function WeatherCell(props: any) {
             case "Sun":
                 return <WeatherIcon.Sunny />;
             case "Fog":
-                return <WeatherIcon.Cloudy />;
+                return <WeatherIcon.Thunder />;
             case "Rain":
                 return <WeatherIcon.Rainy />;
             case "Thunder":
@@ -21,6 +21,8 @@ export default function WeatherCell(props: any) {
                 return <WeatherIcon.Cloudy />;
             case "Sun Cloudy":
                 return <WeatherIcon.CloudySun />;
+            case "Snow":
+                return <WeatherIcon.Snowy />;
             default:
                 return <WeatherIcon.Sunny />;
         }
@@ -51,7 +53,9 @@ export default function WeatherCell(props: any) {
                 title={"Rabat - " + CapitalizedFinalDate}
             >
                 <span>{Day}</span>
-                <span>{Weather + " - " + Temperature}° C</span>
+                <span>
+                    {Weather} [{Temperature}° C]
+                </span>
                 <div className="Icon">{FinalWeatherIcon}</div>
 
                 <div className="Banner">

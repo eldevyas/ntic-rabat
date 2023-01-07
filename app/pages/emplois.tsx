@@ -8,10 +8,6 @@ import { Router } from "next/router";
 // getInitialProps
 
 function Emplois({ props }: any) {
-    // log group id
-    console.log(props.GroupID);
-    console.log(props.Schedule);
-
     return (
         <>
             <EmploisPage
@@ -36,7 +32,6 @@ Emplois.getInitialProps = async (ctx: any) => {
                 GroupID: "",
                 Schedule: [],
             },
-            notFound: true,
         };
     }
     if (GroupID != "" && GroupID != null && req) {

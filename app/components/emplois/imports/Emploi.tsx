@@ -49,7 +49,7 @@ export default function Emploi(props: any) {
     return (
         <>
             <SelectClass GroupID={GroupID} setGroup={setGroup} />
-            <Schedule Data={GroupSchedule} />
+            <Schedule GroupID={GroupID} Data={GroupSchedule} />
         </>
     );
 }

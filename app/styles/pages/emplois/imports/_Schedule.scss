@@ -5,8 +5,10 @@
     width: 100%;
     // responsive overflow-x
     overflow-x: auto;
-    background-color: darken($color: $C4, $amount: 10%);
+    background-color: darken($color: $C4, $amount: 7.5%);
     user-select: none;
+    border-radius: 0px;
+    @include GlobalPadding();
     table {
         border-spacing: $GlobalGap;
         margin: 0 auto;
@@ -23,8 +25,9 @@
             &:first-child {
                 background: $G2;
                 color: $C4;
-                //  If we want to remove the first empty div in time lines
-                // visibility: hidden;
+                text-align: center;
+                font-weight: 800;
+                color: transparent;
             }
             div {
                 display: flex;
@@ -48,9 +51,6 @@
             font-size: 0.9rem;
             border-radius: 15px;
             height: 1rem;
-            &:hover {
-                opacity: 0.75;
-            }
             &:has(> .WeatherCell) {
                 background: $G2;
             }
@@ -74,9 +74,6 @@
                         border-radius: 30%;
                     }
                 }
-                &:hover {
-                    background-color: darken($color: $C2, $amount: 5%);
-                }
             }
             div {
                 display: flex;
@@ -84,7 +81,7 @@
                 justify-content: space-between;
                 align-items: center;
                 gap: 10px;
-                background-color: $C1;
+                background: $G1;
                 width: 100%;
                 height: 100%;
                 border-radius: 15px;
@@ -101,35 +98,47 @@
                         border-radius: 5px;
                     }
                 }
-                // &:hover {
-                //     background-color: darken($color: $C1, $amount: 5%);
-                // }
             }
         }
     }
     .Online {
-        background-color: $C3 !important;
+        background: $G3 !important;
         span {
             &:last-child {
                 color: $C3 !important;
             }
         }
+        &:hover {
+            background: darken($color: $C3, $amount: 5%) !important;
+        }
     }
     .Absent {
-        background-color: red !important;
+        // linear red gradient
+        background: #ff4b1f;
+        /* fallback for old browsers */
+        background: -webkit-linear-gradient(to right, #ff9068, #ff4b1f);
+        /* Chrome 10-25, Safari 5.1-6 */
+        background: linear-gradient(to right, #ff9068, #ff4b1f);
+        /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
         span {
             &:last-child {
-                color: red !important;
+                color: orangered !important;
             }
+        }
+        &:hover {
+            background: darken($color: orangered, $amount: 5%) !important;
         }
     }
     .Free {
-        background-color: white !important;
+        background: white !important;
         height: 100%;
         width: 100%;
         // width: 200px;
         min-width: 150px;
         min-height: 75px;
+        &:hover {
+            background: darken(white, 2.5%) !important;
+        }
     }
     .WeatherCell {
         position: absolute;
@@ -144,10 +153,43 @@
         align-items: center;
         padding: 0;
         overflow: hidden;
-        background: $G4 !important;
-        backdrop-filter: brightness(0.85);
+        background: $G2 !important;
+        // if Has Rainy icon classname
+        &:has(svg.Rainy) {
+            background: desaturate(darken($C2, 0%), 25%) !important;
+        }
+        // if Has Snowy icon classname
+        &:has(svg.Snowy) {
+            background: desaturate(darken($C2, 0%), 50%) !important;
+        }
+        // if Has Thunder icon classname
+        &:has(svg.Thunder) {
+            background: desaturate(darken($C2, 0%), 50%) !important;
+        }
+        // if has fog
+        &:has(svg.Fog) {
+            background: desaturate(darken($C2, 0%), 25%) !important;
+        }
+        // if has cloudy
+        &:has(svg.Cloudy) {
+            background: saturate(darken($C2, 0%), 25%) !important;
+        }
+        // if has sunny
+        &:has(svg.Sunny) {
+            background: saturate(darken($C2, 0%), 50%) !important;
+        }
         span {
             z-index: 6;
+            // color: #ffbb3b !important;
+            color: #fff;
+            // box shadow
+            text-shadow: 0 0 50px 10px #000;
+            &:nth-child(2) {
+                color: #fff !important;
+            }
+        }
+        &:hover {
+            background: darken($color: $C2, $amount: 5%) !important;
         }
         .Icon {
             position: absolute;
@@ -164,8 +206,19 @@
                 width: auto;
                 height: 100%;
                 position: absolute;
-                top: 0;
+                top: 50%;
+                transform: translateY(-50%);
                 left: -10%;
+            }
+            .Rainy,
+            .Snowy,
+            .Thunder {
+                width: auto;
+                height: 70% !important;
+            }
+            .Fog {
+                width: auto;
+                height: 75% !important;
             }
             // float animation
             animation: float 3s ease-in-out infinite;
@@ -188,7 +241,7 @@
             right: 0;
             height: 100%;
             width: 100%;
-            opacity: 0.65;
+            opacity: 0.35;
             .Clouds {
                 position: absolute;
                 bottom: 0%;
@@ -246,6 +299,6 @@
         }
     }
     .EmploisPage .Schedule table tbody>tr>td:first-child {
-        min-width: 170px !important;
+        min-width: 200px !important;
     }
 }

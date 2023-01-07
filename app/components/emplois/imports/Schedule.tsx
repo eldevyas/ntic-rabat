@@ -23,7 +23,7 @@ const Schedule = (props: any) => {
     return (
         <div className="Schedule">
             <table border={0}>
-                <ScheduleHeader />
+                <ScheduleHeader data-GroupID={props.GroupID} />
                 <tbody>
                     {
                         // Data shall be an array with more than one record

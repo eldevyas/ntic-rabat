@@ -1,9 +1,18 @@
-export default function ScheduleHeader() {
+import { useEffect, useState } from "react";
+
+export default function ScheduleHeader(props: any) {
+    const [GroupID, setGroupID] = useState(props.GroupID);
+
+    useEffect(() => {
+        setGroupID(props.GroupID);
+        console.log("Table header Group Name: ", GroupID);
+    }, [GroupID, props.GroupID]);
+
     return (
         <>
             <thead>
                 <tr>
-                    <td></td>
+                    <td>{props["data-GroupID"]}</td>
                     <td>
                         <div>
                             <span>08:30</span>
@@ -32,5 +41,5 @@ export default function ScheduleHeader() {
                 </tr>
             </thead>
         </>
-    )
+    );
 }

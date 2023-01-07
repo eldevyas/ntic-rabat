@@ -1,8 +1,9 @@
 import React from "react";
 import { DefaultButton, OutlinedButton } from "../../core/button";
-import CalendarMonthOutlinedIcon from "@mui/icons-material/CalendarMonthOutlined";
 import GroupsOutlinedIcon from "@mui/icons-material/GroupsOutlined";
 import Router, { useRouter } from "next/router";
+import Schedule from "../../emplois/imports/Schedule";
+import SelectGroup from "./utils/SelectGroup";
 export default function Landing() {
     const Router = useRouter();
     return (
@@ -19,17 +20,11 @@ export default function Landing() {
                 </p>
             </div>
             <div className="APIs">
-                <OutlinedButton
-                    startIcon={<CalendarMonthOutlinedIcon />}
-                    bgColor="Blue"
-                    onClick={() => Router.push('/emplois')}
-                >
-                    Consulter les emplois
-                </OutlinedButton>
+                <SelectGroup />
                 <OutlinedButton
                     startIcon={<GroupsOutlinedIcon />}
                     bgColor="LightBlue"
-                    onClick={() => Router.push('/forum')}
+                    onClick={() => Router.push("/forum")}
                 >
                     Consultez le Forum
                 </OutlinedButton>

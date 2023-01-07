@@ -8,6 +8,9 @@
     @include GlobalPadding();
     .SelectGroup {
         position: relative;
+        @include GlobalPadding();
+        padding-top: 0;
+        padding-bottom: 0;
         .react-select-container {
             position: relative;
             width: 100%;

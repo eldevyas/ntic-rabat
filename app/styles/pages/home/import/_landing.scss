@@ -68,6 +68,34 @@
             // no word wrap
             white-space: nowrap;
         }
+        .react-select-container {
+            width: 100%;
+            position: relative;
+            button {
+                width: 100%;
+                height: 100%;
+                padding: 0.5rem 1rem;
+                border-radius: 0.6rem;
+                border: none;
+                background-color: $C2;
+                color: $C4;
+                font-weight: 700;
+                // font-size: 1rem;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                text-transform: capitalize;
+                &:hover {
+                    background-color: lighten($C2, 5%);
+                }
+                .react-select__indicator-separator {
+                    display: none;
+                }
+                .react-select__indicator {
+                    color: $C4;
+                }
+            }
+        }
     }
     .Cards {
         display: grid;

@@ -1,23 +1,21 @@
-import * as React from "react";
+import React, { useState } from "react";
+import { OutlinedButton } from "../../../core/button";
+import CalendarMonthOutlinedIcon from "@mui/icons-material/CalendarMonthOutlined";
 import axios from "axios";
 import Select, { StylesConfig } from "react-select";
+import { defaultTheme } from "react-select";
+import Button from "@mui/material/Button";
+
 import Router, { useRouter } from "next/router";
-// Icons
-import ComputerIcon from "@mui/icons-material/Computer";
-import BrushIcon from "@mui/icons-material/Brush";
-import SignalCellularAltIcon from "@mui/icons-material/SignalCellularAlt";
-import CalculateIcon from "@mui/icons-material/Calculate";
+import { DropdownIndicator } from "react-select/dist/declarations/src/components/indicators";
 
-// ----------------------------------------------------------------------
-
-export default function SelectGroup(props: any) {
+const SelectGroup = () => {
     const router = useRouter();
-    const CurrentGroup = props.GroupID;
+    const [isOpen, setIsOpen] = useState(false);
     // Set Group state to type array with object of name and value
     const [Groups, setGroups] = React.useState<
         { name: string; value: number }[]
     >([]);
-    const [GroupID, setGroupID] = React.useState<string>(CurrentGroup);
     const [isLoading, setLoading] = React.useState<boolean>(true);
 
     // Fetch /api/groups with axios
@@ -35,30 +33,18 @@ export default function SelectGroup(props: any) {
         }
     };
 
-    const setGroup = props.setGroup;
-
     const ChangeGroup = (Group: string) => {
-        // Give the new GroupID to the query
-        if (router.query.GroupID != Group) {
-            setGroupID(Group);
-            router.push({
-                pathname: router.pathname,
-                query: {
-                    GroupID: Group,
-                },
-            });
-            // on route change complete
-            Router.events.on("routeChangeComplete", () => {
-                props.setGroup(Group);
-            });
-        }
+        Router.push({
+            pathname: "/emplois",
+            query: { GroupID: Group },
+        });
     };
 
     React.useEffect(() => {
         if (!(Groups.length > 0)) {
             SendRequest();
         }
-    }, [GroupID, Groups.length, router, setGroup]);
+    }, [Groups.length, router, setGroups]);
 
     const AllOptions = Groups.map((group) => {
         return {
@@ -109,29 +95,41 @@ export default function SelectGroup(props: any) {
                 options={groupedOptions}
                 className="react-select-container"
                 // placeholder
-                placeholder="Sélectionnez un groupe"
-                isSearchable={true}
+                // placeholder="Sélectionnez un groupe"
+                isSearchable={false}
                 isLoading={isLoading}
+                // is menu open
+                menuIsOpen={isOpen}
+                // menu position auto
+                // menuPlacement="auto"
+                // menuPortalTarget={document.body}
+                // max width
                 onChange={(choice: any) => ChangeGroup(choice.value)}
-                // default value
-                value={
-                    AllOptions.find((group) => group.value == CurrentGroup) ||
-                    null
-                }
+                // replace main input with button
+                components={{
+                    IndicatorSeparator: () => null,
+                    DropdownIndicator: () => null,
+                    Control: () => (
+                        <Button
+                            onClick={() => setIsOpen(!isOpen)}
+                            variant="text"
+                            startIcon={<CalendarMonthOutlinedIcon />}
+                            sx={{
+                                width: "100%",
+                                height: "100%",
+                                position: "relative",
+                                top: 0,
+                                left: 0,
+                            }}
+                        >
+                            Sélectionnez un groupe
+                        </Button>
+                    ),
+                    // placeholder
+                    Placeholder: () => null,
+                }}
                 // custom style
                 styles={{
-                    control: (base: any, state: any) => ({
-                        ...base,
-                        backgroundColor: state.isFocused ? "#fff" : "#fff",
-                        borderColor: state.isFocused ? "#fff" : "#fff",
-                        color: state.isFocused ? "#39b54a" : "#fff",
-                        boxShadow: "none",
-                        borderRadius: "10px",
-                        outline: "none",
-                        border: "none",
-                        padding: "0.25rem 0.25rem",
-                        zIndex: "10000",
-                    }),
                     menu: (base: any, state: any) => ({
                         ...base,
                         zIndex: "1000000",
@@ -182,4 +180,6 @@ export default function SelectGroup(props: any) {
             />
         </>
     );
-}
+};
+
+export default SelectGroup;
