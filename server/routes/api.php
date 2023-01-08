@@ -1,5 +1,9 @@
 <?php
 
+use App\Http\Controllers\Api\AnnonceController;
+use App\Http\Controllers\Api\RegisterController;
+use App\Http\Resources\AnnonceCollection;
+use App\Models\Annonce;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -17,4 +21,6 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
-Route::resource('annonces', 'App\Http\Controllers\AnnonceController')->middleware('api');
+
+Route::apiResource('annonces', AnnonceController::class);
+Route::post('login', [RegisterController::class, 'login']);

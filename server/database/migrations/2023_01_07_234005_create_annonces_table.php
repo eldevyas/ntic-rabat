@@ -15,10 +15,9 @@ return new class extends Migration
     {
         Schema::create('annonces', function (Blueprint $table) {
             $table->id();
-            $table->string("type");
-            $table->string('title');
+            $table->string('title')->default('NTIC Annonce');
             $table->longText('description');
-            $table->longText('url');
+            $table->longText('url')->nullable();
             $table->timestamps();
         });
     }
@@ -30,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('annonces');
+        Schema::dropIfExists('posts');
     }
 };

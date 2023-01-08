@@ -4,6 +4,8 @@ import GroupsOutlinedIcon from "@mui/icons-material/GroupsOutlined";
 import Router, { useRouter } from "next/router";
 import Schedule from "../../emplois/imports/Schedule";
 import SelectGroup from "./utils/SelectGroup";
+import Announces from "./posts/Announces";
+
 export default function Landing() {
     const Router = useRouter();
     return (
@@ -29,6 +31,7 @@ export default function Landing() {
                     Consultez le Forum
                 </OutlinedButton>
             </div>
+            <Announces />
             <div className="Cards">
                 <div className="Card">
                     <h3>+30</h3>

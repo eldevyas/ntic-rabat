@@ -1,19 +1,14 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
+use App\Http\Controllers\Controller;
+use App\Http\Resources\AnnonceRessource;
 use App\Models\Annonce;
 use Illuminate\Http\Request;
 
 class AnnonceController extends Controller
 {
-    // Constructor with api
-
-    public function __construct()
-    {
-        $this->middleware('api');
-    }
-
     /**
      * Display a listing of the resource.
      *
@@ -21,7 +16,8 @@ class AnnonceController extends Controller
      */
     public function index()
     {
-        return Annonce::all();
+        $annonces = Annonce::all();
+        return AnnonceRessource::collection($annonces);
     }
 
     /**
@@ -42,8 +38,8 @@ class AnnonceController extends Controller
      */
     public function store(Request $request)
     {
-        Annonce::create($request->all());
-        return to_route('index');
+        $annonce = Annonce::create($request->all());
+        return new AnnonceRessource($annonce);
     }
 
     /**
@@ -65,7 +61,7 @@ class AnnonceController extends Controller
      */
     public function edit(Annonce $annonce)
     {
-        return view('annonces.edit', compact('annonce'));
+        //
     }
 
     /**
@@ -78,7 +74,7 @@ class AnnonceController extends Controller
     public function update(Request $request, Annonce $annonce)
     {
         $annonce->update($request->all());
-        return to_route('index');
+        return new AnnonceRessource($annonce);
     }
 
     /**
@@ -90,6 +86,6 @@ class AnnonceController extends Controller
     public function destroy(Annonce $annonce)
     {
         $annonce->delete();
-        return to_route('index');
+        return response(null, 204);
     }
 }
