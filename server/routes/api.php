@@ -23,4 +23,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::apiResource('annonces', AnnonceController::class);
+Route::post('annonces', [AnnonceController::class, 'store'])->middleware('auth:api');
 Route::post('login', [RegisterController::class, 'login']);
+Route::post('logout', [RegisterController::class, 'logout'])->middleware('auth:api');
+Route::post('register', [RegisterController::class, 'register']);
