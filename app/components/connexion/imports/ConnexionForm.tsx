@@ -3,35 +3,78 @@ import { DefaultButton, IconButton } from '../../core/button'
 import EmailIcon from '@mui/icons-material/Email';
 import LockIcon from '@mui/icons-material/Lock';
 import { useRouter } from 'next/router';
+import { json } from 'node:stream/consumers';
 const ConnexionForm = () => {
     const Router = useRouter();
+    // const getToken = () => {
+    //     const tokenString: any = sessionStorage.getItem('token');
+    //     const userToken = JSON.parse(tokenString);
+    //     return userToken;
+    // }
+    // // get user function
+    // const getUser = () => {
+    //     const userString: any = sessionStorage.getItem('user');
+    //     const user = JSON.parse(userString);
+    //     return user;
+    // }
+    // const [token, setToken] = React.useState();
+    // // user state
+    // const [user, setUser] = React.useState();
+    // const saveToken = (user: any, token: any) => {
+    //     localStorage.setItem('user', JSON.stringify(user));
+    //     localStorage.setItem('token', JSON.stringify(token));
+    //     setToken(token);
+    //     setUser(user);
+    //     Router.push('/forum');
+    // }
+    const [email, setEmail] = React.useState('');
+    const [password, setPassword] = React.useState('');
+    const handleSubmit = async () => {
+        let result: any = await fetch('http://localhost:8000/api/login', {
+            method: 'POST',
+            body: JSON.stringify({ email, password }),
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+            }
+        });
+        result = await result.json();
+        // console.warn(result);
+        if (result.token) {
+            sessionStorage.setItem('user', JSON.stringify(result));
+            Router.push('/forum');
+        } else {
+            alert('Email ou mot de pass incorrect');
+        }
+    }
+
     return (
-        <div className='ConnexionForm'>
+        <div className='ConnexionForm' >
             <div className='LoginForm'>
                 <div className='Title'>
                     <h3>Connectez-vous à <span>NTIC Rabat</span></h3>
                     <p>Accès pour des fonctionnalités avancées uniquement pour les stagiaires de l&apos;institut.</p>
                 </div>
                 <hr></hr>
-                <form action="" method='POST'>
+                <form action="">
                     <div className='FormControl'>
                         <IconButton bgColor="Blue">
                             <EmailIcon />
                         </IconButton>
-                        <input type="text" name="email" placeholder='E-mail' />
+                        <input type="text" name="email" placeholder='E-mail' onChange={(e) => setEmail(e.target.value)} />
                     </div>
                     <div className='FormControl'>
                         <IconButton bgColor="Blue">
                             <LockIcon />
                         </IconButton>
-                        <input type="password" name="email" placeholder='Mot de pass' />
+                        <input type="password" name="email" placeholder='Mot de pass' onChange={(e) => setPassword(e.target.value)} />
                     </div>
                     <div className='FormCheckbox'>
                         <input type="checkbox" name="email" className='Checkbox' id="RememberMe" />
                         <label htmlFor="RememberMe">Se souvenir de moi</label>
                     </div>
 
-                    <DefaultButton >
+                    <DefaultButton bgColor="Blue" onClick={handleSubmit}>
                         Se connecter
                     </DefaultButton>
                     <DefaultButton >
@@ -41,7 +84,7 @@ const ConnexionForm = () => {
                         <p>Vous n'avez pas de compte ? <span onClick={() => Router.push('/inscription')}>Inscrivez-vous</span></p>
 
                     </div>
-                </form>
+                </form >
             </div >
         </div >
     )

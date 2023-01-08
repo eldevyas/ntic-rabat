@@ -1,7 +1,7 @@
 import { DefaultButton } from "./../../../../core/button";
 import InfoIcon from '@mui/icons-material/Info';
 
-export default function Card() {
+export default function Card(props: any) {
     return (
         <>
             <div className="AnnounceCard">
@@ -10,7 +10,7 @@ export default function Card() {
                         <div className="Icon">
                             <InfoIcon />
                         </div>
-                        <h4>Procédure de Remplissage des Informations Personnelles.</h4>
+                        <h4>{props.title}</h4>
                     </div>
                     <div className="Date">
                         <p>
@@ -27,10 +27,9 @@ export default function Card() {
                 </div>
                 <div className="Content">
                     <div className="Text">
-                        <p>Les stagiaires de l’ista ntic sont invités à compléter leurs informations personnelles:  <span>Procédure à suivre</span>
-                        </p>
+                        <p>{props.description}</p>
                     </div>
-                    <DefaultButton bgColor="White">Procéder</DefaultButton>
+                    <DefaultButton href={props.url} bgColor="White">Procéder</DefaultButton>
                 </div>
             </div>
         </>

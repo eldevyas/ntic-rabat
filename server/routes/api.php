@@ -1,9 +1,8 @@
 <?php
 
 use App\Http\Controllers\Api\AnnonceController;
-use App\Http\Controllers\Api\RegisterController;
+use App\Http\Controllers\UserController;
 use App\Http\Resources\AnnonceCollection;
-use App\Models\Annonce;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -21,9 +20,9 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
-
 Route::apiResource('annonces', AnnonceController::class);
-Route::post('annonces', [AnnonceController::class, 'store'])->middleware('auth:api');
-Route::post('login', [RegisterController::class, 'login']);
-Route::post('logout', [RegisterController::class, 'logout'])->middleware('auth:api');
-Route::post('register', [RegisterController::class, 'register']);
+// Make middleware for store route in annonces api resource
+Route::post('/annonces', [AnnonceController::class, 'store'])->middleware('auth:api');
+Route::post('/login', [UserController::class, 'login']);
+Route::post('/register', [UserController::class, 'register']);
+Route::post('/logout', [UserController::class, 'logout'])->middleware('auth:api');

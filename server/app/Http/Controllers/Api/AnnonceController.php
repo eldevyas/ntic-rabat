@@ -3,7 +3,8 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\AnnonceRessource;
+use App\Http\Resources\AnnonceCollection;
+use App\Http\Resources\AnnonceResource;
 use App\Models\Annonce;
 use Illuminate\Http\Request;
 
@@ -16,8 +17,9 @@ class AnnonceController extends Controller
      */
     public function index()
     {
+
         $annonces = Annonce::all();
-        return AnnonceRessource::collection($annonces);
+        return AnnonceResource::collection($annonces);
     }
 
     /**
@@ -38,8 +40,9 @@ class AnnonceController extends Controller
      */
     public function store(Request $request)
     {
+
         $annonce = Annonce::create($request->all());
-        return new AnnonceRessource($annonce);
+        return new AnnonceResource($annonce);
     }
 
     /**
@@ -73,8 +76,10 @@ class AnnonceController extends Controller
      */
     public function update(Request $request, Annonce $annonce)
     {
+
+
         $annonce->update($request->all());
-        return new AnnonceRessource($annonce);
+        return new AnnonceResource($annonce);
     }
 
     /**
@@ -85,6 +90,7 @@ class AnnonceController extends Controller
      */
     public function destroy(Annonce $annonce)
     {
+
         $annonce->delete();
         return response(null, 204);
     }
