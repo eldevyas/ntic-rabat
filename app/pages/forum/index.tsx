@@ -10,7 +10,7 @@ export default function App() {
             <div className='Logout'>
                 <h1>Logout</h1>
                 <button onClick={() => {
-                    localStorage.removeItem('user');
+                    sessionStorage.removeItem('user');
                     Router.push('/connexion');
                 }}>Logout</button>
             </div>
