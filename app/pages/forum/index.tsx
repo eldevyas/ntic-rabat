@@ -1,24 +1,23 @@
 import React from 'react';
 import { useRouter } from 'next/router';
-
 import { useEffect } from 'react';
 export default function App() {
     const Router = useRouter();
-    const auth = sessionStorage.getItem('user');
-    if (auth) {
-        return (
-            <div className='Logout'>
-                <h1>Logout</h1>
-                <button onClick={() => {
-                    sessionStorage.removeItem('user');
-                    Router.push('/connexion');
-                }}>Logout</button>
-            </div>
-        )
-    } else {
-        Router.push('/connexion');
-    }
+    // Use Effect to check if the user exists in the session storage
+    useEffect(() => {
+        if (!sessionStorage.getItem('user')) {
+            Router.push('/connexion');
+        }
+        else {
+            Router.push('/forum');
+        }
+    }, []);
 
-
-
+    // Logout button
+    return (
+        <button onClick={() => {
+            sessionStorage.removeItem('user');
+            Router.push('/connexion');
+        }}>Logout</button>
+    )
 }

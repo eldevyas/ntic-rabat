@@ -92,6 +92,6 @@ class AnnonceController extends Controller
     {
 
         $annonce->delete();
-        return response(null, 204);
+        return response("Annonce deleted successfully", 204);
     }
 }

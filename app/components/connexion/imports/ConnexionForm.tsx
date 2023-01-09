@@ -4,29 +4,21 @@ import EmailIcon from '@mui/icons-material/Email';
 import LockIcon from '@mui/icons-material/Lock';
 import { useRouter } from 'next/router';
 import { json } from 'node:stream/consumers';
+import { useEffect } from 'react';
 const ConnexionForm = () => {
+    // UseEffect to check if the user exists on the session storage
+    useEffect(() => {
+        if (!sessionStorage.getItem('user')) {
+            Router.push('/connexion');
+        }
+        else {
+            Router.push('/forum');
+        }
+    }, []);
+
+
+
     const Router = useRouter();
-    // const getToken = () => {
-    //     const tokenString: any = sessionStorage.getItem('token');
-    //     const userToken = JSON.parse(tokenString);
-    //     return userToken;
-    // }
-    // // get user function
-    // const getUser = () => {
-    //     const userString: any = sessionStorage.getItem('user');
-    //     const user = JSON.parse(userString);
-    //     return user;
-    // }
-    // const [token, setToken] = React.useState();
-    // // user state
-    // const [user, setUser] = React.useState();
-    // const saveToken = (user: any, token: any) => {
-    //     localStorage.setItem('user', JSON.stringify(user));
-    //     localStorage.setItem('token', JSON.stringify(token));
-    //     setToken(token);
-    //     setUser(user);
-    //     Router.push('/forum');
-    // }
     const [email, setEmail] = React.useState('');
     const [password, setPassword] = React.useState('');
     const handleSubmit = async () => {
