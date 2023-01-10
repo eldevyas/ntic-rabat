@@ -1,0 +1,61 @@
+.Header {
+    display: flex;
+    justify-content: space-between;
+    .NavButtons {
+        display: flex;
+        justify-content: space-between;
+        gap: 0.9rem;
+        .NavButton {
+            background-color: darken($color: $C4, $amount: 20%);
+            color: lighten($C1, 25%);
+            box-shadow: none;
+            border-radius: 10px;
+            padding: 6px 10px;
+            font-weight: 500;
+            text-transform: none;
+        }
+        .Active {
+            background-color: $C3;
+            color: $C4;
+        }
+    }
+    .User {
+        background-color: $C4;
+        // padding: 0.9rem 1rem;
+        border-radius: 15px;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        overflow: hidden;
+        margin: 0;
+        .UserImage {
+            height: 100%;
+            margin-bottom: -4px;
+        }
+        gap: 0.5rem;
+        .UserInfos {
+            display: flex;
+            flex-direction: column;
+            gap: 0.3rem;
+            .UserName {
+                color: $C1;
+                font-size: 0.8rem;
+                font-weight: 600;
+            }
+            .UserRole {
+                color: $C2;
+                font-size: 0.7rem;
+                font-weight: 500;
+            }
+        }
+        .UserActions {
+            display: flex;
+            justify-content: center;
+            height: 100%;
+            padding: 1rem;
+            border-radius: 10px;
+            background-color: darken($color: $C4, $amount: 4%);
+            color: $C3;
+        }
+    }
+}

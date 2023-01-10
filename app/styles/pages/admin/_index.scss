@@ -1,6 +1,8 @@
 .AdminPage {
     @import './imports/sideBar';
+    @import './imports/header';
+    @import './imports/content';
     display: grid;
     grid-template-columns: 1fr 4fr;
-    background-color: darken($color: $C4, $amount: 20%);
+    background-color: darken($color: $C4, $amount: 10%);
 }
