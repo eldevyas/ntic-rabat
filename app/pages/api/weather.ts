@@ -41,129 +41,121 @@ export default async function handler(
         // Find Icon with WeatherCode
         switch (data.daily.weathercode[index]) {
             case 0:
-                Weather = "Clear sky";
+                Weather = "Ciel clair";
                 Icon = "Sun";
                 break;
-            // Case 1, 2 or 3
+            // Cas 1, 2 ou 3
             case 1:
-                Weather = "Mainly clear";
+                Weather = "Principalement clair";
                 Icon = "Sun Cloudy";
                 break;
             case 2:
-                Weather = "Partly Cloudy";
+                Weather = "Partiellement nuageux";
                 Icon = "Cloudy";
                 break;
             case 3:
-                Weather = "Overcast";
+                Weather = "Couvert";
                 Icon = "Fog";
                 break;
             case 45:
-                Weather = "Fog";
+                Weather = "Brouillard";
                 Icon = "Fog";
                 break;
             case 48:
-                Weather = "Depositing Rime Fog";
+                Weather = "Dépôt de brouillard de Rime";
                 Icon = "Fog";
                 break;
             case 51:
-                Weather = "Light Drizzle";
+                Weather = "Légère bruine";
                 Icon = "Fog";
                 break;
             case 53:
-                Weather = "Moderate Drizzle";
+                Weather = "Bruine modérée";
                 Icon = "Fog";
                 break;
             case 55:
-                Weather = "Heavy Drizzle";
+                Weather = "Forte bruine";
                 Icon = "Fog";
                 break;
             case 56:
-                Weather = "Light Freezing Drizzle";
+                Weather = "Légère bruine verglaçante";
                 Icon = "Fog";
                 break;
             case 57:
-                Weather = "Moderate Freezing Drizzle";
+                Weather = "Bruine verglaçante modérée";
                 Icon = "Fog";
                 break;
             case 61:
-                Weather = "Slight Rain";
+                Weather = "Légère pluie";
                 Icon = "Rain";
                 break;
             case 63:
-                Weather = "Moderate Rain";
+                Weather = "Pluie modérée";
                 Icon = "Rain";
                 break;
             case 65:
-                Weather = "Heavy Rain";
+                Weather = "Forte pluie";
                 Icon = "Rain";
                 break;
             case 66:
-                Weather = "Light Freezing Rain";
+                Weather = "Légère pluie verglaçante";
                 Icon = "Rain";
                 break;
             case 67:
-                Weather = "Heavy Freezing Rain";
+                Weather = "Pluie verglaçante modérée";
                 Icon = "Rain";
                 break;
-            // Imta kati7 telj f rabat? may7m9nich
-            // HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH
-            // GHAYBGHI BL3ANI YGHFLNA W YTI7
-            // Safi blan nzidou mo hta huwa
-            // Mat3ref yti7 vri
-            // HHHHHH TA LA BLACH
-            // DIR GHA RE3D
             case 71:
-                Weather = "Slight Snow Fall";
+                Weather = "Légère chute de neige";
                 Icon = "Snow";
                 break;
             case 73:
-                Weather = "Moderate Snow Fall";
+                Weather = "Chute de neige modérée";
                 Icon = "Snow";
                 break;
             case 75:
-                Weather = "Heavy Snow Fall";
+                Weather = "Forte chute de neige";
                 Icon = "Snow";
                 break;
             case 80:
-                Weather = "Slight Rain";
+                Weather = "Légère pluie";
                 Icon = "Rain";
                 break;
             case 81:
-                Weather = "Moderate Rain";
+                Weather = "Pluie modérée";
                 Icon = "Rain";
                 break;
             case 82:
-                Weather = "Heavy Rain";
+                Weather = "Forte pluie";
                 Icon = "Rain";
                 break;
             case 85:
-                Weather = "Slight Snow Showers";
+                Weather = "Légères averses de neige";
                 Icon = "Snow";
                 break;
             case 86:
-                Weather = "Heavy Snow Showers";
+                Weather = "Fortes averses de neige";
+                Icon = "Heavy Snow Showers";
                 Icon = "Snow";
                 break;
             case 95:
-                Weather = "Thunderstorm";
+                Weather = "Orage";
                 Icon = "Thunder";
                 break;
-            // More than 95
+            // Plus de 95
             case 96:
-                Weather = "Slight Thunderstorm";
+                Weather = "Léger orage";
                 Icon = "Thunder";
                 break;
             case 99:
-                Weather = "Heavy Thunderstorm";
+                Weather = "Fort orage";
                 Icon = "Thunder";
                 break;
             default:
-                Weather = "Clear sky";
+                Weather = "Ciel clair";
                 Icon = "Sun";
                 break;
         }
-
-
 
 
         // if not sunday

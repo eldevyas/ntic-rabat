@@ -1,21 +1,29 @@
 .Header {
+    padding: 0;
     display: flex;
     justify-content: space-between;
+    align-items: stretch;
+    width: 100%;
+    height: max-content;
+    width: 100%;
     .NavButtons {
         display: flex;
-        justify-content: space-between;
-        gap: 0.9rem;
+        justify-content: flex-start;
+        align-items: stretch;
+        gap: $GlobalGap;
+        width: 100%;
         .NavButton {
-            background-color: darken($color: $C4, $amount: 20%);
-            color: lighten($C1, 25%);
+            background-color: rgba($C1, 5%);
+            color: rgba($C1, 50%);
             box-shadow: none;
-            border-radius: 10px;
-            padding: 6px 10px;
-            font-weight: 500;
+            border-radius: 15px;
+            padding: 10px 20px;
+            font-weight: 700;
             text-transform: none;
+            height: auto;
         }
         .Active {
-            background-color: $C3;
+            background: $G3;
             color: $C4;
         }
     }
@@ -26,13 +34,23 @@
         display: flex;
         justify-content: flex-start;
         align-items: center;
-        overflow: hidden;
+        height: min-content;
+        // overflow: hidden;
         margin: 0;
         .UserImage {
             height: 100%;
-            margin-bottom: -4px;
+            width: 100%;
+            overflow: hidden;
+            aspect-ratio: 1/1;
+            border-radius: 15px;
+            background: $G3;
+            position: relative;
+            .Image {
+                object-fit: cover;
+                object-position: bottom center;
+            }
         }
-        gap: 0.5rem;
+        gap: $GlobalGap;
         .UserInfos {
             display: flex;
             flex-direction: column;
@@ -41,9 +59,15 @@
                 color: $C1;
                 font-size: 0.8rem;
                 font-weight: 600;
+                // give it max width with no wrap
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                max-width: 175px;
+                padding-right: 25px;
             }
             .UserRole {
-                color: $C2;
+                color: rgba($C1, 0.5);
                 font-size: 0.7rem;
                 font-weight: 500;
             }
@@ -51,11 +75,14 @@
         .UserActions {
             display: flex;
             justify-content: center;
-            height: 100%;
-            padding: 1rem;
-            border-radius: 10px;
+            height: auto;
+            width: auto;
+            padding: 0rem;
+            aspect-ratio: 1/1;
+            border-radius: 15px;
             background-color: darken($color: $C4, $amount: 4%);
             color: $C3;
+            display: none;
         }
     }
 }

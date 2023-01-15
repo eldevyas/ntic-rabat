@@ -9,12 +9,11 @@
     justify-content: center;
     align-items: center;
     gap: $GlobalGap;
-
     .Cards {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(800px, 2fr));
+        grid-template-columns: repeat(auto-fit, minmax(300px, 2fr));
         grid-gap: $GlobalGap;
-
+        width: 100%;
         .AnnounceCard {
             $MC1: #e35d5b;
             $MC2: #e53935;
@@ -33,7 +32,6 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-
             .CardHeader {
                 display: flex;
                 flex-direction: column;
@@ -41,7 +39,6 @@
                 align-items: center;
                 width: 100%;
                 gap: $GlobalGap;
-
                 .Title {
                     font-size: 1.25rem;
                     font-weight: 600;
@@ -52,7 +49,6 @@
                     justify-content: flex-start;
                     align-items: center;
                     text-align: left;
-
                     .Icon {
                         width: 50px;
                         height: 50px;
@@ -64,13 +60,11 @@
                         justify-content: center;
                         align-items: center;
                         aspect-ratio: 1/1;
-
                         svg {
                             width: 30px;
                             height: 30px;
                         }
                     }
-
                     h4 {
                         font-size: 1.25rem;
                         font-weight: 600;
@@ -78,7 +72,6 @@
                         width: max-content;
                     }
                 }
-
                 .Date {
                     font-size: 0.85rem;
                     font-weight: 400;
@@ -87,7 +80,6 @@
                     opacity: 0.5;
                 }
             }
-
             .Content {
                 width: 100%;
                 height: 100%;
@@ -97,18 +89,15 @@
                 align-items: flex-start;
                 gap: $GlobalGap;
                 text-align: left;
-
                 .Text {
                     font-size: 1rem;
                     font-weight: 400;
                     color: $C4;
                     width: 100%;
                     opacity: 1;
-
                     p {
                         opacity: 0.75;
                     }
-
                     span {
                         font-size: 1rem;
                         font-weight: 600;
@@ -116,7 +105,6 @@
                         width: max-content;
                     }
                 }
-
                 .DefaultButton {
                     color: #e35d5b;
                 }
