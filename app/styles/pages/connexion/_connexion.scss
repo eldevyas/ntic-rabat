@@ -1,12 +1,10 @@
 body:has(.ConnexionPage) {
-
     // scrollbar
     &::-webkit-scrollbar {
         width: 10px;
         background-color: $C1;
         border-radius: 0px;
     }
-
     &::-webkit-scrollbar-track {
         background: $C1;
         border-radius: 0;
@@ -24,25 +22,21 @@ body:has(.ConnexionPage) {
     gap: $GlobalGap * 2;
     // scroll
     overflow-y: auto;
-
     .Header {
         display: flex;
         justify-content: center;
         align-items: center;
         gap: 10px;
-
         .Middle {
             .DefaultButton {
                 color: rgba($C4, 0.75);
                 background: rgba($C4, 0.1);
             }
         }
-
         .End {
             display: none;
         }
     }
-
     // hide scrollbar
     .ConnexionForm {
         width: 100%;
@@ -52,116 +46,120 @@ body:has(.ConnexionPage) {
         padding: 5px 0;
         background-color: transparent;
         height: auto;
-
         .LoginForm {
             padding: $HorizontalPadding / 2;
             display: flex;
             flex-direction: column;
             border: 0.5px solid rgba($C4, 20%) !important;
-            border-radius: 15px;
+            border-radius: 10px;
             width: 100%;
-            max-width: 450px;
-            gap: $GlobalGap;
-
+            max-width: 400px;
+            gap: $GlobalGap * 2;
             .Title {
                 display: flex;
                 flex-direction: column;
                 gap: 10px;
                 color: rgba($C4, 75%);
-
                 span {
                     color: $C2;
                     text-transform: capitalize;
                 }
-
                 p {
                     font-weight: 300;
                     color: rgba($C4, 50%);
                     font-size: 0.85rem;
                 }
             }
-
             // Designing the line under the title div
             hr {
                 background-color: rgba($C4, 20%);
                 border-color: rgba($C4, 20%);
             }
-
             form {
                 display: flex;
                 flex-direction: column;
                 gap: 10px;
-
                 .FormControl {
                     width: 100%;
                     display: flex;
                     justify-content: center;
-
+                    align-items: stretch;
+                    position: relative;
                     // Styling Inputs 
                     input {
                         // Making it before the icon
-                        margin-left: -20px;
-                        padding: 5px 30px;
-                        width: 90%;
-                        font-size: 1.1rem;
-                        background-color: rgba($C4, 20%);
+                        padding: 0.75rem;
+                        padding-left: 50px;
+                        width: 100%;
+                        height: 100%;
+                        font-size: 0.85rem;
+                        background-color: rgba($C4, 5%) !important;
                         color: lighten($C1, 80%);
-                        border-radius: 10px;
+                        border-radius: 5px;
                         outline: none;
                         border: none;
+                        &:focus {
+                            background-color: rgba($C2, 10%) !important;
+                        }
+                    }
+                    .IconButton {
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        height: 100%;
+                        color: white !important;
+                        padding: 0.75rem !important;
+                        border-radius: 5px;
+                        svg {
+                            font-size: 1.25rem;
+                        }
                     }
                 }
             }
-
             .FormCheckbox {
                 text-align: start;
                 display: flex;
                 color: darken($C4, 40%);
-
                 input {
                     width: 1.1rem !important;
+                    background-color: transparent;
                     accent-color: $C2;
+                    border-radius: 5px;
                 }
-
                 label {
-                    margin-left: 10px;
+                    margin-left: $GlobalGap;
+                    font-size: 0.85rem;
+                    font-weight: 300;
+                    color: rgba($C4, 50%);
                 }
             }
         }
-
-        .IconButton {
-            // position: absolute;
-            color: white !important;
-            padding: 0.5rem !important;
-        }
-
         .DefaultButton {
             background: $G2;
-
+            color: #fff;
+            font-weight: 600;
+            border-radius: 5px;
             // This one doesn't actually work , IDK why :(
             &:hover {
-                background-color: lighten($C1, 20%) !important;
+                background-color: lighten($C1, 5%) !important;
             }
-
             // Styling Reset Password Button
             &:last-of-type {
                 background: none;
-                border: 1px solid lighten($color: #000000, $amount: 30%);
+                border: 1px solid rgba($C4, 20%);
                 color: darken($C4, 20%);
-
                 &:hover {
-                    background-color: lighten($C1, 20%) !important;
+                    background-color: rgba($C4, 5%) !important;
                 }
             }
-
             // Styling The last P
         }
-
         .SwitchLink {
             text-align: center;
             color: darken($C4, 30%);
             font-weight: 500;
-
+            font-size: 0.85rem;
+            margin-top: $GlobalGap;
             span {
                 color: $C2;
                 cursor: pointer;
