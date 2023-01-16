@@ -1,21 +1,9 @@
-<<<<<<< HEAD
-import React from 'react';
-import { useRouter } from 'next/router';
-import { useEffect } from 'react';
-
-
-
-// Check of user is authenticated
-
-
-=======
 import React from "react";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { DefaultButton } from "../../components/core/button";
 import Image from "next/image";
 import Announces from "../../components/home/import/posts/Announces";
->>>>>>> refs/remotes/origin/main
 export default function App() {
     const Router = useRouter();
     const [user, setUser] = useState<any>(null);

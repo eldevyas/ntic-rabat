@@ -23,6 +23,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::apiResource('annonces', AnnonceController::class);
 // Make middleware for store route in annonces api resource
 Route::post('/annonces', [AnnonceController::class, 'store'])->middleware('auth:api');
+Route::delete('/annonces/{id}', [AnnonceController::class, 'delete'])->middleware('auth:api');
+Route::put('/annonces/{id}', [AnnonceController::class, 'update'])->middleware('auth:api');
 Route::post('/login', [UserController::class, 'login']);
 Route::post('/register', [UserController::class, 'register']);
 Route::post('/logout', [UserController::class, 'logout'])->middleware('auth:api');

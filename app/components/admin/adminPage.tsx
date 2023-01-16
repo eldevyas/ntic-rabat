@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Header from "./layout/Header";
 import Content from "./layout/Content";
 import Head from "next/head";
 
+
 import Sidebar from "./layout/Sidebar";
 const AdminPage = () => {
+
+
     return (
         <>
             <Head>

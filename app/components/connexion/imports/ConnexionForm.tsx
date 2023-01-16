@@ -34,7 +34,8 @@ const ConnexionForm = () => {
         // console.warn(result);
         if (result.token) {
             sessionStorage.setItem('user', JSON.stringify(result));
-            Router.push('/forum');
+            console.log(result);
+            Router.push('/admin');
         } else {
             alert('Email ou mot de pass incorrect');
         }

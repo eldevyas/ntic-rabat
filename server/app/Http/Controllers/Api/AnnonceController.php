@@ -10,6 +10,10 @@ use Illuminate\Http\Request;
 
 class AnnonceController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth:api')->only(['store', 'update', 'destroy']);
+    }
     /**
      * Display a listing of the resource.
      *

@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import { useRouter } from "next/router";
 //
 //
 //
@@ -18,8 +19,11 @@ import axios from "axios";
 //
 //
 export default function Card(props: any) {
+    const Router = useRouter();
     const [isEditing, setEditing] = useState(false);
     const [isDeleting, setDeleting] = useState(false);
+    // is adding new announce state
+    const [isAdding, setAdding] = useState(true);
 
     // Editing States
     const [newVariant, setNewVariant] = useState(
@@ -86,10 +90,18 @@ export default function Card(props: any) {
     const handleDeleteClick = () => {
         setDeleting(true);
     };
+    const handleAddClick = () => {
+        setAdding(!isAdding);
+    };
 
     const RefreshParent = props.refresh;
-
+    const [user, setUser] = useState<any>(JSON.parse(sessionStorage.getItem('user') as string));
     const editAnnounce = (id: any) => {
+        setUser(JSON.parse(sessionStorage.getItem('user') as string));
+        let token = user.token;
+        if (!token) {
+            Router.push('/connexion');
+        }
         // Validate fileds values
         if (
             newTitle.current != null &&
@@ -98,6 +110,7 @@ export default function Card(props: any) {
             newButton.current != null
         ) {
             let Title = newTitle.current.value;
+            // sf sf kayna solution
             let Description = newDescription.current.value;
             let Variant = newVariant;
             let Url = newUrl.current.value;
@@ -126,9 +139,7 @@ export default function Card(props: any) {
                     },
                     {
                         headers: {
-                            Authorization: `Bearer ${localStorage.getItem(
-                                "token"
-                            )}`,
+                            Authorization: `Bearer ${token}`,
                         },
                     }
                 )
@@ -145,15 +156,18 @@ export default function Card(props: any) {
         }
     };
     const deleteAnnounce = (id: any) => {
+        setUser(JSON.parse(sessionStorage.getItem('user') as string));
+        let token = user.token;
         axios
             .delete(`http://localhost:8000/api/annonces/` + id, {
                 headers: {
-                    Authorization: `Bearer ${localStorage.getItem("token")}`,
+                    Authorization: `Bearer ${token}`,
                 },
             })
             .then((res) => {
                 console.log(res);
                 console.log(res.data);
+                console.log(sessionStorage.getItem('token'));
                 setDeleting(false);
                 RefreshParent();
             })
@@ -404,6 +418,7 @@ export default function Card(props: any) {
                     </div>
                 )
             }
+
         </div>
     );
 }
