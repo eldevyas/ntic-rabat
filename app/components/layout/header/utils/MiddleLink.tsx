@@ -2,8 +2,6 @@ import React from "react";
 import { DefaultButton } from "../../../core/button";
 import { useRouter } from "next/router";
 
-
-
 export default function Link(props: any) {
     // State to define wheter the current route is the active or not
     const [active, setActive] = React.useState(false);
@@ -27,29 +25,27 @@ export default function Link(props: any) {
         <>
             {/* Show different button style based on active state */}
             {active ? (
-
                 <DefaultButton
-                    variant="contained"
+                    variant="text"
                     color="primary"
                     bgColor="Black"
-                // {...props}
+                    // {...props}
                 >
-
                     {props.children || props.text}
                 </DefaultButton>
             ) : (
                 <DefaultButton
-                    variant="contained"
+                    variant="text"
                     color="primary"
                     bgColor="Gray"
-                    onClick={(e: any) => { changeRoute(e) }}
-                // {...props}
+                    onClick={(e: any) => {
+                        changeRoute(e);
+                    }}
+                    // {...props}
                 >
-
                     {props.children}
                 </DefaultButton>
-            )
-            }
+            )}
         </>
     );
 }

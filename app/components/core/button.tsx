@@ -3,7 +3,7 @@ import Button from "@mui/material/Button";
 export function DefaultButton(props: any) {
     return (
         <Button
-            variant="contained"
+            variant="text"
             className={"DefaultButton " + props.bgColor + " " + props.State}
             color="primary"
             {...props}
@@ -17,7 +17,7 @@ export function DefaultButton(props: any) {
 export function IconButton(props: any) {
     return (
         <Button
-            variant="contained"
+            variant="text"
             className={"IconButton " + props.bgColor}
             color="primary"
             {...props}

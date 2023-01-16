@@ -1,5 +1,6 @@
 import * as WeatherIcon from "./WeatherIcons";
 import Image from "next/image";
+import Tooltip from "@mui/material/Tooltip";
 
 export default function WeatherCell(props: any) {
     const Day = props.dataDay;
@@ -47,11 +48,8 @@ export default function WeatherCell(props: any) {
         FinalDate.charAt(0).toUpperCase() + FinalDate.slice(1);
 
     return (
-        <>
-            <div
-                className="WeatherCell"
-                title={"Rabat - " + CapitalizedFinalDate}
-            >
+        <Tooltip title={"Rabat - " + CapitalizedFinalDate} arrow>
+            <div className="WeatherCell">
                 <span>{Day}</span>
                 <span>
                     {Weather} [{Temperature}° C]
@@ -99,6 +97,6 @@ export default function WeatherCell(props: any) {
                     </div>
                 </div>
             </div>
-        </>
+        </Tooltip>
     );
 }

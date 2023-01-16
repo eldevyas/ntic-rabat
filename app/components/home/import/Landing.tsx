@@ -32,20 +32,20 @@ export default function Landing() {
                 </OutlinedButton>
             </div>
             <Announces />
-            <div className="Cards">
-                <div className="Card">
+            <div className="HomeCards">
+                <div className="HomeCard">
                     <h3>+30</h3>
                     <h5>Formateurs Certifiés</h5>
                 </div>
-                <div className="Card">
+                <div className="HomeCard">
                     <h3>+3600</h3>
                     <h5>Techniciens spécialisés</h5>
                 </div>
-                <div className="Card">
+                <div className="HomeCard">
                     <h3>+12</h3>
                     <h5>Formations</h5>
                 </div>
-                <div className="Card">
+                <div className="HomeCard">
                     <h3>2005</h3>
                     <h5>Ouvert à enseigner depuis</h5>
                 </div>

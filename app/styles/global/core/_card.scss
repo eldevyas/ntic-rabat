@@ -1,0 +1,374 @@
+        @mixin Card($Variant) {
+            width: fit-content;
+            padding: 1rem;
+            border-radius: 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            max-width: 370px;
+            .CardHeader {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                gap: 1rem;
+                .CardType {
+                    display: flex;
+                    flex-direction: row;
+                    gap: 0.7rem;
+                    font-size: 1.2rem;
+                    align-items: center;
+                    .IconContainer {
+                        border-radius: 10px;
+                        padding: 0.6rem;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                    }
+                }
+                .Actions {
+                    display: flex;
+                    gap: 0.5rem;
+                    .ActionButton {
+                        border-radius: 10px;
+                        padding: 0.6rem;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        // background: rgba($C4, 50%) !important;
+                        background: rgba($C4, 20%);
+                        // tbedlat dert icon button hia ActionButton
+                        svg {
+                            color: rgba($C4, 0.75);
+                        }
+                        &:hover {
+                            cursor: pointer;
+                            background: rgba($C4, 50%);
+                        }
+                    }
+                }
+            }
+            .CardTitle {
+                display: flex;
+                flex-direction: column;
+                gap: 0.4rem;
+                color: $C4;
+                p {
+                    font-weight: 500;
+                    color: rgba($C4, 65%);
+                    font-size: 0.9rem;
+                }
+            }
+            .CardDescription {
+                p {
+                    font-weight: 500;
+                    color: $C4;
+                }
+            }
+            .CardButton {
+                display: flex;
+                .MuiButton-root {
+                    border-radius: 10px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    background: $C4;
+                    font-size: 0.9rem;
+                    text-transform: none;
+                    padding: 0.6rem 1.2rem;
+                    background: $C4;
+                }
+            }
+            &.isDeleting {
+                background-color: $C4 !important;
+                background: $C4 !important;
+                color: #000;
+                .DeleteConfirmation {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    width: 100%;
+                    height: 100%;
+                    gap: 1rem;
+                    h3 {
+                        font-size: 1.1rem;
+                        font-weight: 800;
+                        color: inherit;
+                        text-align: center;
+                    }
+                    p {
+                        font-size: 0.9rem;
+                        font-weight: 500;
+                        color: inherit;
+                        text-align: center;
+                        color: rgba($C1, 60%);
+                    }
+                    .Actions {
+                        display: flex;
+                        gap: $GlobalGap;
+                        width: 100%;
+                        justify-content: space-between;
+                        align-items: center;
+                        .DeleteActionButton {
+                            border-radius: 7.5px;
+                            padding: 0.5rem 1rem;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            flex-grow: 1;
+                            // gap: $GlobalGap / 2;
+                            // background: rgba($C4, 50%) !important;
+                            background: rgba($C4, 20%);
+                            // tbedlat dert icon button hia ActionButton
+                            svg {
+                                color: inherit;
+                            }
+                            &:first-child {
+                                background: rgba($C1, 5%);
+                                color: rgba($C1, 50%);
+                                font-weight: 800;
+                                &:hover {
+                                    background: rgba($C1, 10%);
+                                }
+                            }
+                            &:nth-child(2) {
+                                // red gradient
+                                background: linear-gradient(90deg, #E53935 0%, #E35D5B 100%);
+                                color: #fcfcfc;
+                                font-weight: 800;
+                                &:hover {
+                                    background: linear-gradient(90deg, #E53935 0%, #E35D5B 100%);
+                                    opacity: 75%;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            &.isEditing {
+                background: $C4 !important;
+                color: #000;
+                border: 1px solid rgba($C1, 10%);
+                .EditForm {
+                    display: flex;
+                    flex-direction: column;
+                    gap: $GlobalGap;
+                    justify-content: center;
+                    align-items: center;
+                    color: inherit;
+                    h3 {
+                        font-size: 1.1rem;
+                        font-weight: 800;
+                        color: inherit;
+                        text-align: center;
+                    }
+                    p {
+                        font-size: 0.9rem;
+                        font-weight: 500;
+                        color: inherit;
+                        text-align: center;
+                        opacity: 60%;
+                    }
+                    .Form {
+                        display: flex;
+                        flex-direction: column;
+                        gap: $GlobalGap;
+                        width: 100%;
+                        .FormRow {
+                            display: flex;
+                            flex-direction: column;
+                            gap: $GlobalGap / 2;
+                            label {
+                                font-size: 0.9rem;
+                                font-weight: 300;
+                                color: inherit;
+                                opacity: 75%;
+                            }
+                            input,
+                            textarea {
+                                border-radius: 5px;
+                                padding: 0.6rem 1rem;
+                                border: 1px solid rgba($C1, 10%);
+                                background: rgba($C1, 2.5%);
+                                color: inherit;
+                                &:focus {
+                                    outline: none;
+                                    border: 1px solid rgba($C1, 25%);
+                                }
+                            }
+                            textarea {
+                                min-height: 100px;
+                            }
+                            .Variants {
+                                display: flex;
+                                flex-direction: row;
+                                gap: $GlobalGap / 1;
+                                flex-wrap: wrap;
+                                justify-content: space-between;
+                                align-items: stretch;
+                                .VariantButton {
+                                    border-radius: 7.5px;
+                                    padding: 0.6rem 1rem;
+                                    display: flex;
+                                    justify-content: center;
+                                    align-items: center;
+                                    background: rgba($C4, 50%);
+                                    flex-grow: 1;
+                                    color: rgba($C1, 50%);
+                                    font-weight: 800;
+                                    // tbedlat dert icon button hia ActionButton
+                                    svg {
+                                        color: inherit;
+                                    }
+                                    &.Active {
+                                        background: rgba($C1, 20%);
+                                        color: rgba($C1, 50%);
+                                        font-weight: 800;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    .Actions {
+                        display: flex;
+                        gap: $GlobalGap;
+                        width: 100%;
+                        justify-content: space-between;
+                        align-items: center;
+                        .EditActionButton {
+                            border-radius: 7.5px;
+                            padding: 0.5rem 1rem;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            flex-grow: 1;
+                            // gap: $GlobalGap / 2;
+                            // background: rgba($C4, 50%) !important;
+                            background: rgba($C4, 20%);
+                            // tbedlat dert icon button hia ActionButton
+                            svg {
+                                color: inherit;
+                            }
+                            &:nth-child(1) {
+                                background: rgba($C1, 5%);
+                                color: rgba($C1, 50%);
+                                font-weight: 800;
+                                &:hover {
+                                    background: rgba($C4, 50%);
+                                }
+                            }
+                            &:nth-child(2) {
+                                // red gradient
+                                background: linear-gradient(90deg, #E53935 0%, #E35D5B 100%);
+                                color: #fcfcfc;
+                                font-weight: 800;
+                                &:hover {
+                                    background: linear-gradient(90deg, #E53935 0%, #E35D5B 100%);
+                                    opacity: 75%;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            // Styling for global card tag (Like Padding; width, color and Display);
+            // Switch variants
+            @if $Variant=="Info" {
+                // Styling for Info variant
+                background: $G2;
+                color: #fff;
+                .CardType {
+                    color: $C4;
+                }
+                .IconContainer {
+                    background-color: $C4;
+                    color: $C2;
+                }
+                .MuiButton-root {
+                    color: $C2;
+                }
+            }
+            @else if $Variant=="Danger" {
+                // Styling for Danger variant
+                background: #FF0000;
+                color: #fff;
+                .CardType {
+                    color: $C4;
+                }
+                .IconContainer {
+                    background-color: $C4;
+                    color: #FF0000;
+                }
+                .MuiButton-root {
+                    color: #FF0000;
+                }
+            }
+            @else if $Variant=="Primary" {
+                // Styling for Primary variant
+                background: $G1;
+                color: #000;
+                .CardType {
+                    color: $C4;
+                }
+                .IconContainer {
+                    background-color: $C4;
+                    color: $C1;
+                }
+                .MuiButton-root {
+                    color: $C1;
+                }
+            }
+            @else if $Variant=="Secondary" {
+                // Styling for Secondary variant
+                background: $G4;
+                color: #fff;
+                .CardType {
+                    color: $C1;
+                }
+                .IconContainer {
+                    background-color: $C1;
+                    color: $C4;
+                }
+                .MuiButton-root {
+                    background-color: $C4;
+                    color: $C1;
+                }
+                .CardTitle {
+                    color: $C1;
+                }
+                .CardDescription {
+                    p {
+                        color: $C1;
+                    }
+                }
+                .Actions {
+                    .ActionButton {
+                        background: rgba($C1, 65%) !important;
+                        &:hover {
+                            background: rgba($C1, 20%) !important;
+                        }
+                    }
+                }
+                .CardTitle {
+                    p {
+                        color: rgba($C1, 65%);
+                    }
+                }
+            }
+        }
+        
+        .Card {
+            @include Card("Primary");
+        }
+        
+        .Card.Danger {
+            @include Card("Danger");
+        }
+        
+        .Card.Info {
+            @include Card("Info");
+        }
+        
+        .Card.Secondary {
+            @include Card("Secondary");
+        }

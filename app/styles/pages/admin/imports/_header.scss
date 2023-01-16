@@ -1,0 +1,88 @@
+.Header {
+    padding: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    width: 100%;
+    height: max-content;
+    width: 100%;
+    .NavButtons {
+        display: flex;
+        justify-content: flex-start;
+        align-items: stretch;
+        gap: $GlobalGap;
+        width: 100%;
+        .NavButton {
+            background-color: rgba($C1, 5%);
+            color: rgba($C1, 50%);
+            box-shadow: none;
+            border-radius: 15px;
+            padding: 10px 20px;
+            font-weight: 700;
+            text-transform: none;
+            height: auto;
+        }
+        .Active {
+            background: $G3;
+            color: $C4;
+        }
+    }
+    .User {
+        background-color: $C4;
+        // padding: 0.9rem 1rem;
+        border-radius: 15px;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        height: min-content;
+        // overflow: hidden;
+        margin: 0;
+        .UserImage {
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+            aspect-ratio: 1/1;
+            border-radius: 15px;
+            background: $G3;
+            position: relative;
+            .Image {
+                object-fit: cover;
+                object-position: bottom center;
+            }
+        }
+        gap: $GlobalGap;
+        .UserInfos {
+            display: flex;
+            flex-direction: column;
+            gap: 0.3rem;
+            .UserName {
+                color: $C1;
+                font-size: 0.8rem;
+                font-weight: 600;
+                // give it max width with no wrap
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                max-width: 175px;
+                padding-right: 25px;
+            }
+            .UserRole {
+                color: rgba($C1, 0.5);
+                font-size: 0.7rem;
+                font-weight: 500;
+            }
+        }
+        .UserActions {
+            display: flex;
+            justify-content: center;
+            height: auto;
+            width: auto;
+            padding: 0rem;
+            aspect-ratio: 1/1;
+            border-radius: 15px;
+            background-color: darken($color: $C4, $amount: 4%);
+            color: $C3;
+            display: none;
+        }
+    }
+}

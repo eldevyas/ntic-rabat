@@ -97,7 +97,7 @@
             }
         }
     }
-    .Cards {
+    .HomeCards {
         display: grid;
         grid-gap: $GlobalGap;
         grid-template-columns: repeat(auto-fit, minmax(125px, 1fr));
@@ -105,7 +105,7 @@
         $CardMargin: 0;
         $CardPadding: 50px 1rem;
         $CardBorder: none;
-        .Card {
+        .HomeCard {
             background-color: lighten($C2, 35%);
             flex: 1;
             border-radius: 0.6rem;
