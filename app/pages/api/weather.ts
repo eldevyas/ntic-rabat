@@ -22,7 +22,7 @@ export default async function handler(
     var weekEnd = convert(new Date(curr.setDate(last)));
 
     // const url = `https://api.open-meteo.com/v1/forecast?latitude=34.01&longitude=-6.83&daily=weathercode,apparent_temperature_max,apparent_temperature_min&timezone=auto&start_date=${weekStart}&end_date=${weekEnd}`;
-    const url = `https://api.open-meteo.com/v1/forecast?latitude=34.01&longitude=-6.83&daily=weathercode,apparent_temperature_max,apparent_temperature_min&timezone=auto&start_date=${weekStart}&end_date=${weekEnd}`;
+    const url = `https://api.open-meteo.com/v1/forecast?latitude=31.6295&longitude=-6.83&daily=weathercode,apparent_temperature_max,apparent_temperature_min&timezone=auto&start_date=${weekStart}&end_date=${weekEnd}`;
     const { data } = await axios.get(url);
 
     // filter the data
@@ -55,7 +55,7 @@ export default async function handler(
                 break;
             case 3:
                 Weather = "Couvert";
-                Icon = "Fog";
+                Icon = "CloudySun";
                 break;
             case 45:
                 Weather = "Brouillard";
