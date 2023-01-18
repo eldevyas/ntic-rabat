@@ -20,8 +20,8 @@ export default async function handler(
     const fetchedSelectBox: any = $('[name=groupe]').html();
     const Groups: Data = [];
     // Loop through each option
-    $(fetchedSelectBox).each((i, el) => {
-        const option = $(el);
+    $(fetchedSelectBox).each((element: any) => {
+        const option = $(element);
 
         const optionName: string = option.text();
         const optionValue: string = String(option.attr('value'));

@@ -10,6 +10,7 @@ export default function Emploi(props: any) {
     // GroupID state
     const [GroupID, setGroupID] = useState(props["data-GroupID"]);
     const [GroupSchedule, setGroupSchedule] = useState(props["data-Schedule"]);
+    const [Weather, setWeather] = useState(props["data-Weather"]);
 
     // Change group function
     const setGroup = (Group: string) => {
@@ -49,7 +50,11 @@ export default function Emploi(props: any) {
     return (
         <>
             <SelectClass GroupID={GroupID} setGroup={setGroup} />
-            <Schedule GroupID={GroupID} Data={GroupSchedule} />
+            <Schedule
+                GroupID={GroupID}
+                Data={GroupSchedule}
+                Weather={Weather}
+            />
         </>
     );
 }

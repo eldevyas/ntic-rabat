@@ -13,6 +13,7 @@ function Emplois({ props }: any) {
             <EmploisPage
                 data-GroupID={props.GroupID}
                 data-Schedule={props.Schedule}
+                data-Weather={props.Weather}
             />
         </>
     );
@@ -45,18 +46,43 @@ Emplois.getInitialProps = async (ctx: any) => {
         Schedule = resData;
     }
 
+    if (req) {
+        let Hostname = req.headers.host;
+
+        // Get Weather Info from "/api/weather"
+        const WeatherData = await axios.get(`http://${Hostname}/api/weather`);
+        var Weather: {
+            date: string;
+            day: string;
+            temperature: {
+                max: number;
+                min: number;
+                avg: number;
+            };
+            icon: string;
+            weather: string;
+        }[] = [];
+        // Succesfful request
+        if (WeatherData.status == 200) {
+            // Get Weather Data
+            Weather = WeatherData.data;
+        } else {
+            Weather = [];
+        }
+    } else {
+        Weather = [];
+    }
+
     const props = {
         GroupID: GroupID,
         Schedule: Schedule,
+        Weather: Weather,
     };
 
     console.table(props);
 
     return {
-        props: {
-            GroupID: GroupID,
-            Schedule: Schedule,
-        },
+        props,
     };
 };
 

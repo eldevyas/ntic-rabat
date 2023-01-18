@@ -1,8 +1,6 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from 'next';
 import axios from 'axios';
-import { useSelector } from 'react-redux';
-
 
 import cheerio from "cheerio";
 type Data = {
@@ -22,12 +20,6 @@ export default async function handler(
 
     // get group id from get request
     const GroupID = req.query.GroupID;
-
-
-    // return json
-
-
-
 
     // Send Get Request to the Website - Retrieve data as HTML
     const { data } = await axios.get(TargetURL + "/emploi/index.php?groupe=" + GroupID);

@@ -5,15 +5,12 @@
     width: 100%;
     // responsive overflow-x
     overflow-x: auto;
-    background-color: darken($color: $C4, $amount: 7.5%);
     user-select: none;
     border-radius: 0px;
     @include GlobalPadding();
-
     table {
         border-spacing: $GlobalGap;
         margin: 0 auto;
-
         thead>tr>td {
             min-width: 150px;
             min-width: min-content;
@@ -24,7 +21,9 @@
             font-weight: 500;
             font-size: 0.9rem;
             padding: 10px;
-
+            // filter box shadow
+            filter: drop-shadow( 0px 0px 5rem rgba($color: $C1, $alpha: 0.5));
+            // smooth box shadow
             &:first-child {
                 background: $G2;
                 color: $C4;
@@ -32,18 +31,17 @@
                 font-weight: 800;
                 color: transparent;
             }
-
             div {
                 display: flex;
                 justify-content: space-between;
+                align-items: center;
                 width: 100%;
+                color: rgba($C1, 50%);
             }
-
             &:hover {
                 background-color: darken($color: $C4, $amount: 5%);
             }
         }
-
         tbody>tr>td {
             position: relative;
             overflow: hidden;
@@ -57,27 +55,21 @@
             font-size: 0.9rem;
             border-radius: 15px;
             height: 1rem;
-
             &:has(> .WeatherCell) {
                 background: $G2;
             }
-
             &:first-child {
                 min-width: 200px;
                 background: $G2;
                 color: $C4;
-
                 div {
                     background: none;
                 }
-
                 span {
                     font-weight: 400;
-
                     &:first-child {
                         font-weight: 800;
                     }
-
                     &:last-child {
                         font-weight: 400;
                         color: lighten($color: #000000, $amount: 90%);
@@ -87,70 +79,108 @@
                     }
                 }
             }
-
-            div {
+            .DayTime {
                 display: flex;
+                position: relative;
                 flex-direction: column;
                 justify-content: space-between;
                 align-items: center;
-                gap: 10px;
-                background: $G1;
+                gap: $GlobalGap / 2;
+                background: $C1;
                 width: 100%;
                 height: 100%;
                 border-radius: 15px;
                 padding: 0.75rem 0.75rem;
-
                 span {
                     font-weight: 600;
                     font-size: 0.8rem;
-
                     &:last-child {
                         font-weight: 600;
                         font-size: 0.8rem;
-                        color: darken($color: #000000, $amount: 90%);
+                        color: $C1;
                         background-color: $C4;
                         padding: 0.25rem 0.5rem;
                         border-radius: 5px;
                     }
+                    &:nth-child(1) {
+                        font-weight: 600;
+                        font-size: 0.8rem;
+                    }
+                    &:nth-child(2) {
+                        font-weight: 600;
+                        font-size: 0.75rem;
+                    }
+                }
+                .CellIcon {
+                    position: absolute;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    left: -5%;
+                    height: 75%;
+                    width: auto;
+                    aspect-ratio: 1/1;
+                    background: transparent !important;
                 }
             }
         }
     }
-
+    .Presential {
+        background: rgba(#ECB13F, 20%) !important;
+        span {
+            font-weight: 600;
+            font-size: 0.8rem;
+            color: #ECB13F;
+            &:nth-child(2) {
+                font-weight: 600;
+                font-size: 0.8rem;
+                color: #fff !important;
+                background-color: #ECB13F !important;
+                padding: 0.25rem 0.5rem;
+                border-radius: 5px;
+            }
+        }
+        &:hover {
+            background: rgba(#ECB13F, 35%) !important;
+        }
+    }
     .Online {
-        background: $G3 !important;
-
+        background: rgba(#39B54A, 20%) !important;
         span {
-            &:last-child {
-                color: $C3 !important;
+            font-weight: 600;
+            font-size: 0.8rem;
+            color: #39B54A;
+            &:nth-child(2) {
+                font-weight: 600;
+                font-size: 0.8rem;
+                color: #fff !important;
+                background-color: #39B54A !important;
+                padding: 0.25rem 0.5rem;
+                border-radius: 5px;
             }
         }
-
         &:hover {
-            background: darken($color: $C3, $amount: 5%) !important;
+            background: rgba(#39B54A, 35%) !important;
         }
     }
-
     .Absent {
-        // linear red gradient
-        background: #ff4b1f;
-        /* fallback for old browsers */
-        background: -webkit-linear-gradient(to right, #ff9068, #ff4b1f);
-        /* Chrome 10-25, Safari 5.1-6 */
-        background: linear-gradient(to right, #ff9068, #ff4b1f);
-
-        /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        background: rgba(#F74343, 20%) !important;
         span {
-            &:last-child {
-                color: orangered !important;
+            font-weight: 600;
+            font-size: 0.8rem;
+            color: #F74343;
+            &:nth-child(2) {
+                font-weight: 600;
+                font-size: 0.8rem;
+                color: #fff !important;
+                background-color: #F74343 !important;
+                padding: 0.25rem 0.5rem;
+                border-radius: 5px;
             }
         }
-
         &:hover {
-            background: darken($color: orangered, $amount: 5%) !important;
+            background: rgba(#F74343, 35%) !important;
         }
     }
-
     .Free {
         background: white !important;
         height: 100%;
@@ -158,12 +188,10 @@
         // width: 200px;
         min-width: 150px;
         min-height: 75px;
-
         &:hover {
             background: darken(white, 2.5%) !important;
         }
     }
-
     .WeatherCell {
         position: absolute;
         top: 0;
@@ -173,63 +201,58 @@
         height: 100%;
         width: 100%;
         display: flex;
+        flex-direction: column;
         justify-content: center;
         align-items: center;
         padding: 0;
         overflow: hidden;
         background: $G2 !important;
-
-        // if Has Rainy icon classname
-        &:has(svg.Rainy) {
-            background: desaturate(darken($C2, 0%), 25%) !important;
-        }
-
-        // if Has Snowy icon classname
-        &:has(svg.Snowy) {
-            background: desaturate(darken($C2, 0%), 50%) !important;
-        }
-
-        // if Has Thunder icon classname
-        &:has(svg.Thunder) {
-            background: desaturate(darken($C2, 0%), 50%) !important;
-        }
-
-        // if has fog
-        &:has(svg.Fog) {
-            background: desaturate(darken($C2, 0%), 25%) !important;
-        }
-
-        // if has cloudy
-        &:has(svg.Cloudy) {
-            background: saturate(darken($C2, 0%), 25%) !important;
-        }
-
-        // if has sunny
-        &:has(svg.Sunny) {
-            background: saturate(darken($C2, 0%), 50%) !important;
-        }
-
+        gap: $GlobalGap /2;
         span {
             z-index: 6;
             // color: #ffbb3b !important;
             color: #fff;
             // box shadow
             text-shadow: 0 0 50px 10px #000;
-
+            &:nth-child(1) {
+                font-weight: 600;
+                font-size: 0.8rem;
+                color: $C4;
+            }
             &:nth-child(2) {
+                font-weight: 600;
+                font-size: 0.75rem;
+                color: $C4;
                 color: #fff !important;
-                // hide text overflow
-                max-width: 50%;
-                white-space: nowrap;
-                overflow: hidden;
-                text-overflow: ellipsis;
             }
         }
-
+        // if Has Rainy icon classname
+        &:has(svg.Rainy) {
+            background: desaturate(darken($C2, 0%), 25%) !important;
+        }
+        // if Has Snowy icon classname
+        &:has(svg.Snowy) {
+            background: desaturate(darken($C2, 0%), 50%) !important;
+        }
+        // if Has Thunder icon classname
+        &:has(svg.Thunder) {
+            background: desaturate(darken($C2, 0%), 50%) !important;
+        }
+        // if has fog
+        &:has(svg.Fog) {
+            background: desaturate(darken($C2, 0%), 25%) !important;
+        }
+        // if has cloudy
+        &:has(svg.Cloudy) {
+            background: saturate(darken($C2, 0%), 25%) !important;
+        }
+        // if has sunny
+        &:has(svg.Sunny) {
+            background: saturate(darken($C2, 0%), 50%) !important;
+        }
         &:hover {
             background: darken($color: $C2, $amount: 5%) !important;
         }
-
         .Icon {
             position: absolute;
             top: 0;
@@ -241,7 +264,6 @@
             align-items: center;
             background: transparent !important;
             z-index: 5;
-
             svg {
                 width: auto;
                 height: 100%;
@@ -250,7 +272,6 @@
                 transform: translateY(-50%);
                 left: -10%;
             }
-
             .Rainy,
             .Snowy,
             .Thunder,
@@ -258,30 +279,24 @@
                 width: auto;
                 height: 70% !important;
             }
-
             .Fog {
                 width: auto;
                 height: 75% !important;
             }
-
             // float animation
             animation: float 3s ease-in-out infinite;
-
             @keyframes float {
                 0% {
                     transform: translatey(0px);
                 }
-
                 50% {
                     transform: translatey(-5px);
                 }
-
                 100% {
                     transform: translatey(0px);
                 }
             }
         }
-
         .Banner {
             position: absolute;
             top: 0;
@@ -290,7 +305,6 @@
             height: 100%;
             width: 100%;
             opacity: 0.35;
-
             .Clouds {
                 position: absolute;
                 bottom: 0%;
@@ -302,28 +316,22 @@
                 justify-content: center;
                 align-items: center;
                 background: transparent !important;
-
                 // img vars
                 img:nth-child(1) {
                     --i: 1;
                 }
-
                 img:nth-child(2) {
                     --i: 2;
                 }
-
                 img:nth-child(3) {
                     --i: 3;
                 }
-
                 img:nth-child(4) {
                     --i: 4;
                 }
-
                 img:nth-child(5) {
                     --i: 5;
                 }
-
                 img {
                     // each image has a unique variable
                     position: absolute;
@@ -331,12 +339,10 @@
                     max-width: 100%;
                     animation: animate calc(16s * var(--i)) linear infinite;
                 }
-
                 @keyframes animate {
                     0% {
                         transform: translateX(-100%);
                     }
-
                     100% {
                         transform: translateX(100%);
                     }
@@ -348,7 +354,6 @@
 
 @include respond-to("small") {
     .EmploisPage .Schedule table tbody>tr>td>div>span {
-
         // &:first-of-type {
         //     margin-left: 15px !important;
         // }
@@ -356,7 +361,6 @@
             font-weight: 450 !important;
         }
     }
-
     .EmploisPage .Schedule table tbody>tr>td:first-child {
         min-width: 200px !important;
     }

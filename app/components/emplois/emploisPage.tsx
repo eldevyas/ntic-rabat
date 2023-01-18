@@ -6,6 +6,7 @@ import SelectClass from "./imports/SelectClass";
 import Schedule from "./imports/Schedule";
 import axios from "axios";
 import Emploi from "./imports/Emploi";
+import Background from "./imports/Background";
 
 // Group Context
 
@@ -33,9 +34,11 @@ const EmploisPage = (props: any) => {
 
             <div className="EmploisPage">
                 <Header />
+                <Background />
                 <Emploi
                     data-GroupID={props["data-GroupID"]}
                     data-Schedule={props["data-Schedule"]}
+                    data-Weather={props["data-Weather"]}
                 />
                 <Footer />
             </div>

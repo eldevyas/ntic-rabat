@@ -48,11 +48,11 @@ export default function WeatherCell(props: any) {
         FinalDate.charAt(0).toUpperCase() + FinalDate.slice(1);
 
     return (
-        <Tooltip title={"Rabat - " + CapitalizedFinalDate} arrow>
+        <Tooltip title={Weather + " - " + CapitalizedFinalDate} arrow>
             <div className="WeatherCell">
                 <span>{Day}</span>
                 <span>
-                    {Weather} [{Temperature}° C]
+                    {Temperature}° C - {Weather}
                 </span>
                 <div className="Icon">{FinalWeatherIcon}</div>
 

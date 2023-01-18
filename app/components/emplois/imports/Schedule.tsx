@@ -14,6 +14,7 @@ import { useSelector, useDispatch } from "react-redux";
 const Schedule = (props: any) => {
     // State with context
     const [Data, setData] = useState(props.Data);
+    const [Weather, setWeather] = useState(props.Weather);
 
     // useEffect
     useEffect(() => {
@@ -28,9 +29,9 @@ const Schedule = (props: any) => {
                     {
                         // Data shall be an array with more than one record
                         Data.length > 1 ? (
-                            <ScheduleData Data={Data} />
+                            <ScheduleData Data={Data} Weather={Weather} />
                         ) : (
-                            <ScheduleSkeleton />
+                            <ScheduleSkeleton Weather={Weather} />
                         )
                     }
                 </tbody>

@@ -25,22 +25,7 @@ const ScheduleData = (props: any) => {
             icon: string;
             weather: string;
         }[]
-    >([]);
-
-    // send request with axios to API ("api/weather");
-    const getWeather = async () => {
-        let res = await axios.get("/api/weather");
-        if (res.status === 200) {
-            setWeather(res.data);
-            return;
-        } else {
-            setWeather([]);
-        }
-    };
-
-    useEffect(() => {
-        getWeather();
-    }, []);
+    >(props.Weather);
 
     return (
         <>
