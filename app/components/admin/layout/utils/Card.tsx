@@ -26,7 +26,7 @@ export default function Card(props: any) {
     // is adding new announce state
     const [isAdding, setAdding] = useState(true);
     // object to store user data
-    const [user, setUser] = useState({});
+    const [user, setUser] = useState<any>();
     const stringToken: any = getCookie("token");
     const token = JSON.parse(stringToken);
     // Editing States
