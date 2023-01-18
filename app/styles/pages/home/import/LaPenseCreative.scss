@@ -49,6 +49,11 @@
                         color: $C2;
                     }
                 }
+                &:first-child {
+                    .DefaultButton {
+                        color: $C4 !important;
+                    }
+                }
             }
         }
     }

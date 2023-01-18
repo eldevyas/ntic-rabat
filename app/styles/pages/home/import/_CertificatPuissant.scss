@@ -79,6 +79,9 @@
             object-position: center center;
         }
     }
+    .MuiButtonBase-root {
+        color: $C4 !important;
+    }
 }
 
 @include respond-to("small") {

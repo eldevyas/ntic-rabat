@@ -51,9 +51,11 @@ const ScheduleData = (props: any) => {
                                         <WeatherCell
                                             dataDay={Row.Day}
                                             dataDate={new Date()}
-                                            dataTemperature={18}
-                                            dataIcon={"Sunny"}
-                                            dataWeather={"Sunny"}
+                                            dataTemperature={Math.floor(
+                                                Math.random() * 20
+                                            )}
+                                            dataIcon={"Cloudy"}
+                                            dataWeather={"Nuageux"}
                                         />
                                     </>
                                 )}

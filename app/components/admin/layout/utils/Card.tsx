@@ -11,6 +11,7 @@ import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined
 import HighlightOffTwoToneIcon from "@mui/icons-material/HighlightOffTwoTone";
 import DoDisturbOutlinedIcon from "@mui/icons-material/DoDisturbOutlined";
 import SaveOutlinedIcon from "@mui/icons-material/SaveOutlined";
+import { getCookie } from "cookies-next";
 //
 //
 // Required 3rd Party Components
@@ -24,7 +25,10 @@ export default function Card(props: any) {
     const [isDeleting, setDeleting] = useState(false);
     // is adding new announce state
     const [isAdding, setAdding] = useState(true);
-
+    // object to store user data
+    const [user, setUser] = useState({});
+    const stringToken: any = getCookie("token");
+    const token = JSON.parse(stringToken);
     // Editing States
     const [newVariant, setNewVariant] = useState(
         props.variant.replace(/\ws\S*/g, function (txt: string) {
@@ -95,14 +99,8 @@ export default function Card(props: any) {
     };
 
     const RefreshParent = props.refresh;
-    const [user, setUser] = useState<any>(JSON.parse(sessionStorage.getItem('user') as string));
     const editAnnounce = (id: any) => {
-        setUser(JSON.parse(sessionStorage.getItem('user') as string));
-        let token = user.token;
-        if (!token) {
-            Router.push('/connexion');
-        }
-        // Validate fileds values
+        setUser(token);
         if (
             newTitle.current != null &&
             newDescription.current != null &&
@@ -139,7 +137,7 @@ export default function Card(props: any) {
                     },
                     {
                         headers: {
-                            Authorization: `Bearer ${token}`,
+                            Authorization: `Bearer ${user.token}`,
                         },
                     }
                 )
@@ -156,18 +154,17 @@ export default function Card(props: any) {
         }
     };
     const deleteAnnounce = (id: any) => {
-        setUser(JSON.parse(sessionStorage.getItem('user') as string));
-        let token = user.token;
+        setUser(token);
         axios
             .delete(`http://localhost:8000/api/annonces/` + id, {
                 headers: {
-                    Authorization: `Bearer ${token}`,
+                    Authorization: `Bearer ${user.token}`,
                 },
             })
             .then((res) => {
                 console.log(res);
                 console.log(res.data);
-                console.log(sessionStorage.getItem('token'));
+                console.log(sessionStorage.getItem("token"));
                 setDeleting(false);
                 RefreshParent();
             })
@@ -418,7 +415,6 @@ export default function Card(props: any) {
                     </div>
                 )
             }
-
         </div>
     );
 }

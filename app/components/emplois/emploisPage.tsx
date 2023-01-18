@@ -6,16 +6,17 @@ import SelectClass from "./imports/SelectClass";
 import Schedule from "./imports/Schedule";
 import axios from "axios";
 import Emploi from "./imports/Emploi";
-import Background from "./imports/Background";
+import Background from "../core/Background";
 
 // Group Context
 
 // Configure Group Context
 
 const EmploisPage = (props: any) => {
-    useEffect(() => {
-        console.table(props);
-    }, []);
+    // state
+    const [GroupID, setGroup] = useState(props["data-GroupID"]);
+    const [Schedule, setSchedule] = useState(props["data-Schedule"]);
+    const [Weather, setWeather] = useState(props["data-Weather"]);
 
     return (
         <>
@@ -23,7 +24,7 @@ const EmploisPage = (props: any) => {
                 <title>NTIC Rabat - Emplois</title>
                 <meta
                     name="description"
-                    content="Depuis son ouverture en 2007, l'ISTA NTIC Hay Riad a formé plus de 3 600 techniciens dans les secteurs Informatiques."
+                    content="Consultez les emplois de tous les groupes de l'institut sur notre page dédiée. Restez informé des horaires de cours, des examens et des activités en un seul endroit."
                 />
                 <meta
                     name="viewport"
@@ -36,9 +37,9 @@ const EmploisPage = (props: any) => {
                 <Header />
                 <Background />
                 <Emploi
-                    data-GroupID={props["data-GroupID"]}
-                    data-Schedule={props["data-Schedule"]}
-                    data-Weather={props["data-Weather"]}
+                    data-GroupID={GroupID}
+                    data-Schedule={Schedule}
+                    data-Weather={Weather}
                 />
                 <Footer />
             </div>

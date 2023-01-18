@@ -1,35 +1,60 @@
 import { DefaultButton } from "./../../../../core/button";
-import InfoIcon from '@mui/icons-material/Info';
+import InfoIcon from "@mui/icons-material/Info";
 
 export default function Card(props: any) {
+    const Variant = props.variant;
+    let className: string;
+    switch (Variant) {
+        case "Info":
+            className = "Card Info";
+            break;
+        case "Urgent":
+            className = "Card Danger";
+            break;
+        case "Primary":
+            className = "Card Primary";
+            break;
+        case "Secondary":
+            className = "Card Secondary";
+            break;
+        default:
+            className = "Card Default";
+            break;
+    }
+    const openUrl = () => {
+        window.open(props.url);
+    };
     return (
         <>
-            <div className="AnnounceCard">
+            <div className={className}>
                 <div className="CardHeader">
-                    <div className="Title">
+                    <div className="CardType">
                         <div className="Icon">
                             <InfoIcon />
                         </div>
-                        <h4>{props.title}</h4>
-                    </div>
-                    <div className="Date">
-                        <p>
-                            {
-                                String(new Date().toLocaleDateString('fr-FR', {
-                                    weekday: 'long',
-                                    year: 'numeric',
-                                    month: 'long',
-                                    day: 'numeric',
-                                })).replace(/\b\w/g, (l) => l.toUpperCase())
-                            }
-                        </p>
+                        <h3>{Variant}</h3>
                     </div>
                 </div>
-                <div className="Content">
-                    <div className="Text">
-                        <p>{props.description}</p>
-                    </div>
-                    <DefaultButton href={props.url} bgColor="White">Procéder</DefaultButton>
+                <div className="CardTitle">
+                    <h3>{props.title}</h3>
+                    <p>
+                        {String(
+                            new Date().toLocaleDateString("fr-FR", {
+                                weekday: "long",
+                                year: "numeric",
+                                month: "long",
+                                day: "numeric",
+                            })
+                        ).replace(/\b\w/g, (l) => l.toUpperCase())}
+                    </p>
+                </div>
+                <div className="CardDescription">
+                    <p>{props.description}</p>
+                </div>
+                <div className="CardButton">
+                    <DefaultButton onClick={openUrl} bgColor="White">
+                        Procéder
+                    </DefaultButton>
                 </div>
             </div>
         </>

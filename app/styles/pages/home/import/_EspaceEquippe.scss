@@ -63,6 +63,11 @@
                     font-size: 1rem;
                     font-weight: 600;
                 }
+                &:first-child {
+                    .MuiButtonBase-root {
+                        color: $C4 !important;
+                    }
+                }
             }
         }
     }

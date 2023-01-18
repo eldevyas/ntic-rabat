@@ -5,7 +5,16 @@ import Button from "@mui/material/Button";
 import NotificationsNoneOutlinedIcon from "@mui/icons-material/NotificationsNoneOutlined";
 import PagesIcon from "@mui/icons-material/Pages";
 import LogoutOutlinedIcon from "@mui/icons-material/LogoutOutlined";
+import { setCookie } from "cookies-next";
+import { useRouter } from "next/router";
 const Sidebar = () => {
+    const Router = useRouter();
+    const handleLogout = () => {
+        const date = new Date();
+        date.setDate(date.getDate() - 1);
+        setCookie("token", "", { expires: date });
+        Router.push("/connexion"); // redirect the user to the login page
+    };
     return (
         <div className="SideBar">
             <div className="ImageContainer">
@@ -34,7 +43,11 @@ const Sidebar = () => {
                 </div>
             </div>
             <div className="Logout">
-                <Button variant="text" className="NavButton Deconnexion">
+                <Button
+                    variant="text"
+                    className="NavButton Deconnexion"
+                    onClick={handleLogout}
+                >
                     <LogoutOutlinedIcon className="BtnIcon" />
                     Se déconnecter
                 </Button>

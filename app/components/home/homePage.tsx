@@ -12,6 +12,7 @@ import CertificatPuissant from "./import/CertificatPuissant";
 import LaPenseCreative from "./import/LaPenseCreative";
 import FormateursProfessionnels from "./import/FormateursProfessionnels";
 import ContactSection from "./import/ContactSection";
+import Background from "../core/Background";
 
 export default class App extends React.Component {
     render() {
@@ -32,6 +33,7 @@ export default class App extends React.Component {
 
                 <div className="HomePage">
                     <Header />
+                    <Background />
                     <Landing />
                     <Service />
                     <EspaceEquippe />

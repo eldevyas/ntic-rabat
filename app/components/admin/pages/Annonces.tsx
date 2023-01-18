@@ -2,6 +2,8 @@ import React, { useEffect, useState, useRef } from "react";
 import Button from "@mui/material/Button";
 import Card from "./../layout/utils/Card";
 import axios from "axios";
+import Router from "next/router";
+import { getCookie } from "cookies-next";
 
 //
 // Icons from MUI
@@ -12,6 +14,17 @@ import PagesTwoToneIcon from "@mui/icons-material/PagesTwoTone";
 //
 //
 export default function Annonces() {
+    const [user, setUser] = useState<any>();
+    useEffect(() => {
+        if (!getCookie("token")) {
+            // Router.push("/connexion");
+            console.log("no token");
+        } else {
+            const stringToken: any = getCookie("token");
+            const token = JSON.parse(stringToken);
+            setUser(token);
+        }
+    }, []);
     let newTitle = useRef<HTMLInputElement>(null);
     let newDescription = useRef<HTMLTextAreaElement>(null);
     let newUrl = useRef<HTMLInputElement>(null);
@@ -39,31 +52,37 @@ export default function Annonces() {
     };
     // is adding state
     const [isAdding, setIsAdding] = useState(false);
-    const [user, setUser] = useState<any>(null);
     function addAnnounce() {
-        setUser(JSON.parse(sessionStorage.getItem('user') as string));
-        console.log(user);
-        // let token = user.token;
-        console.log("hhhh");
-        if (newTitle.current != null && newDescription.current != null && newUrl.current != null) {
+        if (
+            newTitle.current != null &&
+            newDescription.current != null &&
+            newUrl.current != null
+        ) {
+            console.log(user.token);
             let Title = newTitle.current.value;
-            // sf sf kayna solution
             let Description = newDescription.current.value;
             let Url = newUrl.current.value;
-            // post the data to the api
-            axios.post("http://localhost:8000/api/annonces", {
-                title: Title,
-                description: Description,
-                type: variant,
-                url: Url,
-            }, {
-                headers: {
-                    Authorization: `Bearer ${user.token}`,
+            axios.post(
+                "http://localhost:8000/api/annonces",
+                {
+                    title: Title,
+                    description: Description,
+                    type: variant,
+                    url: Url,
                 },
-            });
+                {
+                    headers: {
+                        Authorization: `Bearer ${user.token}`,
+                    },
+                }
+            );
             // refresh the page
         }
-        doRefresh();
+        setIsAdding(false);
+        // set timeout to refresh the page
+        setTimeout(() => {
+            doRefresh();
+        }, 1000);
     }
 
     return (
@@ -74,7 +93,10 @@ export default function Annonces() {
                     <p>Annonces</p>
                 </div>
                 <div className="Button">
-                    <Button variant="text" onClick={() => setIsAdding(!isAdding)}>
+                    <Button
+                        variant="text"
+                        onClick={() => setIsAdding(!isAdding)}
+                    >
                         <AddBoxOutlinedIcon />
                         Ajouter une annonce
                     </Button>
@@ -159,138 +181,120 @@ export default function Annonces() {
                     </div>
                 )
             }
-            {
-                isAdding && (
-                    <div className="EditForm">
-                        <h3>Editer les informations</h3>
-                        <p>
-                            Veuillez saisir les nouvelles informations dans le
-                            formulaire ci-dessous pour éditer la carte.
-                        </p>
-                        <div className="Form">
-                            <div className="FormRow">
-                                <label htmlFor="title">Title</label>
-                                <input
-                                    type="text"
-                                    name="title"
-                                    ref={newTitle}
-                                />
-                            </div>
-                            <div className="FormRow">
-                                <label htmlFor="description">Description</label>
-                                <textarea
-                                    name="description"
-                                    // only vertical resize
-                                    style={{ resize: "vertical" }}
-                                    ref={newDescription}
-                                />
-                            </div>
-                            <div className="FormRow">
-                                <label htmlFor="variant">Variant</label>
-                                <div className="Variants">
-                                    {/* Buttons for each variant, default to inactive and when clicked a button becomes active and set selected varaint */}
-                                    <Button
-                                        variant="text"
-                                        className={
-                                            "VariantButton" +
-                                            (variant === "Default"
-                                                ? " Active"
-                                                : "")
-                                        }
-                                        onClick={() => {
-                                            setVariant("Default");
-                                        }}
-                                    >
-                                        Default
-                                    </Button>
-                                    <Button
-                                        variant="text"
-                                        className={
-                                            "VariantButton" +
-                                            (variant === "Primary"
-                                                ? " Active"
-                                                : "")
-                                        }
-                                        onClick={() => {
-                                            setVariant("Primary");
-                                        }}
-                                    >
-                                        Primary
-                                    </Button>
-                                    <Button
-                                        variant="text"
-                                        className={
-                                            "VariantButton" +
-                                            (variant === "Secondary"
-                                                ? " Active"
-                                                : "")
-                                        }
-                                        onClick={() => {
-                                            setVariant("Secondary");
-                                        }}
-                                    >
-                                        Secondary
-                                    </Button>
-                                    <Button
-                                        variant="text"
-                                        className={
-                                            "VariantButton" +
-                                            (variant === "Info"
-                                                ? " Active"
-                                                : "")
-                                        }
-                                        onClick={() => {
-                                            setVariant("Info");
-                                        }}
-                                    >
-                                        Info
-                                    </Button>
-                                    <Button
-                                        variant="text"
-                                        className={
-                                            "VariantButton" +
-                                            (variant === "Urgent"
-                                                ? " Active"
-                                                : "")
-                                        }
-                                        onClick={() => {
-                                            setVariant("Urgent");
-                                        }}
-                                    >
-                                        Urgent
-                                    </Button>
-                                </div>
-                            </div>
-                            <div className="FormRow">
-                                <label htmlFor="button">Button URL</label>
-                                <input
-                                    type="text"
-                                    name="button"
-                                    ref={newUrl}
-                                />
+            {isAdding && (
+                <div className="EditForm">
+                    <h3>Editer les informations</h3>
+                    <p>
+                        Veuillez saisir les nouvelles informations dans le
+                        formulaire ci-dessous pour éditer la carte.
+                    </p>
+                    <div className="Form">
+                        <div className="FormRow">
+                            <label htmlFor="title">Title</label>
+                            <input type="text" name="title" ref={newTitle} />
+                        </div>
+                        <div className="FormRow">
+                            <label htmlFor="description">Description</label>
+                            <textarea
+                                name="description"
+                                // only vertical resize
+                                style={{ resize: "vertical" }}
+                                ref={newDescription}
+                            />
+                        </div>
+                        <div className="FormRow">
+                            <label htmlFor="variant">Variant</label>
+                            <div className="Variants">
+                                {/* Buttons for each variant, default to inactive and when clicked a button becomes active and set selected varaint */}
+                                <Button
+                                    variant="text"
+                                    className={
+                                        "VariantButton" +
+                                        (variant === "Default" ? " Active" : "")
+                                    }
+                                    onClick={() => {
+                                        setVariant("Default");
+                                    }}
+                                >
+                                    Default
+                                </Button>
+                                <Button
+                                    variant="text"
+                                    className={
+                                        "VariantButton" +
+                                        (variant === "Primary" ? " Active" : "")
+                                    }
+                                    onClick={() => {
+                                        setVariant("Primary");
+                                    }}
+                                >
+                                    Primary
+                                </Button>
+                                <Button
+                                    variant="text"
+                                    className={
+                                        "VariantButton" +
+                                        (variant === "Secondary"
+                                            ? " Active"
+                                            : "")
+                                    }
+                                    onClick={() => {
+                                        setVariant("Secondary");
+                                    }}
+                                >
+                                    Secondary
+                                </Button>
+                                <Button
+                                    variant="text"
+                                    className={
+                                        "VariantButton" +
+                                        (variant === "Info" ? " Active" : "")
+                                    }
+                                    onClick={() => {
+                                        setVariant("Info");
+                                    }}
+                                >
+                                    Info
+                                </Button>
+                                <Button
+                                    variant="text"
+                                    className={
+                                        "VariantButton" +
+                                        (variant === "Urgent" ? " Active" : "")
+                                    }
+                                    onClick={() => {
+                                        setVariant("Urgent");
+                                    }}
+                                >
+                                    Urgent
+                                </Button>
                             </div>
                         </div>
-                        <div className="Actions">
-                            <Button
-                                variant="text"
-                                className="EditActionButton"
-                                startIcon={<DoDisturbOutlinedIcon />}
-                                onClick={() => setIsAdding(!isAdding)}
-                            >
-                                Cancel
-                            </Button>
-                            <Button
-                                variant="text"
-                                className="EditActionButton"
-                                startIcon={<SaveOutlinedIcon />}
-                                onClick={addAnnounce}
-                            >
-                                Save
-                            </Button>
+                        <div className="FormRow">
+                            <label htmlFor="button">Button URL</label>
+                            <input type="text" name="button" ref={newUrl} />
                         </div>
                     </div>
-                )
-            }
+                    <div className="Actions">
+                        <Button
+                            variant="text"
+                            className="EditActionButton"
+                            startIcon={<DoDisturbOutlinedIcon />}
+                            onClick={() => setIsAdding(!isAdding)}
+                        >
+                            Cancel
+                        </Button>
+                        <Button
+                            variant="text"
+                            className="EditActionButton"
+                            startIcon={<SaveOutlinedIcon />}
+                            onClick={addAnnounce}
+                        >
+                            Save
+                        </Button>
+                    </div>
+                </div>
+            )}
         </>
     );
 }

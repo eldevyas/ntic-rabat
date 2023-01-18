@@ -7,6 +7,7 @@
     font-weight: 800;
     padding: 0.6rem 1rem;
     border-radius: 0.7rem;
+    box-shadow: none !important;
     &:hover {
         background: darken($color, 10%);
         box-shadow: none;
@@ -27,6 +28,7 @@
     min-height: 0;
     max-width: 75px;
     font-family: inherit;
+    box-shadow: none !important;
     .Icon {
         font-size: 1rem;
     }
@@ -47,6 +49,7 @@
     border: none;
     outline: none;
     box-sizing: unset !important;
+    box-shadow: none !important;
     &:hover {
         background: darken($color, 20%);
         box-shadow: none;

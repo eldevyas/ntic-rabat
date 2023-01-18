@@ -7,25 +7,21 @@
     justify-content: space-between;
     flex-direction: row;
     gap: $GlobalGap;
-
     // All Children same width, for spacing equality.
     .Start,
     .Middle,
     .End {
         flex: 1;
     }
-
     .Logo {
         max-height: 50px;
         display: flex;
         align-items: center;
         justify-content: flex-start;
-
         img {
             cursor: pointer;
         }
     }
-
     .Middle {
         display: flex;
         align-items: center;
@@ -33,24 +29,27 @@
         // row
         flex-direction: row;
         gap: $GlobalGap;
-
         // All Buttons same width
         .DefaultButton,
         button {
             min-width: 100px;
         }
+        .DefaultButton.Black {
+            color: $C4 !important;
+        }
     }
-
     .End {
         display: flex;
         align-items: center;
         justify-content: flex-end;
         gap: $GlobalGap;
-
         // Same width for the buttons
         .DefaultButton,
         button {
             min-width: 135px;
+            &:last-of-type {
+                color: $C4;
+            }
         }
     }
 }
@@ -64,12 +63,10 @@
     align-items: center;
     justify-content: space-between;
     flex-direction: row;
-
     .End {
         display: flex;
         justify-content: space-between;
         gap: 10px;
-
         .DefaultButton,
         button {
             background-color: lighten($C1, 10%);
@@ -86,7 +83,6 @@
     justify-content: space-between;
     align-items: center;
     @include GlobalPadding();
-
     .Logo {
         width: auto;
         height: 30px;
@@ -95,31 +91,26 @@
         display: flex;
         justify-content: flex-start;
         align-items: center;
-
         &:hover {
             opacity: 0.65;
             cursor: pointer;
         }
-
         &:active {
             opacity: 1;
             cursor: pointer;
         }
     }
-
     .MenuButton {
         display: flex;
         justify-content: flex-end;
         align-items: center;
         min-width: 50%;
         height: auto;
-
         // background: $G3;
         .HeaderButton {
             padding: 1rem;
             color: $C3 !important;
             border-radius: 10px;
-
             >* {
                 color: $C3 !important;
             }
@@ -135,7 +126,6 @@
     left: 0;
     z-index: 100000;
     overflow: hidden;
-
     .MobileMenu {
         display: flex;
         flex-direction: column;
@@ -151,7 +141,6 @@
         gap: 2rem;
         user-select: none;
         backdrop-filter: brightness(0.1);
-
         .Main {
             display: flex;
             justify-content: space-between;
@@ -161,7 +150,6 @@
             height: auto;
             // background: $G5;
             border-radius: 1rem;
-
             .Logo {
                 width: auto;
                 height: 30px;
@@ -170,18 +158,15 @@
                 display: flex;
                 justify-content: flex-start;
                 align-items: center;
-
                 &:hover {
                     opacity: 0.65;
                     cursor: pointer;
                 }
-
                 &:active {
                     opacity: 1;
                     cursor: pointer;
                 }
             }
-
             .CloseButton {
                 @include IconButton($C3);
                 padding: 1rem !important;
@@ -192,7 +177,6 @@
                 border-color: $C3;
             }
         }
-
         .Items {
             width: 100%;
             height: 1100%;
@@ -203,7 +187,6 @@
             gap: 0;
             margin-inline: auto;
             position: relative;
-
             .Item {
                 border-radius: 1rem;
                 display: flex;
@@ -212,13 +195,11 @@
                 align-items: center;
                 color: $C4;
                 z-index: 1000;
-
                 svg {
                     margin-bottom: 1rem;
                     pointer-events: none;
                 }
             }
-
             .Current {
                 position: absolute;
                 top: 0;

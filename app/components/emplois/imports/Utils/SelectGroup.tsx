@@ -130,28 +130,32 @@ export default function SelectGroup(props: any) {
                         outline: "none",
                         border: "none",
                         padding: "0.25rem 0.25rem",
-                        zIndex: "10000",
                     }),
                     menu: (base: any, state: any) => ({
                         ...base,
-                        zIndex: "1000000",
-                        backgroundColor: state.isFocused ? "#fff" : "#fff",
+                        backgroundColor: "rgba(255, 255, 255, 0.5)",
                         borderColor: state.isFocused ? "#fff" : "#fff",
                         color: state.isFocused ? "#39b54a" : "#fff",
-                        boxShadow: "none",
+                        // boxShadow: "none",
                         borderRadius: "10px",
+                        zIndex: 100,
                         overflow: "hidden",
+                        backdropFilter: "blur(10px)",
+                        boxShadow:
+                            "0px 0px 10rem rgba(0, 0, 0, 0.25) !important",
                     }),
                     option: (base: any, state: any) => ({
                         ...base,
-                        backgroundColor: state.isFocused ? "#4BB8E7" : "#fff",
+                        backgroundColor: state.isFocused
+                            ? "#4BB8E7"
+                            : "transparent",
                         borderColor: state.isFocused ? "#f5f5f5" : "#fff",
+                        // backdrop blur
                         color: state.isFocused ? "#fff" : "#303030",
                         fontFamily: "Outfit, sans-serif",
                         fontSize: "1rem",
                         fontWeight: "400",
                         padding: "0.75rem 1.25rem",
-                        zIndex: "10000",
                         borderRadius: "10px",
                         // hover
                         "&:hover": {

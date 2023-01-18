@@ -25,7 +25,10 @@ const LaPenseCreative = () => {
                 </p>
                 <div className="Buttons">
                     <div className="Button">
-                        <DefaultButton bgColor="Blue" onClick={() => Router.push("/#contact")}>
+                        <DefaultButton
+                            bgColor="Blue"
+                            onClick={() => Router.push("/#contact")}
+                        >
                             Contactez nous
                         </DefaultButton>
                     </div>

@@ -8,9 +8,54 @@
     user-select: none;
     border-radius: 0px;
     @include GlobalPadding();
+    // If focused, hide message
+    &:focus {
+        .Message {
+            display: none;
+        }
+    }
     table {
         border-spacing: $GlobalGap;
         margin: 0 auto;
+        position: relative;
+        .Message {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba($C4, 50%);
+            padding: 1rem;
+            border-radius: 10px;
+            color: $C1;
+            font-weight: 500;
+            font-size: 0.9rem;
+            text-align: center;
+            width: 100%;
+            max-width: 500px;
+            z-index: 1;
+            // flex display column and centered
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: $GlobalGap;
+            // filter box shadow
+            box-shadow: 0px 0px 10rem rgba($color: $C1, $alpha: 0.25);
+            h3 {
+                font-weight: 800;
+                font-size: 1.25rem;
+                color: rgba($C2, 100%);
+            }
+            p {
+                font-weight: 500;
+                font-size: 0.9rem;
+                color: rgba($C1, 50%);
+            }
+            // hover
+            &:hover {
+                background: rgba(lighten($C2, 40%), 100%);
+            }
+        }
         thead>tr>td {
             min-width: 150px;
             min-width: min-content;
@@ -94,6 +139,8 @@
                 span {
                     font-weight: 600;
                     font-size: 0.8rem;
+                    z-index: 2;
+                    background-color: transparent;
                     &:last-child {
                         font-weight: 600;
                         font-size: 0.8rem;
@@ -115,11 +162,20 @@
                     position: absolute;
                     top: 50%;
                     transform: translateY(-50%);
-                    left: -5%;
+                    left: -10%;
                     height: 75%;
                     width: auto;
                     aspect-ratio: 1/1;
                     background: transparent !important;
+                    z-index: 0;
+                    // shall never touch text of span
+                    pointer-events: none;
+                    transition: all 0.3s;
+                }
+                &:hover {
+                    .CellIcon {
+                        left: -15%;
+                    }
                 }
             }
         }
@@ -182,7 +238,7 @@
         }
     }
     .Free {
-        background: white !important;
+        background: linear-gradient(170deg, rgba(#fff, 100%) 0%, rgba(#fff, 100%) 0%) !important;
         height: 100%;
         width: 100%;
         // width: 200px;

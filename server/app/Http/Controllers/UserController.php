@@ -37,6 +37,8 @@ class UserController extends Controller
             $success['token'] = $user->createToken('api-application')->accessToken;
             $success['name'] = $user->name;
             $success['user'] = $user;
+            // put the token inside $success['user']
+            $success['user']['token'] = $success['token'];
             return response()->json($success, 200);
         } else {
             return response()->json(['error' => 'Unauthorised'], 203);
