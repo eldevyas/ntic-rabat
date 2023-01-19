@@ -26,9 +26,9 @@ export default function Card(props: any) {
     // is adding new announce state
     const [isAdding, setAdding] = useState(true);
     // object to store user data
-    const [user, setUser] = useState<any>();
     const stringToken: any = getCookie("token");
-    const token = JSON.parse(stringToken);
+    const [user, setUser] = useState<any>(stringToken);
+    const token = stringToken;
     // Editing States
     const [newVariant, setNewVariant] = useState(
         props.variant.replace(/\ws\S*/g, function (txt: string) {
@@ -100,7 +100,7 @@ export default function Card(props: any) {
 
     const RefreshParent = props.refresh;
     const editAnnounce = (id: any) => {
-        setUser(token);
+        setUser(JSON.parse(token));
         if (
             newTitle.current != null &&
             newDescription.current != null &&
@@ -154,7 +154,9 @@ export default function Card(props: any) {
         }
     };
     const deleteAnnounce = (id: any) => {
-        setUser(token);
+        setUser(JSON.parse(token));
+
+        console.log(user);
         axios
             .delete(`http://localhost:8000/api/annonces/` + id, {
                 headers: {

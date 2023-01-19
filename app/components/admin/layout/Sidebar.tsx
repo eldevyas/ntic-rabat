@@ -12,8 +12,8 @@ const Sidebar = () => {
     const handleLogout = () => {
         const date = new Date();
         date.setDate(date.getDate() - 1);
-        setCookie("token", "", { expires: date });
         Router.push("/connexion"); // redirect the user to the login page
+        setCookie("token", "", { expires: date });
     };
     return (
         <div className="SideBar">

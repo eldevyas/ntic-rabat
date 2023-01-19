@@ -1,0 +1,110 @@
+$AppleGreen: #00CA4E;
+$AppleYellow: #FFBD44;
+$AppleRed: #FF605C;
+// Warning Color
+$WarningColor: #FF7900;
+// Info Color
+$InfoColor: $AppleGreen;
+// Error Color
+$ErrorColor: #FF6347;
+
+/** Used to define container behavior: width, position: fixed etc... **/
+
+$nfWidth: fit-content;
+$nfHeight: fit-content;
+$nfMargin: 20px;
+.Toastify__toast-container {
+    z-index: 200;
+    user-select: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-start;
+    gap: $GlobalGap !important;
+    padding: 1rem 2rem !important;
+    @include respond-to('small') {
+        width: 100%;
+    }
+}
+
+.Toastify__toast-container--bottom-left {
+    height: auto;
+    max-height: 100%;
+    min-height: 40px;
+}
+
+
+/** Classes for the displayed toast **/
+
+.Toastify__toast {
+    width: $nfHeight;
+    height: $nfHeight !important;
+    max-height: $nfHeight !important;
+    max-width: 100vw;
+    white-space: nowrap;
+    position: relative;
+    background: $G1 !important;
+    backdrop-filter: blur(25px);
+    border: 1px solid $C4;
+    border-radius: 10px !important;
+    color: $C4 !important;
+    font-size: 0.85rem;
+    padding: 0;
+    margin: 0 !important;
+    // margin-top: 1rem;
+    padding-left: 0.25rem;
+    padding-right: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    .Toastify__toast-icon {
+        margin-right: 1rem;
+    }
+    // animation: SlideFromLeft 3000ms ease forwards;
+    &::-webkit-scrollbar {
+        display: none;
+    }
+    @include respond-to('small') {
+        width: 100%;
+        height: fit-content;
+        max-width: 100%;
+        white-space: normal;
+        &::-webkit-scrollbar {
+            display: none;
+        }
+    }
+}
+
+:root {
+    --toastify-toast-min-height: 40px !important;
+    --toastify-toast-max-height: 40px !important;
+}
+
+
+/** Used to position the icon **/
+
+.Toastify__toast-icon svg {
+    color: $C4 !important;
+    fill: $C4;
+}
+
+
+/** Classes for the close button. Better use your own closeButton **/
+
+.Toastify__close-button {
+    display: none;
+}
+
+.Toastify__toast-theme--light.Toastify__toast--error {
+    background-color: $ErrorColor !important;
+}
+
+.Toastify__toast-theme--light.Toastify__toast--warning {
+    background-color: $WarningColor !important;
+    color: $C4 !important;
+}
+
+.Toastify__toast-theme--light.Toastify__toast--success {
+    background-color: $C3 !important;
+}

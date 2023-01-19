@@ -1,6 +1,6 @@
 import React from "react";
 import EmploisPage from "../components/emplois/emploisPage";
-import * as Fetcher from "./../utils/dataFetcher";
+import * as Fetcher from "../services/dataFetcher";
 
 export async function getServerSideProps({ query }: any) {
     const GroupID = query.GroupID ? query.GroupID : "";

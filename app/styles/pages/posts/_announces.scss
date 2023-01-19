@@ -18,3 +18,131 @@
         max-width: 100% !important;
     }
 }
+
+.EditForm {
+    // Center it
+    margin: 0 auto;
+    width: 60%;
+    border-radius: 10px;
+    padding: $GlobalGap;
+    background-color: $C4;
+    display: flex;
+    flex-direction: column;
+    gap: $GlobalGap;
+    justify-content: center;
+    align-items: center;
+    color: inherit;
+    h3 {
+        font-size: 1.1rem;
+        font-weight: 800;
+        color: inherit;
+        text-align: center;
+    }
+    p {
+        font-size: 0.9rem;
+        font-weight: 500;
+        color: inherit;
+        text-align: center;
+        opacity: 60%;
+    }
+    .Form {
+        display: flex;
+        flex-direction: column;
+        gap: $GlobalGap;
+        width: 100%;
+        .FormRow {
+            display: flex;
+            flex-direction: column;
+            gap: $GlobalGap / 2;
+            label {
+                font-size: 0.9rem;
+                font-weight: 300;
+                color: inherit;
+                opacity: 75%;
+            }
+            input,
+            textarea {
+                border-radius: 5px;
+                padding: 0.6rem 1rem;
+                border: 1px solid rgba($C1, 10%);
+                background: rgba($C1, 2.5%);
+                color: inherit;
+                &:focus {
+                    outline: none;
+                    border: 1px solid rgba($C1, 25%);
+                }
+            }
+            textarea {
+                min-height: 100px;
+            }
+            .Variants {
+                display: flex;
+                flex-direction: row;
+                gap: $GlobalGap / 1;
+                flex-wrap: wrap;
+                justify-content: space-between;
+                align-items: stretch;
+                .VariantButton {
+                    border-radius: 7.5px;
+                    padding: 0.6rem 1rem;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    background: rgba($C4, 50%);
+                    flex-grow: 1;
+                    color: rgba($C1, 50%);
+                    font-weight: 800;
+                    // tbedlat dert icon button hia ActionButton
+                    svg {
+                        color: inherit;
+                    }
+                    &.Active {
+                        background: rgba($C1, 20%);
+                        color: rgba($C1, 50%);
+                        font-weight: 800;
+                    }
+                }
+            }
+        }
+    }
+    .Actions {
+        display: flex;
+        gap: $GlobalGap;
+        width: 100%;
+        justify-content: space-between;
+        align-items: center;
+        .EditActionButton {
+            border-radius: 7.5px;
+            padding: 0.5rem 1rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-grow: 1;
+            // gap: $GlobalGap / 2;
+            // background: rgba($C4, 50%) !important;
+            background: rgba($C4, 20%);
+            // tbedlat dert icon button hia ActionButton
+            svg {
+                color: inherit;
+            }
+            &:nth-child(1) {
+                background: rgba($C1, 5%);
+                color: rgba($C1, 50%);
+                font-weight: 800;
+                &:hover {
+                    background: rgba($C4, 50%);
+                }
+            }
+            &:nth-child(2) {
+                // red gradient
+                background: linear-gradient(90deg, #E53935 0%, #E35D5B 100%);
+                color: #fcfcfc;
+                font-weight: 800;
+                &:hover {
+                    background: linear-gradient(90deg, #E53935 0%, #E35D5B 100%);
+                    opacity: 75%;
+                }
+            }
+        }
+    }
+}

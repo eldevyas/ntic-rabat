@@ -60,74 +60,97 @@
         left: 0;
         z-index: -1;
         .VectorSVG {
-            width: 60%;
-            height: 40%;
-            position: relative;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
+            position: absolute;
             z-index: -1;
             overflow: hidden;
-            svg {
-                width: 100%;
-                height: 100%;
-                path {
-                    fill: $C4;
-                }
-            }
             // 3 childs loop
             @for $i from 1 through 3 {
-                &:nth-child( #{$i}) {
-                    // if i
+                // Floating and Border Radius Animation
+                &:nth-child(#{$i}) {
+                    background: transparent !important;
+                    transform: rotate(70deg);
+                    z-index: -1;
+                    overflow: hidden !important;
+                    opacity: 100%;
+                    position: absolute;
+                    animation: round 10s ease infinite;
+                    svg {
+                        width: 100%;
+                        height: 100%;
+                        // animation: float 2s ease infinite;
+                        animation: float 2s ease infinite;
+                        path {
+                            fill: $C2;
+                        }
+                    }
+                    //   delay
+                    // animation-delay: calc(0.5s * #{$i});
                     @if $i==1 {
-                        width: 70%;
+                        width: 100%;
                         height: 40%;
-                        top: 20%;
-                        left: 0%;
-                        transform: rotate(70deg) !important;
-                        z-index: -1;
-                        overflow: hidden;
+                        top: 50%;
+                        left: -30%;
                         opacity: 50%;
                         svg {
-                            width: 100%;
-                            height: 100%;
                             path {
                                 fill: $C4;
                             }
                         }
                     }
                     @else if $i==2 {
-                        width: 70%;
-                        height: 40%;
+                        width: 25%;
+                        height: 70%;
                         top: 20%;
-                        left: 50%;
-                        transform: rotate(70deg) !important;
-                        z-index: -1;
-                        overflow: hidden;
+                        left: 20%;
                         opacity: 50%;
                         svg {
-                            width: 100%;
-                            height: 100%;
                             path {
                                 fill: $C4;
                             }
                         }
                     }
                     @else if $i==3 {
-                        width: 70%;
-                        height: 40%;
+                        width: 50%;
+                        height: 75%;
                         top: 20%;
-                        right: 0%;
-                        transform: rotate(70deg) !important;
-                        z-index: -1;
-                        overflow: hidden;
+                        left: 70%;
+                        z-index: 10;
                         opacity: 50%;
                         svg {
-                            width: 100%;
-                            height: 100%;
                             path {
                                 fill: $C4;
                             }
+                        }
+                    }
+                    @keyframes float {
+                        0% {
+                            border-radius: 0px;
+                            transform: translate(0, 0) rotate(70deg);
+                        }
+                        50% {
+                            border-radius: 50px;
+                            transform: translate(5rem, 10rem) rotate(70deg);
+                        }
+                        100% {
+                            border-radius: 0px;
+                            transform: translate(0, 0) rotate(70deg);
+                        }
+                    }
+                    @keyframes round {
+                        0% {
+                            border-radius: 0px;
+                        }
+                        25% {
+                            border-radius: 50px;
+                        }
+                        50% {
+                            border-radius: calc(50px*random()) calc(50px*random()) calc(50px*random()) calc(50px*random());
+                        }
+                        75% {
+                            border-radius: 75px;
+                        }
+                        100% {
+                            border-radius: 0px;
                         }
                     }
                 }

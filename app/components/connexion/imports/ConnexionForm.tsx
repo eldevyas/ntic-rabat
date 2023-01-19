@@ -7,6 +7,7 @@ import { json } from "node:stream/consumers";
 import { useEffect } from "react";
 import { setCookie } from "cookies-next";
 import { getCookie } from "cookies-next";
+import axios from "axios";
 const ConnexionForm = () => {
     // UseEffect to check if the user exists on the session storage
     useEffect(() => {
@@ -26,9 +27,11 @@ const ConnexionForm = () => {
             body: JSON.stringify({ email, password }),
             headers: {
                 "Content-Type": "application/json",
-                Accept: "application/json",
+                // Accept: "application/json",
             },
         });
+        const expiration = new Date();
+        expiration.setHours(expiration.getHours() + 72);
         result = await result.json();
         if (result.token) {
             setCookie("token", result.user);

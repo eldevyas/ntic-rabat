@@ -3,12 +3,6 @@ import axios from "axios";
 import ScheduleHeader from "./Utils/ScheduleHeader";
 import ScheduleSkeleton from "./Utils/ScheduleSkeleton";
 import ScheduleData from "./Utils/ScheduleData";
-import {
-    ScheduleColumn,
-    ScheduleColumnOnline,
-    ScheduleColumnAbsent,
-} from "./Utils/ScheduleColumn";
-import { useSelector, useDispatch } from "react-redux";
 // import context
 
 const Schedule = (props: any) => {

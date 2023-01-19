@@ -5,6 +5,7 @@ import Router, { useRouter } from "next/router";
 import Schedule from "../../emplois/imports/Schedule";
 import SelectGroup from "./utils/SelectGroup";
 import Announces from "./posts/Announces";
+import * as Display from "../../../services/displayAlert";
 
 export default function Landing() {
     const Router = useRouter();
@@ -26,7 +27,11 @@ export default function Landing() {
                 <OutlinedButton
                     startIcon={<GroupsOutlinedIcon />}
                     bgColor="LightBlue"
-                    onClick={() => Router.push("/forum")}
+                    onClick={() => {
+                        Display.pushDev(
+                            "Fonctionnalité non disponible pour le moment."
+                        );
+                    }}
                 >
                     Consultez le Forum
                 </OutlinedButton>

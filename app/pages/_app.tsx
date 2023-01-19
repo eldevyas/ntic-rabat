@@ -1,9 +1,24 @@
 import "../styles/main.scss";
+import "react-toastify/dist/ReactToastify.css";
 import Head from "next/head";
 import type { AppProps } from "next/app";
 import NextNProgress from "nextjs-progressbar";
+import { ToastContainer, toast } from "react-toastify";
+import { Slide, Zoom, Flip, Bounce } from "react-toastify";
+import { motion, AnimatePresence } from "framer-motion";
 
-export default function App({ Component, pageProps }: AppProps) {
+export default function App({
+    Component,
+    pageProps: { session, ...pageProps },
+    router,
+}: AppProps) {
+    const url = `http://localhost:3000${router.route}`;
+
+    const MainVariants = {
+        hidden: { opacity: 0, x: 200, y: 0 },
+        enter: { opacity: 1, x: 0, y: 0 },
+        exit: { opacity: 0, y: 0, x: -200 },
+    };
     return (
         <>
             <Head>
@@ -26,7 +41,37 @@ export default function App({ Component, pageProps }: AppProps) {
                 }}
             />
 
-            <Component {...pageProps} />
+            <ToastContainer
+                position="top-left"
+                autoClose={5000}
+                hideProgressBar={true}
+                newestOnTop={false}
+                closeOnClick={true}
+                rtl={false}
+                pauseOnFocusLoss={false}
+                draggable={true}
+                pauseOnHover
+                transition={Flip}
+                limit={3}
+            />
+
+            <AnimatePresence
+                exitBeforeEnter
+                initial={false}
+                onExitComplete={() => window.scrollTo(0, 0)}
+            >
+                <motion.div
+                    className={"container"}
+                    key={router.route}
+                    initial="hidden"
+                    animate="enter"
+                    exit="exit"
+                    variants={MainVariants}
+                    transition={{ type: "linear" }}
+                >
+                    <Component {...pageProps} canonical={url} key={url} />
+                </motion.div>
+            </AnimatePresence>
         </>
     );
 }
