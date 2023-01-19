@@ -27,7 +27,9 @@ export default function Card(props: any) {
     const [isAdding, setAdding] = useState(true);
     // object to store user data
     const stringToken: any = getCookie("token");
-    const [user, setUser] = useState<any>(stringToken);
+    const [user, setUser] = useState<any>(
+        stringToken ? JSON.parse(stringToken) : null
+    );
     const token = stringToken;
     // Editing States
     const [newVariant, setNewVariant] = useState(
