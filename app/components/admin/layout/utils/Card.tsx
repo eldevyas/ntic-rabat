@@ -1,8 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/router";
-//
-//
-//
 // Icons
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
@@ -12,13 +9,11 @@ import HighlightOffTwoToneIcon from "@mui/icons-material/HighlightOffTwoTone";
 import DoDisturbOutlinedIcon from "@mui/icons-material/DoDisturbOutlined";
 import SaveOutlinedIcon from "@mui/icons-material/SaveOutlined";
 import { getCookie } from "cookies-next";
-//
-//
 // Required 3rd Party Components
 import Button from "@mui/material/Button";
 import axios from "axios";
-//
-//
+import * as Display from "../../../../services/displayAlert";
+
 export default function Card(props: any) {
     const Router = useRouter();
     const [isEditing, setEditing] = useState(false);
@@ -38,6 +33,7 @@ export default function Card(props: any) {
         })
     );
     let newTitle = useRef<HTMLInputElement>(null);
+    let newDeadLine = useRef<HTMLInputElement>(null);
     let newDescription = useRef<HTMLTextAreaElement>(null);
     let newUrl = useRef<HTMLInputElement>(null);
     let newButton = useRef<HTMLInputElement>(null);
@@ -107,13 +103,15 @@ export default function Card(props: any) {
             newTitle.current != null &&
             newDescription.current != null &&
             newUrl.current != null &&
-            newButton.current != null
+            newButton.current != null &&
+            newDeadLine.current != null
         ) {
             let Title = newTitle.current.value;
             // sf sf kayna solution
             let Description = newDescription.current.value;
             let Variant = newVariant;
             let Url = newUrl.current.value;
+            let Deadline = newDeadLine.current.value;
 
             // Validate fileds values
             if (Title == "") {
@@ -136,6 +134,7 @@ export default function Card(props: any) {
                         description: Description,
                         type: Variant,
                         url: Url,
+                        deadline: Deadline,
                     },
                     {
                         headers: {
@@ -144,21 +143,20 @@ export default function Card(props: any) {
                     }
                 )
                 .then((res) => {
-                    console.log(res);
-                    console.log(res.data);
                     setEditing(false);
+                    Display.pushSuccess("Annonce modifiée avec succès.");
                     RefreshParent();
                 })
                 .catch((err) => {
-                    console.log(err);
                     setEditing(true);
+                    Display.pushFailure(
+                        "Erreur lors de la modification de l'annonce."
+                    );
                 });
         }
     };
     const deleteAnnounce = (id: any) => {
         setUser(JSON.parse(token));
-
-        console.log(user);
         axios
             .delete(`http://localhost:8000/api/annonces/` + id, {
                 headers: {
@@ -166,32 +164,42 @@ export default function Card(props: any) {
                 },
             })
             .then((res) => {
-                console.log(res);
-                console.log(res.data);
-                console.log(sessionStorage.getItem("token"));
+                Display.pushSuccess("Annonce supprimée avec succès.");
                 setDeleting(false);
                 RefreshParent();
             })
             .catch((err) => {
-                console.log(err);
+                Display.pushFailure(
+                    "Erreur lors de la suppression de l'annonce."
+                );
                 setDeleting(true);
             });
     };
     const addCard = () => {
-        axios.post(
-            `http://localhost:8000/api/annonces/`,
-            {
-                title: "title",
-                description: "description",
-                variant: "variant",
-                button: "button",
-            },
-            {
-                headers: {
-                    Authorization: `Bearer User TOKEN`,
+        axios
+            .post(
+                `http://localhost:8000/api/annonces/`,
+                {
+                    title: "title",
+                    description: "description",
+                    variant: "variant",
+                    button: "button",
                 },
-            }
-        );
+                {
+                    headers: {
+                        Authorization: `Bearer User TOKEN`,
+                    },
+                }
+            )
+            .then((res) => {
+                setAdding(false);
+                Display.pushSuccess("Annonce ajoutée avec succès.");
+                RefreshParent();
+            })
+            .catch((err) => {
+                Display.pushFailure("Erreur lors de l'ajout de l'annonce.");
+                setAdding(true);
+            });
     };
 
     return (
@@ -364,6 +372,15 @@ export default function Card(props: any) {
                                     name="button"
                                     ref={newUrl}
                                     defaultValue={props.url}
+                                />
+                            </div>
+                            <div className="FormRow">
+                                <label htmlFor="date">Date d'expiration</label>
+                                <input
+                                    type="date"
+                                    name="date"
+                                    ref={newDeadLine}
+                                    defaultValue={props.deadline}
                                 />
                             </div>
                         </div>

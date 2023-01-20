@@ -40,10 +40,15 @@ export default function Announces() {
                             url={announce.url}
                             created_at={announce.created_at}
                             updated_at={announce.updated_at}
+                            deadline={announce.deadline}
                         />
                     );
                 })}
             </div>
         </div>
     );
+}
+{
+    {
+    }
 }

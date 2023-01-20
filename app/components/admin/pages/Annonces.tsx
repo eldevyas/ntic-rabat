@@ -14,6 +14,7 @@ import PagesTwoToneIcon from "@mui/icons-material/PagesTwoTone";
 //
 //
 export default function Annonces() {
+    const ExpirationDate = useRef<HTMLInputElement>(null);
     const [user, setUser] = useState<any>();
     useEffect(() => {
         if (!getCookie("token")) {
@@ -62,6 +63,7 @@ export default function Annonces() {
             let Title = newTitle.current.value;
             let Description = newDescription.current.value;
             let Url = newUrl.current.value;
+            let deadline = ExpirationDate.current.value;
             axios.post(
                 "http://localhost:8000/api/annonces",
                 {
@@ -69,6 +71,7 @@ export default function Annonces() {
                     description: Description,
                     type: variant,
                     url: Url,
+                    deadline: deadline,
                 },
                 {
                     headers: {
@@ -114,6 +117,7 @@ export default function Annonces() {
                                 variant={announce.type}
                                 url={announce.url}
                                 date={announce.created_at}
+                                deadline={announce.deadline}
                                 refresh={doRefresh}
                             />
                         );
@@ -185,8 +189,8 @@ export default function Annonces() {
                 <div className="AddForm">
                     <h3>Ajouter les informations</h3>
                     <p>
-                        Veuillez saisir les informations dans le
-                        formulaire ci-dessous pour ajouter la carte.
+                        Veuillez saisir les informations dans le formulaire
+                        ci-dessous pour ajouter la carte.
                     </p>
                     <div className="Form">
                         <div className="FormRow">
@@ -273,6 +277,14 @@ export default function Annonces() {
                         <div className="FormRow">
                             <label htmlFor="button">Button URL</label>
                             <input type="text" name="button" ref={newUrl} />
+                        </div>
+                        <div className="FormRow">
+                            <label htmlFor="deadline">Date d'expiration</label>
+                            <input
+                                type="date"
+                                name="deadline"
+                                ref={ExpirationDate}
+                            />
                         </div>
                     </div>
                     <div className="Actions">

@@ -4,6 +4,8 @@ import { useState, useEffect } from "react";
 import Head from "next/head";
 import type { AppProps } from "next/app";
 import { useMemo } from "react";
+import { AuthContextProvider } from "./../contexts/authContext";
+
 import {
     ProgressIndicator,
     CustomToastContainer,
@@ -25,37 +27,39 @@ export default function App({ Component, pageProps, router }: AppProps) {
     //
     return (
         <>
-            <Head>
-                <meta
-                    name="viewport"
-                    content="width=device-width, initial-scale=1.0, viewport-fit=cover"
-                />
-            </Head>
-
-            <ProgressIndicator />
-            <CustomToastContainer />
-
-            <AnimatePresence
-                mode="sync"
-                initial={true}
-                // onExitComplete={() => window.scrollTo(0, 0)}
-            >
-                <motion.div
-                    className={"container"}
-                    key={router.route}
-                    initial="hidden"
-                    animate="enter"
-                    exit="exit"
-                    variants={pageTransition}
-                    transition={{ type: "ease" }}
-                >
-                    <Component
-                        {...pageProps}
-                        session={session}
-                        key={router.route}
+            <AuthContextProvider>
+                <Head>
+                    <meta
+                        name="viewport"
+                        content="width=device-width, initial-scale=1.0, viewport-fit=cover"
                     />
-                </motion.div>
-            </AnimatePresence>
+                </Head>
+
+                <ProgressIndicator />
+                <CustomToastContainer />
+
+                <AnimatePresence
+                    mode="sync"
+                    initial={true}
+                    // onExitComplete={() => window.scrollTo(0, 0)}
+                >
+                    <motion.div
+                        className={"container"}
+                        key={router.route}
+                        initial="hidden"
+                        animate="enter"
+                        exit="exit"
+                        variants={pageTransition}
+                        transition={{ type: "ease" }}
+                    >
+                        <Component
+                            {...pageProps}
+                            session={session}
+                            key={router.route}
+                        />
+                    </motion.div>
+                </AnimatePresence>
+            </AuthContextProvider>
         </>
     );
 }

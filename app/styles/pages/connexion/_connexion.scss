@@ -1,169 +1,227 @@
-body:has(.ConnexionPage) {
-    // scrollbar
-    &::-webkit-scrollbar {
-        width: 10px;
-        background-color: $C1;
-        border-radius: 0px;
-    }
-    &::-webkit-scrollbar-track {
-        background: $C1;
-        border-radius: 0;
-    }
-}
-
-.ConnexionPage {
-    width: 100%;
-    min-height: 100vh;
-    background-color: $C1;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    gap: $GlobalGap * 2;
-    // scroll
-    overflow-y: auto;
-    .Header {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 10px;
-        .Middle {
-            .DefaultButton {
-                color: rgba($C4, 0.75);
-                background: rgba($C4, 0.1);
+    .Login {
+        width: 100%;
+        height: 100%;
+        min-height: 100vh;
+        overflow: hidden;
+        position: relative;
+        .Header {
+            z-index: 100 !important;
+            .End {
+                display: none;
             }
         }
-        .End {
-            display: none;
-        }
-    }
-    // hide scrollbar
-    .ConnexionForm {
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: flex-start;
-        padding: 5px 0;
-        background-color: transparent;
-        height: auto;
-        .LoginForm {
-            padding: $HorizontalPadding / 2;
+        .LoginContainer {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            min-height: 75vh;
             display: flex;
             flex-direction: column;
-            border: 0.5px solid rgba($C4, 20%) !important;
-            border-radius: 10px;
-            width: 100%;
-            max-width: 400px;
-            gap: $GlobalGap * 2;
-            .Title {
-                display: flex;
-                flex-direction: column;
-                gap: 10px;
-                color: rgba($C4, 75%);
-                span {
-                    color: $C2;
-                    text-transform: capitalize;
+            justify-content: center;
+            align-items: center;
+            z-index: 0 !important;
+            .wrapper {
+                width: 350px;
+                @include respond-to('small') {
+                    width: 90%;
                 }
-                p {
-                    font-weight: 300;
-                    color: rgba($C4, 50%);
-                    font-size: 0.85rem;
-                }
-            }
-            // Designing the line under the title div
-            hr {
-                background-color: rgba($C4, 20%);
-                border-color: rgba($C4, 20%);
-            }
-            form {
-                display: flex;
-                flex-direction: column;
-                gap: 10px;
-                .FormControl {
+                .Form {
                     width: 100%;
+                    height: 100%;
                     display: flex;
+                    flex-direction: column;
                     justify-content: center;
-                    align-items: stretch;
-                    position: relative;
-                    // Styling Inputs 
-                    input {
-                        // Making it before the icon
-                        padding: 0.75rem;
-                        padding-left: 50px;
+                    align-items: center;
+                }
+                .Form-group {
+                    width: 100%;
+                    height: auto;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: flex-start;
+                    align-items: flex-start;
+                    .Input {
+                        position: relative;
                         width: 100%;
-                        height: 100%;
-                        font-size: 0.85rem;
-                        background-color: rgba($C4, 5%) !important;
-                        color: lighten($C1, 80%);
-                        border-radius: 5px;
-                        outline: none;
-                        border: none;
-                        &:focus {
-                            background-color: rgba($C2, 10%) !important;
+                        height: 50px;
+                        border-radius: 10px;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        background-color: #fff;
+                        &:not(:first-child) {
+                            margin-top: 15px;
+                        }
+                        // has focused input
+                        &:has( input:focus) {
+                            .Input-icon {
+                                background-color: $C2;
+                                // border
+                                border: 2.5px solid rgba($C4, 0.15);
+                                svg {
+                                    color: $C4;
+                                }
+                            }
+                            input {
+                                outline: none;
+                                background: $G4;
+                                color: #000;
+                                &::placeholder {
+                                    color: rgba(#000, 0.5);
+                                }
+                            }
+                        }
+                        input {
+                            width: 100%;
+                            height: 100%;
+                            border: none;
+                            outline: none;
+                            font-size: 14px;
+                            font-weight: 700;
+                            color: rgba($C1, 0.5);
+                            text-align: left;
+                            padding: 0 10px;
+                            padding-left: 65px;
+                            padding-right: 65px;
+                            border-radius: 10px;
+                            transition: all 0.3s ease;
+                            &::placeholder {
+                                color: rgba($C1, 0.25);
+                            }
+                        }
+                        .Input-icon {
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            width: 50px;
+                            height: 100%;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            background-color: $C2;
+                            border-radius: 10px;
+                            svg {
+                                width: 20px;
+                                height: 20px;
+                                color: $C4;
+                            }
+                        }
+                        .Visibility {
+                            position: absolute;
+                            top: 0;
+                            right: 0;
+                            width: 50px;
+                            height: 100%;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            background-color: transparent;
+                            border-radius: 5px;
+                            svg {
+                                width: 20px;
+                                height: 20px;
+                                color: rgba($C1, 0.25);
+                                &:hover {
+                                    color: rgba($C1, 0.35);
+                                    cursor: pointer;
+                                }
+                            }
                         }
                     }
-                    .IconButton {
-                        position: absolute;
-                        top: 0;
-                        left: 0;
-                        height: 100%;
-                        color: white !important;
-                        padding: 0.75rem !important;
-                        border-radius: 5px;
+                }
+                .RememberMe {
+                    position: relative;
+                    margin: 15px 0px;
+                    width: 100%;
+                    height: 30px;
+                    display: flex;
+                    justify-content: flex-start;
+                    align-items: center;
+                    font-size: 12px;
+                    line-height: 30px;
+                    color: rgba($C1, 0.5);
+                    .cont {
+                        display: flex;
+                        align-items: center;
+                        transform: scale(0.65);
+                        transform-origin: left center;
+                        input[type="checkbox"] {
+                            transition: all 0.3s ease;
+                            height: 1.7rem;
+                            width: 1.7rem;
+                            display: inline-block;
+                            appearance: none;
+                            // margin-right: 5px;
+                            position: relative;
+                            background-color: transparent;
+                            border: 2px solid rgba($C1, 0.5);
+                            border-radius: 15%;
+                            cursor: pointer;
+                            overflow: hidden;
+                            outline: none;
+                            &::after {
+                                content: '';
+                                display: block;
+                                height: 0.9rem;
+                                width: .4rem;
+                                border-bottom: .31rem solid rgba(#fff, 0.75);
+                                border-right: .31rem solid rgba(#fff, 0.75);
+                                opacity: 0;
+                                transform: rotate(45deg) translate(-50%, -50%);
+                                position: absolute;
+                                top: 45%;
+                                left: 21%;
+                                transition: .25s ease;
+                            }
+                            &::before {
+                                content: '';
+                                display: block;
+                                height: 0;
+                                width: 0;
+                                background-color: $C2;
+                                border-radius: 50%;
+                                opacity: .5;
+                                transform: translate(-50%, -50%);
+                                position: absolute;
+                                top: 50%;
+                                left: 50%;
+                                transition: .3s ease;
+                            }
+                            &:checked {
+                                border: 0px solid rgba($C2, 1) !important;
+                                &:before {
+                                    height: 130%;
+                                    width: 130%;
+                                    opacity: 100%;
+                                }
+                                &::after {
+                                    opacity: 100%;
+                                }
+                            }
+                        }
+                        span {
+                            font-size: 2rem;
+                        }
+                    }
+                }
+                .btnPrimary {
+                    @include DefaultButton($C2);
+                    width: 100%;
+                    height: 50px;
+                    box-shadow: none;
+                    color: #fff !important;
+                    &.Loading {
+                        background-color: rgba($C2, 1);
+                        border: 2.5px solid rgba($C4, 0.25);
+                        pointer-events: all;
+                        cursor: not-allowed;
                         svg {
-                            font-size: 1.25rem;
+                            color: $C4;
                         }
                     }
                 }
-            }
-            .FormCheckbox {
-                text-align: start;
-                display: flex;
-                color: darken($C4, 40%);
-                input {
-                    width: 1.1rem !important;
-                    background-color: transparent;
-                    accent-color: $C2;
-                    border-radius: 5px;
-                }
-                label {
-                    margin-left: $GlobalGap;
-                    font-size: 0.85rem;
-                    font-weight: 300;
-                    color: rgba($C4, 50%);
-                }
-            }
-        }
-        .DefaultButton {
-            background: $G2;
-            color: #fff;
-            font-weight: 600;
-            border-radius: 5px;
-            // This one doesn't actually work , IDK why :(
-            &:hover {
-                background-color: lighten($C1, 5%) !important;
-            }
-            // Styling Reset Password Button
-            &:last-of-type {
-                background: none;
-                border: 1px solid rgba($C4, 20%);
-                color: darken($C4, 20%);
-                &:hover {
-                    background-color: rgba($C4, 5%) !important;
-                }
-            }
-            // Styling The last P
-        }
-        .SwitchLink {
-            text-align: center;
-            color: darken($C4, 30%);
-            font-weight: 500;
-            font-size: 0.85rem;
-            margin-top: $GlobalGap;
-            span {
-                color: $C2;
-                cursor: pointer;
+                // waaaa zbi
+                // baghi gha nzid deadline dyal annonces
             }
         }
     }
-}

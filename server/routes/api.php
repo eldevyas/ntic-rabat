@@ -1,10 +1,11 @@
 <?php
 
-use App\Http\Controllers\Api\AnnonceController;
-use App\Http\Controllers\UserController;
-use App\Http\Resources\AnnonceCollection;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
+use App\Http\Resources\AnnonceCollection;
+use App\Http\Controllers\Api\AnnonceController;
+use App\Http\Controllers\Api\ProjectController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,3 +29,4 @@ Route::put('/annonces/{id}', [AnnonceController::class, 'update'])->middleware('
 Route::post('/login', [UserController::class, 'login']);
 Route::post('/register', [UserController::class, 'register']);
 Route::post('/logout', [UserController::class, 'logout'])->middleware('auth:api');
+Route::apiResource('projects', ProjectController::class);

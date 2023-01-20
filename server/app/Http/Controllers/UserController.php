@@ -41,7 +41,7 @@ class UserController extends Controller
             $success['user']['token'] = $success['token'];
             return response()->json($success, 200);
         } else {
-            return response()->json(['error' => 'Unauthorised'], 203);
+            return response()->json(['error' => 'Unauthorised'], 401);
         }
     }
     public function logout(Request $request)

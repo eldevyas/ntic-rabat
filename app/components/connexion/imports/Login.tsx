@@ -1,5 +1,6 @@
 import React, { useRef, useContext } from "react";
 import Button from "@mui/material/Button";
+import LoadingButton from "@mui/lab/LoadingButton";
 // Icons
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import LockIcon from "@mui/icons-material/Lock";
@@ -8,13 +9,15 @@ import VisibilityOn from "@mui/icons-material/Visibility";
 
 import * as Display from "./../../../services/displayAlert";
 import { redirect } from "react-router";
-
+import AuthContext from "../../../contexts/authContext";
 export default class LoginComponent extends React.Component {
     emailRef: any;
     passwordRef: any;
     rememberMeRef: any;
     credentials: any;
     state: any;
+    isLoading: any;
+    static contextType = AuthContext;
 
     constructor(props: any) {
         super(props);
@@ -24,6 +27,7 @@ export default class LoginComponent extends React.Component {
 
         this.state = {
             showPassword: false,
+            isLoading: false,
         };
 
         this.credentials = {
@@ -31,7 +35,6 @@ export default class LoginComponent extends React.Component {
             password: "",
             rememberMe: false,
         };
-
         // Hide & show password icon
     }
 
@@ -44,14 +47,22 @@ export default class LoginComponent extends React.Component {
         const password = this.passwordRef.current.value;
         const isRememberMe = this.rememberMeRef.current.checked;
 
-        const Context = this.context;
+        const Context: any = this.context;
+
+        this.setState({ isLoading: true });
 
         if (username && password) {
             this.credentials.email = username;
             this.credentials.password = password;
             this.credentials.rememberMe = isRememberMe;
 
-            // Context.login(this.credentials);
+            let Login = Context.login(this.credentials);
+
+            if (Login) {
+                this.setState({ isLoading: false });
+            } else {
+                this.setState({ isLoading: false });
+            }
         } else {
             if (!username && !password) {
                 Display.pushWarning(
@@ -64,6 +75,7 @@ export default class LoginComponent extends React.Component {
                 Display.pushWarning("Veuillez entrer votre mot de passe.");
                 return;
             }
+            this.setState({ isLoading: false });
         }
     };
 
@@ -115,13 +127,25 @@ export default class LoginComponent extends React.Component {
                     Se souvenir de moi
                 </div>
 
-                <Button
-                    variant="text"
-                    className="btnPrimary"
-                    onClick={this.handleLogin}
-                >
-                    Se Connecter
-                </Button>
+                {this.state.isLoading ? (
+                    <LoadingButton
+                        variant="text"
+                        className="btnPrimary Loading"
+                        loadingPosition="center"
+                        loading
+                        sx={{
+                            cursor: "wait",
+                        }}
+                    />
+                ) : (
+                    <Button
+                        variant="text"
+                        className="btnPrimary"
+                        onClick={this.handleLogin}
+                    >
+                        Se Connecter
+                    </Button>
+                )}
             </div>
         );
     }
