@@ -1,24 +1,28 @@
-import "../styles/main.scss";
 import "react-toastify/dist/ReactToastify.css";
+import "./../styles/main.scss";
+import { useState, useEffect } from "react";
 import Head from "next/head";
 import type { AppProps } from "next/app";
-import NextNProgress from "nextjs-progressbar";
-import { ToastContainer, toast } from "react-toastify";
-import { Slide, Zoom, Flip, Bounce } from "react-toastify";
-import { motion, AnimatePresence } from "framer-motion";
+import { useMemo } from "react";
+import {
+    ProgressIndicator,
+    CustomToastContainer,
+    motion,
+    AnimatePresence,
+} from "./../components/components";
 
-export default function App({
-    Component,
-    pageProps: { session, ...pageProps },
-    router,
-}: AppProps) {
-    const url = `http://localhost:3000${router.route}`;
-
-    const MainVariants = {
-        hidden: { opacity: 0, x: 200, y: 0 },
-        enter: { opacity: 1, x: 0, y: 0 },
-        exit: { opacity: 0, y: 0, x: -200 },
-    };
+export default function App({ Component, pageProps, router }: AppProps) {
+    const [session, setSession] = useState(pageProps.session);
+    //
+    //
+    const pageTransition = useMemo(() => {
+        return {
+            hidden: { opacity: 0, x: -400, y: 0 },
+            enter: { opacity: 1, x: 0, y: 0 },
+            exit: { opacity: 0, y: 0, x: -400 },
+        };
+    }, []);
+    //
     return (
         <>
             <Head>
@@ -28,37 +32,13 @@ export default function App({
                 />
             </Head>
 
-            <NextNProgress
-                color="#39b54a"
-                startPosition={0.3}
-                stopDelayMs={500}
-                height={5}
-                showOnShallow={true}
-                options={{ showSpinner: false, easing: "ease", speed: 500 }}
-                transformCSS={(css) => {
-                    // css is the default css string. You can modify it and return it or return your own css.
-                    return <style>{css}</style>;
-                }}
-            />
-
-            <ToastContainer
-                position="top-left"
-                autoClose={5000}
-                hideProgressBar={true}
-                newestOnTop={false}
-                closeOnClick={true}
-                rtl={false}
-                pauseOnFocusLoss={false}
-                draggable={true}
-                pauseOnHover
-                transition={Flip}
-                limit={3}
-            />
+            <ProgressIndicator />
+            <CustomToastContainer />
 
             <AnimatePresence
-                exitBeforeEnter
-                initial={false}
-                onExitComplete={() => window.scrollTo(0, 0)}
+                mode="sync"
+                initial={true}
+                // onExitComplete={() => window.scrollTo(0, 0)}
             >
                 <motion.div
                     className={"container"}
@@ -66,10 +46,14 @@ export default function App({
                     initial="hidden"
                     animate="enter"
                     exit="exit"
-                    variants={MainVariants}
-                    transition={{ type: "linear" }}
+                    variants={pageTransition}
+                    transition={{ type: "ease" }}
                 >
-                    <Component {...pageProps} canonical={url} key={url} />
+                    <Component
+                        {...pageProps}
+                        session={session}
+                        key={router.route}
+                    />
                 </motion.div>
             </AnimatePresence>
         </>

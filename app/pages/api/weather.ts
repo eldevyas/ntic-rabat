@@ -20,7 +20,13 @@ export default async function handler(
 
     const url = `https://api.open-meteo.com/v1/forecast?latitude=34.01&longitude=-6.83&daily=weathercode,apparent_temperature_max,apparent_temperature_min&timezone=auto&start_date=${weekStart}&end_date=${weekEnd}`;
     // const url = `https://api.open-meteo.com/v1/forecast?latitude=31.6295&longitude=-6.83&daily=weathercode,apparent_temperature_max,apparent_temperature_min&timezone=auto&start_date=${weekStart}&end_date=${weekEnd}`;
-    const { data } = await axios.get(url);
+    const response = await axios.get(url);
+
+    if (response.status !== 200) {
+        return [];
+    }
+
+    const { data } = response;
 
     // filter the data
     let filteredData = data.daily.time.map((date: any, index: number) => {

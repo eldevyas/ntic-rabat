@@ -4,6 +4,7 @@ import Header from "../layout/header/header";
 import Footer from "../layout/footer";
 import Head from "next/head";
 import ConnexionForm from "./imports/ConnexionForm";
+import LoginComponent from "./imports/Login";
 const ConnexionPage = () => {
     return (
         <>
@@ -22,7 +23,8 @@ const ConnexionPage = () => {
 
             <div className="ConnexionPage">
                 <Header data-theme="dark" />
-                <ConnexionForm />
+                {/* <ConnexionForm /> */}
+                <LoginComponent />
             </div>
         </>
     );
