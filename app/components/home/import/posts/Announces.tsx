@@ -19,7 +19,6 @@ export default function Announces() {
         async function fetchData() {
             let Data: any = axios
                 .get("http://localhost:8000/api/annonces")
-                // set the data to the state and console.log it with promise
                 .then((res) => {
                     setAnnounces(res.data.data);
                 });

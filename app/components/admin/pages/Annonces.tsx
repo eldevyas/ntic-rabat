@@ -182,11 +182,11 @@ export default function Annonces() {
                 )
             }
             {isAdding && (
-                <div className="EditForm">
-                    <h3>Editer les informations</h3>
+                <div className="AddForm">
+                    <h3>Ajouter les informations</h3>
                     <p>
-                        Veuillez saisir les nouvelles informations dans le
-                        formulaire ci-dessous pour éditer la carte.
+                        Veuillez saisir les informations dans le
+                        formulaire ci-dessous pour ajouter la carte.
                     </p>
                     <div className="Form">
                         <div className="FormRow">
