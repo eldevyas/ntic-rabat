@@ -4,27 +4,23 @@ import Header from "../layout/header/header";
 import Footer from "../layout/footer";
 import Head from "next/head";
 import ConnexionForm from "./imports/ConnexionForm";
+import LoginComponent from "./imports/Login";
+import Background from "../core/Background";
 const ConnexionPage = () => {
     return (
-        <>
+        <div className="Login">
             <Head>
-                <title>NTIC Rabat - Connexion</title>
-                <meta
-                    name="description"
-                    content="Depuis son ouverture en 2007, l'ISTA NTIC Hay Riad a formé plus de 3 600 techniciens dans les secteurs Informatiques."
-                />
-                <meta
-                    name="viewport"
-                    content="width=device-width, initial-scale=1"
-                />
-                <link rel="icon" href="/dark-favicon.ico" />
+                <title>NTIC Rabat - Connexion Admin</title>
             </Head>
 
-            <div className="ConnexionPage">
-                <Header data-theme="dark" />
-                <ConnexionForm />
+            <Header />
+            <Background />
+            <div className="LoginContainer">
+                <div className="wrapper">
+                    <LoginComponent />
+                </div>
             </div>
-        </>
+        </div>
     );
 };
 
