@@ -408,17 +408,3 @@
         }
     }
 }
-
-@include respond-to("small") {
-    .EmploisPage .Schedule table tbody>tr>td>div>span {
-        // &:first-of-type {
-        //     margin-left: 15px !important;
-        // }
-        &:last-of-type {
-            font-weight: 450 !important;
-        }
-    }
-    .EmploisPage .Schedule table tbody>tr>td:first-child {
-        min-width: 200px !important;
-    }
-}

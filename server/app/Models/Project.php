@@ -1,4 +1,4 @@
-z<?php
+<?php
 
 namespace App\Models;
 
@@ -9,6 +9,6 @@ class Project extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'title','description', 'image', 'url', 'source_code_url', 'developer_name','is_validated', 'developer_image'
+        'title','description', 'image', 'url', 'github_url', 'developer_name', 'developer_image', 'developer_group','is_validated'
     ];
 }

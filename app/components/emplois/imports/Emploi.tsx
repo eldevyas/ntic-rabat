@@ -3,8 +3,11 @@ import Schedule from "./Schedule";
 import SelectClass from "./SelectClass";
 import axios from "axios";
 import { useRouter } from "next/router";
+import MobileSchedule from "./MobileSchedule";
 
 export default function Emploi(props: any) {
+    const [width, setWidth] = useState<number>();
+
     const Router = useRouter();
     // State fro data
     // GroupID state
@@ -43,18 +46,37 @@ export default function Emploi(props: any) {
                     console.log("No Group ID found");
                 }
             }
+
+            setWidth(window.innerWidth);
+            function handleResize() {
+                setWidth(window.innerWidth);
+            }
+            window.addEventListener("resize", handleResize);
+            return () => {
+                window.removeEventListener("resize", handleResize);
+            };
         };
         SetSchedule();
-    }, [GroupID]);
+    }, [GroupID, Router.query.GroupID]);
 
     return (
         <>
             <SelectClass GroupID={GroupID} setGroup={setGroup} />
-            <Schedule
-                GroupID={GroupID}
-                Data={GroupSchedule}
-                Weather={Weather}
-            />
+            <>
+                {width && width < 768 ? (
+                    <MobileSchedule
+                        GroupID={GroupID}
+                        Data={GroupSchedule}
+                        Weather={Weather}
+                    />
+                ) : (
+                    <Schedule
+                        GroupID={GroupID}
+                        Data={GroupSchedule}
+                        Weather={Weather}
+                    />
+                )}
+            </>
         </>
     );
 }

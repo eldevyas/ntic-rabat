@@ -19,11 +19,12 @@ return new class extends Migration
             $table->text('description');
             $table->string('image');
             $table->longText('url');
-            $table->longText('source_code_url');
+            $table->longText('github_url');
             $table->string('developer_name');
+            $table->string('developer_image');
+            $table->string('developer_group');
             // is validated by admin
             $table->boolean('is_validated')->default(false);
-            $table->string('developer_image');
             $table->timestamps();
         });
     }

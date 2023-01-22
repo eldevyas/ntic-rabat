@@ -1,0 +1,192 @@
+.MobileSchedule {
+    position: relative;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 1rem;
+    .ScheduleHeader {
+        position: relative;
+        width: 100%;
+        max-width: 100%;
+        min-height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        color: $C5;
+        gap: $GlobalGap;
+        overflow: hidden;
+        .ScheduleTiming {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: $C4;
+            color: $C5;
+            border-radius: 10px;
+            padding: 0.5rem;
+            width: 100%;
+            font-size: 0.75rem;
+            font-weight: 800;
+        }
+    }
+    .ScheduleBody {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        width: 100%;
+        .ScheduleDay {
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            width: 100%;
+            min-height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            color: $C5;
+            gap: $GlobalGap;
+            overflow: hidden;
+            .ScheduleDayName {
+                position: relative;
+                display: flex;
+                flex-direction: row;
+                gap: $GlobalGap;
+                align-items: center;
+                justify-content: center;
+                background-color: $C2;
+                color: $C4;
+                border-radius: 10px;
+                padding: 0.5rem;
+                width: 100%;
+                font-size: 0.75rem;
+                font-weight: 800;
+                overflow: hidden;
+                span {
+                    &.Day {
+                        font-size: 0.75rem;
+                    }
+                    &.Temperature {
+                        font-size: 0.75rem;
+                        opacity: 50%;
+                    }
+                    z-index: 5;
+                }
+                .Icon {
+                    position: absolute;
+                    left: -20px;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    height: 150%;
+                    width: auto;
+                    z-index: 5;
+                    svg {
+                        height: 100%;
+                        width: auto;
+                    }
+                }
+                .Banner {
+                    position: absolute;
+                    width: 100%;
+                    height: 100%;
+                    top: 0;
+                    left: 0;
+                    background-color: transparent;
+                    opacity: 50%;
+                    z-index: 0;
+                    .Clouds {
+                        position: absolute;
+                        bottom: -175%;
+                        left: 0;
+                        right: 0;
+                        height: 100%;
+                        width: 100%;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        background: transparent !important;
+                        img:nth-child(1) {
+                            --i: 1;
+                        }
+                        img:nth-child(2) {
+                            --i: 2;
+                        }
+                        img:nth-child(3) {
+                            --i: 3;
+                        }
+                        img:nth-child(4) {
+                            --i: 4;
+                        }
+                        img:nth-child(5) {
+                            --i: 5;
+                        }
+                        img {
+                            position: absolute;
+                            bottom: 0;
+                            max-width: 100%;
+                            animation: animate calc(16s * var(--i)) linear infinite;
+                        }
+                        @keyframes animate {
+                            0% {
+                                transform: translateX(-100%);
+                            }
+                            100% {
+                                transform: translateX(100%);
+                            }
+                        }
+                    }
+                }
+            }
+            .ScheduleDayHours {
+                display: flex;
+                align-items: center;
+                justify-content: flex-start;
+                // background-color: $C4;
+                color: $C5;
+                border-radius: 10px;
+                padding: 1rem 0.5rem;
+                width: 100%;
+                font-size: 0.70rem;
+                font-weight: 800;
+                gap: $GlobalGap;
+                // scrollable
+                overflow-x: auto;
+                overflow-y: hidden;
+                // hide scrollbar
+                scrollbar-width: none;
+                -ms-overflow-style: none;
+                &::-webkit-scrollbar {
+                    display: none;
+                }
+                .ScheduleTimeCell {
+                    background-color: $C1;
+                    color: $C4;
+                    display: flex;
+                    align-items: center;
+                    flex-direction: column;
+                    padding: 5px;
+                    border-radius: 10px;
+                    width: 200px;
+                    min-width: 110px;
+                    height: 100%;
+                    gap: $GlobalGap / 2;
+                    .Prof {
+                        font-size: 0.75rem;
+                        font-weight: 300;
+                        opacity: 100%;
+                    }
+                    .Class {
+                        font-size: 0.65rem;
+                        font-weight: 900;
+                        opacity: 100%;
+                        padding: 0.25rem;
+                        border-radius: 5px;
+                        background-color: $C4;
+                        color: $C1;
+                    }
+                }
+            }
+        }
+    }
+}

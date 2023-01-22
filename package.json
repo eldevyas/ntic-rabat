@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "@types/react-tooltip": "^4.2.4"
+  }
+}

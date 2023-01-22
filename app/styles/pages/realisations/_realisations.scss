@@ -1,0 +1,19 @@
+.RealisationsPage__content {
+    padding: 0 20px;
+    .Title {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        background-color: $C4;
+        padding: 10px 20px;
+        border-radius: 15px;
+        p {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+        }
+    }
+}

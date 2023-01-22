@@ -49,7 +49,13 @@ const MobileSchedule = (props: any) => {
                             <div className="ScheduleDayHours">
                                 {/* <Class.Presential prof={} /> */}
                                 {element.time.map(
-                                    (time: any, index: number) => {}
+                                    (time: any, index: number) => {
+                                        return (
+                                            <Class.Presential
+                                                key={index}
+                                                prof={time.prof}
+                                                class={time.class}
+                                               
                                 )}
                             </div>
                         </div>
