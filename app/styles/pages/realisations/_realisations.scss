@@ -1,5 +1,6 @@
 .RealisationsPage__content {
     padding: 0 20px;
+
     .Title {
         display: flex;
         flex-direction: row;
@@ -8,6 +9,7 @@
         background-color: $C4;
         padding: 10px 20px;
         border-radius: 15px;
+
         p {
             display: flex;
             flex-direction: row;
@@ -17,3 +19,5 @@
         }
     }
 }
+
+@import "./imports/AddProjectForm"

@@ -1,0 +1,77 @@
+.AddProjectForm {
+    width: 50%;
+    margin: 50px auto;
+
+    .form-group {
+        label {
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            padding: 10px 20px;
+            margin: 8px 0;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            background: #f9f9f9;
+            transition: all 0.5s ease;
+            resize: none;
+
+            &:focus {
+                border-color: #3498db;
+                box-shadow: 0 0 10px #3498db;
+                outline: none;
+            }
+        }
+
+        input[type="file"] {
+            padding: 12px 20px;
+            background-color: #f9f9f9;
+            border: none;
+            border-radius: 4px;
+        }
+
+        .git-url {
+            background: #f9f9f9;
+            border: none;
+            border-radius: 4px;
+            padding: 12px 20px;
+
+            &:focus {
+                background: #f9f9f9;
+            }
+        }
+
+        .btn {
+            background-color: #4CAF50;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+
+            &:hover {
+                background-color: #45a049;
+            }
+        }
+
+        .save-btn {
+            background-color: #3498db;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+
+            &:hover {
+                background-color: #2980b9;
+            }
+        }
+    }
+}
