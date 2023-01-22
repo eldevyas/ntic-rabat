@@ -1,8 +1,8 @@
 import React, { useEffect, useState, useContext } from "react";
 import axios from "axios";
-import ScheduleHeader from "./Utils/ScheduleHeader";
-import ScheduleSkeleton from "./Utils/ScheduleSkeleton";
-import ScheduleData from "./Utils/ScheduleData";
+import ScheduleHeader from "./Utils/Web/ScheduleHeader";
+import ScheduleSkeleton from "./Utils/Web/ScheduleSkeleton";
+import ScheduleData from "./Utils/Web/ScheduleData";
 // import context
 
 const Schedule = (props: any) => {

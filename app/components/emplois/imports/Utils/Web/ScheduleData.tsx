@@ -11,8 +11,11 @@ import ScheduleSkeleton from "./ScheduleSkeleton";
 import WeatherCell from "./WeatherCell";
 
 const ScheduleData = (props: any) => {
+    useEffect(() => {}, []);
+
     let Data: { Day: String; Time: { Former: String; Hall: String }[] }[] =
         props.Data;
+
     const [Weather, setWeather] = useState<
         {
             date: string;

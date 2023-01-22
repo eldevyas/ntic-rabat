@@ -13,10 +13,15 @@ const AuthContext: any = createContext({
 });
 
 export const AuthContextProvider = ({ children }: any) => {
-    const [user, setUser] = useState(null);
+    const [user, setUser] = useState<any>(null);
     const Router = useRouter();
 
-    useEffect(() => {}, []);
+    useEffect(() => {
+        const token = getCookie("token");
+        if (token) {
+            setUser(token);
+        }
+    }, []);
     const APP_URL = process.env.NEXT_PUBLIC_HOSTNAME;
     const SERVER_URL = process.env.SERVER_PUBLIC_HOSTNAME;
     const LOGIN_ENDPOINT = `${SERVER_URL}/api/login`;
