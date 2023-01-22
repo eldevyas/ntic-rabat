@@ -11,7 +11,7 @@ const MobileSchedule = (props: any) => {
     useEffect(() => {
         setData(props.Data);
     }, [props.Data]);
-    console.log(Data);
+    console.log(Weather);
     return (
         <div className="MobileSchedule">
             <div className="ScheduleHeader">
@@ -21,41 +21,59 @@ const MobileSchedule = (props: any) => {
                 <div className="ScheduleTiming">16h00</div>
             </div>
             <div className="ScheduleBody">
-                <div className="ScheduleDay">
-                    <DayCell
-                        className="ScheduleDayName"
-                        dataDay={"Lundi"}
-                        dataDate={Weather[0].date}
-                        dataTemperature={Weather[0].temperature.avg}
-                        dataIcon={Weather[0].icon}
-                        dataWeather={Weather[0].weather}
-                    />
-                    <div className="ScheduleDayHours">
-                        <Class.Online />
-                        <Class.Free />
-                        <Class.Absent />
-                        <Class.Presential />
-                    </div>
-                </div>
                 {Data.map((element: any, index: number) => {
                     return (
                         <div className="ScheduleDay" key={index}>
                             <DayCell
                                 className="ScheduleDayName"
                                 dataDay={element.Day}
-                                dataIcon={element.icon}
-                                dataWeather={element.weather}
+                                dataDate={Weather[index].date}
+                                dataTemperature={Weather[index].temperature.avg}
+                                dataIcon={Weather[index].icon}
+                                dataWeather={Weather[index].weather}
                             />
                             <div className="ScheduleDayHours">
                                 {/* <Class.Presential prof={} /> */}
-                                {element.time.map(
+                                {element.Time.map(
                                     (time: any, index: number) => {
-                                        return (
-                                            <Class.Presential
-                                                key={index}
-                                                prof={time.prof}
-                                                class={time.class}
-                                               
+                                        if (time.Former == "") {
+                                            return (
+                                                <Class.Free
+                                                    key={index}
+                                                    prof={time.Former}
+                                                    class={time.Hall}
+                                                />
+                                            );
+                                        }
+                                        if (time.Hall == "dist") {
+                                            return (
+                                                <Class.Online
+                                                    key={index}
+                                                    prof={time.Former}
+                                                    class={time.Hall}
+                                                />
+                                            );
+                                        }
+                                        if (time.Hall == "absent") {
+                                            return (
+                                                <Class.Absent
+                                                    key={index}
+                                                    prof={time.Former}
+                                                // class={time.Hall}
+                                                />
+                                            );
+                                        }
+                                        else {
+                                            return (
+                                                <Class.Presential
+                                                    key={index}
+                                                    prof={time.Former}
+                                                    class={time.Hall}
+                                                />
+                                            );
+                                        }
+                                    }
+
                                 )}
                             </div>
                         </div>
