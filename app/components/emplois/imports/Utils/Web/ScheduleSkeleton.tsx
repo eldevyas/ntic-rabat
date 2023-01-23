@@ -17,25 +17,11 @@ const ScheduleSkeleton = (props: any) => {
             };
             icon: string;
             weather: string;
+            shortWeather: string;
         }[]
-    >([]);
+    >(props.Weather);
 
     const Cells = [1, 2, 3, 4];
-    // send request with axios to API ("api/weather");
-    const getWeather = async () => {
-        let res = await axios.get("/api/weather");
-        if (res.status === 200) {
-            setWeather(res.data);
-            return;
-        } else {
-            console.log(res.data);
-            setWeather([]);
-        }
-    };
-
-    useEffect(() => {
-        getWeather();
-    }, []);
 
     return (
         <>
@@ -54,6 +40,9 @@ const ScheduleSkeleton = (props: any) => {
                                             }
                                             dataIcon={Weather[index].icon}
                                             dataWeather={Weather[index].weather}
+                                            dataShortWeather={
+                                                Weather[index].shortWeather
+                                            }
                                         />
                                     </>
                                 ) : (
@@ -66,6 +55,7 @@ const ScheduleSkeleton = (props: any) => {
                                             )}
                                             dataIcon={"Cloudy"}
                                             dataWeather={"Nuageux"}
+                                            dataShortWeather={"Nuageux"}
                                         />
                                     </>
                                 )}

@@ -10,10 +10,13 @@ const AuthContext: any = createContext({
     login: () => {},
     logout: () => {},
     isLoggedIn: () => {},
+    isLoading: false,
 });
 
 export const AuthContextProvider = ({ children }: any) => {
     const [user, setUser] = useState<any>(null);
+    // Loading
+    const [loading, setLoading] = useState<boolean>(false);
     const Router = useRouter();
 
     useEffect(() => {
@@ -26,20 +29,12 @@ export const AuthContextProvider = ({ children }: any) => {
     const SERVER_URL = process.env.SERVER_PUBLIC_HOSTNAME;
     const LOGIN_ENDPOINT = `${SERVER_URL}/api/login`;
     const LOGOUT_ENDPOINT = `${SERVER_URL}/api/logout`;
+
     const login = async (credentials: any) => {
+        setLoading(true);
         let data = JSON.stringify({
             email: credentials.email,
             password: credentials.password,
-        });
-
-        console.table({
-            email: credentials.email,
-            password: credentials.password,
-            Server: SERVER_URL,
-            App: APP_URL,
-            Login: LOGIN_ENDPOINT,
-            Logout: LOGOUT_ENDPOINT,
-            Environement: process.env,
         });
 
         return axios
@@ -71,6 +66,7 @@ export const AuthContextProvider = ({ children }: any) => {
                     Display.pushFailure("Une erreur est survenue.");
                     setUser(null);
                 }
+                setLoading(false);
             })
             .catch((error) => {
                 // Check Status
@@ -83,6 +79,7 @@ export const AuthContextProvider = ({ children }: any) => {
                     Display.pushFailure("Une erreur est survenue.");
                     setUser(null);
                 }
+                setLoading(false);
             });
     };
 
@@ -109,7 +106,7 @@ export const AuthContextProvider = ({ children }: any) => {
             }
         );
 
-        return Router.push("/connexion");
+        return Router.push("/login");
     };
 
     const isLoggedIn = () => {
@@ -121,6 +118,7 @@ export const AuthContextProvider = ({ children }: any) => {
         login: login,
         logout: logout,
         isLoggedIn: isLoggedIn,
+        isLoading: loading,
     };
 
     return (

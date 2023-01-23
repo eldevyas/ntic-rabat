@@ -3,7 +3,7 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import Link from "./../utils/MiddleLink";
 import { DefaultButton } from "./../../../core/button";
-import * as Display from "../../../../services/displayAlert"
+import * as Display from "../../../../services/displayAlert";
 export default function DesktopHeader(props: any) {
     const Router = useRouter();
 
@@ -51,7 +51,7 @@ export default function DesktopHeader(props: any) {
                 <DefaultButton
                     bgColor="Green"
                     onClick={() => {
-                        Router.push("/connexion");
+                        Router.push("/login");
                     }}
                 >
                     Se Connecter

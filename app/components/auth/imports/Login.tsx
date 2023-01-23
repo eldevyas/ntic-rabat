@@ -7,7 +7,7 @@ import LockIcon from "@mui/icons-material/Lock";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import VisibilityOn from "@mui/icons-material/Visibility";
 
-import * as Display from "./../../../services/displayAlert";
+import * as Display from "../../../services/displayAlert";
 import { redirect } from "react-router";
 import AuthContext from "../../../contexts/authContext";
 export default class LoginComponent extends React.Component {
@@ -27,7 +27,6 @@ export default class LoginComponent extends React.Component {
 
         this.state = {
             showPassword: false,
-            isLoading: false,
         };
 
         this.credentials = {
@@ -48,8 +47,6 @@ export default class LoginComponent extends React.Component {
         const isRememberMe = this.rememberMeRef.current.checked;
 
         const Context: any = this.context;
-
-        this.setState({ isLoading: true });
 
         if (username && password) {
             this.credentials.email = username;
@@ -80,6 +77,7 @@ export default class LoginComponent extends React.Component {
     };
 
     render() {
+        const Context: any = this.context;
         return (
             <div className="Form">
                 <form className="Form-group">
@@ -127,14 +125,14 @@ export default class LoginComponent extends React.Component {
                     Se souvenir de moi
                 </div>
 
-                {this.state.isLoading ? (
+                {Context.isLoading ? (
                     <LoadingButton
                         variant="text"
                         className="btnPrimary Loading"
                         loadingPosition="center"
                         loading
                         sx={{
-                            cursor: "wait",
+                            cursor: "default !important",
                         }}
                     />
                 ) : (

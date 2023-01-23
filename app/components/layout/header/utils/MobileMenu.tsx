@@ -54,14 +54,14 @@ export default function MobileMenu(props: any) {
             positionTop: "calc(100%/3 * 1)",
         },
         {
-            href: "/inscription",
+            href: "/register",
             icon: <ExitToAppIcon />,
             title: "S'inscrire",
             positionLeft: "0%",
             positionTop: "calc(100%/3 * 2)",
         },
         {
-            href: "/connexion",
+            href: "/login",
             icon: <LoginIcon />,
             title: "Se Connecter",
             positionLeft: "50%",

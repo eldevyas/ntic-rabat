@@ -11,7 +11,7 @@ export const getSchedule = async (GroupID: string) => {
     if (response.status = 200) {
         return response.data;
     }
-    pushFailure('La connexion avec l\'API du serveur s\est échouée, vérifiez votre connexion internet.');
+    pushFailure('La login avec l\'API du serveur s\est échouée, vérifiez votre login internet.');
     return [];
 }
 
@@ -24,6 +24,6 @@ export const getWeather = async () => {
         return response.data;
     }
 
-    pushFailure('La connexion avec l\'API du méteo s\est échouée, vérifiez votre connexion internet.');
+    pushFailure('La login avec l\'API du méteo s\est échouée, vérifiez votre login internet.');
     return [];
 }

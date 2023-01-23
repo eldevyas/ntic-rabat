@@ -27,6 +27,7 @@ const ScheduleData = (props: any) => {
             };
             icon: string;
             weather: string;
+            shortWeather: string;
         }[]
     >(props.Weather);
 
@@ -47,6 +48,9 @@ const ScheduleData = (props: any) => {
                                             }
                                             dataIcon={Weather[Index].icon}
                                             dataWeather={Weather[Index].weather}
+                                            dataShortWeather={
+                                                Weather[Index].shortWeather
+                                            }
                                         />
                                     </>
                                 ) : (

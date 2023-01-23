@@ -6,6 +6,7 @@ export default function WeatherCell(props: any) {
     const Day = props.dataDay;
     const Temperature = props.dataTemperature;
     const Weather = props.dataWeather;
+    const ShortWeather = props.dataShortWeather;
 
     // Switch function
     function SwitchIcon(Icon: string) {
@@ -20,7 +21,7 @@ export default function WeatherCell(props: any) {
                 return <WeatherIcon.Thunder />;
             case "Cloudy":
                 return <WeatherIcon.Cloudy />;
-            case "Sun Cloudy":
+            case "CloudySun":
                 return <WeatherIcon.CloudySun />;
             case "Snow":
                 return <WeatherIcon.Snowy />;
@@ -52,7 +53,7 @@ export default function WeatherCell(props: any) {
             <div className="WeatherCell">
                 <span>{Day}</span>
                 <span>
-                    {Temperature}° C - {Weather}
+                    {Temperature}° C - {ShortWeather}
                 </span>
                 <div className="Icon">{FinalWeatherIcon}</div>
 

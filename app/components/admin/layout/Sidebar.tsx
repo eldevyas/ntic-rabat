@@ -12,7 +12,7 @@ const Sidebar = () => {
     const handleLogout = () => {
         const date = new Date();
         date.setDate(date.getDate() - 1);
-        Router.push("/connexion"); // redirect the user to the login page
+        Router.push("/login"); // redirect the user to the login page
         setCookie("token", "", { expires: date });
     };
     return (
@@ -45,7 +45,7 @@ const Sidebar = () => {
             <div className="Logout">
                 <Button
                     variant="text"
-                    className="NavButton Deconnexion"
+                    className="NavButton Delogin"
                     onClick={handleLogout}
                 >
                     <LogoutOutlinedIcon className="BtnIcon" />

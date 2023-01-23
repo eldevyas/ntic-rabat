@@ -10,7 +10,7 @@ const Admin = ({ token }: any) => {
 
     useEffect(() => {
         if (!token) {
-            router.push("/connexion");
+            router.push("/login");
             return;
         }
     }, [router, token]);
@@ -32,7 +32,7 @@ const Admin = ({ token }: any) => {
                         opacity: 0.5,
                     }}
                 >
-                    Redirection vers la page de connexion
+                    Redirection vers la page de login
                     <span
                         style={{
                             display: "inline-block",

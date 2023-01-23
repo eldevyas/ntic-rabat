@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\Role;
 
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -21,6 +22,7 @@ class UserController extends Controller
             return response()->json($validation->errors(), 422);
         }
         $input = $request->all();
+        $input['role_id'] = Role::whereName('stagiaire')->firstOrFail()->id;
         $input['password'] = bcrypt($input['password']);
         $user = User::create($input);
         $success['token'] = $user->createToken('api-application')->accessToken;

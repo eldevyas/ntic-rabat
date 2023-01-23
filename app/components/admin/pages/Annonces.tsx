@@ -18,7 +18,7 @@ export default function Annonces() {
     const [user, setUser] = useState<any>();
     useEffect(() => {
         if (!getCookie("token")) {
-            // Router.push("/connexion");
+            // Router.push("/login");
             console.log("no token");
         } else {
             const stringToken: any = getCookie("token");

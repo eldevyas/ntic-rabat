@@ -14,7 +14,7 @@ const AdminPage = () => {
         if (token) {
             setIsLoggedIn(true);
         } else {
-            // Router.push("/connexion");
+            // Router.push("/login");
             console.log("not logged in");
         }
     }, []);
