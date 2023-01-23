@@ -1,10 +1,10 @@
 # Phase One: UX Study
 
-# ℹ️ About the Project
+## ℹ️ About the Project
 
 **ISTA NTIC Rabat** is an institute of Applied Technologies based in Hay Riad focused on providing the right resources and teaching qualities for its stagiaires. The institute needs a solution for some problems they face with its current website related to design and functionality. So we need to create a new website with some new and enhanced features with 2022’s touch.
 
-# 🚧 Process
+## 🚧 Process
 
 1. Discovery
 2. Ideation
@@ -12,15 +12,15 @@
 4. Dev Handoff
 5. Reflection
 
-# 👥 Roles:
+## 👥 Roles
 
 **Yassine Chettouch:** Full-stack Developer
 
 **Yassine Atik:** Full-stack Developer
 
-# ⌚**Project Duration:** 4 weeks Estimated (Extensible)
+## ⌚**Project Duration:** 4 weeks Estimated (Extensible)
 
-# ⚠️ Problematic:
+## ⚠️ Problematic
 
 The current website of the institute contains lots of negative feedback from the students, we will try to cover most of them in a list:
 
@@ -29,9 +29,8 @@ The current website of the institute contains lots of negative feedback from the
 - The stagiaire can’t have any information about the Schedule Changements except if he enters the website manually.
 - He can’t put demands of papers to the administration without waiting for a fucking long queue that could take hours just to speak to Khadija and in the end, she tells him to come a week later.
 - He can’t access a forum for the institute that the other students consult to talk to each other and ask questions about any problem or inquiry.
-    
-    # ✅ Solution:
-    
+
+## ✅ Solution
 
 So to solve the current problems the user faces with the website, we should present a new structure to the entire functionality of the website, which means new features, services, pages, and more.
 
@@ -83,6 +82,6 @@ The user should have some services on his dashboard, and we’ll be focusing on 
     He can add his email to his account when confirmed later, and also modify any public or private information (Profile Picture - Username - “Full Name can’t be changed” - Password - Email, etc. ).
     8. Consult other stagiaires profiles, but they can’t interact with it yet (We can add things later for this option, but now we can’t for time issues).
 
-# ✏️ Project’s USE CASE Diagram
+## ✏️ Project’s USE CASE Diagram
 
 [https://www.figma.com/file/E2pdqofyV2xQ0O1RCG9yQw/Use-Case-Diagram?node-id=0%3A1](https://www.figma.com/file/E2pdqofyV2xQ0O1RCG9yQw/Use-Case-Diagram?node-id=0%3A1)
