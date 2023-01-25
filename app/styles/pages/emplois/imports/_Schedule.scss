@@ -136,7 +136,7 @@
                 height: 100%;
                 border-radius: 15px;
                 padding: 0.75rem 0.75rem;
-                min-width: 200px !important;
+                // min-width: 200px !important;
                 span {
                     font-weight: 600;
                     font-size: 0.8rem;
@@ -172,6 +172,7 @@
                     // shall never touch text of span
                     pointer-events: none;
                     transition: all 0.3s;
+                    display: none;
                 }
                 &:hover {
                     .CellIcon {
@@ -182,7 +183,7 @@
         }
     }
     .Presential {
-        background: rgba(#ECB13F, 35%) !important;
+        background: rgba(#ECB13F, 20%) !important;
         span {
             font-weight: 600;
             font-size: 0.8rem;

@@ -10,15 +10,9 @@ import VisibilityOn from "@mui/icons-material/Visibility";
 import * as Display from "../../../services/displayAlert";
 import { redirect } from "react-router";
 import AuthContext from "../../../contexts/authContext";
-import FirstStep from "./components/RegisterFirstStep";
+import FirstStep from "./components/BasicInformation";
+import Link from "next/link";
 export default class RegisterComponent extends React.Component {
-    firstNameRef: any;
-    lastNameRef: any;
-    userNameRef: any;
-    emailRef: any;
-    passwordRef: any;
-    passwordConfirmationRef: any;
-
     credentials: any;
     state: any;
     isLoading: any;
@@ -26,12 +20,6 @@ export default class RegisterComponent extends React.Component {
 
     constructor(props: any) {
         super(props);
-        this.firstNameRef = React.createRef();
-        this.lastNameRef = React.createRef();
-        this.userNameRef = React.createRef();
-        this.passwordRef = React.createRef();
-        this.passwordConfirmationRef = React.createRef();
-        this.emailRef = React.createRef();
 
         this.state = {
             Step: 0,
@@ -45,23 +33,30 @@ export default class RegisterComponent extends React.Component {
             password: "",
             passwordConfirmation: "",
         };
+
+        this.isLoading = false;
     }
 
-    handleFirstStep = (credentials: any) => {
-        this.credentials.firstName = credentials.firstName;
-        this.credentials.lastName = credentials.lastName;
-        this.credentials.password = credentials.password;
-        this.credentials.passwordConfirmation =
-            credentials.passwordConfirmation;
+    handleRegistration = (credentials: any) => {
+        this.credentials = credentials;
 
-        Display.pushFailure("Veuillez patienter...");
+        // Context register
+        const Context: any = this.context;
+        Context.register(this.credentials);
     };
 
     render() {
         const Context: any = this.context;
         return (
             <div className="Form">
-                <FirstStep />
+                <FirstStep confirmStep={this.handleRegistration} />
+
+                <div className="FormFooter">
+                    <p>
+                        Vous avez déjà un compte ?{" "}
+                        <Link href="/login">Connectez-vous</Link>
+                    </p>
+                </div>
             </div>
         );
     }

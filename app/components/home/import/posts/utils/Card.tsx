@@ -61,7 +61,7 @@ export default function Card(props: any) {
                     </div>
                     <div className="CardButton">
                         {props.url != null && props.url != undefined ? (
-                            <DefaultButton bgColor="White" onClick={openUrl}>
+                            <DefaultButton color="White" onClick={openUrl}>
                                 Procéder
                             </DefaultButton>
                         ) : (

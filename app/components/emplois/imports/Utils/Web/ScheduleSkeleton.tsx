@@ -77,7 +77,7 @@ const ScheduleSkeleton = (props: any) => {
                                             borderRadius: "10px",
                                             animationDelay: `${index * 0.1}s`,
                                             // BG color
-                                            bgcolor: "#fff",
+                                            color: "#fff",
                                         }}
                                     />
                                 </td>

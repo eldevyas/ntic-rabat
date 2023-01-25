@@ -30,3 +30,9 @@ Route::post('/login', [UserController::class, 'login']);
 Route::post('/register', [UserController::class, 'register']);
 Route::post('/logout', [UserController::class, 'logout'])->middleware('auth:api');
 Route::apiResource('projects', ProjectController::class);
+
+// Route to check username availability
+Route::get('/users/check-username/{username}', [UserController::class, 'checkUsername']);
+
+// Route to check email availability
+Route::get('/users/check-email/{email}', [UserController::class, 'checkEmail']);

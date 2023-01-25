@@ -24,7 +24,7 @@ export default function Gallery() {
         <>
             <div className="ViewImages">
                 <DefaultButton
-                    bgColor="Black"
+                    color="Black"
                     startIcon={<PhotoSizeSelectActualOutlinedIcon />}
                     onClick={() => setDisplay(!display)}
                 >

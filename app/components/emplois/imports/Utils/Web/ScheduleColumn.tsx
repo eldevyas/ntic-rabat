@@ -15,6 +15,7 @@ function ScheduleColumn(props: any) {
                         objectPosition: "center",
                     }}
                     fill
+                    sizes="90px"
                 />
             </div>
         </div>
@@ -34,6 +35,7 @@ function ScheduleColumnOnline(props: any) {
                         objectPosition: "center",
                     }}
                     fill
+                    sizes="90px"
                 />
             </div>
         </div>
@@ -53,6 +55,7 @@ function ScheduleColumnAbsent(props: any) {
                         objectPosition: "center",
                     }}
                     fill
+                    sizes="90px"
                 />
             </div>
         </div>

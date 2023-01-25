@@ -20,16 +20,16 @@ const EspaceEquippe = () => {
                 </p>
                 <div className="Buttons">
                     <div className="Button">
-                        <DefaultButton bgColor="Black"
-                            onClick={() => Router.push('/inscription')}
-
+                        <DefaultButton
+                            color="Black"
+                            onClick={() => Router.push("/inscription")}
                         >
                             S&apos;inscrire maintenant
                         </DefaultButton>
                     </div>
                     <div className="Button">
                         <DefaultButton
-                            bgColor="White"
+                            color="White"
                             startIcon={<ExpandCircleDownOutlinedIcon />}
                         >
                             Lire Plus

@@ -26,7 +26,7 @@ export default function Landing() {
                 <SelectGroup />
                 <OutlinedButton
                     startIcon={<GroupsOutlinedIcon />}
-                    bgColor="LightBlue"
+                    color="LightBlue"
                     onClick={() => {
                         Display.pushDev(
                             "Fonctionnalité non disponible pour le moment."

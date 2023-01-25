@@ -20,6 +20,9 @@
             justify-content: center;
             align-items: center;
             z-index: 0 !important;
+            @include GlobalPadding();
+            padding-left: 0 !important;
+            padding-right: 0 !important;
             .wrapper {
                 width: 350px;
                 @include respond-to('small') {
@@ -34,6 +37,36 @@
                     justify-content: center;
                     align-items: center;
                     gap: $GlobalGap;
+                    // class Form__Footer
+                    .FormFooter {
+                        width: 100%;
+                        height: auto;
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: center;
+                        align-items: flex;
+                        gap: $GlobalGap;
+                        p {
+                            width: 100%;
+                            height: auto;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            gap: 5px;
+                            color: $C1;
+                            font-size: 0.85rem;
+                            font-weight: 500;
+                            text-decoration: none;
+                            a {
+                                color: $C2;
+                                font-weight: 800;
+                                text-decoration: none;
+                                &:hover {
+                                    text-decoration: underline;
+                                }
+                            }
+                        }
+                    }
                     .Form-group {
                         width: 100%;
                         height: auto;
@@ -83,7 +116,34 @@
                                         color: $C4;
                                     }
                                 }
+                                svg {
+                                    color: $C4 !important;
+                                }
                             }
+                            // has valid
+                            // &:has(.Valid) {
+                            //     .Input-icon {
+                            //         background-color: rgba($C3, 1);
+                            //         // border
+                            //         border: 2.5px solid rgba($C4, 0.15);
+                            //         svg {
+                            //             color: $C4;
+                            //         }
+                            //     }
+                            //     input {
+                            //         color: rgba($C3, 1) !important;
+                            //         background: rgba($C3, 0.2) !important;
+                            //     }
+                            //     // Visibility icon
+                            //     .Visibility {
+                            //         background-color: rgba($C3, 0);
+                            //         // border
+                            //         border-radius: 10px;
+                            //         svg {
+                            //             color: $C3;
+                            //         }
+                            //     }
+                            // }
                             .form-control {
                                 width: 100%;
                                 height: 100%;
@@ -173,6 +233,43 @@
                                     width: 20px;
                                     height: 20px;
                                     color: $C4;
+                                }
+                            }
+                            .Progress {
+                                position: absolute;
+                                top: 0;
+                                right: 0;
+                                width: 50px;
+                                height: 100%;
+                                display: flex;
+                                justify-content: center;
+                                align-items: center;
+                                background-color: rgba($C2, 0);
+                                border-radius: 10px;
+                                z-index: 1 !important;
+                                svg {
+                                    color: $C3;
+                                }
+                            }
+                            .Valid {
+                                position: absolute;
+                                top: 0;
+                                right: 0;
+                                width: 50px;
+                                height: 100%;
+                                display: flex;
+                                justify-content: center;
+                                align-items: center;
+                                background-color: transparent;
+                                border-radius: 5px;
+                                cursor: pointer;
+                                svg {
+                                    width: 20px;
+                                    height: 20px;
+                                    color: rgba($C3, 0.75);
+                                    &:hover {
+                                        color: rgba($C3, 0.5);
+                                    }
                                 }
                             }
                             .Visibility {

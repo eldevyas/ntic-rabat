@@ -133,7 +133,7 @@ const SelectGroup = () => {
                     menu: (base: any, state: any) => ({
                         ...base,
                         zIndex: "1000000",
-                        backgroundColor: state.isFocused ? "#fff" : "#fff",
+                        color: state.isFocused ? "#fff" : "#fff",
                         borderColor: state.isFocused ? "#fff" : "#fff",
                         color: state.isFocused ? "#39b54a" : "#fff",
                         boxShadow: "none",
@@ -142,7 +142,7 @@ const SelectGroup = () => {
                     }),
                     option: (base: any, state: any) => ({
                         ...base,
-                        backgroundColor: state.isFocused ? "#4BB8E7" : "#fff",
+                        color: state.isFocused ? "#4BB8E7" : "#fff",
                         borderColor: state.isFocused ? "#f5f5f5" : "#fff",
                         color: state.isFocused ? "#fff" : "#303030",
                         fontFamily: "Outfit, sans-serif",
@@ -153,22 +153,18 @@ const SelectGroup = () => {
                         borderRadius: "10px",
                         // hover
                         "&:hover": {
-                            backgroundColor: state.isFocused
-                                ? "#4BB8E7"
-                                : "#fff",
+                            color: state.isFocused ? "#4BB8E7" : "#fff",
                             borderColor: state.isFocused ? "#f5f5f5" : "#fff",
                         },
                         "&:active": {
-                            backgroundColor: state.isFocused
-                                ? "#4BB8E7"
-                                : "#fff",
+                            color: state.isFocused ? "#4BB8E7" : "#fff",
                             borderColor: state.isFocused ? "#f5f5f5" : "#fff",
                         },
                     }),
                     // group
                     groupHeading: (base: any, state: any) => ({
                         ...base,
-                        backgroundColor: state.isFocused ? "#fff" : "#fff",
+                        color: state.isFocused ? "#fff" : "#fff",
                         fontFamily: "Outfit, sans-serif",
                         fontSize: "0.75rem",
                         fontWeight: "800",

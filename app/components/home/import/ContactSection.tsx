@@ -5,7 +5,7 @@ import FaceIcon from "@mui/icons-material/Face";
 import SendIcon from "@mui/icons-material/Send";
 const ContactSection = () => {
     return (
-        <div className="ContactSection" >
+        <div className="ContactSection">
             <div className="Title">
                 <h3>Contactez nous pour plus d&apos;informations</h3>
                 <p id="contact">
@@ -15,10 +15,10 @@ const ContactSection = () => {
                     carte de localisation affichée.
                 </p>
             </div>
-            <div className="Contact" >
+            <div className="Contact">
                 <div className="ContactForm">
                     <div className="ContactInput">
-                        <IconButton bgColor="Green">
+                        <IconButton color="Green">
                             <EmailIcon />
                         </IconButton>
                         <input
@@ -28,7 +28,7 @@ const ContactSection = () => {
                         />
                     </div>
                     <div className="ContactInput">
-                        <IconButton bgColor="Green">
+                        <IconButton color="Green">
                             <FaceIcon />
                         </IconButton>
                         <input
@@ -47,7 +47,7 @@ const ContactSection = () => {
                         ></textarea>
                     </div>
                     <div className="ContactInput">
-                        <DefaultButton bgColor="Green" startIcon={<SendIcon />}>
+                        <DefaultButton color="Green" startIcon={<SendIcon />}>
                             Envoyer
                         </DefaultButton>
                     </div>

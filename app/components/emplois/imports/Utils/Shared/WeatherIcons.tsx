@@ -55,12 +55,9 @@ export const Thunder = () => {
                         width="368"
                         height="240.403"
                         filterUnits="userSpaceOnUse"
-                        color-interpolation-filters="sRGB"
+                        colorInterpolationFilters="sRGB"
                     >
-                        <feFlood
-                            flood-opacity="0"
-                            result="BackgroundImageFix"
-                        />
+                        <feFlood floodOpacity="0" result="BackgroundImageFix" />
                         <feGaussianBlur
                             in="BackgroundImageFix"
                             stdDeviation="13.5"
@@ -84,12 +81,9 @@ export const Thunder = () => {
                         width="314"
                         height="196.403"
                         filterUnits="userSpaceOnUse"
-                        color-interpolation-filters="sRGB"
+                        colorInterpolationFilters="sRGB"
                     >
-                        <feFlood
-                            flood-opacity="0"
-                            result="BackgroundImageFix"
-                        />
+                        <feFlood floodOpacity="0" result="BackgroundImageFix" />
                         <feBlend
                             mode="normal"
                             in="SourceGraphic"
@@ -127,12 +121,9 @@ export const Thunder = () => {
                         width="89"
                         height="131.5"
                         filterUnits="userSpaceOnUse"
-                        color-interpolation-filters="sRGB"
+                        colorInterpolationFilters="sRGB"
                     >
-                        <feFlood
-                            flood-opacity="0"
-                            result="BackgroundImageFix"
-                        />
+                        <feFlood floodOpacity="0" result="BackgroundImageFix" />
                         <feBlend
                             mode="normal"
                             in="SourceGraphic"
@@ -170,12 +161,9 @@ export const Thunder = () => {
                         width="411"
                         height="204"
                         filterUnits="userSpaceOnUse"
-                        color-interpolation-filters="sRGB"
+                        colorInterpolationFilters="sRGB"
                     >
-                        <feFlood
-                            flood-opacity="0"
-                            result="BackgroundImageFix"
-                        />
+                        <feFlood floodOpacity="0" result="BackgroundImageFix" />
                         <feBlend
                             mode="normal"
                             in="SourceGraphic"
@@ -194,12 +182,9 @@ export const Thunder = () => {
                         width="27.1506"
                         height="31.1507"
                         filterUnits="userSpaceOnUse"
-                        color-interpolation-filters="sRGB"
+                        colorInterpolationFilters="sRGB"
                     >
-                        <feFlood
-                            flood-opacity="0"
-                            result="BackgroundImageFix"
-                        />
+                        <feFlood floodOpacity="0" result="BackgroundImageFix" />
                         <feBlend
                             mode="normal"
                             in="SourceGraphic"
@@ -237,12 +222,9 @@ export const Thunder = () => {
                         width="27.1506"
                         height="31.1507"
                         filterUnits="userSpaceOnUse"
-                        color-interpolation-filters="sRGB"
+                        colorInterpolationFilters="sRGB"
                     >
-                        <feFlood
-                            flood-opacity="0"
-                            result="BackgroundImageFix"
-                        />
+                        <feFlood floodOpacity="0" result="BackgroundImageFix" />
                         <feBlend
                             mode="normal"
                             in="SourceGraphic"
@@ -281,12 +263,8 @@ export const Thunder = () => {
                         y2="-67.1272"
                         gradientUnits="userSpaceOnUse"
                     >
-                        <stop stop-color="white" />
-                        <stop
-                            offset="1"
-                            stop-color="white"
-                            stop-opacity="0.58"
-                        />
+                        <stop stopColor="white" />
+                        <stop offset="1" stopColor="white" stopOpacity="0.58" />
                     </linearGradient>
                     <linearGradient
                         id="paint1_linear_1_24"
@@ -296,8 +274,8 @@ export const Thunder = () => {
                         y2="188.178"
                         gradientUnits="userSpaceOnUse"
                     >
-                        <stop stop-color="#FF9900" />
-                        <stop offset="1" stop-color="#FFEE94" />
+                        <stop stopColor="#FF9900" />
+                        <stop offset="1" stopColor="#FFEE94" />
                     </linearGradient>
                     <linearGradient
                         id="paint2_linear_1_24"
@@ -307,8 +285,8 @@ export const Thunder = () => {
                         y2="283.433"
                         gradientUnits="userSpaceOnUse"
                     >
-                        <stop stop-color="#FF9900" />
-                        <stop offset="1" stop-color="#FFEE94" />
+                        <stop stopColor="#FF9900" />
+                        <stop offset="1" stopColor="#FFEE94" />
                     </linearGradient>
                     <linearGradient
                         id="paint3_linear_1_24"
@@ -318,8 +296,8 @@ export const Thunder = () => {
                         y2="207.433"
                         gradientUnits="userSpaceOnUse"
                     >
-                        <stop stop-color="#FF9900" />
-                        <stop offset="1" stop-color="#FFEE94" />
+                        <stop stopColor="#FF9900" />
+                        <stop offset="1" stopColor="#FFEE94" />
                     </linearGradient>
                 </defs>
             </svg>
@@ -369,12 +347,9 @@ export const Cloudy = () => {
                         width="394"
                         height="380"
                         filterUnits="userSpaceOnUse"
-                        color-interpolation-filters="sRGB"
+                        colorInterpolationFilters="sRGB"
                     >
-                        <feFlood
-                            flood-opacity="0"
-                            result="BackgroundImageFix"
-                        />
+                        <feFlood floodOpacity="0" result="BackgroundImageFix" />
                         <feBlend
                             mode="normal"
                             in="SourceGraphic"
@@ -393,12 +368,9 @@ export const Cloudy = () => {
                         width="208"
                         height="213"
                         filterUnits="userSpaceOnUse"
-                        color-interpolation-filters="sRGB"
+                        colorInterpolationFilters="sRGB"
                     >
-                        <feFlood
-                            flood-opacity="0"
-                            result="BackgroundImageFix"
-                        />
+                        <feFlood floodOpacity="0" result="BackgroundImageFix" />
                         <feBlend
                             mode="normal"
                             in="SourceGraphic"
@@ -436,12 +408,9 @@ export const Cloudy = () => {
                         width="337"
                         height="222"
                         filterUnits="userSpaceOnUse"
-                        color-interpolation-filters="sRGB"
+                        colorInterpolationFilters="sRGB"
                     >
-                        <feFlood
-                            flood-opacity="0"
-                            result="BackgroundImageFix"
-                        />
+                        <feFlood floodOpacity="0" result="BackgroundImageFix" />
                         <feGaussianBlur
                             in="BackgroundImageFix"
                             stdDeviation="13.5"
@@ -465,12 +434,9 @@ export const Cloudy = () => {
                         width="283"
                         height="178"
                         filterUnits="userSpaceOnUse"
-                        color-interpolation-filters="sRGB"
+                        colorInterpolationFilters="sRGB"
                     >
-                        <feFlood
-                            flood-opacity="0"
-                            result="BackgroundImageFix"
-                        />
+                        <feFlood floodOpacity="0" result="BackgroundImageFix" />
                         <feBlend
                             mode="normal"
                             in="SourceGraphic"
@@ -509,8 +475,8 @@ export const Cloudy = () => {
                         y2="114.532"
                         gradientUnits="userSpaceOnUse"
                     >
-                        <stop stop-color="#FF9900" />
-                        <stop offset="1" stop-color="#FFEE94" />
+                        <stop stopColor="#FF9900" />
+                        <stop offset="1" stopColor="#FFEE94" />
                     </linearGradient>
                     <linearGradient
                         id="paint1_linear_1_30"
@@ -520,12 +486,8 @@ export const Cloudy = () => {
                         y2="115.5"
                         gradientUnits="userSpaceOnUse"
                     >
-                        <stop stop-color="white" />
-                        <stop
-                            offset="1"
-                            stop-color="white"
-                            stop-opacity="0.58"
-                        />
+                        <stop stopColor="white" />
+                        <stop offset="1" stopColor="white" stopOpacity="0.58" />
                     </linearGradient>
                 </defs>
             </svg>
@@ -574,12 +536,9 @@ export const CloudySun = () => {
                         width="394"
                         height="380"
                         filterUnits="userSpaceOnUse"
-                        color-interpolation-filters="sRGB"
+                        colorInterpolationFilters="sRGB"
                     >
-                        <feFlood
-                            flood-opacity="0"
-                            result="BackgroundImageFix"
-                        />
+                        <feFlood floodOpacity="0" result="BackgroundImageFix" />
                         <feBlend
                             mode="normal"
                             in="SourceGraphic"
@@ -598,12 +557,9 @@ export const CloudySun = () => {
                         width="208"
                         height="213"
                         filterUnits="userSpaceOnUse"
-                        color-interpolation-filters="sRGB"
+                        colorInterpolationFilters="sRGB"
                     >
-                        <feFlood
-                            flood-opacity="0"
-                            result="BackgroundImageFix"
-                        />
+                        <feFlood floodOpacity="0" result="BackgroundImageFix" />
                         <feBlend
                             mode="normal"
                             in="SourceGraphic"
@@ -641,12 +597,9 @@ export const CloudySun = () => {
                         width="337"
                         height="222"
                         filterUnits="userSpaceOnUse"
-                        color-interpolation-filters="sRGB"
+                        colorInterpolationFilters="sRGB"
                     >
-                        <feFlood
-                            flood-opacity="0"
-                            result="BackgroundImageFix"
-                        />
+                        <feFlood floodOpacity="0" result="BackgroundImageFix" />
                         <feGaussianBlur
                             in="BackgroundImageFix"
                             stdDeviation="13.5"
@@ -670,12 +623,9 @@ export const CloudySun = () => {
                         width="283"
                         height="178"
                         filterUnits="userSpaceOnUse"
-                        color-interpolation-filters="sRGB"
+                        colorInterpolationFilters="sRGB"
                     >
-                        <feFlood
-                            flood-opacity="0"
-                            result="BackgroundImageFix"
-                        />
+                        <feFlood floodOpacity="0" result="BackgroundImageFix" />
                         <feBlend
                             mode="normal"
                             in="SourceGraphic"
@@ -714,8 +664,8 @@ export const CloudySun = () => {
                         y2="114.532"
                         gradientUnits="userSpaceOnUse"
                     >
-                        <stop stop-color="#FF9900" />
-                        <stop offset="1" stop-color="#FFEE94" />
+                        <stop stopColor="#FF9900" />
+                        <stop offset="1" stopColor="#FFEE94" />
                     </linearGradient>
                     <linearGradient
                         id="paint1_linear_1_30"
@@ -725,12 +675,8 @@ export const CloudySun = () => {
                         y2="115.5"
                         gradientUnits="userSpaceOnUse"
                     >
-                        <stop stop-color="white" />
-                        <stop
-                            offset="1"
-                            stop-color="white"
-                            stop-opacity="0.58"
-                        />
+                        <stop stopColor="white" />
+                        <stop offset="1" stopColor="white" stopOpacity="0.58" />
                     </linearGradient>
                 </defs>
             </svg>
@@ -772,12 +718,9 @@ export const Sunny = () => {
                         width="394"
                         height="380"
                         filterUnits="userSpaceOnUse"
-                        color-interpolation-filters="sRGB"
+                        colorInterpolationFilters="sRGB"
                     >
-                        <feFlood
-                            flood-opacity="0"
-                            result="BackgroundImageFix"
-                        />
+                        <feFlood floodOpacity="0" result="BackgroundImageFix" />
                         <feBlend
                             mode="normal"
                             in="SourceGraphic"
@@ -796,12 +739,9 @@ export const Sunny = () => {
                         width="212"
                         height="219"
                         filterUnits="userSpaceOnUse"
-                        color-interpolation-filters="sRGB"
+                        colorInterpolationFilters="sRGB"
                     >
-                        <feFlood
-                            flood-opacity="0"
-                            result="BackgroundImageFix"
-                        />
+                        <feFlood floodOpacity="0" result="BackgroundImageFix" />
                         <feBlend
                             mode="normal"
                             in="SourceGraphic"
@@ -840,8 +780,8 @@ export const Sunny = () => {
                         y2="94.5502"
                         gradientUnits="userSpaceOnUse"
                     >
-                        <stop stop-color="#FF9900" />
-                        <stop offset="1" stop-color="#FFEE94" />
+                        <stop stopColor="#FF9900" />
+                        <stop offset="1" stopColor="#FFEE94" />
                     </linearGradient>
                 </defs>
             </svg>
@@ -903,12 +843,9 @@ export const Rainy = () => {
                         width="33"
                         height="52"
                         filterUnits="userSpaceOnUse"
-                        color-interpolation-filters="sRGB"
+                        colorInterpolationFilters="sRGB"
                     >
-                        <feFlood
-                            flood-opacity="0"
-                            result="BackgroundImageFix"
-                        />
+                        <feFlood floodOpacity="0" result="BackgroundImageFix" />
                         <feBlend
                             mode="normal"
                             in="SourceGraphic"
@@ -946,12 +883,9 @@ export const Rainy = () => {
                         width="33"
                         height="52"
                         filterUnits="userSpaceOnUse"
-                        color-interpolation-filters="sRGB"
+                        colorInterpolationFilters="sRGB"
                     >
-                        <feFlood
-                            flood-opacity="0"
-                            result="BackgroundImageFix"
-                        />
+                        <feFlood floodOpacity="0" result="BackgroundImageFix" />
                         <feBlend
                             mode="normal"
                             in="SourceGraphic"
@@ -989,12 +923,9 @@ export const Rainy = () => {
                         width="33"
                         height="52"
                         filterUnits="userSpaceOnUse"
-                        color-interpolation-filters="sRGB"
+                        colorInterpolationFilters="sRGB"
                     >
-                        <feFlood
-                            flood-opacity="0"
-                            result="BackgroundImageFix"
-                        />
+                        <feFlood floodOpacity="0" result="BackgroundImageFix" />
                         <feBlend
                             mode="normal"
                             in="SourceGraphic"
@@ -1032,12 +963,9 @@ export const Rainy = () => {
                         width="396"
                         height="191"
                         filterUnits="userSpaceOnUse"
-                        color-interpolation-filters="sRGB"
+                        colorInterpolationFilters="sRGB"
                     >
-                        <feFlood
-                            flood-opacity="0"
-                            result="BackgroundImageFix"
-                        />
+                        <feFlood floodOpacity="0" result="BackgroundImageFix" />
                         <feBlend
                             mode="normal"
                             in="SourceGraphic"
@@ -1056,12 +984,9 @@ export const Rainy = () => {
                         width="368"
                         height="240.403"
                         filterUnits="userSpaceOnUse"
-                        color-interpolation-filters="sRGB"
+                        colorInterpolationFilters="sRGB"
                     >
-                        <feFlood
-                            flood-opacity="0"
-                            result="BackgroundImageFix"
-                        />
+                        <feFlood floodOpacity="0" result="BackgroundImageFix" />
                         <feGaussianBlur
                             in="BackgroundImageFix"
                             stdDeviation="13.5"
@@ -1085,12 +1010,9 @@ export const Rainy = () => {
                         width="314"
                         height="196.403"
                         filterUnits="userSpaceOnUse"
-                        color-interpolation-filters="sRGB"
+                        colorInterpolationFilters="sRGB"
                     >
-                        <feFlood
-                            flood-opacity="0"
-                            result="BackgroundImageFix"
-                        />
+                        <feFlood floodOpacity="0" result="BackgroundImageFix" />
                         <feBlend
                             mode="normal"
                             in="SourceGraphic"
@@ -1129,12 +1051,8 @@ export const Rainy = () => {
                         y2="-67.1272"
                         gradientUnits="userSpaceOnUse"
                     >
-                        <stop stop-color="white" />
-                        <stop
-                            offset="1"
-                            stop-color="white"
-                            stop-opacity="0.58"
-                        />
+                        <stop stopColor="white" />
+                        <stop offset="1" stopColor="white" stopOpacity="0.58" />
                     </linearGradient>
                 </defs>
             </svg>
@@ -1202,12 +1120,9 @@ export const SunRain = () => {
                         width="220"
                         height="225"
                         filterUnits="userSpaceOnUse"
-                        color-interpolation-filters="sRGB"
+                        colorInterpolationFilters="sRGB"
                     >
-                        <feFlood
-                            flood-opacity="0"
-                            result="BackgroundImageFix"
-                        />
+                        <feFlood floodOpacity="0" result="BackgroundImageFix" />
                         <feBlend
                             mode="normal"
                             in="SourceGraphic"
@@ -1245,12 +1160,9 @@ export const SunRain = () => {
                         width="337"
                         height="222"
                         filterUnits="userSpaceOnUse"
-                        color-interpolation-filters="sRGB"
+                        colorInterpolationFilters="sRGB"
                     >
-                        <feFlood
-                            flood-opacity="0"
-                            result="BackgroundImageFix"
-                        />
+                        <feFlood floodOpacity="0" result="BackgroundImageFix" />
                         <feGaussianBlur
                             in="BackgroundImageFix"
                             stdDeviation="13.5"
@@ -1274,12 +1186,9 @@ export const SunRain = () => {
                         width="283"
                         height="178"
                         filterUnits="userSpaceOnUse"
-                        color-interpolation-filters="sRGB"
+                        colorInterpolationFilters="sRGB"
                     >
-                        <feFlood
-                            flood-opacity="0"
-                            result="BackgroundImageFix"
-                        />
+                        <feFlood floodOpacity="0" result="BackgroundImageFix" />
                         <feBlend
                             mode="normal"
                             in="SourceGraphic"
@@ -1317,12 +1226,9 @@ export const SunRain = () => {
                         width="33"
                         height="52"
                         filterUnits="userSpaceOnUse"
-                        color-interpolation-filters="sRGB"
+                        colorInterpolationFilters="sRGB"
                     >
-                        <feFlood
-                            flood-opacity="0"
-                            result="BackgroundImageFix"
-                        />
+                        <feFlood floodOpacity="0" result="BackgroundImageFix" />
                         <feBlend
                             mode="normal"
                             in="SourceGraphic"
@@ -1360,12 +1266,9 @@ export const SunRain = () => {
                         width="33"
                         height="52"
                         filterUnits="userSpaceOnUse"
-                        color-interpolation-filters="sRGB"
+                        colorInterpolationFilters="sRGB"
                     >
-                        <feFlood
-                            flood-opacity="0"
-                            result="BackgroundImageFix"
-                        />
+                        <feFlood floodOpacity="0" result="BackgroundImageFix" />
                         <feBlend
                             mode="normal"
                             in="SourceGraphic"
@@ -1403,12 +1306,9 @@ export const SunRain = () => {
                         width="33"
                         height="52"
                         filterUnits="userSpaceOnUse"
-                        color-interpolation-filters="sRGB"
+                        colorInterpolationFilters="sRGB"
                     >
-                        <feFlood
-                            flood-opacity="0"
-                            result="BackgroundImageFix"
-                        />
+                        <feFlood floodOpacity="0" result="BackgroundImageFix" />
                         <feBlend
                             mode="normal"
                             in="SourceGraphic"
@@ -1446,12 +1346,9 @@ export const SunRain = () => {
                         width="396"
                         height="191"
                         filterUnits="userSpaceOnUse"
-                        color-interpolation-filters="sRGB"
+                        colorInterpolationFilters="sRGB"
                     >
-                        <feFlood
-                            flood-opacity="0"
-                            result="BackgroundImageFix"
-                        />
+                        <feFlood floodOpacity="0" result="BackgroundImageFix" />
                         <feBlend
                             mode="normal"
                             in="SourceGraphic"
@@ -1471,8 +1368,8 @@ export const SunRain = () => {
                         y2="11.1392"
                         gradientUnits="userSpaceOnUse"
                     >
-                        <stop stop-color="#FF9900" />
-                        <stop offset="1" stop-color="#FFEE94" />
+                        <stop stopColor="#FF9900" />
+                        <stop offset="1" stopColor="#FFEE94" />
                     </linearGradient>
                     <linearGradient
                         id="paint1_linear_1_42"
@@ -1482,12 +1379,8 @@ export const SunRain = () => {
                         y2="5.49997"
                         gradientUnits="userSpaceOnUse"
                     >
-                        <stop stop-color="white" />
-                        <stop
-                            offset="1"
-                            stop-color="white"
-                            stop-opacity="0.58"
-                        />
+                        <stop stopColor="white" />
+                        <stop offset="1" stopColor="white" stopOpacity="0.58" />
                     </linearGradient>
                 </defs>
             </svg>
@@ -1523,12 +1416,9 @@ export const Fog = () => {
                         width="483"
                         height="368"
                         filterUnits="userSpaceOnUse"
-                        color-interpolation-filters="sRGB"
+                        colorInterpolationFilters="sRGB"
                     >
-                        <feFlood
-                            flood-opacity="0"
-                            result="BackgroundImageFix"
-                        />
+                        <feFlood floodOpacity="0" result="BackgroundImageFix" />
                         <feColorMatrix
                             in="SourceAlpha"
                             type="matrix"
@@ -1561,12 +1451,9 @@ export const Fog = () => {
                         width="337"
                         height="222"
                         filterUnits="userSpaceOnUse"
-                        color-interpolation-filters="sRGB"
+                        colorInterpolationFilters="sRGB"
                     >
-                        <feFlood
-                            flood-opacity="0"
-                            result="BackgroundImageFix"
-                        />
+                        <feFlood floodOpacity="0" result="BackgroundImageFix" />
                         <feGaussianBlur
                             in="BackgroundImageFix"
                             stdDeviation="13.5"
@@ -1590,12 +1477,9 @@ export const Fog = () => {
                         width="283"
                         height="178"
                         filterUnits="userSpaceOnUse"
-                        color-interpolation-filters="sRGB"
+                        colorInterpolationFilters="sRGB"
                     >
-                        <feFlood
-                            flood-opacity="0"
-                            result="BackgroundImageFix"
-                        />
+                        <feFlood floodOpacity="0" result="BackgroundImageFix" />
                         <feBlend
                             mode="normal"
                             in="SourceGraphic"
@@ -1634,12 +1518,8 @@ export const Fog = () => {
                         y2="36.1576"
                         gradientUnits="userSpaceOnUse"
                     >
-                        <stop stop-color="white" />
-                        <stop
-                            offset="1"
-                            stop-color="white"
-                            stop-opacity="0.58"
-                        />
+                        <stop stopColor="white" />
+                        <stop offset="1" stopColor="white" stopOpacity="0.58" />
                     </linearGradient>
                 </defs>
             </svg>
@@ -1702,12 +1582,9 @@ export function Snowy() {
                         width="33"
                         height="52"
                         filterUnits="userSpaceOnUse"
-                        color-interpolation-filters="sRGB"
+                        colorInterpolationFilters="sRGB"
                     >
-                        <feFlood
-                            flood-opacity="0"
-                            result="BackgroundImageFix"
-                        />
+                        <feFlood floodOpacity="0" result="BackgroundImageFix" />
                         <feBlend
                             mode="normal"
                             in="SourceGraphic"
@@ -1745,12 +1622,9 @@ export function Snowy() {
                         width="33"
                         height="52"
                         filterUnits="userSpaceOnUse"
-                        color-interpolation-filters="sRGB"
+                        colorInterpolationFilters="sRGB"
                     >
-                        <feFlood
-                            flood-opacity="0"
-                            result="BackgroundImageFix"
-                        />
+                        <feFlood floodOpacity="0" result="BackgroundImageFix" />
                         <feBlend
                             mode="normal"
                             in="SourceGraphic"
@@ -1788,12 +1662,9 @@ export function Snowy() {
                         width="33"
                         height="52"
                         filterUnits="userSpaceOnUse"
-                        color-interpolation-filters="sRGB"
+                        colorInterpolationFilters="sRGB"
                     >
-                        <feFlood
-                            flood-opacity="0"
-                            result="BackgroundImageFix"
-                        />
+                        <feFlood floodOpacity="0" result="BackgroundImageFix" />
                         <feBlend
                             mode="normal"
                             in="SourceGraphic"
@@ -1831,12 +1702,9 @@ export function Snowy() {
                         width="396"
                         height="191"
                         filterUnits="userSpaceOnUse"
-                        color-interpolation-filters="sRGB"
+                        colorInterpolationFilters="sRGB"
                     >
-                        <feFlood
-                            flood-opacity="0"
-                            result="BackgroundImageFix"
-                        />
+                        <feFlood floodOpacity="0" result="BackgroundImageFix" />
                         <feBlend
                             mode="normal"
                             in="SourceGraphic"
@@ -1855,12 +1723,9 @@ export function Snowy() {
                         width="368"
                         height="240.403"
                         filterUnits="userSpaceOnUse"
-                        color-interpolation-filters="sRGB"
+                        colorInterpolationFilters="sRGB"
                     >
-                        <feFlood
-                            flood-opacity="0"
-                            result="BackgroundImageFix"
-                        />
+                        <feFlood floodOpacity="0" result="BackgroundImageFix" />
                         <feGaussianBlur
                             in="BackgroundImageFix"
                             stdDeviation="13.5"
@@ -1884,12 +1749,9 @@ export function Snowy() {
                         width="314"
                         height="196.403"
                         filterUnits="userSpaceOnUse"
-                        color-interpolation-filters="sRGB"
+                        colorInterpolationFilters="sRGB"
                     >
-                        <feFlood
-                            flood-opacity="0"
-                            result="BackgroundImageFix"
-                        />
+                        <feFlood floodOpacity="0" result="BackgroundImageFix" />
                         <feBlend
                             mode="normal"
                             in="SourceGraphic"
@@ -1928,12 +1790,8 @@ export function Snowy() {
                         y2="-67.1272"
                         gradientUnits="userSpaceOnUse"
                     >
-                        <stop stop-color="white" />
-                        <stop
-                            offset="1"
-                            stop-color="white"
-                            stop-opacity="0.58"
-                        />
+                        <stop stopColor="white" />
+                        <stop offset="1" stopColor="white" stopOpacity="0.58" />
                     </linearGradient>
                 </defs>
             </svg>

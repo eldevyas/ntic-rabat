@@ -36,8 +36,9 @@ export default function Annonces() {
     const [refresh, setRefresh] = useState(false);
     useEffect(() => {
         async function fetchData() {
+            const API_URL = process.env.SERVER_PUBLIC_API_URL;
             let Data: any = axios
-                .get("http://localhost:8000/api/annonces")
+                .get(`${API_URL}/annonces`)
                 // set the data to the state and console.log it with promise
                 .then((res) => {
                     setAnnounces(res.data.data);
@@ -57,7 +58,8 @@ export default function Annonces() {
         if (
             newTitle.current != null &&
             newDescription.current != null &&
-            newUrl.current != null
+            newUrl.current != null &&
+            ExpirationDate.current != null
         ) {
             console.log(user.token);
             let Title = newTitle.current.value;

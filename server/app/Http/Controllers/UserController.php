@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\Role;
 
 use App\Models\User;
@@ -13,10 +14,12 @@ class UserController extends Controller
     public function register(Request $request)
     {
         $validation = Validator::make($request->all(), [
-            'name' => 'required|string',
+            'username' => 'required|string|unique:users',
+            'firstname' => 'required|string',
+            'lastname' => 'required|string',
             'email' => 'required|email|unique:users',
             'password' => 'required',
-            'c_password' => 'required|same:password',
+            'password_confirmation' => 'required|same:password',
         ]);
         if ($validation->fails()) {
             return response()->json($validation->errors(), 422);
@@ -24,10 +27,19 @@ class UserController extends Controller
         $input = $request->all();
         $input['role_id'] = Role::whereName('stagiaire')->firstOrFail()->id;
         $input['password'] = bcrypt($input['password']);
-        $user = User::create($input);
+        $user = new User();
+
+        $user->username = $input['username'];
+        $user->name = $input['firstname'] . ' ' . $input['lastname'];
+        $user->first_name = $input['firstname'];
+        $user->last_name = $input['lastname'];
+        $user->email = $input['email'];
+        $user->password = $input['password'];
+        $user->role_id = $input['role_id'];
+        $user->save();
         $success['token'] = $user->createToken('api-application')->accessToken;
-        $success['name'] = $user->name;
-        return response()->json($success, 200);
+
+        return response()->json($success, 201);
     }
     public function login(Request $request)
     {
@@ -52,5 +64,35 @@ class UserController extends Controller
         return response()->json([
             'message' => 'Successfully logged out'
         ]);
+    }
+
+    // Check email method
+    public function checkEmail($email)
+    {
+        $user = User::where('email', $email)->first();
+        if ($user) {
+            return response()->json([
+                'message' => 'Email already exists'
+            ], 409);
+        } else {
+            return response()->json([
+                'message' => 'Email available'
+            ], 200);
+        }
+    }
+
+    // Check username method
+    public function checkUsername($username)
+    {
+        $user = User::where('username', $username)->first();
+        if ($user) {
+            return response()->json([
+                'message' => 'Username already exists'
+            ], 409);
+        } else {
+            return response()->json([
+                'message' => 'Username available'
+            ], 200);
+        }
     }
 }

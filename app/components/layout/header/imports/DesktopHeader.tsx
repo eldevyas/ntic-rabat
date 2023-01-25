@@ -39,17 +39,15 @@ export default function DesktopHeader(props: any) {
             </div>
             <div className="End">
                 <DefaultButton
-                    bgColor="LightGreen"
+                    color="LightGreen"
                     onClick={() => {
-                        Display.pushDev(
-                            "Fonctionnalité non disponible pour le moment."
-                        );
+                        Router.push("/register");
                     }}
                 >
                     {"S'inscrire"}
                 </DefaultButton>
                 <DefaultButton
-                    bgColor="Green"
+                    color="Green"
                     onClick={() => {
                         Router.push("/login");
                     }}

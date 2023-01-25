@@ -5,9 +5,9 @@ import ModelTrainingIcon from "@mui/icons-material/ModelTraining";
 import WorkIcon from "@mui/icons-material/Work";
 import ApartmentIcon from "@mui/icons-material/Apartment";
 import Image from "next/image";
-import ModelTrainingOutlinedIcon from '@mui/icons-material/ModelTrainingOutlined';
-import WorkOutlineOutlinedIcon from '@mui/icons-material/WorkOutlineOutlined';
-import ApartmentOutlinedIcon from '@mui/icons-material/ApartmentOutlined';
+import ModelTrainingOutlinedIcon from "@mui/icons-material/ModelTrainingOutlined";
+import WorkOutlineOutlinedIcon from "@mui/icons-material/WorkOutlineOutlined";
+import ApartmentOutlinedIcon from "@mui/icons-material/ApartmentOutlined";
 const CertificatPuissant = () => {
     return (
         <div className="CertificatPuissant">
@@ -24,16 +24,13 @@ const CertificatPuissant = () => {
                     la facilité d&apos;insertion des lauréats dans
                     l&apos;entreprise. Ceci est rendu possible à travers:
                 </p>
-                <DefaultButton
-                    bgColor="Green"
-                    startIcon={<ModelTrainingIcon />}
-                >
+                <DefaultButton color="Green" startIcon={<ModelTrainingIcon />}>
                     Formation altérnée
                 </DefaultButton>
-                <DefaultButton bgColor="Green" startIcon={<WorkIcon />}>
+                <DefaultButton color="Green" startIcon={<WorkIcon />}>
                     Stage de fin d&apos;études
                 </DefaultButton>
-                <DefaultButton bgColor="Green" startIcon={<ApartmentIcon />}>
+                <DefaultButton color="Green" startIcon={<ApartmentIcon />}>
                     Partenariats avec les professionnels
                 </DefaultButton>
             </div>

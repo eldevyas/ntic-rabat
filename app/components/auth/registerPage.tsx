@@ -19,7 +19,7 @@ const LoginPage = () => {
                     <RegisterComponent />
                 </div>
             </div>
-            <Footer />
+            {/* <Footer /> */}
         </div>
     );
 };

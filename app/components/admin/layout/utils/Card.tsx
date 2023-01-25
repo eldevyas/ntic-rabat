@@ -126,9 +126,12 @@ export default function Card(props: any) {
             if (Variant == "") {
                 Variant = props.variant;
             }
+            // Get server url from env
+            const API_URL = process.env.SERVER_PUBLIC_API_URL;
+
             axios
                 .put(
-                    `http://localhost:8000/api/annonces/` + id,
+                    `${API_URL}/annonces/` + id,
                     {
                         title: Title,
                         description: Description,
@@ -176,9 +179,11 @@ export default function Card(props: any) {
             });
     };
     const addCard = () => {
+        const API_URL = process.env.SERVER_PUBLIC_API_URL;
+
         axios
             .post(
-                `http://localhost:8000/api/annonces/`,
+                `${API_URL}/annonces/`,
                 {
                     title: "title",
                     description: "description",

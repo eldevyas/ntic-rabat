@@ -1,12 +1,14 @@
 import Button from "@mui/material/Button";
 
 export function DefaultButton(props: any) {
+    const { color, ...otherProps } = props;
+
     return (
         <Button
             variant="text"
-            className={"DefaultButton " + props.bgColor + " " + props.State}
+            className={"DefaultButton " + color + " " + props.State}
             color="primary"
-            {...props}
+            {...otherProps}
         >
             {props.children}
         </Button>
@@ -15,12 +17,15 @@ export function DefaultButton(props: any) {
 
 // Icon Button
 export function IconButton(props: any) {
+    // remove color
+    // remove props color
+    const { color, ...otherProps } = props;
     return (
         <Button
             variant="text"
-            className={"IconButton " + props.bgColor}
+            className={"IconButton " + color}
             color="primary"
-            {...props}
+            {...otherProps}
         >
             {props.children}
         </Button>
@@ -29,12 +34,14 @@ export function IconButton(props: any) {
 
 // Outlined Button
 export function OutlinedButton(props: any) {
+    const { color, ...otherProps } = props;
+
     return (
         <Button
             variant="outlined"
-            className={"OutlinedButton " + props.bgColor}
+            className={"OutlinedButton " + color}
             color="primary"
-            {...props}
+            {...otherProps}
         >
             {props.children}
         </Button>

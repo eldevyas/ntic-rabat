@@ -10,20 +10,32 @@ const Header = () => {
     return (
         <div className="Header">
             <div className="NavButtons">
-                <Button variant="text" className="NavButton" onClick={() => Router.push('/')}>
+                <Button
+                    variant="text"
+                    className="NavButton"
+                    onClick={() => Router.push("/")}
+                >
                     Home
                 </Button>
-                <Button variant="text" className="NavButton" onClick={() => Router.push('/emplois')}>
+                <Button
+                    variant="text"
+                    className="NavButton"
+                    onClick={() => Router.push("/emplois")}
+                >
                     Emplois
                 </Button>
-                <Button variant="text" className="NavButton" onClick={() => Router.push('/')}>
+                <Button
+                    variant="text"
+                    className="NavButton"
+                    onClick={() => Router.push("/")}
+                >
                     Espace Stagiaire
                 </Button>
                 <Button
                     variant="text"
                     color="primary"
                     className="NavButton Active"
-                    onClick={() => Router.push('/admin')}
+                    onClick={() => Router.push("/admin")}
                 >
                     Administration
                 </Button>
@@ -36,7 +48,7 @@ const Header = () => {
                         className="Image"
                         width={45}
                         height={45}
-                        onClick={() => Router.push('/')}
+                        onClick={() => Router.push("/")}
                     />
                 </div>
                 <div className="UserInfos">
@@ -45,7 +57,7 @@ const Header = () => {
                 </div>
                 <IconButton
                     variant="text"
-                    bgColor="White"
+                    color="White"
                     className="UserActions"
                 >
                     <ExpandMoreOutlinedIcon className="UserIcon" />

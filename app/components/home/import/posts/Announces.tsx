@@ -12,16 +12,17 @@ export default function Announces() {
             url: string;
             created_at: string;
             updated_at: string;
+            deadline: string;
         }[]
     >([]);
 
     useEffect(() => {
         async function fetchData() {
-            let Data: any = axios
-                .get("http://localhost:8000/api/annonces")
-                .then((res) => {
-                    setAnnounces(res.data.data);
-                });
+            const API_URL = process.env.SERVER_PUBLIC_API_URL;
+
+            let Data: any = axios.get(`${API_URL}/annonces`).then((res) => {
+                setAnnounces(res.data.data);
+            });
         }
         fetchData();
     }, []);

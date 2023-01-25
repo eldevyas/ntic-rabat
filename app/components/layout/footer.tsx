@@ -48,7 +48,7 @@ export default function Footer() {
                                 )
                             }
                         >
-                            <IconButton bgColor="Green">
+                            <IconButton color="Green">
                                 <AccountTreeOutlinedIcon className="Icon" />
                             </IconButton>
                             <div className="Name">Yassine Chettouch</div>
@@ -61,7 +61,7 @@ export default function Footer() {
                                 )
                             }
                         >
-                            <IconButton bgColor="Green">
+                            <IconButton color="Green">
                                 <AccountTreeOutlinedIcon className="Icon" />
                             </IconButton>
                             <div className="Name">Yassine Atik</div>
@@ -73,7 +73,7 @@ export default function Footer() {
                     <h3>Coordonnées</h3>
                     <div className="Informations">
                         <div className="Row">
-                            <IconButton bgColor="White">
+                            <IconButton color="White">
                                 <LocationOnOutlinedIcon className="Icon" />
                             </IconButton>
                             <div className="Text">
@@ -81,7 +81,7 @@ export default function Footer() {
                             </div>
                         </div>
                         <div className="Row">
-                            <IconButton bgColor="White">
+                            <IconButton color="White">
                                 <LocalPhoneOutlinedIcon className="Icon" />
                             </IconButton>
                             <div className="Text">+212 6 64 09 38 60</div>

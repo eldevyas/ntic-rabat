@@ -52,7 +52,7 @@ const Service = () => {
                 {Cards.map((card, index) => {
                     return (
                         <div className="Card" key={index}>
-                            <IconButton bgColor="Blue">{card.icon}</IconButton>
+                            <IconButton color="Blue">{card.icon}</IconButton>
                             <h3 className="CardTitle">{card.title}</h3>
                             <p className="CardText">{card.description}</p>
                             <div className="ReadMore">

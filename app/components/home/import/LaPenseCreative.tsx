@@ -26,7 +26,7 @@ const LaPenseCreative = () => {
                 <div className="Buttons">
                     <div className="Button">
                         <DefaultButton
-                            bgColor="Blue"
+                            color="Blue"
                             onClick={() => Router.push("/#contact")}
                         >
                             Contactez nous
@@ -34,7 +34,7 @@ const LaPenseCreative = () => {
                     </div>
                     <div className="Button">
                         <DefaultButton
-                            bgColor="White"
+                            color="White"
                             startIcon={<ArrowCircleUpIcon />}
                         >
                             Faites une visite à l'institut

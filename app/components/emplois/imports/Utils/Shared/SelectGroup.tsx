@@ -146,12 +146,9 @@ export default function SelectGroup(props: any) {
                     }),
                     option: (base: any, state: any) => ({
                         ...base,
-                        backgroundColor: state.isFocused
-                            ? "#4BB8E7"
-                            : "transparent",
-                        borderColor: state.isFocused ? "#f5f5f5" : "#fff",
-                        // backdrop blur
-                        color: state.isFocused ? "#fff" : "#303030",
+                        backgroundColor: state.isSelected ? "#000" : "white",
+                        borderColor: state.isSelected ? "#f5f5f5" : "#fff",
+                        color: state.isSelected ? "#fff" : "#303030",
                         fontFamily: "Outfit, sans-serif",
                         fontSize: "1rem",
                         fontWeight: "400",
@@ -163,6 +160,10 @@ export default function SelectGroup(props: any) {
                                 ? "#4BB8E7"
                                 : "#fff",
                             borderColor: state.isFocused ? "#f5f5f5" : "#fff",
+                            color:
+                                state.isFocused || state.isSelected
+                                    ? "#fff"
+                                    : "#303030",
                         },
                         "&:active": {
                             backgroundColor: state.isFocused
@@ -170,11 +171,15 @@ export default function SelectGroup(props: any) {
                                 : "#fff",
                             borderColor: state.isFocused ? "#f5f5f5" : "#fff",
                         },
+                        // selected option
+                        "&:selected": {
+                            backgroundColor: "#555",
+                            borderColor: state.isFocused ? "#f5f5f5" : "#fff",
+                        },
                     }),
                     // group
                     groupHeading: (base: any, state: any) => ({
                         ...base,
-                        backgroundColor: state.isFocused ? "#fff" : "#fff",
                         fontFamily: "Outfit, sans-serif",
                         fontSize: "0.75rem",
                         fontWeight: "800",
