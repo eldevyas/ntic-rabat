@@ -43,21 +43,24 @@ class UserController extends Controller
     }
     public function login(Request $request)
     {
-        if (Auth::attempt([
-            "email" => $request->email,
-            "password" => $request->password
+        $user = User::where('email', $request->email)->orWhere('username', $request->email)->first();
+        if ($user && Auth::attempt([
+            "email" => $user->email,
+            "password" => $request->password,
         ])) {
-            $user = Auth::user();
             $success['token'] = $user->createToken('api-application')->accessToken;
             $success['name'] = $user->name;
+            // is email verified
+            $success['email_verified'] = $user->email_verified_at ? true : false;
             $success['user'] = $user;
             // put the token inside $success['user']
-            $success['user']['token'] = $success['token'];
+            $success['user']['token'] = $success['token'];;
             return response()->json($success, 200);
         } else {
             return response()->json(['error' => 'Unauthorised'], 401);
         }
     }
+
     public function logout(Request $request)
     {
         $request->user()->token()->revoke();

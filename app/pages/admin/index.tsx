@@ -3,18 +3,10 @@ import React, { useState, useEffect } from "react";
 import { withRouter, useRouter } from "next/router";
 import cookies from "next-cookies";
 
-const Admin = ({ token }: any) => {
+const Admin = () => {
     const router = useRouter();
     // State
-    const [Token, setToken] = useState(token);
-
-    useEffect(() => {
-        if (!token) {
-            router.push("/login");
-            return;
-        }
-    }, [router, token]);
-    // bro it was working
+    const [Token, setToken] = useState(false);
     return (
         <div className="AdminPage">
             {Token ? (
@@ -32,7 +24,7 @@ const Admin = ({ token }: any) => {
                         opacity: 0.5,
                     }}
                 >
-                    Redirection vers la page de login
+                    Redirection vers la page de connexion
                     <span
                         style={{
                             display: "inline-block",
@@ -66,9 +58,4 @@ const Admin = ({ token }: any) => {
     );
 };
 
-Admin.getInitialProps = async (ctx: any) => {
-    const { token } = cookies(ctx);
-    return { token };
-};
-
-export default withRouter(Admin);
+export default Admin;

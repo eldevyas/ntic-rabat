@@ -11,6 +11,7 @@ const AuthContext: any = createContext({
     register: () => {},
     logout: () => {},
     isLoggedIn: () => {},
+    isEmailVerified: false,
     isLoading: false,
 });
 
@@ -49,12 +50,20 @@ export const AuthContextProvider = ({ children }: any) => {
                 console.log(response);
                 if (response.data) {
                     if ((response.status = 200)) {
-                        setCookie("token", response.data.user);
-                        Display.pushSuccess(
-                            `Vous êtes connecté en tant que ${response.data.user.name} .`
-                        );
-                        Router.push("/admin");
-                        setUser(response.data.user);
+                        // Check if verified email
+                        if (response.data.email_verified) {
+                            // Set User
+                            setUser(response.data);
+                            // Set Cookie
+                            setCookie("token", response.data, {
+                                path: "/",
+                                expires: new Date(
+                                    Date.now() + 1000 * 60 * 60 * 24 * 7
+                                ),
+                            });
+                            // Redirect
+                            Router.push("/dashboard");
+                        }
                     } else if ((response.status = 401)) {
                         Display.pushFailure(
                             "Votre nom d'utilisateur ou votre mot de passe est incorrect."
@@ -156,7 +165,6 @@ export const AuthContextProvider = ({ children }: any) => {
 
         const date = new Date();
         date.setDate(date.getDate() - 1);
-
         setCookie("token", "", { expires: date });
 
         setUser(null);
