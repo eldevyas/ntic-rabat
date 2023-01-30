@@ -360,6 +360,7 @@ export default function BasicInformation(props: any) {
                         placeholder="Nom d'utilisateur"
                         variant="outlined"
                         error={userNameError !== ""}
+                        aria-autocomplete="on"
                         helperText={
                             userNameError
                                 ? userNameError
@@ -394,6 +395,7 @@ export default function BasicInformation(props: any) {
                             ) : null,
                         }}
                         inputRef={firstNameRef}
+                        aria-autocomplete="on"
                         className={`form-control ${
                             firstNameError !== "" ? "error" : ""
                         }`}
@@ -425,6 +427,7 @@ export default function BasicInformation(props: any) {
                             lastNameError !== "" ? "error" : ""
                         }`}
                         placeholder="Nom"
+                        aria-autocomplete="on"
                         variant="outlined"
                         error={lastNameError !== ""}
                         helperText={lastNameError}
@@ -459,6 +462,7 @@ export default function BasicInformation(props: any) {
                             emailError !== "" ? "error" : ""
                         }`}
                         placeholder="Email"
+                        aria-autocomplete="on"
                         variant="outlined"
                         error={emailError !== ""}
                         helperText={
@@ -517,6 +521,7 @@ export default function BasicInformation(props: any) {
                         }`}
                         placeholder="Mot de passe"
                         variant="outlined"
+                        aria-autocomplete="on"
                         type={showPassword ? "text" : "password"}
                         error={passwordError !== ""}
                         helperText={passwordError}
@@ -556,6 +561,7 @@ export default function BasicInformation(props: any) {
                             passwordConfirmationError !== "" ? "error" : ""
                         }`}
                         placeholder="Confirmation du mot de passe"
+                        aria-autocomplete="list"
                         variant="outlined"
                         type="password"
                         error={passwordConfirmationError !== ""}

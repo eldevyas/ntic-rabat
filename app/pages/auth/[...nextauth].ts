@@ -1,6 +1,7 @@
-import NextAuth, { AuthOptions } from "next-auth"
+// Authentication with Credentials
 
-const options: AuthOptions = {
-    // Next Auth configuration
+import NextAuth from "next-auth"
+import Providers from "next-auth/providers"
 
-};
+export default NextAuth({});
+

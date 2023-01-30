@@ -48,7 +48,7 @@ export default class RegisterComponent extends React.Component {
     render() {
         const Context: any = this.context;
         return (
-            <div className="Form">
+            <form className="Form">
                 <FirstStep confirmStep={this.handleRegistration} />
 
                 <div className="FormFooter">
@@ -57,7 +57,7 @@ export default class RegisterComponent extends React.Component {
                         <Link href="/login">Connectez-vous</Link>
                     </p>
                 </div>
-            </div>
+            </form>
         );
     }
 }
