@@ -146,7 +146,9 @@ export default function SelectGroup(props: any) {
                     }),
                     option: (base: any, state: any) => ({
                         ...base,
-                        backgroundColor: state.isSelected ? "#000" : "white",
+                        backgroundColor: state.isSelected
+                            ? "#000"
+                            : "transparent",
                         borderColor: state.isSelected ? "#f5f5f5" : "#fff",
                         color: state.isSelected ? "#fff" : "#303030",
                         fontFamily: "Outfit, sans-serif",
@@ -158,7 +160,7 @@ export default function SelectGroup(props: any) {
                         "&:hover": {
                             backgroundColor: state.isFocused
                                 ? "#4BB8E7"
-                                : "#fff",
+                                : "transparent",
                             borderColor: state.isFocused ? "#f5f5f5" : "#fff",
                             color:
                                 state.isFocused || state.isSelected
@@ -168,7 +170,7 @@ export default function SelectGroup(props: any) {
                         "&:active": {
                             backgroundColor: state.isFocused
                                 ? "#4BB8E7"
-                                : "#fff",
+                                : "transparent",
                             borderColor: state.isFocused ? "#f5f5f5" : "#fff",
                         },
                         // selected option
