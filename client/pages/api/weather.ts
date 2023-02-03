@@ -11,17 +11,25 @@ export default async function handler(
     req: NextApiRequest,
     res: NextApiResponse
 ) {
-    var curr = new Date; // get current date
-    var first = curr.getDate() - curr.getDay(); // First day is the day of the month - the day of the week
-    var last = first + 6; // last day is the first day + 6
+    var curr = new Date();
+    var dayOfWeek = curr.getDay();
+    var first = curr.getDate() - dayOfWeek;
+    if (dayOfWeek === 0) {
+        first -= 7;
+    }
+    var last = first + 6;
 
-    var weekStart = convert(new Date(curr.setDate(first)));
-    var weekEnd = convert(new Date(curr.setDate(last)));
+    var weekStart = new Date(curr.getFullYear(), curr.getMonth(), first);
+    var weekEnd = new Date(curr.getFullYear(), curr.getMonth(), last);
 
-    const url = `https://api.open-meteo.com/v1/forecast?latitude=34.01&longitude=-6.83&daily=weathercode,apparent_temperature_max,apparent_temperature_min&timezone=auto&start_date=${weekStart}&end_date=${weekEnd}`;
-    // const url = `https://api.open-meteo.com/v1/forecast?latitude=31.6295&longitude=-6.83&daily=weathercode,apparent_temperature_max,apparent_temperature_min&timezone=auto&start_date=${weekStart}&end_date=${weekEnd}`;
+    // console table these vars
+    console.table({
+        weekStart: convert(weekStart),
+        weekEnd: convert(weekEnd)
+    });
+
+    const url = `https://api.open-meteo.com/v1/forecast?latitude=34.01&longitude=-6.83&daily=weathercode,apparent_temperature_max,apparent_temperature_min&timezone=auto&start_date=${convert(weekStart)}&end_date=${convert(weekEnd)}`;
     const response = await axios.get(url);
-
     if (response.status !== 200) {
         return [];
     }

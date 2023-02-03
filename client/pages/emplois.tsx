@@ -9,9 +9,9 @@ export async function getServerSideProps({ query }: any) {
 
     return {
         props: {
-            GroupID: GroupID,
-            Schedule: Schedule,
-            Weather: Weather,
+            GroupID: GroupID ? GroupID : "",
+            Schedule: Schedule ? Schedule : [],
+            Weather: Weather ? Weather : [],
         },
     };
 }
