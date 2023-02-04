@@ -16,8 +16,7 @@ export default async function auth(req: NextApiRequest, res: NextApiResponse) {
                 },
                 async authorize(credentials, req) {
                     const res = await axios.post(`${process.env.SERVER_PUBLIC_API_URL}/auth/login`, credentials);
-                    const user = res.data.user
-
+                    const user = res.data.user;
                     console.table(res);
 
                     if (res.status == 200 && user) {
