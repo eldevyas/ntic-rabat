@@ -4,6 +4,7 @@ import * as Display from "../services/displayAlert";
 import axios from "axios";
 import { setCookie } from "cookies-next";
 import { getCookie } from "cookies-next";
+import { redirect } from "next/dist/server/api-utils";
 
 const AuthContext: any = createContext({
     user: null,
@@ -35,6 +36,7 @@ export const AuthContextProvider = ({ children }: any) => {
 
     const login = async (credentials: any) => {
         setLoading(true);
+
         let data = JSON.stringify({
             email: credentials.email,
             password: credentials.password,
@@ -50,6 +52,9 @@ export const AuthContextProvider = ({ children }: any) => {
                 console.log(response);
                 if (response.data) {
                     if ((response.status = 200)) {
+                        // Connected As User Name
+                        Display.pushSuccess(`Bienvenue ${response.data.name}!`);
+
                         // Check if verified email
                         if (response.data.email_verified) {
                             // Set User
@@ -62,7 +67,13 @@ export const AuthContextProvider = ({ children }: any) => {
                                 ),
                             });
                             // Redirect
+
                             Router.push("/dashboard");
+                        } else {
+                            Display.pushFailure(
+                                "Votre adresse email n'a pas été vérifiée."
+                            );
+                            return Router.push("/auth/verify-request");
                         }
                     } else if ((response.status = 401)) {
                         Display.pushFailure(
