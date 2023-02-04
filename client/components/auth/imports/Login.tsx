@@ -11,45 +11,40 @@ import * as Display from "../../../services/displayAlert";
 import { redirect } from "react-router";
 import AuthContext from "../../../contexts/authContext";
 
-import { getCsrfToken } from "next-auth/react";
+import { signIn } from "next-auth/react";
 
 const LoginComponent = () => {
     const emailRef = React.createRef<HTMLInputElement>();
     const passwordRef = React.createRef<HTMLInputElement>();
     const rememberMeRef = React.createRef<HTMLInputElement>();
-    const [credentials, setCredentials] = useState<any>({
-        username: "",
-        password: "",
-        rememberMe: null,
-    });
     const [showPassword, setShowPassword] = useState(false);
-    const [isLoading, setIsLoading] = useState(false);
     const Context: any = useContext(AuthContext);
 
     const handleClickShowPassword = () => {
         setShowPassword(!showPassword);
     };
 
-    const handleLogin = () => {
+    const handleLogin = async () => {
         const username = emailRef?.current?.value;
         const password = passwordRef?.current?.value;
         const isRememberMe = rememberMeRef?.current?.checked;
         if (username && password) {
-            setCredentials({
+            const Credentials = {
                 email: username,
                 password: password,
                 rememberMe: isRememberMe,
+            };
+
+            console.log(Credentials);
+
+            // const Login = Context.login(Credentials);
+            const res = await signIn("credentials", {
+                email: Credentials.email,
+                password: Credentials.password,
+                redirect: false,
             });
 
-            setIsLoading(true);
-
-            const Login = Context.login(credentials);
-
-            if (Login) {
-                setIsLoading(false);
-            } else {
-                setIsLoading(false);
-            }
+            console.log(res);
         } else {
             if (!username && !password) {
                 Display.pushWarning(
@@ -62,7 +57,6 @@ const LoginComponent = () => {
                 Display.pushWarning("Veuillez entrer votre mot de passe.");
                 return;
             }
-            setIsLoading(false);
         }
     };
 

@@ -1,39 +1,50 @@
-
 import type { NextApiRequest, NextApiResponse } from "next";
-import NextAuth from "next-auth"
+import NextAuth, { NextAuthOptions } from "next-auth"
 import axios from "axios"
 import CredentialsProvider from "next-auth/providers/credentials"
 
-export default async function auth(req: NextApiRequest, res: NextApiResponse) {
-    // Do whatever you want here, before the request is passed down to `NextAuth`
-    return await NextAuth(req, res, {
-        providers: [
-            CredentialsProvider({
-                name: 'Credentials',
-                credentials: {
-                    username: { label: "Username", type: "text", placeholder: "jsmith" },
-                    password: { label: "Password", type: "password" }
-                },
-                async authorize(credentials, req) {
-                    const res = await axios.post(`${process.env.SERVER_PUBLIC_API_URL}/auth/login`, credentials);
-                    const user = res.data.user
-
-                    console.table(res);
-
-                    if (res.status == 200 && user) {
-                        return user;
-                    }
-                    return null;
+const authOptions: NextAuthOptions = {
+    pages: {
+        signIn: '/auth/login',
+        // signOut: '/auth/logout',
+    },
+    session: {
+        strategy: "jwt",
+    },
+    providers: [
+        CredentialsProvider({
+            name: 'Credentials',
+            type: "credentials",
+            credentials: {
+                email: { name: "email", label: "Email", type: "text", placeholder: "smith.john@ofppt-edu.ma" },
+                password: { name: "password", label: "Password", type: "password" }
+            },
+            async authorize(credentials: any, req: any) {
+                const { email, password } = credentials as {
+                    email: string;
+                    password: string;
                 }
-            })
-        ],
-        pages: {
-            signIn: '/auth/signin',
-            signOut: '/auth/signout',
-            error: '/auth/error', // Error code passed in query string as ?error=
-            verifyRequest: '/auth/verify-request', // (used for check email message)
-            newUser: '/auth/new-user' // New users will be directed here on first sign in (leave the property out if not of interest)
-        }
-    })
+
+                if (email !== 'john@gmail.com' || password !== '1234') {
+                    return new Error("Credentials are invalid.");
+                }
+
+                const user = { id: 1, name: 'J Smith', email: 'jsmith@example.com' }
+
+                if (user) {
+                    // Any object returned will be saved in `user` property of the JWT
+                    return user
+                } else {
+                    // If you return null or false then the credentials will be rejected
+                    return null
+                    // You can also Reject this callback with an Error or with a URL:
+                    // throw new Error('error message') // Redirect to error page
+                    // throw '/path/to/redirect'        // Redirect to a URL
+                };
+            }
+        })
+    ],
 }
+
+export default NextAuth(authOptions);
 
