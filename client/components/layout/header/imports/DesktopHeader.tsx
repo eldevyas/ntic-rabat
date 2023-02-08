@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import Link from "./../utils/MiddleLink";
 import { DefaultButton } from "./../../../core/button";
 import * as Display from "../../../../services/displayAlert";
+import { signIn } from "next-auth/react";
 export default function DesktopHeader(props: any) {
     const Router = useRouter();
 
@@ -41,7 +42,7 @@ export default function DesktopHeader(props: any) {
                 <DefaultButton
                     color="LightGreen"
                     onClick={() => {
-                        Router.push("/register");
+                        Router.push("/auth/register");
                     }}
                 >
                     {"S'inscrire"}
@@ -49,7 +50,7 @@ export default function DesktopHeader(props: any) {
                 <DefaultButton
                     color="Green"
                     onClick={() => {
-                        Router.push("/login");
+                        signIn();
                     }}
                 >
                     Se Connecter

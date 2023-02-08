@@ -13,13 +13,13 @@ const LoginPage = () => {
             </Head>
 
             <Header />
-            <Background />
+
             <div className="RegisterContainer">
                 <div className="wrapper">
                     <RegisterComponent />
                 </div>
             </div>
-            {/* <Footer /> */}
+            <Footer />
         </div>
     );
 };

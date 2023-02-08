@@ -46,7 +46,7 @@ $nfMargin: 20px;
     background: $G1;
     backdrop-filter: blur(25px);
     border: 1px solid $C4;
-    border-radius: 10px !important;
+    border-radius: $FormsRadius !important;
     color: $C4 !important;
     font-size: 0.85rem;
     padding: 0;

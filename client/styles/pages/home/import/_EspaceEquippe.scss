@@ -73,7 +73,7 @@
     }
     .ImageContainer {
         position: relative;
-        border-radius: 10px;
+        border-radius: $FormsRadius;
         overflow: hidden;
         .Image {
             width: 100%;

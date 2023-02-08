@@ -33,7 +33,7 @@ export default class App extends React.Component {
 
                 <div className="HomePage">
                     <Header />
-                    <Background />
+
                     <Landing />
                     <Service />
                     <EspaceEquippe />

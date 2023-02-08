@@ -18,7 +18,7 @@
                     font-size: 1.2rem;
                     align-items: center;
                     .IconContainer {
-                        border-radius: 10px;
+                        border-radius: $FormsRadius;
                         padding: 0.6rem;
                         display: flex;
                         justify-content: center;
@@ -29,7 +29,7 @@
                     display: flex;
                     gap: 0.5rem;
                     .ActionButton {
-                        border-radius: 10px;
+                        border-radius: $FormsRadius;
                         padding: 0.6rem;
                         display: flex;
                         justify-content: center;
@@ -67,7 +67,7 @@
             .CardButton {
                 display: flex;
                 .MuiButton-root {
-                    border-radius: 10px;
+                    border-radius: $FormsRadius;
                     display: flex;
                     justify-content: center;
                     align-items: center;

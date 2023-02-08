@@ -8,21 +8,20 @@ import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import VisibilityOn from "@mui/icons-material/Visibility";
 
 import * as Display from "../../../services/displayAlert";
-import { redirect } from "react-router";
-import AuthContext from "../../../contexts/authContext";
 import FirstStep from "./components/BasicInformation";
 import Link from "next/link";
+import Auth from "../../../services/authServices";
+import Router from "next/router";
 export default class RegisterComponent extends React.Component {
     credentials: any;
     state: any;
     isLoading: any;
-    static contextType = AuthContext;
 
     constructor(props: any) {
         super(props);
 
         this.state = {
-            Step: 0,
+            isLoading: false,
         };
 
         this.credentials = {
@@ -33,28 +32,37 @@ export default class RegisterComponent extends React.Component {
             password: "",
             passwordConfirmation: "",
         };
-
-        this.isLoading = false;
     }
 
     handleRegistration = (credentials: any) => {
         this.credentials = credentials;
+        let Register = Auth.Register(credentials);
+        this.setState({ isLoading: true });
 
-        // Context register
-        const Context: any = this.context;
-        Context.register(this.credentials);
+        if (Register != null) {
+            Register.then((res: any) => {
+                // is loading
+                this.setState({ isLoading: false });
+                if (res) {
+                    Router.push("/auth/login");
+                }
+            });
+        }
     };
 
     render() {
         const Context: any = this.context;
         return (
             <form className="Form">
-                <FirstStep confirmStep={this.handleRegistration} />
+                <FirstStep
+                    confirmStep={this.handleRegistration}
+                    isLoading={this.state.isLoading}
+                />
 
                 <div className="FormFooter">
                     <p>
                         Vous avez déjà un compte ?{" "}
-                        <Link href="/login">Connectez-vous</Link>
+                        <Link href="/auth/login">Connectez-vous</Link>
                     </p>
                 </div>
             </form>

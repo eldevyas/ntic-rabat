@@ -5,7 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Resources\AnnonceCollection;
 use App\Http\Controllers\Api\AnnonceController;
-use App\Http\Controllers\Api\ProjectController;
+// import CheckResetPasswordToken middleware
+use App\Http\Middleware\CheckResetPasswordToken;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,6 +34,13 @@ Route::apiResource('projects', ProjectController::class);
 
 // Route to check username availability
 Route::get('/users/check-username/{username}', [UserController::class, 'checkUsername']);
-
 // Route to check email availability
 Route::get('/users/check-email/{email}', [UserController::class, 'checkEmail']);
+// Forget password route for sending email
+Route::post('/users/forget-password', [UserController::class, 'forgetPassword']);
+// reset password route
+Route::post('/reset-password', [UserController::class, 'resetPasswordByToken'])->middleware('CheckResetPasswordToken');
+// route for email verification
+Route::post('/users/verify-email', [UserController::class, 'verifyEmailCode']);
+// check if email is verified
+Route::post('/users/check-email-verified', [UserController::class, 'checkEmailVerified']);

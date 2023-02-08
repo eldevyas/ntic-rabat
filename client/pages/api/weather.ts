@@ -14,13 +14,19 @@ export default async function handler(
     var curr = new Date();
     var dayOfWeek = curr.getDay();
     var first = curr.getDate() - dayOfWeek;
-    if (dayOfWeek === 0) {
-        first -= 7;
+    if (dayOfWeek > 0) {
+        first += 1;
     }
-    var last = first + 6;
+    var last = first + 5;
 
     var weekStart = new Date(curr.getFullYear(), curr.getMonth(), first);
     var weekEnd = new Date(curr.getFullYear(), curr.getMonth(), last);
+
+    // refetch the current week each time the current one has ended
+    if (weekEnd < curr) {
+        weekStart.setDate(weekStart.getDate() + 7);
+        weekEnd.setDate(weekEnd.getDate() + 7);
+    }
 
     // console table these vars
     console.table({

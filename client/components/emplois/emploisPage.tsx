@@ -35,7 +35,7 @@ const EmploisPage = (props: any) => {
 
             <div className="EmploisPage">
                 <Header />
-                <Background />
+
                 <Emploi
                     data-GroupID={GroupID}
                     data-Schedule={Schedule}

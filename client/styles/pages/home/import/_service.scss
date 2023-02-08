@@ -22,7 +22,7 @@
             align-items: stretch;
             .Card {
                 padding: 2rem;
-                border-radius: 10px;
+                border-radius: $FormsRadius;
                 background-color: $C1;
                 background: $G1;
                 display: flex;
@@ -173,7 +173,7 @@
                 position: relative;
                 width: 100%;
                 height: 100%;
-                border-radius: 10px;
+                border-radius: $FormsRadius;
                 overflow: hidden;
                 display: flex;
                 justify-content: center;

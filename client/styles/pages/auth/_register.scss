@@ -4,6 +4,9 @@
         min-height: 100vh;
         overflow: hidden;
         position: relative;
+        * {
+            font-family: inherit !important;
+        }
         .Header {
             z-index: 100 !important;
             .End {
@@ -79,7 +82,7 @@
                             width: 100%;
                             min-width: 300px;
                             height: auto;
-                            border-radius: 10px;
+                            border-radius: $FormsRadius;
                             display: flex;
                             justify-content: center;
                             align-items: center;
@@ -111,7 +114,7 @@
                                 .Visibility {
                                     background-color: rgba(rgb(251, 72, 72), 0%);
                                     // border
-                                    border-radius: 10px;
+                                    border-radius: $FormsRadius;
                                     svg {
                                         color: $C4;
                                     }
@@ -138,7 +141,7 @@
                             //     .Visibility {
                             //         background-color: rgba($C3, 0);
                             //         // border
-                            //         border-radius: 10px;
+                            //         border-radius: $FormsRadius;
                             //         svg {
                             //             color: $C3;
                             //         }
@@ -154,7 +157,7 @@
                                 color: rgba($C1, 0.5);
                                 text-align: left;
                                 padding: 0 0px;
-                                border-radius: 10px;
+                                border-radius: $FormsRadius;
                                 transition: all 0.3s ease;
                                 z-index: 0 !important;
                                 box-shadow: none !important;
@@ -168,7 +171,7 @@
                                     color: rgba($C1, 0.5);
                                     text-align: left;
                                     padding: 0;
-                                    border-radius: 10px;
+                                    border-radius: $FormsRadius;
                                     transition: all 0.3s ease;
                                     z-index: 0 !important;
                                     box-shadow: none !important;
@@ -193,7 +196,7 @@
                                         text-align: left;
                                         transition: all 0.3s ease;
                                         z-index: 0 !important;
-                                        border-radius: 10px;
+                                        border-radius: $FormsRadius;
                                         // aria invalid
                                         &[aria-invalid='true'] {
                                             border: none !important;
@@ -227,7 +230,7 @@
                                 justify-content: center;
                                 align-items: center;
                                 background-color: $C2;
-                                border-radius: 10px;
+                                border-radius: $FormsRadius;
                                 z-index: 1 !important;
                                 svg {
                                     width: 20px;
@@ -245,7 +248,7 @@
                                 justify-content: center;
                                 align-items: center;
                                 background-color: rgba($C2, 0);
-                                border-radius: 10px;
+                                border-radius: $FormsRadius;
                                 z-index: 1 !important;
                                 svg {
                                     color: $C3;

@@ -6,8 +6,9 @@
     text-transform: capitalize;
     font-weight: 800;
     padding: 0.6rem 1rem;
-    border-radius: 0.7rem;
+    border-radius: $FormsRadius;
     box-shadow: none !important;
+    color: $C4;
     &:hover {
         background: darken($color, 10%);
         box-shadow: none;
@@ -17,7 +18,7 @@
 @mixin IconButton($color) {
     background: $color;
     color: $C1;
-    border-radius: 0.5rem;
+    border-radius: $FormsRadius;
     aspect-ratio: 1/1;
     padding: 0.5rem !important;
     box-shadow: none;
@@ -44,7 +45,7 @@
     text-transform: capitalize;
     font-weight: 800;
     padding: 0.6rem 1rem;
-    border-radius: 0.7rem;
+    border-radius: $FormsRadius;
     color: $C4;
     border: none;
     outline: none;
@@ -58,6 +59,11 @@
 }
 
 .DefaultButton {
+    $primary: $C2;
+    @include DefaultButton($primary);
+}
+
+.DefaultButton.Blue {
     $primary: $C2;
     @include DefaultButton($primary);
 }
@@ -87,7 +93,7 @@
 .DefaultButton.LightGreen {
     $primary: lighten($C3, 40%);
     @include DefaultButton($primary);
-    color: $C3;
+    color: $C3 !important;
 }
 
 .IconButton {
@@ -125,4 +131,21 @@
     $color: rgba($C2, 15%);
     @include OutlinedButton($color);
     color: $C2;
+}
+
+.OutlinedButton.Green {
+    $color: $C3;
+    @include OutlinedButton($color);
+}
+
+.OutlinedButton.LightGreen {
+    $color: rgba($C3, 15%);
+    @include OutlinedButton($color);
+    color: $C3;
+}
+
+.OutlinedButton.White {
+    $color: $C4;
+    @include OutlinedButton($color);
+    color: $C1;
 }

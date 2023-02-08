@@ -110,7 +110,7 @@
         .HeaderButton {
             padding: 1rem;
             color: $C3 !important;
-            border-radius: 10px;
+            border-radius: $FormsRadius;
             >* {
                 color: $C3 !important;
             }
@@ -171,7 +171,7 @@
                 @include IconButton($C3);
                 padding: 1rem !important;
                 color: $C3;
-                border-radius: 10px;
+                border-radius: $FormsRadius;
                 background-color: transparent;
                 outline-color: $C3;
                 border-color: $C3;

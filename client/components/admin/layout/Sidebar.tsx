@@ -12,7 +12,7 @@ const Sidebar = () => {
     const handleLogout = () => {
         const date = new Date();
         date.setDate(date.getDate() - 1);
-        Router.push("/login"); // redirect the user to the login page
+        Router.push("/auth/login"); // redirect the user to the login page
         setCookie("token", "", { expires: date });
     };
     return (

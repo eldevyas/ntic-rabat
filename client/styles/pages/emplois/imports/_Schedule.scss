@@ -25,7 +25,7 @@
             transform: translate(-50%, -50%);
             background: rgba($C4, 50%);
             padding: 1rem;
-            border-radius: 10px;
+            border-radius: $FormsRadius;
             color: $C1;
             font-weight: 500;
             font-size: 0.9rem;
@@ -61,7 +61,7 @@
             min-width: min-content;
             max-width: max-content;
             background-color: $C4;
-            border-radius: 10px;
+            border-radius: $FormsRadius;
             color: $C1;
             font-weight: 500;
             font-size: 0.9rem;
@@ -94,11 +94,11 @@
             min-width: 150px;
             background-color: $C4;
             // padding: 10px 20px;
-            border-radius: 15px;
+            border-radius: $FormsRadius;
             color: $C4;
             font-weight: 500;
             font-size: 0.9rem;
-            border-radius: 15px;
+            border-radius: $FormsRadius;
             height: 1rem;
             &:has(> .WeatherCell) {
                 background: $G2;
@@ -134,7 +134,7 @@
                 background: $C1;
                 width: 100%;
                 height: 100%;
-                border-radius: 15px;
+                border-radius: $FormsRadius;
                 padding: 0.75rem 0.75rem;
                 // min-width: 200px !important;
                 span {
@@ -148,7 +148,7 @@
                         color: $C1;
                         background-color: $C4;
                         padding: 0.25rem 0.5rem;
-                        border-radius: 5px;
+                        border-radius: $FormsRadius / 2;
                     }
                     &:nth-child(1) {
                         font-weight: 600;
@@ -183,22 +183,22 @@
         }
     }
     .Presential {
-        background: rgba(#ECB13F, 20%) !important;
+        background: $G1 !important;
         span {
             font-weight: 600;
             font-size: 0.8rem;
-            color: #ECB13F;
+            color: $C4;
             &:nth-child(2) {
                 font-weight: 600;
                 font-size: 0.8rem;
-                color: #fff !important;
-                background-color: #ECB13F !important;
+                color: $C1 !important;
+                background-color: $C4 !important;
                 padding: 0.25rem 0.5rem;
-                border-radius: 5px;
+                border-radius: $FormsRadius;
             }
         }
         &:hover {
-            background: rgba(#ECB13F, 35%) !important;
+            background: rgba($C1, 85%) !important;
         }
     }
     .Online {
@@ -213,7 +213,7 @@
                 color: #fff !important;
                 background-color: #39B54A !important;
                 padding: 0.25rem 0.5rem;
-                border-radius: 5px;
+                border-radius: $FormsRadius;
             }
         }
         &:hover {
@@ -232,7 +232,7 @@
                 color: #fff !important;
                 background-color: #F74343 !important;
                 padding: 0.25rem 0.5rem;
-                border-radius: 5px;
+                border-radius: $FormsRadius;
             }
         }
         &:hover {
