@@ -14,7 +14,7 @@ import { signIn, useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import Link from "next/link";
 
-import CryptoJS from "crypto-js";
+import CryptoJS, { AES, enc, SHA256 } from "crypto-js";
 
 const LoginComponent = () => {
     const Router = useRouter();
@@ -64,24 +64,6 @@ const LoginComponent = () => {
                             "Une erreur s'est produite lors de la connexion. Veuillez réessayer."
                         );
                     }
-                    // 403
-                    if (res.status === 403) {
-                        // redirect to email confirmation page with email as a parameter
-
-                        // hash the parameter email
-                        const hash = CryptoJS.SHA256(
-                            Credentials.email
-                        ).toString();
-                        Router.push({
-                            pathname: "/auth/confirm-email",
-                            query: { email: hash },
-                        });
-                        // Should confirm his email adresse
-                        return Display.pushFailure(
-                            "Veuillez confirmer votre adresse e-mail."
-                        );
-                    }
-
                     // 404
                     if (res.status === 404) {
                         return Display.pushFailure(

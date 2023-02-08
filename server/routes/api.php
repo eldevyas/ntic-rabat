@@ -41,6 +41,6 @@ Route::post('/users/forget-password', [UserController::class, 'forgetPassword'])
 // reset password route
 Route::post('/reset-password', [UserController::class, 'resetPasswordByToken'])->middleware('CheckResetPasswordToken');
 // route for email verification
-Route::post('/users/verify-email', [UserController::class, 'verifyEmailCode']);
+Route::post('/auth/verify-email', [UserController::class, 'verifyEmailCode']);
 // check if email is verified
 Route::post('/users/check-email-verified', [UserController::class, 'checkEmailVerified']);

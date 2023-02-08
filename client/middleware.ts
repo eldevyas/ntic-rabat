@@ -1,8 +1,17 @@
-// export { default } from "next-auth/middleware"
+import { withAuth } from "next-auth/middleware"
 
-// export const config = { matcher: ["/admin"] }
+export default withAuth(
+    // `withAuth` augments your `Request` with the user's token.
+    function middleware(req) {
+        console.log(req.nextauth.token)
+    },
+    {
+        callbacks: {
+            authorized: ({ token }) => token?.email_verified === true,
+        }
+    }
+);
 
-// Configure a middlewar logic in this file.
-export default function middleware() {
-    return;
+export const config = {
+    matcher: ["/connect", "/admin"],
 }

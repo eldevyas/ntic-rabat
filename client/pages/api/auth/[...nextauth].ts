@@ -6,7 +6,7 @@ import { randomBytes, randomUUID } from "crypto";
 
 
 const authOptions: NextAuthOptions = {
-    secret: 'fjFBrygUwv5q+foLZPwWHpmBnkeL4wU2PpNoVkFjQQg=',
+    secret: process.env.NEXTAUTH_SECRET,
     pages: {
         signIn: '/auth/login',
         signOut: '/auth/register',
@@ -19,6 +19,7 @@ const authOptions: NextAuthOptions = {
         updateAge: 24 * 60 * 60, // 24 hours
     },
     callbacks: {
+
         session: async ({ session, token }: any) => {
             if (session?.user) {
                 session.user.id = token.uid;
@@ -39,44 +40,43 @@ const authOptions: NextAuthOptions = {
             return token;
         },
         // If email is verified after sign in
-        signIn: async (user: any) => {
-            let email = user.user["email"];
+        // signIn: async (user: any) => {
+        //     let email = user.user["email"];
 
-            try {
-                let VERIFY_EMAIL_ENDPOINT = process.env.SERVER_PUBLIC_HOSTNAME + "/api/users/check-email-verified";
-                // if has localhost, switch it to 0.0.0.0
-                if (VERIFY_EMAIL_ENDPOINT.includes("localhost")) {
-                    VERIFY_EMAIL_ENDPOINT = VERIFY_EMAIL_ENDPOINT.replace("localhost", "0.0.0.0");
-                }
-                const response = await axios.post(VERIFY_EMAIL_ENDPOINT, {
-                    email: email
-                }, {
-                    headers: { 'Content-Type': 'application/json' }
-                }).then((response) => {
-                    if (response.status == 200) {
-                        if (response.data.email_verified) {
-                            return true;
-                        }
-                        return false;
-                    } else {
-                        return false;
-                    }
-                }).catch((error) => {
-                    return false;
-                }
-                )
-                console.table({
-                    'User': user.user.name,
-                    'Email': user.user.email,
-                    'Email Verified': response,
-                    'Verify Email URL': VERIFY_EMAIL_ENDPOINT
-
-                });
-                return response;
-            } catch (error) {
-                return false;
-            }
-        },
+        //     try {
+        //         let VERIFY_EMAIL_ENDPOINT = process.env.SERVER_PUBLIC_HOSTNAME + "/api/users/check-email-verified";
+        //         // if has localhost, switch it to 0.0.0.0
+        //         if (VERIFY_EMAIL_ENDPOINT.includes("localhost")) {
+        //             VERIFY_EMAIL_ENDPOINT = VERIFY_EMAIL_ENDPOINT.replace("localhost", "0.0.0.0");
+        //         }
+        //         const response = await axios.post(VERIFY_EMAIL_ENDPOINT, {
+        //             email: email
+        //         }, {
+        //             headers: { 'Content-Type': 'application/json' }
+        //         }).then((response) => {
+        //             if (response.status == 200) {
+        //                 if (response.data.email_verified) {
+        //                     return true;
+        //                 }
+        //                 return false;
+        //             } else {
+        //                 return false;
+        //             }
+        //         }).catch((error) => {
+        //             return false;
+        //         }
+        //         )
+        //         console.table({
+        //             'User': user.user.name,
+        //             'Email': user.user.email,
+        //             'Email Verified': response,
+        //             'Verify Email URL': VERIFY_EMAIL_ENDPOINT
+        //         });
+        //         return response;
+        //     } catch (error) {
+        //         return false;
+        //     }
+        // },
     },
     providers: [
         CredentialsProvider({

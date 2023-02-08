@@ -47,7 +47,15 @@ class UserController extends Controller
         $user->role_id = $input['role_id'];
         $user->save();
         $success['token'] = $user->createToken('api-application')->accessToken;
-        // Create email verification token
+        // send email verification
+        $this->sendEmailVerification($request);
+
+        return response()->json($success, 201);
+    }
+
+
+    public function sendEmailVerification(Request $request)
+    {
         $token = Str::random(60);
         $code = rand(10000, 99999);
         DB::table('email_verifications')->insert([
@@ -216,11 +224,13 @@ class UserController extends Controller
         if (!$user_token) {
             return response()->json([
                 'message' => 'Invalid code'
-            ], 404);
-        } else {
+            ], 401);
+        } else if ($user_token) {
             $user = User::where('email', $email)->first();
             $user->email_verified_at = Carbon::now();
             $user->save();
+            // delete all the values from the email_verifications table
+            // DB::table('email_verifications')->where('email', $email)->delete();
             return response()->json([
                 'message' => 'Email verified successfully'
             ], 200);
@@ -254,4 +264,7 @@ class UserController extends Controller
             ], 404);
         }
     }
+
+    // Login with a token
+
 }

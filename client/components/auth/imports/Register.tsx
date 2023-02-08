@@ -12,6 +12,7 @@ import FirstStep from "./components/BasicInformation";
 import Link from "next/link";
 import Auth from "../../../services/authServices";
 import Router from "next/router";
+import { signIn } from "next-auth/react";
 export default class RegisterComponent extends React.Component {
     credentials: any;
     state: any;
@@ -43,8 +44,17 @@ export default class RegisterComponent extends React.Component {
             Register.then((res: any) => {
                 // is loading
                 this.setState({ isLoading: false });
+                signIn(
+                    "credentials",
+                    {
+                        email: credentials.email,
+                        password: credentials.password,
+                        redirect: false,
+                    },
+                    { callbackUrl: "/auth/confirm-email" }
+                );
                 if (res) {
-                    Router.push("/auth/login");
+                    Router.push("/auth/confirm-email");
                 }
             });
         }

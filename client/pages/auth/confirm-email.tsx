@@ -7,21 +7,28 @@ import Link from "next/link";
 import { DefaultButton, OutlinedButton } from "../../components/core/button";
 import Head from "next/head";
 import * as Display from "../../services/displayAlert";
-import { useSession } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
+import { useRouter } from "next/router";
+import axios from "axios";
+import AuthService from "../../services/authServices";
 
 export default function VerificationPage() {
+    const router = useRouter();
+
     const { data: session, status } = useSession();
 
     const CodeInputRef = useRef<HTMLInputElement>(null);
     const [Code, setCode] = useState<string[]>(["-", "-", "-", "-", "-"]);
+    // Email
+    const [Email, setEmail] = useState<string>(session?.user?.email || "");
 
     useEffect(() => {
         CodeInputRef.current?.focus();
+        // Email from session
+        if (session?.user?.email) {
+            setEmail(session?.user?.email);
+        }
         console.clear();
-        console.table({
-            Value: CodeInputRef.current?.value,
-            Code: Code,
-        });
     }, [Code]);
 
     const getCode = (value: string) => {
@@ -37,16 +44,10 @@ export default function VerificationPage() {
 
     const handleCodeInput = () => {
         if (CodeInputRef.current) {
-            // Only numbers are allowed
-            // No dots
-            // No commas
-            // No spaces
-            // No letters
             CodeInputRef.current.value = CodeInputRef.current.value.replace(
                 /[^0-9]/g,
                 ""
             );
-            // Value shall not bypass 5 numbers
             if (CodeInputRef.current.value.length > 5) {
                 CodeInputRef.current.value = CodeInputRef.current.value.slice(
                     0,
@@ -59,24 +60,29 @@ export default function VerificationPage() {
         }
     };
 
-    //
-    //
-    // Function to handle code confirmation
-    //
-    const handleCodeConfirmation = () => {
-        //
-        // Code to handle code confirmation
-        //
-        Display.pushInfo("Code de confirmation envoyé avec succès.");
+    const handleCodeConfirmation = async () => {
+        if (CodeInputRef.current?.value.length === 5) {
+            let ConfirmationValidated = await AuthService.ConfirmEmailAddress(
+                CodeInputRef.current.value,
+                Email
+            );
+            if (ConfirmationValidated == true) {
+                Display.pushSuccess(
+                    "Votre adresse e-mail a été confirmée avec succès."
+                );
+                router.push("/connect");
+            } else {
+                Display.pushFailure(
+                    "Le code de confirmation est invalide. Veuillez réessayer."
+                );
+            }
+        }
     };
 
-    //
     // Function to handle code re-sending
-    //
+
     const handleCodeResending = () => {
-        //
         // Code to handle code re-sending
-        //
         Display.pushInfo("Code de confirmation envoyé avec succès.");
     };
 
@@ -92,10 +98,6 @@ export default function VerificationPage() {
             <Header />
 
             <div className="Content">
-                {
-                    // If user is not logged in
-                    status
-                }
                 <div className="Text">
                     <h1 className="Title">Confirmez votre e-mail.</h1>
                     <p className="Paragraph">
@@ -109,8 +111,7 @@ export default function VerificationPage() {
                         >
                             Microsoft
                         </a>{" "}
-                        à l'adresse{" "}
-                        <span className="Bold">smith.john@ofppt-edu.ma</span>.
+                        à l'adresse <span className="Bold">{Email}</span>.
                     </p>
 
                     <p className="Paragraph">
@@ -166,6 +167,9 @@ export default function VerificationPage() {
                 </div>
 
                 <div className="Buttons">
+                    <OutlinedButton color="LightBlue" onClick={signOut}>
+                        Se déconnecter
+                    </OutlinedButton>
                     <OutlinedButton
                         color="LightBlue"
                         onClick={handleCodeResending}
@@ -184,3 +188,4 @@ export default function VerificationPage() {
         </div>
     );
 }
+VerificationPage.auth = true;

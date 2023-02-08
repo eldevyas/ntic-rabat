@@ -4,7 +4,7 @@ import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 
 const login = () => {
-    const { data: session, status } = useSession();
+    const { data: session, status }: any = useSession();
     const Router = useRouter();
 
     useEffect(() => {
@@ -12,8 +12,18 @@ const login = () => {
             session,
             status,
         });
-        if (status === "authenticated") {
+        if (
+            status === "authenticated" &&
+            session?.user?.email_verified === true
+        ) {
             Router.push("/connect");
+        }
+
+        if (
+            status === "authenticated" &&
+            session?.user?.email_verified === false
+        ) {
+            Router.push("/auth/confirm-email");
         }
     }, [status]);
 

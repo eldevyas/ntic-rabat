@@ -10,7 +10,7 @@
     <p>Use the following code to reset your password:</p>
     <h2>{{ $code }}</h2>
     <p>Or click on the following link:</p>
-    <a href="{{ url('reset-password/?token=' . $token . '&email='
+    <a href="{{ url('api/reset-password/?token=' . $token . '&email='
     // encrypt email
     . urlencode(encrypt($email))
     ) }}">Reset Password</a>

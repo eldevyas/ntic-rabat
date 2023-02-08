@@ -80,8 +80,37 @@ const Register = (credentials: any) => {
     }
 };
 
+// Confirm Email address
+const ConfirmEmailAddress = async (code: string, email: string) => {
+    // Call API
+    let response = await axios.post("/api/auth/confirm-email",
+        {
+            code,
+            email
+        }).then(
+            response => {
+                // Return response
+                return response;
+            },
+        ).catch(
+            error => {
+                // Return error
+                return error;
+            }
+        );
+
+    if (response.status == 200) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+
+
 const AuthService = {
-    Register: Register
+    Register: Register,
+    ConfirmEmailAddress: ConfirmEmailAddress
 }
 
 export default AuthService;
