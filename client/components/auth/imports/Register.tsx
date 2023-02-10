@@ -64,6 +64,15 @@ export default class RegisterComponent extends React.Component {
         const Context: any = this.context;
         return (
             <form className="Form">
+                <div className="FormTitle">
+                    <h1>
+                        Inscription à <span>NTIC Connect</span>
+                    </h1>
+                    <p>
+                        Inscrivez-vous pour accéder à votre tableau de bord et à
+                        vos données.
+                    </p>
+                </div>
                 <FirstStep
                     confirmStep={this.handleRegistration}
                     isLoading={this.state.isLoading}

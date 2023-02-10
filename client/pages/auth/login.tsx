@@ -2,16 +2,13 @@ import React, { useEffect } from "react";
 import LoginPage from "../../components/auth/loginPage";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
+import Loading from "../../components/core/Loading";
 
 const login = () => {
     const { data: session, status }: any = useSession();
     const Router = useRouter();
 
     useEffect(() => {
-        console.table({
-            session,
-            status,
-        });
         if (
             status === "authenticated" &&
             session?.user?.email_verified === true
@@ -27,7 +24,15 @@ const login = () => {
         }
     }, [status]);
 
-    return <LoginPage />;
+    return (
+        <>
+            {status === "authenticated" || session || status === "loading" ? (
+                <Loading />
+            ) : (
+                <LoginPage />
+            )}
+        </>
+    );
 };
 
 export default login;

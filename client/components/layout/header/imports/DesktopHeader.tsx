@@ -5,7 +5,13 @@ import Link from "./../utils/MiddleLink";
 import { DefaultButton } from "./../../../core/button";
 import * as Display from "../../../../services/displayAlert";
 import { signIn } from "next-auth/react";
+import { useSession } from "next-auth/react";
+import User from "../utils/User";
+
 export default function DesktopHeader(props: any) {
+    // session
+    const { data: session, status } = useSession();
+
     const Router = useRouter();
 
     const MiddleLinks: {
@@ -39,22 +45,35 @@ export default function DesktopHeader(props: any) {
                 ))}
             </div>
             <div className="End">
-                <DefaultButton
-                    color="LightGreen"
-                    onClick={() => {
-                        Router.push("/auth/register");
-                    }}
-                >
-                    {"S'inscrire"}
-                </DefaultButton>
-                <DefaultButton
-                    color="Green"
-                    onClick={() => {
-                        signIn();
-                    }}
-                >
-                    Se Connecter
-                </DefaultButton>
+                {
+                    // if user is connected
+                    session ? (
+                        <User
+                            name={session?.user?.name as string}
+                            email={session?.user?.email as string}
+                            image={session?.user?.image as string}
+                        />
+                    ) : (
+                        <>
+                            <DefaultButton
+                                color="LightGreen"
+                                onClick={() => {
+                                    Router.push("/auth/register");
+                                }}
+                            >
+                                {"S'inscrire"}
+                            </DefaultButton>
+                            <DefaultButton
+                                color="Green"
+                                onClick={() => {
+                                    signIn();
+                                }}
+                            >
+                                Se Connecter
+                            </DefaultButton>
+                        </>
+                    )
+                }
             </div>
         </header>
     );

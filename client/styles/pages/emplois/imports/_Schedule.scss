@@ -18,44 +18,6 @@
         border-spacing: $GlobalGap;
         margin: 0 auto;
         position: relative;
-        .Message {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: rgba($C4, 50%);
-            padding: 1rem;
-            border-radius: $FormsRadius;
-            color: $C1;
-            font-weight: 500;
-            font-size: 0.9rem;
-            text-align: center;
-            width: 100%;
-            max-width: 500px;
-            z-index: 1;
-            // flex display column and centered
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            gap: $GlobalGap;
-            // filter box shadow
-            box-shadow: 0px 0px 10rem rgba($color: $C1, $alpha: 0.25);
-            h3 {
-                font-weight: 800;
-                font-size: 1.25rem;
-                color: rgba($C2, 100%);
-            }
-            p {
-                font-weight: 500;
-                font-size: 0.9rem;
-                color: rgba($C1, 50%);
-            }
-            // hover
-            &:hover {
-                background: rgba(lighten($C2, 40%), 100%);
-            }
-        }
         thead>tr>td {
             min-width: 150px;
             min-width: min-content;
@@ -120,7 +82,7 @@
                         color: lighten($color: #000000, $amount: 90%);
                         background: none;
                         padding: 0px;
-                        border-radius: 30%;
+                        border-radius: 0px;
                     }
                 }
             }
@@ -129,9 +91,9 @@
                 position: relative;
                 flex-direction: column;
                 justify-content: space-between;
-                align-items: center;
+                align-items: start;
                 gap: $GlobalGap / 2;
-                background: $C1;
+                // background: $C1;
                 width: 100%;
                 height: 100%;
                 border-radius: $FormsRadius;
@@ -148,7 +110,6 @@
                         color: $C1;
                         background-color: $C4;
                         padding: 0.25rem 0.5rem;
-                        border-radius: $FormsRadius / 2;
                     }
                     &:nth-child(1) {
                         font-weight: 600;
@@ -157,6 +118,8 @@
                     &:nth-child(2) {
                         font-weight: 600;
                         font-size: 0.75rem;
+                        width: 100%;
+                        border-radius: $FormsRadius / 2;
                     }
                 }
                 .CellIcon {
@@ -183,7 +146,12 @@
         }
     }
     .Presential {
-        background: $G1 !important;
+        background: #000000;
+        /* fallback for old browsers */
+        background: -webkit-linear-gradient(to left, #434343, #000000);
+        /* Chrome 10-25, Safari 5.1-6 */
+        background: linear-gradient(to left, #434343, #000000);
+        /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
         span {
             font-weight: 600;
             font-size: 0.8rem;
@@ -194,60 +162,67 @@
                 color: $C1 !important;
                 background-color: $C4 !important;
                 padding: 0.25rem 0.5rem;
-                border-radius: $FormsRadius;
             }
         }
         &:hover {
-            background: rgba($C1, 85%) !important;
+            filter: brightness(1.1);
         }
     }
     .Online {
-        background: rgba(#39B54A, 20%) !important;
+        background: $C3;
+        /* fallback for old browsers */
+        background: -webkit-linear-gradient(to right, $C3, #24b05e);
+        /* Chrome 10-25, Safari 5.1-6 */
+        background: linear-gradient(to right, $C3, #24b05e);
+        /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
         span {
             font-weight: 600;
             font-size: 0.8rem;
-            color: #39B54A;
+            color: #fff;
             &:nth-child(2) {
                 font-weight: 600;
                 font-size: 0.8rem;
-                color: #fff !important;
-                background-color: #39B54A !important;
+                color: $C3 !important;
+                background-color: #fff !important;
                 padding: 0.25rem 0.5rem;
-                border-radius: $FormsRadius;
             }
         }
         &:hover {
-            background: rgba(#39B54A, 35%) !important;
+            filter: brightness(1.1);
         }
     }
     .Absent {
-        background: rgba(#F74343, 20%) !important;
+        background: #FF4B2B;
+        /* fallback for old browsers */
+        background: -webkit-linear-gradient(to right, #FF4B2B, #FF416C);
+        /* Chrome 10-25, Safari 5.1-6 */
+        background: linear-gradient(to right, #FF4B2B, #FF416C);
+        /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
         span {
             font-weight: 600;
             font-size: 0.8rem;
-            color: #F74343;
+            color: #fff;
             &:nth-child(2) {
                 font-weight: 600;
                 font-size: 0.8rem;
-                color: #fff !important;
-                background-color: #F74343 !important;
+                color: #FF4B2B !important;
+                background-color: #fff !important;
                 padding: 0.25rem 0.5rem;
-                border-radius: $FormsRadius;
             }
         }
         &:hover {
-            background: rgba(#F74343, 35%) !important;
+            filter: brightness(1.1);
         }
     }
     .Free {
-        background: linear-gradient(170deg, rgba(#fff, 100%) 0%, rgba(#fff, 100%) 0%) !important;
+        background: #FFFFFF;
         height: 100%;
         width: 100%;
         // width: 200px;
         min-width: 150px;
         min-height: 75px;
         &:hover {
-            background: darken(white, 2.5%) !important;
+            filter: brightness(95%);
         }
     }
     .WeatherCell {

@@ -1,8 +1,12 @@
+import Head from "next/head";
 import Background from "./Background";
 
 export default function Loading() {
     return (
         <div className="LoadingPage">
+            <Head>
+                <title>NTIC Rabat - Chargement...</title>
+            </Head>
             <svg
                 className="pl"
                 viewBox="0 0 128 128"

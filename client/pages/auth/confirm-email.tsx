@@ -10,6 +10,7 @@ import * as Display from "../../services/displayAlert";
 import { signOut, useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import axios from "axios";
+import LoadingButton from "@mui/lab/LoadingButton";
 import AuthService from "../../services/authServices";
 
 export default function VerificationPage() {
@@ -21,6 +22,7 @@ export default function VerificationPage() {
     const [Code, setCode] = useState<string[]>(["-", "-", "-", "-", "-"]);
     // Email
     const [Email, setEmail] = useState<string>(session?.user?.email || "");
+    const [isLoading, setLoading] = useState(false);
 
     useEffect(() => {
         CodeInputRef.current?.focus();
@@ -81,9 +83,32 @@ export default function VerificationPage() {
 
     // Function to handle code re-sending
 
-    const handleCodeResending = () => {
-        // Code to handle code re-sending
-        Display.pushInfo("Code de confirmation envoyé avec succès.");
+    const handleCodeResending = async () => {
+        try {
+            setLoading(true);
+            const res: any = await fetch(
+                `${process.env.SERVER_PUBLIC_API_URL}/auth/resend-confirmation`,
+                {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                        email: Email,
+                    }),
+                }
+            );
+            console.log(res);
+            if (res.status === 200) {
+                Display.pushSuccess("Code de confirmation envoyé avec succès.");
+            } else {
+                Display.pushFailure(
+                    "Une erreur s'est produite lors de l'envoi du code de confirmation."
+                );
+            }
+        } finally {
+            setLoading(false);
+        }
     };
 
     return (
@@ -170,12 +195,27 @@ export default function VerificationPage() {
                     <OutlinedButton color="LightBlue" onClick={signOut}>
                         Se déconnecter
                     </OutlinedButton>
-                    <OutlinedButton
-                        color="LightBlue"
-                        onClick={handleCodeResending}
-                    >
-                        Re-envoyer le code
-                    </OutlinedButton>
+                    {isLoading ? (
+                        <LoadingButton
+                            variant="text"
+                            className="btnPrimary Loading"
+                            loadingPosition="center"
+                            loading
+                            sx={{
+                                cursor: "default !important",
+                            }}
+                        />
+                    ) : (
+                        <>
+                            <OutlinedButton
+                                color="LightBlue"
+                                onClick={handleCodeResending}
+                            >
+                                Re-envoyer le code
+                            </OutlinedButton>
+                        </>
+                    )}
+
                     <DefaultButton
                         color="Blue"
                         onClick={handleCodeConfirmation}

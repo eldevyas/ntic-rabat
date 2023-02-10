@@ -40,7 +40,31 @@
                     justify-content: center;
                     align-items: center;
                     gap: $GlobalGap;
-                    // class Form__Footer
+                    .FormTitle {
+                        width: 100%;
+                        height: auto;
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: flex-start;
+                        align-items: flex;
+                        gap: $GlobalGap / 2;
+                        color: $C1;
+                        text-align: center;
+                        margin: $GlobalGap 0;
+                        h1 {
+                            font-size: 1.5rem;
+                            font-weight: 800;
+                            color: $C1;
+                            span {
+                                color: $C2;
+                            }
+                        }
+                        p {
+                            font-size: 0.85rem;
+                            font-weight: 500;
+                            color: rgba($C1, 50%);
+                        }
+                    }
                     .FormFooter {
                         width: 100%;
                         height: auto;

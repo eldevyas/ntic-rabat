@@ -37,10 +37,12 @@ Route::get('/users/check-username/{username}', [UserController::class, 'checkUse
 // Route to check email availability
 Route::get('/users/check-email/{email}', [UserController::class, 'checkEmail']);
 // Forget password route for sending email
-Route::post('/users/forget-password', [UserController::class, 'forgetPassword']);
+Route::post('/auth/forget-password', [UserController::class, 'forgetPassword']);
 // reset password route
 Route::post('/reset-password', [UserController::class, 'resetPasswordByToken'])->middleware('CheckResetPasswordToken');
 // route for email verification
 Route::post('/auth/verify-email', [UserController::class, 'verifyEmailCode']);
 // check if email is verified
-Route::post('/users/check-email-verified', [UserController::class, 'checkEmailVerified']);
+Route::post('/auth/check-email-verified', [UserController::class, 'checkEmailVerified']);
+// resend email verification code
+Route::post('auth/resend-confirmation', [UserController::class, 'sendEmailVerification']);

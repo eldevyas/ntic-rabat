@@ -26,7 +26,8 @@ class UserController extends Controller
             'username' => 'required|string|unique:users',
             'firstname' => 'required|string',
             'lastname' => 'required|string',
-            'email' => 'required|email|unique:users',
+            // check if the email ends with @ofppt-edu.ma or @OFPPT-EDU.MA
+            'email' => 'required|email|unique:users|ends_with:@ofppt-edu.ma,@OFPPT-EDU.MA',
             'password' => 'required',
             'password_confirmation' => 'required|same:password',
         ]);
@@ -69,11 +70,11 @@ class UserController extends Controller
         try {
             Mail::to($request->email)->send(new emailVerification($request->email, $token, $code));
             $success['message'] = 'Email verification mail was sent to your email';
+            return response()->json($success, 200);
         } catch (\Exception $e) {
             $success['message'] = 'Error sending email ' . $e->getMessage();
+            return response()->json($success, 401);
         }
-
-        return response()->json($success, 201);
     }
     public function login(Request $request)
     {
@@ -138,7 +139,7 @@ class UserController extends Controller
         if (!$user) {
             return response()->json([
                 'message' => 'Email not found'
-            ], 404);
+            ], 401);
         }
 
         $token = $user->createToken('api-application')->accessToken;
@@ -230,7 +231,7 @@ class UserController extends Controller
             $user->email_verified_at = Carbon::now();
             $user->save();
             // delete all the values from the email_verifications table
-            // DB::table('email_verifications')->where('email', $email)->delete();
+            DB::table('email_verifications')->where('email', $email)->delete();
             return response()->json([
                 'message' => 'Email verified successfully'
             ], 200);

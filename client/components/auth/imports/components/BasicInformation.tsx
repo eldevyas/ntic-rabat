@@ -51,6 +51,7 @@ export default function BasicInformation(props: any) {
     const [passwordValid, setPasswordValid] = useState(false);
     const [passwordConfirmationValid, setPasswordConfirmationValid] =
         useState(false);
+    const [loading, setLoading] = useState(false);
 
     const handleClickShowPassword = () => {
         setShowPassword(!showPassword);

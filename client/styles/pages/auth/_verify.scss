@@ -111,6 +111,10 @@
             width: 100%;
             gap: $GlobalGap;
             overflow: hidden;
+            .Loading {
+                background-color: rgba($C2, 0.25);
+                padding: 20px;
+            }
         }
     }
 }
