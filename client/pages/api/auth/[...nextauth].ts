@@ -1,7 +1,9 @@
+import { Session } from 'inspector';
 import type { NextApiRequest, NextApiResponse } from "next";
 import NextAuth, { NextAuthOptions } from "next-auth"
 import axios from "axios"
 import CredentialsProvider from "next-auth/providers/credentials"
+import { useSession } from 'next-auth/react';
 
 
 const authOptions: NextAuthOptions = {
@@ -33,14 +35,11 @@ const authOptions: NextAuthOptions = {
                     }, {
                         headers: { 'Content-Type': 'application/json' }
                     }
-                    ).then((response) => {
-                        return response;
-                    }).catch((error) => {
+                    ).catch((error) => {
                         return error;
                     })
 
                     if (response.status === 200) {
-                        // store response to session
                         return response.data.user;
                     }
 
