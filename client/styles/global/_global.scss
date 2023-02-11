@@ -44,21 +44,21 @@ $HorizontalPadding: 5%;
     padding: 1rem 2rem;
 }
 
-;
+$FormsRadius: 0.7rem;
 // Scrollbar styling
 ::-webkit-scrollbar {
     width: 10px;
     background-color: var(--C4);
-    border-radius: 10px;
+    border-radius: $FormsRadius;
 }
 
 ::-webkit-scrollbar-track {
     background-color: var(--C4);
-    border-radius: 10px;
+    border-radius: $FormsRadius;
 }
 
 ::-webkit-scrollbar-thumb {
-    border-radius: 10px;
+    border-radius: $FormsRadius;
     background-color: $C2;
     &:hover {
         background-color: lighten($C2, 10%);

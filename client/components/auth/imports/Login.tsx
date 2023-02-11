@@ -1,4 +1,4 @@
-import React, { useState, useRef, useContext } from "react";
+import React, { useState, useRef, useContext, useEffect } from "react";
 import Button from "@mui/material/Button";
 import LoadingButton from "@mui/lab/LoadingButton";
 // Icons
@@ -9,18 +9,25 @@ import VisibilityOn from "@mui/icons-material/Visibility";
 
 import * as Display from "../../../services/displayAlert";
 import { redirect } from "react-router";
-import AuthContext from "../../../contexts/authContext";
 
-import { signIn } from "next-auth/react";
-import { Router } from "next/router";
+import { signIn, useSession } from "next-auth/react";
+import { useRouter } from "next/router";
+import Link from "next/link";
+
+import CryptoJS, { AES, enc, SHA256 } from "crypto-js";
 
 const LoginComponent = () => {
+    const Router = useRouter();
     const emailRef = React.createRef<HTMLInputElement>();
     const passwordRef = React.createRef<HTMLInputElement>();
     const rememberMeRef = React.createRef<HTMLInputElement>();
     const [showPassword, setShowPassword] = useState(false);
-    // const Context: any = useContext(AuthContext);
     const [isLoading, setLoading] = useState(false);
+    const [Error, setError] = useState<{}>({
+        variant: "Error",
+        message:
+            "Une erreur s'est produite lors de la connexion. Veuillez réessayer.",
+    });
 
     const handleClickShowPassword = () => {
         setShowPassword(!showPassword);
@@ -37,8 +44,6 @@ const LoginComponent = () => {
                 rememberMe: isRememberMe,
             };
 
-            console.log(Credentials);
-
             try {
                 setLoading(true);
                 const res: any = await signIn("credentials", {
@@ -47,8 +52,26 @@ const LoginComponent = () => {
                     redirect: false,
                 });
                 console.log(res);
-                if (res.status !== 200) {
-                    Display.pushFailure(
+                if (res.status !== 200 && !res.ok) {
+                    // Inspect Error codes
+                    if (res.status === 401) {
+                        return Display.pushFailure(
+                            "Nom d'utilisateur ou mot de passe incorrect."
+                        );
+                    }
+                    if (res.status === 500) {
+                        return Display.pushFailure(
+                            "Une erreur s'est produite lors de la connexion. Veuillez réessayer."
+                        );
+                    }
+                    // 404
+                    if (res.status === 404) {
+                        return Display.pushFailure(
+                            "Nom d'utilisateur ou mot de passe incorrect."
+                        );
+                    }
+
+                    return Display.pushFailure(
                         "Nom d'utilisateur ou mot de passe incorrect."
                     );
                 } else {
@@ -57,7 +80,6 @@ const LoginComponent = () => {
             } finally {
                 setLoading(false);
             }
-
         } else {
             if (!username && !password) {
                 Display.pushWarning(
@@ -75,6 +97,15 @@ const LoginComponent = () => {
 
     return (
         <div className="Form">
+            <div className="FormTitle">
+                <h1>
+                    Connexion sur <span>NTIC Connect</span>
+                </h1>
+                <p>
+                    Connectez-vous à votre compte pour accéder à votre tableau
+                    de bord et à vos données.
+                </p>
+            </div>
             <form className="Form-group">
                 <div className="Input Username">
                     <div className="Input-icon">
@@ -136,6 +167,21 @@ const LoginComponent = () => {
                     Se Connecter
                 </Button>
             )}
+            <Button
+                variant="text"
+                className="btnSecondary"
+                onClick={() => {
+                    Router.push("/auth/forgot-password");
+                }}
+            >
+                Mot de passe oublié ?
+            </Button>
+            <div className="FormFooter">
+                <p>
+                    Vous n'avez pas un compte ?{" "}
+                    <Link href="/auth/register">Inscrivez-vous</Link>
+                </p>
+            </div>
         </div>
     );
 };

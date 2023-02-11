@@ -16,3 +16,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+// Email Template viewer
+Route::get('/email/{template}', function ($template) {
+    return view('mail.' . $template);
+});

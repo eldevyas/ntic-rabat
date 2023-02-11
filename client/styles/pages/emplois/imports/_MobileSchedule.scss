@@ -6,7 +6,6 @@
     align-items: center;
     justify-content: flex-start;
     padding: 1rem;
-
     .ScheduleHeader {
         position: relative;
         width: 100%;
@@ -18,28 +17,26 @@
         color: $C5;
         gap: $GlobalGap;
         overflow: hidden;
-
         .ScheduleTiming {
             display: flex;
             align-items: center;
             justify-content: center;
             background-color: $C4;
-            color: $C5;
-            border-radius: 10px;
+            color: rgba($C1, 25%);
+            border-radius: $FormsRadius;
             padding: 0.5rem;
             width: 100%;
             font-size: 0.75rem;
             font-weight: 800;
         }
     }
-
     .ScheduleBody {
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: flex-start;
         width: 100%;
-
+        gap: $GlobalGap;
         .ScheduleDay {
             display: flex;
             flex-direction: column;
@@ -50,9 +47,8 @@
             align-items: center;
             justify-content: space-between;
             color: $C5;
-            gap: calc($GlobalGap - 10px);
+            gap: $GlobalGap;
             overflow: hidden;
-
             .ScheduleDayName {
                 position: relative;
                 display: flex;
@@ -62,41 +58,35 @@
                 justify-content: center;
                 background-color: $C2;
                 color: $C4;
-                border-radius: 10px;
+                border-radius: $FormsRadius;
                 padding: 0.5rem;
                 width: 100%;
                 font-size: 0.75rem;
                 font-weight: 800;
                 overflow: hidden;
-
                 span {
                     &.Day {
                         font-size: 0.75rem;
                     }
-
                     &.Temperature {
                         font-size: 0.75rem;
                         opacity: 50%;
                     }
-
                     z-index: 5;
                 }
-
                 .Icon {
                     position: absolute;
-                    left: -20px;
+                    left: -0.5rem;
                     top: 50%;
                     transform: translateY(-50%);
-                    height: 150%;
+                    height: 90%;
                     width: auto;
                     z-index: 5;
-
                     svg {
                         height: 100%;
                         width: auto;
                     }
                 }
-
                 .Banner {
                     position: absolute;
                     width: 100%;
@@ -106,10 +96,9 @@
                     background-color: transparent;
                     opacity: 50%;
                     z-index: 0;
-
                     .Clouds {
                         position: absolute;
-                        bottom: -175%;
+                        bottom: -150%;
                         left: 0;
                         right: 0;
                         height: 100%;
@@ -118,39 +107,31 @@
                         justify-content: center;
                         align-items: center;
                         background: transparent !important;
-
                         img:nth-child(1) {
                             --i: 1;
                         }
-
                         img:nth-child(2) {
                             --i: 2;
                         }
-
                         img:nth-child(3) {
                             --i: 3;
                         }
-
                         img:nth-child(4) {
                             --i: 4;
                         }
-
                         img:nth-child(5) {
                             --i: 5;
                         }
-
                         img {
                             position: absolute;
                             bottom: 0;
                             max-width: 100%;
-                            animation: animate calc(16s * var(--i)) linear infinite;
+                            animation: animate calc(32s * var(--i)) linear infinite;
                         }
-
                         @keyframes animate {
                             0% {
                                 transform: translateX(-100%);
                             }
-
                             100% {
                                 transform: translateX(100%);
                             }
@@ -158,89 +139,77 @@
                     }
                 }
             }
-
             .ScheduleDayHours {
                 display: flex;
-                align-items: center;
+                align-items: stretch;
                 justify-content: flex-start;
-                // background-color: $C4;
                 color: $C5;
-                border-radius: 10px;
-                padding: 0.6rem 0.5rem;
+                border-radius: $FormsRadius;
+                padding: 0;
                 width: 100%;
-                font-size: 0.70rem;
+                font-size: 0.85rem;
                 font-weight: 800;
-                gap: calc($GlobalGap - 2px);
+                gap: $GlobalGap;
                 // scrollable
                 overflow-x: auto;
                 overflow-y: hidden;
                 // hide scrollbar
                 scrollbar-width: none;
                 -ms-overflow-style: none;
-
                 &::-webkit-scrollbar {
                     display: none;
                 }
-
                 .ScheduleTimeCell {
                     // background-color: $C1;
                     color: $C4;
                     display: flex;
-                    align-items: center;
+                    align-items: stretch;
                     flex-direction: column;
-                    padding: 5px;
-                    border-radius: 10px;
-                    width: 210px;
+                    padding: 0.5rem;
+                    border-radius: $FormsRadius;
+                    width: auto;
                     min-width: 76px;
-                    height: 100%;
+                    height: auto;
                     gap: $GlobalGap / 2;
-
                     .Prof {
-                        font-size: 0.5rem;
-                        font-weight: 550;
+                        font-size: 0.6rem;
+                        font-weight: 700;
                         opacity: 100%;
                         // display it in one line
-                        white-space: nowrap;
+                        white-space: wrap;
+                        text-align: start;
                     }
-
                     .Class {
-                        font-size: 0.5rem;
+                        font-size: 0.6rem;
                         font-weight: 600;
                         opacity: 100%;
-                        padding: 0.30rem;
-                        border-radius: 5px;
+                        padding: 0.25rem;
+                        border-radius: $FormsRadius / 2;
                         background-color: $C4;
-                        color: $C1;
+                        color: rgba($C1, 50%);
                     }
                 }
             }
-
             .Online {
                 background-color: rgba(#39B54A, .2);
-
                 .Prof {
                     font-weight: 650;
                     color: #2da63d;
                 }
-
                 .Class {
                     background-color: #39B54A !important;
                     color: $C4 !important;
                 }
             }
-
             .Presential {
                 background-color: $C1;
             }
-
             .Free {
                 background-color: $C4;
                 height: 47px !important;
             }
-
             .Absent {
-                background-color: rgba(#F74343, .4);
-
+                background-color: rgba(#F74343, 0.4);
                 .Class {
                     background-color: #F74343 !important;
                     color: $C4 !important;

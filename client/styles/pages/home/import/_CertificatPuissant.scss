@@ -64,7 +64,7 @@
     }
     .ImageContainer {
         position: relative;
-        border-radius: 10px;
+        border-radius: $FormsRadius;
         overflow: hidden;
         background-image: linear-gradient(to top, rgba($C3, 15%) 0%, rgba($C3, 0%) 50%);
         display: flex;

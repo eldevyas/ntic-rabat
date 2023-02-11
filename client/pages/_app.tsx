@@ -4,8 +4,13 @@ import { useState, useEffect } from "react";
 import Head from "next/head";
 import type { AppProps } from "next/app";
 import { useMemo } from "react";
-import { AuthContextProvider } from "./../contexts/authContext";
-import { SessionProvider } from "next-auth/react";
+import { SessionProvider, useSession } from "next-auth/react";
+import type { NextComponentType } from "next"; //Import Component type
+
+//Add custom appProp type then use union to add it
+type CustomAppProps = AppProps & {
+    Component: NextComponentType & { auth?: boolean }; // add auth type
+};
 
 import {
     ProgressIndicator,
@@ -13,8 +18,10 @@ import {
     motion,
     AnimatePresence,
 } from "./../components/components";
+import Loading from "../components/core/Loading";
+import Background from "../components/core/Background";
 
-export default function App({ Component, pageProps, router }: AppProps) {
+export default function App({ Component, pageProps, router }: CustomAppProps) {
     const [session, setSession] = useState(pageProps.session);
     //
     //
@@ -29,40 +36,61 @@ export default function App({ Component, pageProps, router }: AppProps) {
     return (
         <>
             <SessionProvider session={session}>
-                <AuthContextProvider>
-                    <Head>
-                        <meta
-                            name="viewport"
-                            content="width=device-width, initial-scale=1.0, viewport-fit=cover"
-                        />
-                    </Head>
+                <Head>
+                    <meta
+                        name="viewport"
+                        content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+                    />
+                </Head>
 
-                    <ProgressIndicator />
-                    <CustomToastContainer />
-
-                    <AnimatePresence
-                        mode="sync"
-                        initial={true}
-                        // onExitComplete={() => window.scrollTo(0, 0)}
+                <ProgressIndicator />
+                <CustomToastContainer />
+                <Background />
+                <AnimatePresence
+                    mode="sync"
+                    initial={true}
+                    // onExitComplete={() => window.scrollTo(0, 0)}
+                >
+                    <motion.div
+                        className={"container"}
+                        key={router.route}
+                        initial="hidden"
+                        animate="enter"
+                        exit="exit"
+                        variants={pageTransition}
+                        transition={{ type: "ease" }}
                     >
-                        <motion.div
-                            className={"container"}
-                            key={router.route}
-                            initial="hidden"
-                            animate="enter"
-                            exit="exit"
-                            variants={pageTransition}
-                            transition={{ type: "ease" }}
-                        >
+                        {Component.auth ? (
+                            <Auth>
+                                <Component
+                                    {...pageProps}
+                                    session={session}
+                                    key={router.route}
+                                />{" "}
+                            </Auth>
+                        ) : (
                             <Component
                                 {...pageProps}
                                 session={session}
                                 key={router.route}
                             />
-                        </motion.div>
-                    </AnimatePresence>
-                </AuthContextProvider>
+                        )}
+
+                        {/* <Loading /> */}
+                    </motion.div>
+                </AnimatePresence>
             </SessionProvider>
         </>
     );
+}
+
+function Auth({ children }: any) {
+    // if `{ required: true }` is supplied, `status` can only be "loading" or "authenticated"
+    const { status } = useSession({ required: true });
+
+    if (status === "loading") {
+        return <Loading />;
+    }
+
+    return children;
 }

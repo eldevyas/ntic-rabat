@@ -1,16 +1,17 @@
 .Header {
     background: transparent;
     width: 100%;
+    max-height: 100px;
     @include GlobalPadding();
     display: flex;
-    align-items: center;
+    align-items: stretch;
     justify-content: space-between;
     flex-direction: row;
     gap: $GlobalGap;
     // All Children same width, for spacing equality.
-    .Start,
+    .End,
     .Middle,
-    .End {
+    .Start {
         flex: 1;
     }
     .Logo {
@@ -33,6 +34,7 @@
         .DefaultButton,
         button {
             min-width: 100px;
+            height: 100%;
         }
         .DefaultButton.Black {
             color: $C4 !important;
@@ -40,15 +42,110 @@
     }
     .End {
         display: flex;
-        align-items: center;
+        align-items: stretch;
         justify-content: flex-end;
         gap: $GlobalGap;
+        width: 100%;
         // Same width for the buttons
-        .DefaultButton,
-        button {
+        .DefaultButton {
             min-width: 135px;
             &:last-of-type {
                 color: $C4;
+            }
+        }
+        .User {
+            position: relative;
+            width: auto;
+            height: 100%;
+            background: $C4;
+            border-radius: $FormsRadius;
+            display: flex;
+            align-items: stretch;
+            gap: $GlobalGap;
+            &__Info {
+                position: relative;
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                justify-content: flex-start;
+                gap: $GlobalGap;
+                width: 100%;
+                height: 100%;
+                overflow: hidden;
+                &__Avatar {
+                    position: relative;
+                    height: 100%;
+                    aspect-ratio: 1/1 !important;
+                    border-radius: $FormsRadius;
+                    background: $G3;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    gap: $GlobalGap;
+                    img {
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                        border-radius: $FormsRadius;
+                    }
+                }
+                &__Name {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: flex-start;
+                    justify-content: center;
+                    gap: $GlobalGap / 4;
+                    height: 100%;
+                    width: 100%;
+                    h3 {
+                        font-size: 0.9rem;
+                        font-weight: 600;
+                        color: rgba($C1, 75%);
+                        width: 100%;
+                    }
+                    p {
+                        font-size: 0.75rem;
+                        font-weight: 400;
+                        color: rgba(#000, 50%);
+                        white-space: nowrap;
+                        overflow: hidden;
+                        max-width: 60%;
+                        text-overflow: ellipsis;
+                    }
+                }
+            }
+            &__Action {
+                position: relative;
+                background-color: transparent;
+                aspect-ratio: 1/1;
+                height: 100%;
+                border-radius: $FormsRadius;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                // &__Button {
+                //     aspect-ratio: 1/1;
+                // }
+            }
+            // Dropdown
+            &__Dropdown {
+                position: absolute;
+                top: calc(100% + $GlobalGap);
+                right: 0;
+                width: 100%;
+                height: auto;
+                background: $C4;
+                border-radius: $FormsRadius;
+                display: flex;
+                flex-direction: column;
+                align-items: stretch;
+                justify-content: flex-start;
+                gap: $GlobalGap;
+                padding: $GlobalGap;
+                z-index: 100000;
             }
         }
     }
@@ -110,7 +207,7 @@
         .HeaderButton {
             padding: 1rem;
             color: $C3 !important;
-            border-radius: 10px;
+            border-radius: $FormsRadius;
             >* {
                 color: $C3 !important;
             }
@@ -171,7 +268,7 @@
                 @include IconButton($C3);
                 padding: 1rem !important;
                 color: $C3;
-                border-radius: 10px;
+                border-radius: $FormsRadius;
                 background-color: transparent;
                 outline-color: $C3;
                 border-color: $C3;
@@ -211,7 +308,7 @@
                 border-radius: 1rem;
                 z-index: 0;
                 transition: all 100ms ease;
-                box-shadow: 0px 1rem 30px 10px rgba(#000, 25%);
+                box-shadow: 0 1rem 30px 10px rgba(#000, 25%);
                 // filter: brightness(0.25);
             }
         }

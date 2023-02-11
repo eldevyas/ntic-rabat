@@ -13,7 +13,7 @@ const LoginPage = () => {
             </Head>
 
             <Header />
-            <Background />
+
             <div className="LoginContainer">
                 <div className="wrapper">
                     <LoginComponent />
