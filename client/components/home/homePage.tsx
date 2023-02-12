@@ -4,7 +4,7 @@ import Head from "next/head";
 // Next Image - Optimizing cache and loading delay.
 import Image from "next/image";
 import Header from "../layout/header/header";
-import Footer from "../layout/footer";
+import Footer from "../layout/footer/footer";
 import Landing from "./import/Landing";
 import Service from "./import/Service";
 import EspaceEquippe from "./import/EspaceEquippe";
@@ -32,8 +32,6 @@ export default class App extends React.Component {
                 </Head>
 
                 <div className="HomePage">
-                    <Header />
-
                     <Landing />
                     <Service />
                     <EspaceEquippe />
@@ -41,7 +39,6 @@ export default class App extends React.Component {
                     <FormateursProfessionnels />
                     <LaPenseCreative />
                     <ContactSection />
-                    <Footer />
                 </div>
             </>
         );

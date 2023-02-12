@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Header from "../layout/header/header";
-import Footer from "../layout/footer";
+import Footer from "../layout/footer/footer";
 import Head from "next/head";
 import SelectClass from "./imports/SelectClass";
 import Schedule from "./imports/Schedule";
@@ -34,14 +34,11 @@ const EmploisPage = (props: any) => {
             </Head>
 
             <div className="EmploisPage">
-                <Header />
-
                 <Emploi
                     data-GroupID={GroupID}
                     data-Schedule={Schedule}
                     data-Weather={Weather}
                 />
-                <Footer />
             </div>
         </>
     );

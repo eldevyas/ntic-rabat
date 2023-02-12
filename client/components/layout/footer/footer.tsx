@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import { DefaultButton, IconButton } from "../core/button";
+import { DefaultButton, IconButton } from "../../core/button";
 
 // Icons
 import AccountTreeOutlinedIcon from "@mui/icons-material/AccountTreeOutlined";

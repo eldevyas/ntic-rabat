@@ -94,6 +94,16 @@ class UserController extends Controller
             return response()->json(['error' => 'Unauthorised'], 401);
         }
     }
+    public function show($username)
+    {
+        $user = User::where('username', $username)->first();
+        if ($user) {
+            return response()->json($user, 200);
+        } else {
+            return response()->json(['error' => 'User not found'], 404);
+        }
+    }
+
 
     public function logout(Request $request)
     {

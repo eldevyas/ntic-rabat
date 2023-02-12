@@ -9,12 +9,9 @@ import VisibilityOn from "@mui/icons-material/Visibility";
 
 import * as Display from "../../../services/displayAlert";
 import { redirect } from "react-router";
-
 import { signIn, useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import Link from "next/link";
-
-import CryptoJS, { AES, enc, SHA256 } from "crypto-js";
 
 const LoginComponent = () => {
     const Router = useRouter();
@@ -96,7 +93,7 @@ const LoginComponent = () => {
     };
 
     return (
-        <div className="Form">
+        <form className="Form">
             <div className="FormTitle">
                 <h1>
                     Connexion sur <span>NTIC Connect</span>
@@ -106,7 +103,7 @@ const LoginComponent = () => {
                     de bord et à vos données.
                 </p>
             </div>
-            <form className="Form-group">
+            <div className="Form-group">
                 <div className="Input Username">
                     <div className="Input-icon">
                         <AccountCircleIcon />
@@ -115,7 +112,8 @@ const LoginComponent = () => {
                         ref={emailRef}
                         type="username"
                         className="form-control"
-                        placeholder="Nom d'utilisateur"
+                        placeholder="Nom d'utilisateur ou E-mail"
+                        autoComplete={"username"}
                         required
                     ></input>
                 </div>
@@ -128,6 +126,7 @@ const LoginComponent = () => {
                         type={showPassword ? "text" : "password"}
                         className="form-control"
                         placeholder="Mot de passe"
+                        autoComplete={"current-password"}
                         required
                     ></input>
                     <div
@@ -137,7 +136,7 @@ const LoginComponent = () => {
                         {showPassword ? <VisibilityOff /> : <VisibilityOn />}
                     </div>
                 </div>
-            </form>
+            </div>
             <div className="RememberMe">
                 <label className="cont">
                     <input type="checkbox" ref={rememberMeRef} />
@@ -182,7 +181,7 @@ const LoginComponent = () => {
                     <Link href="/auth/register">Inscrivez-vous</Link>
                 </p>
             </div>
-        </div>
+        </form>
     );
 };
 

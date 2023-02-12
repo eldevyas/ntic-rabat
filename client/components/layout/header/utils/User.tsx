@@ -5,6 +5,8 @@ import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import { DefaultButton } from "../../../core/button";
 import { signOut } from "next-auth/react";
 import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
+import LogoutIcon from "@mui/icons-material/Logout";
+import AccountBoxIcon from "@mui/icons-material/AccountBox";
 
 const User = (props: {
     image: string | undefined;
@@ -15,6 +17,24 @@ const User = (props: {
     const handleisMenuOpenClick = () => {
         setisMenuOpen(!isMenuOpen);
     };
+
+    const handleClickOutside = (e: MouseEvent) => {
+        if (
+            isMenuOpen &&
+            e.target instanceof HTMLElement &&
+            !e.target.closest(".User__Dropdown")
+        ) {
+            setisMenuOpen(false);
+        }
+    };
+
+    React.useEffect(() => {
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
+    }, []);
+
     return (
         <div className="User">
             <div className="User__Info">
@@ -48,9 +68,16 @@ const User = (props: {
 
             {isMenuOpen && (
                 <div className="User__Dropdown">
-                    <DefaultButton color="white">Profile</DefaultButton>
+                    <DefaultButton
+                        color="white"
+                        className=" UsualButton"
+                        startIcon={<AccountBoxIcon />}
+                    >
+                        Profile
+                    </DefaultButton>
                     <DefaultButton
                         color="LightGreen"
+                        startIcon={<LogoutIcon />}
                         onClick={() => {
                             // sign out
                             signOut();

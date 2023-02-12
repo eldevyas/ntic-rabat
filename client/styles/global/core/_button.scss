@@ -35,6 +35,7 @@
     }
     &:hover {
         box-shadow: none;
+        background-color: darken($color: $color, $amount: 50%);
     }
 }
 
@@ -107,7 +108,7 @@
 }
 
 .IconButton.Green {
-    $color: var(--C3);
+    $color: $C3;
     @include IconButton($color);
 }
 
@@ -115,6 +116,24 @@
     $color: $C1;
     @include IconButton($color);
     color: $C4;
+}
+
+.IconButton.Blue {
+    $color: $C2;
+    @include IconButton($color);
+    color: $C4;
+}
+
+.IconButton.LightBlue {
+    $color: rgba($C2, 20%);
+    @include IconButton($color);
+    color: $C2;
+}
+
+.IconButton.LightGreen {
+    $color: rgba($C3, 20%);
+    @include IconButton($color);
+    color: $C3;
 }
 
 .OutlinedButton {

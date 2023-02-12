@@ -146,6 +146,18 @@
                 gap: $GlobalGap;
                 padding: $GlobalGap;
                 z-index: 100000;
+                .UsualButton {
+                    @include DefaultButton($C4);
+                    background-color: rgba($C1, 5%);
+                    color: rgba($C1, 50%);
+                    text-align: left;
+                    justify-content: flex-start;
+                }
+                .DefaultButton {
+                    // align to left
+                    text-align: left;
+                    justify-content: flex-start;
+                }
             }
         }
     }

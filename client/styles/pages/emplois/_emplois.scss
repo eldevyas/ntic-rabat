@@ -1,10 +1,10 @@
 .EmploisPage {
     width: 100%;
-    min-height: 100vh;
+    min-height: none;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    justify-content: space-between;
+    align-items: center;
+    justify-content: flex-start;
     @import "./imports/SelectClass";
     @import "./imports/Schedule";
     @import "./imports/MobileSchedule";
