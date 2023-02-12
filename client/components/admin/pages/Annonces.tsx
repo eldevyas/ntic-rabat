@@ -4,6 +4,7 @@ import Card from "./../layout/utils/Card";
 import axios from "axios";
 import Router from "next/router";
 import { getCookie } from "cookies-next";
+import * as Display from "../../../services/displayAlert";
 
 //
 // Icons from MUI
@@ -11,21 +12,23 @@ import DoDisturbOutlinedIcon from "@mui/icons-material/DoDisturbOutlined";
 import SaveOutlinedIcon from "@mui/icons-material/SaveOutlined";
 import AddBoxOutlinedIcon from "@mui/icons-material/AddBoxOutlined";
 import PagesTwoToneIcon from "@mui/icons-material/PagesTwoTone";
+// import useSession
+import { useSession } from "next-auth/react";
 //
 //
 export default function Annonces() {
+    // get the user session
+    const { data: session, status } = useSession();
+    const user:
+        | {
+              name?: string | null | undefined;
+              email?: string | null | undefined;
+              image?: string | null | undefined;
+              token?: string | null | undefined;
+          }
+        | undefined = session?.user;
     const ExpirationDate = useRef<HTMLInputElement>(null);
-    const [user, setUser] = useState<any>();
-    useEffect(() => {
-        if (!getCookie("token")) {
-            // Router.push("/login");
-            console.log("no token");
-        } else {
-            const stringToken: any = getCookie("token");
-            const token = JSON.parse(stringToken);
-            setUser(token);
-        }
-    }, []);
+
     let newTitle = useRef<HTMLInputElement>(null);
     let newDescription = useRef<HTMLTextAreaElement>(null);
     let newUrl = useRef<HTMLInputElement>(null);
@@ -61,27 +64,33 @@ export default function Annonces() {
             newUrl.current != null &&
             ExpirationDate.current != null
         ) {
-            console.log(user.token);
             let Title = newTitle.current.value;
             let Description = newDescription.current.value;
             let Url = newUrl.current.value;
             let deadline = ExpirationDate.current.value;
-            axios.post(
-                "http://localhost:8000/api/annonces",
-                {
-                    title: Title,
-                    description: Description,
-                    type: variant,
-                    url: Url,
-                    deadline: deadline,
-                },
-                {
-                    headers: {
-                        Authorization: `Bearer ${user.token}`,
+            axios
+                .post(
+                    "http://localhost:8000/api/annonces",
+                    {
+                        title: Title,
+                        description: Description,
+                        type: variant,
+                        url: Url,
+                        deadline: deadline,
                     },
-                }
-            );
-            // refresh the page
+                    {
+                        headers: {
+                            Authorization: `Bearer ${user?.token}`,
+                        },
+                    }
+                )
+                .then((res) => {
+                    if (res.status === 201) {
+                        Display.pushSuccess("Annonce ajoutée avec succès");
+                    } else {
+                        Display.pushFailure("Une erreur est survenue");
+                    }
+                });
         }
         setIsAdding(false);
         // set timeout to refresh the page

@@ -212,9 +212,66 @@
             width: 100%;
             // background-color: white;
             border-radius: $FormsRadius;
-            box-shadow: 0 0px 250px 0px rgba(darken($C2, 25%), 0.25);
+            // box-shadow: 0 0px 250px 0px rgba(darken($C2, 25%), 0.25);
             .CreatePost {
                 background-color: $C4;
+                display: flex;
+                flex-direction: row;
+                align-items: flex-start;
+                padding: 10px;
+                border-radius: $FormsRadius;
+                gap: $GlobalGap;
+                img {
+                    border-radius: 10px;
+                    object-fit: cover;
+                    background: none;
+                }
+                .Form {
+                    width: 100%;
+                    display: flex;
+                    flex-direction: column;
+                    gap: $GlobalGap / 2;
+                    textarea {
+                        width: 100%;
+                        border-radius: 7.5px;
+                        border: none;
+                        outline: none;
+                        background: transparent;
+                        font-size: 1rem;
+                        padding: 0.5rem 1rem;
+                        font-weight: 500;
+                        color: rgba($C1, 75%);
+                        background: rgba(0, 0, 0, 0.025) !important;
+                        height: 60px;
+                        resize: none;
+                    }
+                }
+                .Actions {
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                    justify-content: space-around;
+                    button {
+                        display: flex;
+                        flex-direction: row;
+                        align-items: center;
+                        gap: $GlobalGap / 2;
+                        padding: 0.3rem 0.7rem;
+                        font-family: 'Outfit';
+                        font-style: normal;
+                        font-weight: 700;
+                        line-height: 25px;
+                        display: flex;
+                        align-items: center;
+                        text-align: center;
+                        color: #333333;
+                        text-transform: capitalize;
+                        &.Publish {
+                            background: $G3;
+                            color: white;
+                        }
+                    }
+                }
             }
         }
     }

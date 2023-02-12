@@ -31,7 +31,7 @@ const Connect = () => {
             {session && (
                 <>
                     <Head>
-                        <title>NTIC Connect - Accueil</title>
+                        <title>NTIC Connect - Notifications</title>
                     </Head>
                 </>
             )}
