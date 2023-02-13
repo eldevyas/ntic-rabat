@@ -1,7 +1,7 @@
 import React, { useRef, useState } from "react";
 import Header from "../../components/layout/header/header";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
-import Footer from "../../components/layout/footer";
+import Footer from "../../components/layout/footer/footer";
 import LockIcon from "@mui/icons-material/Lock";
 import Button from "@mui/material/Button";
 import * as Display from "../../services/displayAlert";

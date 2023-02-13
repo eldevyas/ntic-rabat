@@ -20,6 +20,7 @@ import {
 } from "./../components/components";
 import Loading from "../components/core/Loading";
 import Background from "../components/core/Background";
+import Layout from "../components/layout/layout";
 
 export default function App({ Component, pageProps, router }: CustomAppProps) {
     const [session, setSession] = useState(pageProps.session);
@@ -45,40 +46,42 @@ export default function App({ Component, pageProps, router }: CustomAppProps) {
 
                 <ProgressIndicator />
                 <CustomToastContainer />
-                <Background />
-                <AnimatePresence
-                    mode="sync"
-                    initial={true}
-                    // onExitComplete={() => window.scrollTo(0, 0)}
-                >
-                    <motion.div
-                        className={"container"}
-                        key={router.route}
-                        initial="hidden"
-                        animate="enter"
-                        exit="exit"
-                        variants={pageTransition}
-                        transition={{ type: "ease" }}
+
+                <Layout {...pageProps} session={session} key={router.route}>
+                    <AnimatePresence
+                        mode="sync"
+                        initial={true}
+                        // onExitComplete={() => window.scrollTo(0, 0)}
                     >
-                        {Component.auth ? (
-                            <Auth>
+                        <motion.div
+                            className={"Container"}
+                            key={router.route}
+                            initial="hidden"
+                            animate="enter"
+                            exit="exit"
+                            variants={pageTransition}
+                            transition={{ type: "ease" }}
+                        >
+                            {Component.auth ? (
+                                <Auth>
+                                    <Component
+                                        {...pageProps}
+                                        session={session}
+                                        key={router.route}
+                                    />{" "}
+                                </Auth>
+                            ) : (
                                 <Component
                                     {...pageProps}
                                     session={session}
                                     key={router.route}
-                                />{" "}
-                            </Auth>
-                        ) : (
-                            <Component
-                                {...pageProps}
-                                session={session}
-                                key={router.route}
-                            />
-                        )}
+                                />
+                            )}
 
-                        {/* <Loading /> */}
-                    </motion.div>
-                </AnimatePresence>
+                            {/* <Loading /> */}
+                        </motion.div>
+                    </AnimatePresence>
+                </Layout>
             </SessionProvider>
         </>
     );

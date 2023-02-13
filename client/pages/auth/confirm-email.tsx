@@ -1,8 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { GetServerSideProps } from "next";
-import Header from "../../components/layout/header/header";
 import Background from "../../components/core/Background";
-import Footer from "../../components/layout/footer";
 import Link from "next/link";
 import { DefaultButton, OutlinedButton } from "../../components/core/button";
 import Head from "next/head";
@@ -72,7 +70,11 @@ export default function VerificationPage() {
                 Display.pushSuccess(
                     "Votre adresse e-mail a été confirmée avec succès."
                 );
-                router.push("/connect");
+                // User shall log out and sign in again
+                Display.pushInfo(
+                    "Vous devez vous déconnecter et vous connecter à nouveau pour que les changements prennent effet."
+                );
+                signOut();
             } else {
                 Display.pushFailure(
                     "Le code de confirmation est invalide. Veuillez réessayer."
@@ -120,7 +122,6 @@ export default function VerificationPage() {
                     content="Confirmez votre e-mail pour accéder à votre compte."
                 />
             </Head>
-            <Header />
 
             <div className="Content">
                 <div className="Text">
@@ -224,7 +225,6 @@ export default function VerificationPage() {
                     </DefaultButton>
                 </div>
             </div>
-            <Footer />
         </div>
     );
 }

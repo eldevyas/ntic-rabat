@@ -14,7 +14,6 @@ const AdminPage = () => {
 
             <Sidebar />
             <div className="Main">
-                <Header />
                 <Content />
             </div>
         </>

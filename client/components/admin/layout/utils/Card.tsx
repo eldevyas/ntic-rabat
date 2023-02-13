@@ -13,19 +13,24 @@ import { getCookie } from "cookies-next";
 import Button from "@mui/material/Button";
 import axios from "axios";
 import * as Display from "../../../../services/displayAlert";
+import { useSession } from "next-auth/react";
 
 export default function Card(props: any) {
+    const { data: session, status } = useSession();
+    const user:
+        | {
+              name?: string | null | undefined;
+              email?: string | null | undefined;
+              image?: string | null | undefined;
+              token?: string | null | undefined;
+          }
+        | undefined = session?.user;
     const Router = useRouter();
     const [isEditing, setEditing] = useState(false);
     const [isDeleting, setDeleting] = useState(false);
     // is adding new announce state
     const [isAdding, setAdding] = useState(true);
     // object to store user data
-    const stringToken: any = getCookie("token");
-    const [user, setUser] = useState<any>(
-        stringToken ? JSON.parse(stringToken) : null
-    );
-    const token = stringToken;
     // Editing States
     const [newVariant, setNewVariant] = useState(
         props.variant.replace(/\ws\S*/g, function (txt: string) {
@@ -98,7 +103,6 @@ export default function Card(props: any) {
 
     const RefreshParent = props.refresh;
     const editAnnounce = (id: any) => {
-        setUser(JSON.parse(token));
         if (
             newTitle.current != null &&
             newDescription.current != null &&
@@ -112,6 +116,7 @@ export default function Card(props: any) {
             let Variant = newVariant;
             let Url = newUrl.current.value;
             let Deadline = newDeadLine.current.value;
+            let email = user?.email;
 
             // Validate fileds values
             if (Title == "") {
@@ -138,10 +143,11 @@ export default function Card(props: any) {
                         type: Variant,
                         url: Url,
                         deadline: Deadline,
+                        email: email,
                     },
                     {
                         headers: {
-                            Authorization: `Bearer ${user.token}`,
+                            Authorization: `Bearer ${user?.token}`,
                         },
                     }
                 )
@@ -159,13 +165,21 @@ export default function Card(props: any) {
         }
     };
     const deleteAnnounce = (id: any) => {
-        setUser(JSON.parse(token));
+        let email = user?.email;
         axios
-            .delete(`http://localhost:8000/api/annonces/` + id, {
-                headers: {
-                    Authorization: `Bearer ${user.token}`,
-                },
-            })
+            .delete(
+                `http://localhost:8000/api/annonces/` + id,
+
+                {
+                    data: {
+                        email: email,
+                    },
+                    headers: {
+                        method: "DELETE",
+                        Authorization: `Bearer ${user?.token}`,
+                    },
+                }
+            )
             .then((res) => {
                 Display.pushSuccess("Annonce supprimée avec succès.");
                 setDeleting(false);
@@ -175,6 +189,7 @@ export default function Card(props: any) {
                 Display.pushFailure(
                     "Erreur lors de la suppression de l'annonce."
                 );
+                Display.pushFailure(err);
                 setDeleting(true);
             });
     };

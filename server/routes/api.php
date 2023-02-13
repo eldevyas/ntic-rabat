@@ -7,7 +7,7 @@ use App\Http\Resources\AnnonceCollection;
 use App\Http\Controllers\Api\AnnonceController;
 // import CheckResetPasswordToken middleware
 use App\Http\Middleware\CheckResetPasswordToken;
-
+// import AdminCheck middleware
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -28,6 +28,7 @@ Route::post('/annonces', [AnnonceController::class, 'store'])->middleware('auth:
 Route::delete('/annonces/{id}', [AnnonceController::class, 'delete'])->middleware('auth:api');
 Route::put('/annonces/{id}', [AnnonceController::class, 'update'])->middleware('auth:api');
 Route::post('/login', [UserController::class, 'login']);
+// login with token
 Route::post('/register', [UserController::class, 'register']);
 Route::post('/logout', [UserController::class, 'logout'])->middleware('auth:api');
 Route::apiResource('projects', ProjectController::class);
@@ -46,3 +47,7 @@ Route::post('/auth/verify-email', [UserController::class, 'verifyEmailCode']);
 Route::post('/auth/check-email-verified', [UserController::class, 'checkEmailVerified']);
 // resend email verification code
 Route::post('auth/resend-confirmation', [UserController::class, 'sendEmailVerification']);
+// view user profile
+Route::get('/user/{username}', [UserController::class, 'show']);
+// update password
+Route::post('/user/update-password', [UserController::class, 'UpdatePassword'])->middleware('auth:api');

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Header from "../layout/header/header";
-import Footer from "../layout/footer";
+import Footer from "../layout/footer/footer";
 import Head from "next/head";
 // Icons
 import AddBoxOutlinedIcon from "@mui/icons-material/AddBoxOutlined";

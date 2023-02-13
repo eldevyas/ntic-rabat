@@ -44,37 +44,41 @@ export default function DesktopHeader(props: any) {
                     </Link>
                 ))}
             </div>
-            <div className="End">
-                {
-                    // if user is connected
-                    session ? (
-                        <User
-                            name={session?.user?.name as string}
-                            email={session?.user?.email as string}
-                            image={session?.user?.image as string}
-                        />
-                    ) : (
-                        <>
-                            <DefaultButton
-                                color="LightGreen"
-                                onClick={() => {
-                                    Router.push("/auth/register");
-                                }}
-                            >
-                                {"S'inscrire"}
-                            </DefaultButton>
-                            <DefaultButton
-                                color="Green"
-                                onClick={() => {
-                                    signIn();
-                                }}
-                            >
-                                Se Connecter
-                            </DefaultButton>
-                        </>
-                    )
-                }
-            </div>
+            {/* Hidden on Login and Register Pages */}
+            {Router.pathname !== "/auth/login" &&
+                Router.pathname !== "/auth/register" && (
+                    <div className="End">
+                        {
+                            // if user is connected
+                            session ? (
+                                <User
+                                    name={session?.user?.name as string}
+                                    email={session?.user?.email as string}
+                                    image={session?.user?.image as string}
+                                />
+                            ) : (
+                                <>
+                                    <DefaultButton
+                                        color="LightGreen"
+                                        onClick={() => {
+                                            Router.push("/auth/register");
+                                        }}
+                                    >
+                                        {"S'inscrire"}
+                                    </DefaultButton>
+                                    <DefaultButton
+                                        color="Green"
+                                        onClick={() => {
+                                            Router.push("/auth/login");
+                                        }}
+                                    >
+                                        Se Connecter
+                                    </DefaultButton>
+                                </>
+                            )
+                        }
+                    </div>
+                )}
         </header>
     );
 }

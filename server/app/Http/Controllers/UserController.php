@@ -8,15 +8,16 @@ use App\Models\Role;
 use App\Models\User;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Mail\emailVerification;
 use App\Mail\forgetPasswordEmail;
+// import forgetPasswordEmail
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
-// import forgetPasswordEmail
+use Illuminate\Support\Facades\Hash;
+// import emailVerification
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Validator;
-// import emailVerification
-use App\Mail\emailVerification;
 
 class UserController extends Controller
 {
@@ -89,11 +90,22 @@ class UserController extends Controller
             $success['user']['token'] = $user->createToken('api-application')->accessToken;
             // Whether has verified the email or not.
             $success['user']['email_verified'] = $user->email_verified_at ? true : false;
+            $success['user']['role'] = $user->role_id == 2 ? 'admin' : 'stagiaire';
             return response()->json($success, 200);
         } else {
             return response()->json(['error' => 'Unauthorised'], 401);
         }
     }
+    public function show($username)
+    {
+        $user = User::where('username', $username)->first();
+        if ($user) {
+            return response()->json($user, 200);
+        } else {
+            return response()->json(['error' => 'User not found'], 404);
+        }
+    }
+
 
     public function logout(Request $request)
     {
@@ -266,6 +278,22 @@ class UserController extends Controller
         }
     }
 
-    // Login with a token
-
+    public function UpdatePassword(Request $request)
+    {
+        $email = $request->email;
+        $CurrentPassword = $request->CurrentPassword;
+        // check if the old password is correct
+        if (Hash::check($CurrentPassword, Auth::user()->password)) {
+            $user = User::where('email', $email)->first();
+            $user->password = Hash::make($request->NewPassword);
+            $user->save();
+            return response()->json([
+                'message' => 'Password updated successfully'
+            ], 200);
+        } else {
+            return response()->json([
+                'message' => 'Current password is incorrect'
+            ], 401);
+        }
+    }
 }

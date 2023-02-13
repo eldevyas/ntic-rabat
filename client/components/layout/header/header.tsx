@@ -15,8 +15,8 @@ const NavigationLinks: {
         text: "Emplois",
     },
     {
-        href: "/forum",
-        text: "Forum",
+        href: "/connect",
+        text: "Connect",
     },
     {
         href: "/#contact",
