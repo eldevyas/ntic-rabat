@@ -7,7 +7,12 @@ export default withAuth(
     },
     {
         callbacks: {
-            authorized: ({ token }) => token?.email_verified === true,
+            authorized: ({ token, req }) => {
+                if (req.url.includes('/admin')) {
+                    return token?.email_verified === true && token?.role === 'admin';
+                }
+                return token?.email_verified === true;
+            },
         }
     }
 );
