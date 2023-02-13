@@ -12,6 +12,7 @@ const User = (props: {
     image: string | undefined;
     name: string | undefined;
     email: string | undefined;
+    role: string | undefined;
 }) => {
     const [isMenuOpen, setisMenuOpen] = React.useState(false);
     const handleisMenuOpenClick = () => {
@@ -54,7 +55,7 @@ const User = (props: {
                 </div>
                 <div className="User__Info__Name">
                     <h3>{props.name}</h3>
-                    <p>{props.email}</p>
+                    <p>{props.role}</p>
                 </div>
             </div>
             <div className="User__Action">

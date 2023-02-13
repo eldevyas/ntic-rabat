@@ -19,9 +19,9 @@ $nfMargin: 20px;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    align-items: flex-start;
+    align-items: flex-end;
     gap: $GlobalGap !important;
-    padding: 1rem 2rem !important;
+    @include GlobalPadding();
     @include respond-to('small') {
         width: 100%;
     }

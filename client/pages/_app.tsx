@@ -54,7 +54,7 @@ export default function App({ Component, pageProps, router }: CustomAppProps) {
                         // onExitComplete={() => window.scrollTo(0, 0)}
                     >
                         <motion.div
-                            className={"container"}
+                            className={"Container"}
                             key={router.route}
                             initial="hidden"
                             animate="enter"

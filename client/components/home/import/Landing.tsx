@@ -28,12 +28,10 @@ export default function Landing() {
                     startIcon={<GroupsOutlinedIcon />}
                     color="LightBlue"
                     onClick={() => {
-                        Display.pushDev(
-                            "Fonctionnalité non disponible pour le moment."
-                        );
+                        Router.push(`/connect`);
                     }}
                 >
-                    Consultez le Forum
+                    Consultez NTIC Connect
                 </OutlinedButton>
             </div>
             <Announces />

@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
-import { DefaultButton, IconButton } from "../../core/button";
+import { DefaultButton, IconButton } from "../../../../core/button";
 import GroupsIcon from "@mui/icons-material/Groups";
 import AdminPanelSettingsIcon from "@mui/icons-material/AdminPanelSettings";
 import Image from "next/image";
@@ -10,6 +10,7 @@ import { useRouter } from "next/router";
 
 const SideBar = () => {
     const { data: session, status } = useSession();
+    const Router = useRouter();
 
     return (
         <div className="SideBar">
@@ -29,7 +30,18 @@ const SideBar = () => {
                 </div>
 
                 <div className="Pages">
-                    <IconButton color="Blue">
+                    <IconButton
+                        color={
+                            Router.pathname.startsWith("/connect")
+                                ? "Blue"
+                                : "LightBlue"
+                        }
+                        onClick={() => {
+                            if (!Router.pathname.startsWith("/connect")) {
+                                Router.push("/connect");
+                            }
+                        }}
+                    >
                         <GroupsIcon />
                     </IconButton>
                     <IconButton color="LightBlue">
@@ -93,7 +105,6 @@ export default SideBar;
 
 const NaviationItems = () => {
     // Button Ref
-    const ButtonRef = useRef(null);
     const Router = useRouter();
 
     // Links and Icons
@@ -127,16 +138,19 @@ const NaviationItems = () => {
         <>
             <div className="Navigation">
                 {Items.map((Item, Index) => {
-                    var isActive = Item.link === Router.pathname;
                     return (
-                        <div key={Index} className="NavigationItem">
+                        <div
+                            key={Index}
+                            className={
+                                "NavigationItem " +
+                                (Item.link == Router.pathname
+                                    ? "Active"
+                                    : "Inactive")
+                            }
+                        >
                             <DefaultButton
                                 color="white"
-                                ref={isActive ? ButtonRef : null}
-                                className={
-                                    "NavigationName " +
-                                    (isActive ? "Active" : "")
-                                }
+                                className={"NavigationName "}
                                 onClick={() => {
                                     setCurrentLink(Item.link);
                                     Router.push(Item.link);

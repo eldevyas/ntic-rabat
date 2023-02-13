@@ -68,6 +68,7 @@ export default function Annonces() {
             let Description = newDescription.current.value;
             let Url = newUrl.current.value;
             let deadline = ExpirationDate.current.value;
+            let email = user?.email;
             axios
                 .post(
                     "http://localhost:8000/api/annonces",
@@ -77,6 +78,7 @@ export default function Annonces() {
                         type: variant,
                         url: Url,
                         deadline: deadline,
+                        email: email,
                     },
                     {
                         headers: {

@@ -116,6 +116,7 @@ export default function Card(props: any) {
             let Variant = newVariant;
             let Url = newUrl.current.value;
             let Deadline = newDeadLine.current.value;
+            let email = user?.email;
 
             // Validate fileds values
             if (Title == "") {
@@ -142,6 +143,7 @@ export default function Card(props: any) {
                         type: Variant,
                         url: Url,
                         deadline: Deadline,
+                        email: email,
                     },
                     {
                         headers: {
@@ -163,12 +165,21 @@ export default function Card(props: any) {
         }
     };
     const deleteAnnounce = (id: any) => {
+        let email = user?.email;
         axios
-            .delete(`http://localhost:8000/api/annonces/` + id, {
-                headers: {
-                    Authorization: `Bearer ${user?.token}`,
-                },
-            })
+            .delete(
+                `http://localhost:8000/api/annonces/` + id,
+
+                {
+                    data: {
+                        email: email,
+                    },
+                    headers: {
+                        method: "DELETE",
+                        Authorization: `Bearer ${user?.token}`,
+                    },
+                }
+            )
             .then((res) => {
                 Display.pushSuccess("Annonce supprimée avec succès.");
                 setDeleting(false);
@@ -178,6 +189,7 @@ export default function Card(props: any) {
                 Display.pushFailure(
                     "Erreur lors de la suppression de l'annonce."
                 );
+                Display.pushFailure(err);
                 setDeleting(true);
             });
     };

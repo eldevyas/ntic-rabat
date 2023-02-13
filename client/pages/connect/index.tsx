@@ -7,6 +7,8 @@ import Header from "../../components/layout/header/header";
 import Footer from "../../components/layout/footer/footer";
 import { DefaultButton, OutlinedButton } from "../../components/core/button";
 import Loading from "../../components/core/Loading";
+import Image from "next/image";
+import SendIcon from "@mui/icons-material/Send";
 
 const Connect = () => {
     const { data: session, status } = useSession();
@@ -33,6 +35,57 @@ const Connect = () => {
                     <Head>
                         <title>NTIC Connect - Accueil</title>
                     </Head>
+
+                    <div className="Main">
+                        <div className="CreatePost">
+                            <div className="Profile">
+                                <Image
+                                    src="/assets/img/pp/pp1.png"
+                                    className="Avatar"
+                                    alt="profile"
+                                    width={50}
+                                    height={50}
+                                />
+                            </div>
+                            <div className="Form">
+                                <div className="Input">
+                                    <textarea
+                                        placeholder={`Que pensez-vous ? ${
+                                            session?.user?.name?.split(" ")[0]
+                                        }.`}
+                                    ></textarea>
+                                </div>
+                                <div className="Actions">
+                                    <DefaultButton type="primary">
+                                        <Image
+                                            src="/assets/svg/Design.svg"
+                                            alt="Design"
+                                            width={20}
+                                            height={20}
+                                        />
+                                        Projet / Réalisation
+                                    </DefaultButton>
+                                    <DefaultButton type="primary">
+                                        <Image
+                                            src="/assets/svg/Catalog.svg"
+                                            alt="Photo"
+                                            width={20}
+                                            height={20}
+                                        />
+                                        Photo / Video
+                                    </DefaultButton>
+                                    <DefaultButton
+                                        type="primary"
+                                        size="small"
+                                        className="Publish"
+                                    >
+                                        Publier
+                                        <SendIcon fontSize="small" />
+                                    </DefaultButton>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </>
             )}
 

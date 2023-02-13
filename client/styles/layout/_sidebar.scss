@@ -151,7 +151,7 @@
                 width: 100%;
                 height: 50px;
                 &.Active {
-                    $NavigationItemActiveBackgroundColor: rgba($C2, 0.25);
+                    $NavigationItemActiveBackgroundColor: rgba($C2, 5%);
                     background-color: $NavigationItemActiveBackgroundColor;
                 }
                 .NavigationName {
