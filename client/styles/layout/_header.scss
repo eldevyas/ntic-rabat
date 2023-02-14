@@ -9,7 +9,6 @@
     flex-direction: row;
     gap: $GlobalGap;
 
-    // All Children same width, for spacing equality.
     .End,
     .Middle,
     .Start {
@@ -31,11 +30,9 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        // row
         flex-direction: row;
         gap: $GlobalGap;
 
-        // All Buttons same width
         .DefaultButton,
         button {
             min-width: 100px;
@@ -52,7 +49,7 @@
         justify-content: flex-end;
         width: 100%;
 
-        // Same width for the buttons
+
         .DefaultButton {
             min-width: 135px;
 
@@ -141,12 +138,8 @@
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                // &__Button {
-                //     aspect-ratio: 1/1;
-                // }
             }
 
-            // Dropdown
             &__Dropdown {
                 box-shadow: 0 0px 250px 0px rgba(darken($C2, 25%), 0.25);
                 position: absolute;
@@ -173,7 +166,6 @@
                 }
 
                 .DefaultButton {
-                    // align to left
                     text-align: left;
                     justify-content: flex-start;
                 }
@@ -358,7 +350,6 @@
                 z-index: 0;
                 transition: all 100ms ease;
                 box-shadow: 0 1rem 30px 10px rgba(#000, 25%);
-                // filter: brightness(0.25);
             }
         }
     }

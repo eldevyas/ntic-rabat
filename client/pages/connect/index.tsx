@@ -50,13 +50,12 @@ const Connect = () => {
                             <div className="Form">
                                 <div className="Input">
                                     <textarea
-                                        placeholder={`Que pensez-vous ? ${
-                                            session?.user?.name?.split(" ")[0]
-                                        }.`}
+                                        placeholder={`Que pensez-vous ? ${session?.user?.name?.split(" ")[0]
+                                            }.`}
                                     ></textarea>
                                 </div>
                                 <div className="Actions">
-                                    <DefaultButton type="primary">
+                                    <DefaultButton>
                                         <Image
                                             src="/assets/svg/Design.svg"
                                             alt="Design"
@@ -65,7 +64,7 @@ const Connect = () => {
                                         />
                                         Projet / Réalisation
                                     </DefaultButton>
-                                    <DefaultButton type="primary">
+                                    <DefaultButton >
                                         <Image
                                             src="/assets/svg/Catalog.svg"
                                             alt="Photo"
@@ -90,8 +89,7 @@ const Connect = () => {
             )}
 
             {
-                // Show spinner in case
-                // the session is loading
+                // Show spinner in case the session is loading
                 status === "loading" || (!session && <Loading />)
             }
         </>

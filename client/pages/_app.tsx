@@ -24,8 +24,7 @@ import Layout from "../components/layout/layout";
 
 export default function App({ Component, pageProps, router }: CustomAppProps) {
     const [session, setSession] = useState(pageProps.session);
-    //
-    //
+
     const pageTransition = useMemo(() => {
         return {
             hidden: { opacity: 0, x: -400, y: 0 },
@@ -33,7 +32,7 @@ export default function App({ Component, pageProps, router }: CustomAppProps) {
             exit: { opacity: 0, y: 0, x: -400 },
         };
     }, []);
-    //
+
     return (
         <>
             <SessionProvider session={session}>
@@ -51,7 +50,7 @@ export default function App({ Component, pageProps, router }: CustomAppProps) {
                     <AnimatePresence
                         mode="sync"
                         initial={true}
-                        // onExitComplete={() => window.scrollTo(0, 0)}
+                    // onExitComplete={() => window.scrollTo(0, 0)}
                     >
                         <motion.div
                             className={"Container"}
@@ -78,7 +77,7 @@ export default function App({ Component, pageProps, router }: CustomAppProps) {
                                 />
                             )}
 
-                            {/* <Loading /> */}
+
                         </motion.div>
                     </AnimatePresence>
                 </Layout>
@@ -88,7 +87,7 @@ export default function App({ Component, pageProps, router }: CustomAppProps) {
 }
 
 function Auth({ children }: any) {
-    // if `{ required: true }` is supplied, `status` can only be "loading" or "authenticated"
+    // if `{ required: true }` is supplied, `status` can only be "loading" or "authenticated"    
     const { status } = useSession({ required: true });
 
     if (status === "loading") {

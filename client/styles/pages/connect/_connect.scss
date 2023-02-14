@@ -12,8 +12,8 @@
     padding: 1rem;
     box-sizing: border-box;
     overflow: hidden;
-    // before element
     gap: $GlobalGap;
+
     &::before {
         content: '';
         display: block;
@@ -25,11 +25,13 @@
         top: 0;
         left: 0;
     }
+
     .Container {
         position: relative;
         width: 100%;
         height: 100%;
     }
+
     .Content {
         position: relative;
         width: 100%;
@@ -41,21 +43,23 @@
         align-items: stretch;
         justify-content: center;
         gap: $GlobalGap;
+
         .ConnectHeader {
             position: relative;
             height: 50px;
             width: 100%;
             border-radius: $FormsRadius;
-            // box-shadow: 0 0px 250px 0px rgba(darken($C2, 25%), 0.25);
             display: grid;
             grid-template-columns: 2fr 2fr 1fr;
             z-index: 2;
+
             .Left {
                 display: flex;
                 flex-direction: row;
                 align-items: center;
                 justify-content: flex-start;
                 gap: $GlobalGap;
+
                 .ConnectHeaderButton {
                     background-color: $C4;
                     border-radius: 10px;
@@ -69,6 +73,7 @@
                     line-height: 25px;
                     color: rgba(0, 0, 0, 0.5);
                     opacity: 0.75;
+
                     &.Active {
                         background: $G3;
                         color: white;
@@ -76,10 +81,12 @@
                     }
                 }
             }
+
             .Middle {
                 display: flex;
                 flex-direction: row;
                 align-items: center;
+
                 .SearchInput {
                     position: absolute;
                     width: 35%;
@@ -94,12 +101,14 @@
                     line-height: 25px;
                     color: rgba(0, 0, 0, 0.75);
                 }
+
                 .SearchIcon {
                     position: relative;
                     left: 12px;
                     font-size: unset;
                 }
             }
+
             .Right {
                 .User {
                     position: relative;
@@ -110,6 +119,7 @@
                     display: flex;
                     align-items: stretch;
                     gap: $GlobalGap;
+
                     &__Info {
                         position: relative;
                         display: flex;
@@ -120,6 +130,7 @@
                         width: 100%;
                         height: 100%;
                         overflow: hidden;
+
                         &__Avatar {
                             position: relative;
                             height: 100%;
@@ -130,6 +141,7 @@
                             align-items: center;
                             justify-content: center;
                             gap: $GlobalGap;
+
                             img {
                                 position: absolute;
                                 top: 0;
@@ -140,6 +152,7 @@
                                 border-radius: $FormsRadius;
                             }
                         }
+
                         &__Name {
                             display: flex;
                             flex-direction: column;
@@ -148,12 +161,14 @@
                             gap: $GlobalGap / 4;
                             height: 100%;
                             width: 100%;
+
                             h3 {
                                 font-size: 0.9rem;
                                 font-weight: 600;
                                 color: rgba($C1, 75%);
                                 width: 100%;
                             }
+
                             p {
                                 font-size: 0.75rem;
                                 font-weight: 400;
@@ -165,6 +180,7 @@
                             }
                         }
                     }
+
                     &__Action {
                         position: relative;
                         background-color: transparent;
@@ -174,10 +190,8 @@
                         display: flex;
                         align-items: center;
                         justify-content: center;
-                        // &__Button {
-                        //     aspect-ratio: 1/1;
-                        // }
                     }
+
                     // Dropdown
                     &__Dropdown {
                         box-shadow: 0 0px 250px 0px rgba(darken($C2, 25%), 0.25);
@@ -195,6 +209,7 @@
                         gap: $GlobalGap;
                         padding: $GlobalGap;
                         z-index: 100000;
+
                         .UsualButton {
                             @include DefaultButton($C4);
                             background-color: rgba($C1, 5%);
@@ -202,8 +217,8 @@
                             text-align: left;
                             justify-content: flex-start;
                         }
+
                         .DefaultButton {
-                            // align to left
                             text-align: left;
                             justify-content: flex-start;
                         }
@@ -211,13 +226,13 @@
                 }
             }
         }
+
         .Main {
             position: relative;
             height: 100%;
             width: 100%;
-            // background-color: white;
             border-radius: $FormsRadius;
-            // box-shadow: 0 0px 250px 0px rgba(darken($C2, 25%), 0.25);
+
             .CreatePost {
                 background-color: $C4;
                 display: flex;
@@ -226,22 +241,24 @@
                 padding: 10px;
                 border-radius: $FormsRadius;
                 gap: $GlobalGap;
+
                 .Avatar {
                     border-radius: $FormsRadius / 2;
                     background-color: #000;
                     object-fit: cover;
                 }
+
                 .Form {
                     width: 100%;
                     display: flex;
                     flex-direction: column;
                     gap: $GlobalGap / 2;
+
                     textarea {
                         width: 100%;
                         border-radius: 7.5px;
                         border: none;
                         outline: none;
-                        background: transparent;
                         font-size: 1rem;
                         padding: 0.5rem 1rem;
                         font-weight: 500;
@@ -251,12 +268,14 @@
                         resize: none;
                     }
                 }
+
                 .Actions {
                     display: flex;
                     flex-direction: row;
                     align-items: stretch;
                     justify-content: space-between;
                     gap: $GlobalGap;
+
                     button {
                         display: flex;
                         flex-direction: row;
@@ -273,6 +292,8 @@
                         color: #333333;
                         width: 100%;
                         text-transform: capitalize;
+                        background-color: unset !important;
+
                         &.Publish {
                             background: $G3;
                             color: white;
