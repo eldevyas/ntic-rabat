@@ -32,7 +32,6 @@ const Register = (credentials: any) => {
             password_confirmation: credentials.passwordConfirmation,
         });
 
-        console.table(data);
 
         return axios
             .post(REGISTER_ENDPOINT, data, {
@@ -41,7 +40,6 @@ const Register = (credentials: any) => {
                 },
             })
             .then((response) => {
-                console.table(response);
                 if (response.status === 201) {
                     Display.pushSuccess(
                         `Félicitations, votre compte a été créé avec succès ! Pour des raisons de sécurité, veuillez vous connecter et confirmer votre adresse électronique en cliquant sur le lien d'activation que nous venons de vous envoyer.`

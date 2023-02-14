@@ -94,16 +94,10 @@ const SelectGroup = () => {
             <Select
                 options={groupedOptions}
                 className="react-select-container"
-                // placeholder
-                // placeholder="Sélectionnez un groupe"
                 isSearchable={false}
                 isLoading={isLoading}
                 // is menu open
                 menuIsOpen={isOpen}
-                // menu position auto
-                // menuPlacement="auto"
-                // menuPortalTarget={document.body}
-                // max width
                 onChange={(choice: any) => ChangeGroup(choice.value)}
                 // replace main input with button
                 components={{

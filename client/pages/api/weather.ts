@@ -29,10 +29,6 @@ export default async function handler(
     }
 
     // console table these vars
-    console.table({
-        weekStart: convert(weekStart),
-        weekEnd: convert(weekEnd)
-    });
 
     const url = `https://api.open-meteo.com/v1/forecast?latitude=34.01&longitude=-6.83&daily=weathercode,apparent_temperature_max,apparent_temperature_min&timezone=auto&start_date=${convert(weekStart)}&end_date=${convert(weekEnd)}`;
     const response = await axios.get(url);

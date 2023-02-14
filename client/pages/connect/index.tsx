@@ -16,10 +16,7 @@ const Connect = () => {
     const router = useRouter();
 
     useEffect(() => {
-        console.table({
-            session,
-            status,
-        });
+
         if (status === "loading") return;
         if (!session || status === ("unauthenticated" as string)) {
             router.push("/auth/login");

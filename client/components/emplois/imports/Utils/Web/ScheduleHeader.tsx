@@ -5,7 +5,6 @@ export default function ScheduleHeader(props: any) {
 
     useEffect(() => {
         setGroupID(props.GroupID);
-        console.log("Table header Group Name: ", GroupID);
     }, [GroupID, props.GroupID]);
 
     return (

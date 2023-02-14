@@ -16,18 +16,10 @@ export default async function handler(
     req: NextApiRequest,
     res: NextApiResponse<Data>
 ) {
-    // Get the value from redux
-    // const groupValue = useSelector((state) => state.value)
-    // console.log(groupValue);
-    // Get All Groups from "www.nticrabat.com"'s select menu.
-    let TargetURL = "https://nticrabat.com/";
 
+    let TargetURL = "https://nticrabat.com/";
     // get group id from get request
     const GroupID = req.query.GroupID;
-
-
-    // return json
-
 
     let dayIndex = 0;
 
@@ -81,7 +73,6 @@ export default async function handler(
         }
     });
 
-    // Function to switch Day name from "Mon."" to "Lundi" in french.
     function SwitchDayName(DayName: string) {
         switch (DayName) {
             case "Mon.":

@@ -95,7 +95,7 @@ const User = (props: {
 User.propTypes = {
     name: PropTypes.string.isRequired,
     email: PropTypes.string.isRequired,
-    image: PropTypes.string.isRequired,
+    // image: PropTypes.string.isRequired,
 };
 
 export default User;
