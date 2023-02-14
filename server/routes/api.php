@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\PostsController;
 use App\Http\Resources\AnnonceCollection;
 use App\Http\Controllers\Api\AnnonceController;
 // import CheckResetPasswordToken middleware
@@ -51,3 +52,10 @@ Route::post('auth/resend-confirmation', [UserController::class, 'sendEmailVerifi
 Route::get('/user/{username}', [UserController::class, 'show']);
 // update password
 Route::post('/user/update-password', [UserController::class, 'UpdatePassword'])->middleware('auth:api');
+// posts group routes
+Route::group(['prefix' => 'post'], function () {
+    Route::get('/', [PostsController::class, 'index']);
+    Route::post('/', [PostsController::class, 'store'])->middleware('auth:api');
+    Route::put('/{post}', [PostsController::class, 'update'])->middleware('auth:api');
+    Route::delete('/{post}', [PostsController::class, 'destroy'])->middleware('auth:api');
+});

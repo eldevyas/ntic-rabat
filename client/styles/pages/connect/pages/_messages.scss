@@ -1,0 +1,167 @@
+.GlobalMessages {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    // background: white;
+    border-radius: $FormsRadius;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: $GlobalGap;
+    &__Title {
+        width: 100%;
+        min-height: 50px;
+        border-radius: $FormsRadius;
+        background-color: $C4;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding: $GlobalGap;
+        gap: $GlobalGap;
+        &__Text {
+            font-size: 1rem;
+            font-weight: 800;
+            color: rgba(#000, 50%);
+            text-align: left;
+        }
+        &__OnlineUsers {
+            font-size: 1rem;
+            font-weight: 800;
+            color: rgba(#fff, 75%);
+            text-align: left;
+            background-color: $C3;
+            padding-left: $GlobalGap * 2;
+            padding-right: $GlobalGap * 2;
+            padding-top: $GlobalGap;
+            padding-bottom: $GlobalGap;
+            border-radius: $FormsRadius / 2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0px 50px 0px rgba($C3, 0.25);
+        }
+    }
+    &__Content {
+        width: 100%;
+        height: 100%;
+        border-radius: $FormsRadius;
+        background-color: $C4;
+        padding: $GlobalGap;
+        gap: $GlobalGap;
+        // display: flex;
+        // flex-direction: column;
+        // justify-content: flex-end;
+        // align-items: flex-end;
+        overflow-y: auto;
+        text-align: left;
+        &__Message {
+            position: relative;
+            width: auto;
+            max-width: 500px;
+            min-height: calc($GlobalGap * 2 + 50px);
+            background-color: rgba(#000, 5%);
+            border-radius: $FormsRadius / 2;
+            display: flex;
+            flex-direction: row;
+            align-items: flex-start;
+            justify-content: flex-start;
+            padding: $GlobalGap;
+            gap: $GlobalGap;
+            overflow: hidden;
+            &__Avatar {
+                width: 50px;
+                height: 50px;
+                position: relative;
+                background-color: rgba(#000, 50%);
+                border-radius: $FormsRadius / 4;
+                filter: invert(1);
+                overflow: hidden;
+            }
+            color: #000;
+            text-align: left;
+            &__Text {
+                position: relative;
+                display: flex;
+                flex-direction: column;
+                gap: $GlobalGap / 2;
+                text-align: inherit;
+                white-space: wrap;
+                &__User {
+                    font-size: 1rem;
+                    font-weight: 800;
+                    opacity: 75%;
+                    ;
+                    &__Time {
+                        font-size: .8rem;
+                        opacity: 50%;
+                    }
+                }
+                &__Content {
+                    color: inherit;
+                    text-align: inherit;
+                    width: 100%;
+                    white-space: wrap;
+                }
+            }
+            &.OwnMessage {
+                background-color: $C1;
+                background-image: $G1;
+                flex-direction: row-reverse;
+                color: #fff;
+                margin-left: auto;
+            }
+            &:not(:last-child) {
+                margin-bottom: $GlobalGap;
+            }
+        }
+    }
+    &__Form {
+        width: 100%;
+        height: auto;
+        border-radius: $FormsRadius;
+        background-color: $C4;
+        padding: $GlobalGap;
+        display: flex;
+        flex-direction: row;
+        align-items: stretch;
+        justify-content: space-between;
+        gap: $GlobalGap;
+        &__Avatar {
+            width: auto;
+            height: 100%;
+            aspect-ratio: 1/1;
+            position: relative;
+            border-radius: $FormsRadius / 2;
+            background-color: $C2;
+        }
+        &__Input {
+            width: 100%;
+            height: auto;
+            border-radius: $FormsRadius / 2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            &__Message {
+                position: relative;
+                width: 100%;
+                height: 100%;
+                border-radius: $FormsRadius / 2;
+                font-family: inherit !important;
+                font-size: 0.75rem;
+                background-color: rgba(#000, 5%);
+                .MuiInputBase-root {
+                    font-size: 0.95rem;
+                    font-family: inherit;
+                    outline: none !important;
+                    border: none !important;
+                }
+                .MuiOutlinedInput-notchedOutline {
+                    outline: none !important;
+                    border: none !important;
+                }
+            }
+        }
+    }
+}

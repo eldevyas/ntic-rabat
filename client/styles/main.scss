@@ -1,3 +1,9 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+
+/* Your own custom component styles */
+
+@import 'tailwindcss/utilities';
 // Global Styling
 @import './global/global';
 @import './global/functions';
@@ -20,3 +26,4 @@
 @import "./pages/emplois/imports/_Schedule";
 @import "./pages/realisations/realisations";
 @import "./pages/connect/connect";
+@import "./pages/connect/imports/post";

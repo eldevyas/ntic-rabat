@@ -94,3 +94,7 @@ function pushWarning(message: string) {
 }
 
 export { pushDev, pushInfo, pushSuccess, pushFailure, pushWarning }; { { } }
+
+export function push(arg0: string) {
+    throw new Error("Function not implemented.");
+}

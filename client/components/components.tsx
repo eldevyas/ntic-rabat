@@ -25,7 +25,7 @@ const ProgressIndicator = () => {
 const CustomToastContainer = () => {
     return (
         <ToastContainer
-            position="bottom-right"
+            position="top-left"
             autoClose={5000}
             hideProgressBar={true}
             newestOnTop={false}

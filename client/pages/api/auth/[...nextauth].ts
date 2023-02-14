@@ -24,11 +24,11 @@ const authOptions: NextAuthOptions = {
         session: async ({ session, token }: any) => {
             if (session?.user) {
                 session.user.id = token.uid;
+                session.user.username = token.username;
                 session.user.token = token.accessToken;
                 session.user.profile_picture = token.profile_picture;
                 session.user.email_verified = token.email_verified;
                 session.user.role = token.role;
-                session.user.username = token.username;
             }
             return session;
         },
