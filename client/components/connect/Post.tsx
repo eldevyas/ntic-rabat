@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import Image from "next/image";
 import { DefaultButton } from "../../components/core/button";
 import { formatDistanceToNow } from "date-fns";
 import axios from "axios";
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import * as Display from "../../services/displayAlert";
 
 import FavoriteIcon from '@mui/icons-material/Favorite';
 const Post = (props: any) => {
@@ -13,6 +14,7 @@ const Post = (props: any) => {
     const post = props.post;
     const comments = props.post.comments;
     const likes = props.post.likes;
+    const [liked, setLiked] = useState(false);
     let timeAgo = formatDistanceToNow(new Date(created_at), {
         addSuffix: false,
     });
@@ -41,13 +43,20 @@ const Post = (props: any) => {
             )
             .then((res) => {
                 console.log(res.data);
+                Display.pushSuccess("Post liked");
+                // force update the component
+                setLiked(!liked);
             }
             )
             .catch((err) => {
-                console.log(err.response.data);
+                console.log(err);
             }
             );
+
     };
+    useEffect(() => {
+
+    }, [liked]);
     // check if the user has liked the post
 
 
