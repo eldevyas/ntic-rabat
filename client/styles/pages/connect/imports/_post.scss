@@ -6,7 +6,7 @@
     gap: $GlobalGap;
     padding: $GlobalGap;
     border-radius: 15px;
-    width: 80%;
+    width: 100%;
     .PostHeader {
         display: flex;
         flex-direction: row;
@@ -48,19 +48,26 @@
         display: flex;
         flex-direction: row;
         gap: $GlobalGap;
-        align-items: center;
+        align-items: stretch;
         justify-content: space-between;
         button {
-            background-color: red;
-            border: none;
-            border-radius: 10px;
-            color: #fff;
-            cursor: pointer;
-            font-size: 1rem;
-            font-weight: 400;
-            padding: 0;
-            width: 100%;
-            text-transform: capitalize;
+            flex: 1;
+            $RedButton: rgb(180, 50, 80);
+            // Gray
+            $GrayButton: rgb(150, 150, 150);
+            // Blue
+            $ReportButton: rgb(50, 180, 180);
+            // xampp bro
+            // done
+            &:nth-child(1) {
+                @include DefaultButton($RedButton);
+            }
+            &:nth-child(2) {
+                @include DefaultButton($GrayButton);
+            }
+            &:nth-child(3) {
+                @include DefaultButton($ReportButton);
+            }
         }
     }
 }
