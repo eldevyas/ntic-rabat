@@ -6,6 +6,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\PostsController;
 use App\Http\Resources\AnnonceCollection;
 use App\Http\Controllers\Api\AnnonceController;
+use App\Http\Controllers\LikesController;
 // import CheckResetPasswordToken middleware
 use App\Http\Middleware\CheckResetPasswordToken;
 // import AdminCheck middleware
@@ -58,4 +59,8 @@ Route::group(['prefix' => 'post'], function () {
     Route::post('/', [PostsController::class, 'store'])->middleware('auth:api');
     Route::put('/{post}', [PostsController::class, 'update'])->middleware('auth:api');
     Route::delete('/{post}', [PostsController::class, 'destroy'])->middleware('auth:api');
+});
+// group like routes
+Route::group(['prefix' => 'post'], function () {
+    Route::post('/{post}/like', [LikesController::class, 'like'])->middleware('auth:api');
 });

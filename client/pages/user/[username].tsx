@@ -16,7 +16,6 @@ const Profile = ({ username }: any) => {
                 console.log(err.response.data.error);
             });
     }, []);
-    console.log(user);
     return <UserProfile user={user} />;
 };
 

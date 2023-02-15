@@ -48,7 +48,6 @@ const LoginComponent = () => {
                     password: Credentials.password,
                     redirect: false,
                 });
-                console.log(res);
                 if (res.status !== 200 && !res.ok) {
                     // Inspect Error codes
                     if (res.status === 401) {

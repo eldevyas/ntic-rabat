@@ -19,15 +19,6 @@ class LikesController extends Controller
         //
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -35,67 +26,21 @@ class LikesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function like(Request $request, Post $post)
     {
-        $post = Post::findOrFail($request->post_id);
 
+        // check if the user has already liked the post
+        $like = $post->likes()->where('user_id', auth()->id())->first();
+        if ($like) {
+            // if the user has already liked the post, delete the like
+            $like->delete();
+            return response(null, Response::HTTP_NO_CONTENT);
+        }
+        // create a new like
         $like = new Like();
         $like->user_id = auth()->id();
-
-        $post->likes()->save($like);
-
+        $like->post_id = $post->id;
+        $like->save();
         return response($like, Response::HTTP_CREATED);
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Like  $like
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Like $like)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Like  $like
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Like $like)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Like  $like
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Like $like)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Like  $like
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Like $like)
-    {
-        $like = Like::where('post_id', $like->post_id)
-            ->where('id', $like->id)
-            ->where('user_id', auth()->id())
-            ->firstOrFail();
-
-        $like->delete();
-
-        return response(null, Response::HTTP_NO_CONTENT);
     }
 }

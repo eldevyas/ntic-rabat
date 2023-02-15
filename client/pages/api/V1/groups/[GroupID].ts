@@ -12,8 +12,6 @@ export default async function handler(
     req: NextApiRequest,
     res: NextApiResponse<Data>
 ) {
-    // Get the value from redux
-    // const groupValue = useSelector((state) => state.value)
     // console.log(groupValue);
     // Get All Groups from "www.nticrabat.com"'s select menu.
     let TargetURL = "https://nticrabat.com/";

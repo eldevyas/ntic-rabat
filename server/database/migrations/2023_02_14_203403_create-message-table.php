@@ -18,7 +18,7 @@ return new class extends Migration
             $table->bigIncrements('id');
             $table->string('text');
             $table->string('username');
-            $table->id('id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }
