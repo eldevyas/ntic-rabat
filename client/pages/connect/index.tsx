@@ -69,6 +69,8 @@ const Connect = () => {
 
     const handlePublish = () => {
         // check if content is empty or has only spaces
+        // convert the new line breaker in content to /n
+
 
         if (content?.trim() === "") {
             Display.pushFailure("Veuillez saisir un contenu");
@@ -80,6 +82,7 @@ const Connect = () => {
             .post(
                 url + "/post",
                 {
+
                     content: content,
                 },
                 {

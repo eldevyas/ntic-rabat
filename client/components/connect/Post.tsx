@@ -131,8 +131,31 @@ const Post = (props: any) => {
                     <p className="TimeAgo">{timeAgo}</p>
                 </div>
             </div>
-            <div className="PostBody">
-                <p>{data.content}</p>
+            <div className="PostBody" >
+                {
+                    // check if the post content has hashtags 
+                    data.content.includes("#") ? (
+
+                        <>
+                            {
+                                data.content.split(/[\s\n]+/).map((word: any, index: any) => {
+                                    if (word.includes("#")) {
+                                        return (
+                                            <p>
+                                                <span className="HashTag" key={index}>
+                                                    {word}
+                                                </span>
+                                            </p>
+                                        );
+                                    }
+                                    return word + " ";
+                                })
+                            }
+                        </>
+                    ) : (
+                        <p className="PostContent">{data.content}</p>
+                    )
+                }
             </div>
             <div className="PostActions">
                 {/* check if the user has already liked this post */}

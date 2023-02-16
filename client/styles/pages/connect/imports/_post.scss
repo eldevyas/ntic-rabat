@@ -48,7 +48,18 @@
         font-weight: 400;
         line-height: 25px;
         color: rgba(0, 0, 0, 0.75);
+        white-space: 'pre-line' !important;
+
+        p {
+            white-space: pre-line !important;
+
+            .HashTag {
+                white-space: pre-line !important;
+                color: $C3;
+            }
+        }
     }
+
 
     .PostActions {
         display: flex;

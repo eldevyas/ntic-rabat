@@ -72,3 +72,5 @@ Route::group(['prefix' => 'post'], function () {
     Route::post('/{post}/comment', [CommentsController::class, 'store'])->middleware('auth:api');
     Route::delete('/{post}/comment/{comment}', [CommentsController::class, 'destroy'])->middleware('auth:api');
 });
+
+
