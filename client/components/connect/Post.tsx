@@ -26,7 +26,9 @@ const Post = (props: any) => {
     let timeAgo = formatDistanceToNow(new Date(created_at), {
         addSuffix: false,
     });
-    const [comment, setComment] = useState(null)
+    // const [comment, setComment] = useState(null)
+    // useState for comment , type string
+    const [comment, setComment] = useState("");
     const [isRefetching, setIsRefetching] = useState(false);
 
     timeAgo = timeAgo.replace("about", "");
@@ -149,8 +151,8 @@ const Post = (props: any) => {
             {isCommenting ? (
                 <div className="CommentsArea">
                     <div className="PostComments">
-                        {Comments.map((comment: any) => (
-                            <div className="Comment">
+                        {Comments.map((comment: any, index: any) => (
+                            <div className="Comment" key={index}>
                                 <div className="CommentPoster">
                                     <Image
                                         width={40}
