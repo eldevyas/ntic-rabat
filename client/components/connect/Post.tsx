@@ -27,6 +27,7 @@ const Post = (props: any) => {
         addSuffix: false,
     });
     const [comment, setComment] = useState(null)
+    const [isRefetching, setIsRefetching] = useState(false);
 
     timeAgo = timeAgo.replace("about", "");
     timeAgo = timeAgo.replace("hours", "h");
@@ -55,7 +56,7 @@ const Post = (props: any) => {
             .catch((err) => {
                 Display.pushFailure("Une erreur s'est survenue.");
             });
-    }, [userHasLiked, isCommenting]);
+    }, [userHasLiked, isCommenting, isRefetching]);
 
 
     const likePost = () => {
@@ -105,8 +106,9 @@ const Post = (props: any) => {
                 }
             )
             .then((res) => {
-                setComment(null);
-                setIsCommenting(false);
+                setComment("");
+                setIsCommenting(true);
+                setIsRefetching(!isRefetching);
             })
             .catch((err) => {
                 Display.pushFailure("Une erreur s'est survenue.");
