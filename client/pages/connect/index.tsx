@@ -56,7 +56,6 @@ const Connect = () => {
                 console.log(err.response.data);
             });
     }, []);
-    console.log(posts);
 
     const handlePublish = () => {
         // check if content is empty or has only spaces
@@ -113,9 +112,8 @@ const Connect = () => {
                             <div className="Form">
                                 <div className="Input">
                                     <textarea
-                                        placeholder={`Que pensez-vous ? ${
-                                            session?.user?.name?.split(" ")[0]
-                                        }.`}
+                                        placeholder={`Que pensez-vous ? ${session?.user?.name?.split(" ")[0]
+                                            }.`}
                                         onChange={(e: any) =>
                                             setContent(e.target.value)
                                         }

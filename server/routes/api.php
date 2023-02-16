@@ -3,11 +3,12 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\LikesController;
 use App\Http\Controllers\PostsController;
 use App\Http\Resources\AnnonceCollection;
-use App\Http\Controllers\Api\AnnonceController;
-use App\Http\Controllers\LikesController;
+use App\Http\Controllers\CommentsController;
 // import CheckResetPasswordToken middleware
+use App\Http\Controllers\Api\AnnonceController;
 use App\Http\Middleware\CheckResetPasswordToken;
 // import AdminCheck middleware
 /*
@@ -64,4 +65,10 @@ Route::group(['prefix' => 'post'], function () {
 // group like routes
 Route::group(['prefix' => 'post'], function () {
     Route::post('/{post}/like', [LikesController::class, 'like'])->middleware('auth:api');
+});
+
+// group comment routes
+Route::group(['prefix' => 'post'], function () {
+    Route::post('/{post}/comment', [CommentsController::class, 'store'])->middleware('auth:api');
+    Route::delete('/{post}/comment/{comment}', [CommentsController::class, 'destroy'])->middleware('auth:api');
 });

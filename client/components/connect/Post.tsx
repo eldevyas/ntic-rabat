@@ -19,17 +19,22 @@ const Post = (props: any) => {
     );
 
     const poster = data.user;
+
     const created_at = data.created_at;
+    const [isCommenting, setIsCommenting] = useState(false);
+
     let timeAgo = formatDistanceToNow(new Date(created_at), {
         addSuffix: false,
     });
+    const [comment, setComment] = useState(null)
+
     timeAgo = timeAgo.replace("about", "");
     timeAgo = timeAgo.replace("hours", "h");
     timeAgo = timeAgo.replace("minutes", "m");
     timeAgo = timeAgo.replace("seconds", "s");
     timeAgo = timeAgo.replace("days", "j");
     timeAgo = timeAgo.replace("months", "mois");
-    console.log(data);
+
 
     // get post data with UseEffect
     useEffect(() => {
@@ -45,12 +50,12 @@ const Post = (props: any) => {
                 setData(res.data);
                 setLikes(res.data.likes);
                 setLikesCount(res.data.likes?.length);
+                setComments(res.data.comments);
             })
             .catch((err) => {
-                console.log(err.response.data);
                 Display.pushFailure("Une erreur s'est survenue.");
             });
-    }, [userHasLiked]);
+    }, [userHasLiked, isCommenting]);
 
 
     const likePost = () => {
@@ -77,12 +82,36 @@ const Post = (props: any) => {
                 setUserHaLiked(!userHasLiked);
             })
             .catch((err) => {
-                console.log(err.response.data);
                 setUserHaLiked(!userHasLiked);
                 Display.pushFailure("Une erreur s'est survenue.");
             });
     };
-    // check if the user has liked the post
+
+
+    const handleComment = () => {
+        // get server url from env
+        const url = process.env.SERVER_PUBLIC_API_URL;
+        axios
+            .post(
+                url + `/post/${data.id}/comment`,
+                {
+                    body: comment,
+                },
+                {
+                    headers: {
+                        "Content-Type": "application/json",
+                        Authorization: `Bearer ${user?.token}`,
+                    },
+                }
+            )
+            .then((res) => {
+                setComment(null);
+                setIsCommenting(false);
+            })
+            .catch((err) => {
+                Display.pushFailure("Une erreur s'est survenue.");
+            });
+    };
 
     return (
         <div className="Post">
@@ -112,38 +141,48 @@ const Post = (props: any) => {
                         {LikesCount} <FavoriteBorderIcon />
                     </DefaultButton>
                 )}
-                <DefaultButton>Comment</DefaultButton>
+                <DefaultButton onClick={() => setIsCommenting(!isCommenting)}>Comment</DefaultButton>
                 <DefaultButton>Save</DefaultButton>
             </div>
-            <div className="CommentsArea">
-                <div className="PostComments">
-                    <div className="Comment">
-                        <div className="CommentPoster">
-                            <Image
-                                width={40}
-                                height={40}
-                                src="/assets/img/pp/pp1.png"
-                                alt="avatar"
-                            />
-                            <p className="UserName">User Name</p>
-                        </div>
-                        <p className="CommentContent">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                            Quisquam, quod.
-                        </p>
+            {isCommenting ? (
+                <div className="CommentsArea">
+                    <div className="PostComments">
+                        {Comments.map((comment: any) => (
+                            <div className="Comment">
+                                <div className="CommentPoster">
+                                    <Image
+                                        width={40}
+                                        height={40}
+                                        src="/assets/img/pp/pp1.png"
+                                        alt="avatar"
+                                    />
+                                    <div className="User">
+                                        <p className="UserName">{comment.user.name}</p>
+                                        <p className="TimeAgo">2h</p>
+                                    </div>
+                                </div>
+                                <p className="CommentContent">
+                                    {comment.body}
+                                </p>
+                            </div>
+                        ))}
                     </div>
-                </div>
 
-                <div className="CommentForm">
-                    <Image
-                        width={40}
-                        height={40}
-                        src="/assets/img/pp/pp1.png"
-                        alt="avatar"
-                    />
-                    <textarea placeholder="Add a comment..." ></textarea>
-                </div>
-            </div>
+                    <div className="CommentForm">
+                        <Image
+                            width={40}
+                            height={40}
+                            src="/assets/img/pp/pp1.png"
+                            alt="avatar"
+                        />
+                        <textarea placeholder="Ajouter un commentaire..."
+                            onChange={(e: any) => setComment(e.target.value)}
+                            value={comment}
+                        ></textarea>
+                        <DefaultButton onClick={handleComment}>Poster</DefaultButton>
+                    </div>
+                </div>) : (null)
+            }
         </div>
     );
 };

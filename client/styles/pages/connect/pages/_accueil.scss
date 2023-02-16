@@ -7,6 +7,7 @@
     gap: $GlobalGap;
     border-radius: $FormsRadius;
     overflow: scroll;
+
     .CreatePost {
         background-color: $C4;
         display: flex;
@@ -15,16 +16,19 @@
         padding: 10px;
         border-radius: $FormsRadius;
         gap: $GlobalGap;
+
         .Avatar {
             border-radius: $FormsRadius / 2;
             background-color: #000;
             object-fit: cover;
         }
+
         .Form {
             width: 100%;
             display: flex;
             flex-direction: column;
             gap: $GlobalGap / 2;
+
             textarea {
                 width: 100%;
                 border-radius: 7.5px;
@@ -39,12 +43,14 @@
                 resize: none;
             }
         }
+
         .Actions {
             display: flex;
             flex-direction: row;
             align-items: stretch;
             justify-content: space-between;
             gap: $GlobalGap;
+
             button {
                 display: flex;
                 flex-direction: row;
@@ -62,6 +68,7 @@
                 width: 100%;
                 text-transform: capitalize;
                 background-color: unset !important;
+
                 &.Publish {
                     background: $G3;
                     color: white;
@@ -69,6 +76,7 @@
             }
         }
     }
+
     .Posts {
         display: flex;
         flex-direction: column;

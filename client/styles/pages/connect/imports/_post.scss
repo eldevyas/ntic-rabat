@@ -7,14 +7,17 @@
     padding: $GlobalGap;
     border-radius: 15px;
     width: 100%;
+
     .PostHeader {
         display: flex;
         flex-direction: row;
         gap: $GlobalGap;
         align-items: center;
+
         .PostHeaderName {
             font-size: 1rem;
             font-weight: 400;
+
             .UserName {
                 font-family: 'Outfit';
                 font-style: normal;
@@ -24,6 +27,7 @@
                 align-items: center;
                 color: #000000;
             }
+
             .TimeAgo {
                 font-family: 'Outfit';
                 font-style: normal;
@@ -37,6 +41,7 @@
             }
         }
     }
+
     .PostBody {
         font-family: 'Outfit';
         font-style: normal;
@@ -44,12 +49,14 @@
         line-height: 25px;
         color: rgba(0, 0, 0, 0.75);
     }
+
     .PostActions {
         display: flex;
         flex-direction: row;
         gap: $GlobalGap;
         align-items: stretch;
         justify-content: space-between;
+
         button {
             flex: 1;
             $RedButton: rgb(180, 50, 80);
@@ -57,16 +64,111 @@
             $GrayButton: rgb(150, 150, 150);
             // Blue
             $ReportButton: rgb(50, 180, 180);
-            // xampp bro
-            // done
+
             &:nth-child(1) {
                 @include DefaultButton($RedButton);
             }
+
             &:nth-child(2) {
                 @include DefaultButton($GrayButton);
             }
+
             &:nth-child(3) {
                 @include DefaultButton($ReportButton);
+            }
+        }
+    }
+
+    .CommentsArea {
+        display: flex;
+        flex-direction: column;
+        gap: $GlobalGap;
+
+        .PostComments {
+            background-color: rgba($C1, 0.1);
+            border-radius: 15px;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            margin: 0 10px;
+            gap: $GlobalGap;
+
+            .Comment {
+                display: flex;
+                flex-direction: column;
+                gap: $GlobalGap;
+                background-color: rgba($C1, 0.2);
+                padding: 15px;
+                border-radius: 10px;
+
+                .CommentPoster {
+                    display: flex;
+                    flex-direction: row;
+                    gap: $GlobalGap;
+
+                    align-items: center;
+
+                    .TimeAgo {
+                        font-family: 'Outfit';
+                        font-style: normal;
+                        font-weight: 700;
+                        font-size: 12px;
+                        line-height: 19px;
+                        /* identical to box height */
+                        display: flex;
+                        align-items: center;
+                        color: rgba(0, 0, 0, 0.5);
+                    }
+
+                    .UserName {
+                        font-family: 'Outfit';
+                        font-style: normal;
+                        font-weight: 700;
+                        line-height: 25px;
+                        display: flex;
+                        align-items: center;
+                        color: #000000;
+                    }
+                }
+
+                .CommentContent {
+                    margin-left: 15px;
+                }
+            }
+        }
+
+        .CommentForm {
+            display: flex;
+            flex-direction: row;
+            gap: $GlobalGap;
+            align-items: center;
+            width: 100%;
+
+            textarea {
+                flex: 1;
+                border: none;
+                border-radius: 15px;
+                padding: 10px;
+                height: 60px;
+                background-color: rgba($C1, 0.1);
+                font-family: 'Outfit';
+                font-style: normal;
+                font-weight: 400;
+                line-height: 25px;
+                color: rgba(0, 0, 0, 0.75);
+                resize: unset;
+
+            }
+
+            button {
+                background: $G2;
+                text-transform: capitalize;
+                font-family: 'Outfit';
+                font-style: normal;
+                font-weight: 700;
+                color: #fff;
+                padding-left: 15px;
+                padding-right: 15px;
             }
         }
     }

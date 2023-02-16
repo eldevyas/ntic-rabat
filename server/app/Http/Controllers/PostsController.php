@@ -60,6 +60,9 @@ class PostsController extends Controller
     {
         // show post with comments and likes
         $post = Post::with(['user', 'comments', 'likes'])->findOrFail($post->id);
+        // with comments, we also want to show the user who made the comment
+        $post->comments->load('user');
+        // with likes, we also want to show the user who made the like
         return response()->json($post, 200);
     }
 

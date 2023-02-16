@@ -35,13 +35,13 @@ class CommentsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request,Post $post)
     {
         $validatedData = $request->validate([
             'body' => 'required',
         ]);
 
-        $post = Post::findOrFail($request->post_id);
+        $post = Post::findOrFail($post->id);
 
         $comment = new Comment([
             'body' => $validatedData['body'],
