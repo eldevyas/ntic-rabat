@@ -16,7 +16,7 @@ import * as Display from "../../services/displayAlert";
 let socket;
 
 const Connect = () => {
-    const { data: session, status } = useSession();
+    const { data: session, status }: any = useSession();
     const [content, setContent] = useState<any>(null);
     const [posts, setPosts] = useState<any>([]);
 
@@ -24,7 +24,7 @@ const Connect = () => {
 
     useEffect(() => {
         if (status === "loading") return;
-        if (!session || status === ("unauthenticated" as string)) {
+        if (!session || status == "unauthenticated") {
             router.push("/auth/login");
         }
         // This is added to return undefined if there is no cleanup to be performed
@@ -113,8 +113,9 @@ const Connect = () => {
                             <div className="Form">
                                 <div className="Input">
                                     <textarea
-                                        placeholder={`Que pensez-vous ? ${session?.user?.name?.split(" ")[0]
-                                            }.`}
+                                        placeholder={`Que pensez-vous ? ${
+                                            session?.user?.name?.split(" ")[0]
+                                        }.`}
                                         onChange={(e: any) =>
                                             setContent(e.target.value)
                                         }
@@ -154,10 +155,13 @@ const Connect = () => {
                         </div>
                         <div className="Posts">
                             {Array.isArray(posts) &&
-                                posts.map((post) => <Post post={post}
-                                    user={
-                                        session?.user
-                                    } />)}
+                                posts.map((post, index) => (
+                                    <Post
+                                        key={index}
+                                        post={post}
+                                        user={session?.user}
+                                    />
+                                ))}
                         </div>
                     </div>
                 </>

@@ -6,6 +6,7 @@
     flex-direction: column;
     gap: $GlobalGap;
     border-radius: $FormsRadius;
+    overflow: scroll;
     .CreatePost {
         background-color: $C4;
         display: flex;

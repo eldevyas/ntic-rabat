@@ -3,18 +3,23 @@ import Image from "next/image";
 import { DefaultButton } from "../../components/core/button";
 import { formatDistanceToNow } from "date-fns";
 import axios from "axios";
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import * as Display from "../../services/displayAlert";
 
-import FavoriteIcon from '@mui/icons-material/Favorite';
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import { TextField } from "@mui/material";
 const Post = (props: any) => {
-    const user = props.user;
-    const created_at = props.post.created_at;
-    const poster = props.post.user;
-    const post = props.post;
-    const comments = props.post.comments;
-    const likes = props.post.likes;
-    const [liked, setLiked] = useState(false);
+    const [data, setData] = useState(props.post);
+    const [user, setUser] = useState(props.user);
+    const [Likes, setLikes] = useState(data.likes);
+    const [LikesCount, setLikesCount] = useState(data.likes?.length);
+    const [Comments, setComments] = useState(data.comments);
+    const [userHasLiked, setUserHaLiked] = useState(
+        Likes.find((like: any) => like.user_id === user?.id)
+    );
+
+    const poster = data.user;
+    const created_at = data.created_at;
     let timeAgo = formatDistanceToNow(new Date(created_at), {
         addSuffix: false,
     });
@@ -24,16 +29,38 @@ const Post = (props: any) => {
     timeAgo = timeAgo.replace("seconds", "s");
     timeAgo = timeAgo.replace("days", "j");
     timeAgo = timeAgo.replace("months", "mois");
+    console.log(data);
+
+    // get post data with UseEffect
+    useEffect(() => {
+        // get server url from env
+        const url = process.env.SERVER_PUBLIC_API_URL;
+        axios
+            .get(url + `/post/${data.id}`, {
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            })
+            .then((res) => {
+                setData(res.data);
+                setLikes(res.data.likes);
+                setLikesCount(res.data.likes?.length);
+            })
+            .catch((err) => {
+                console.log(err.response.data);
+                Display.pushFailure("Une erreur s'est survenue.");
+            });
+    }, [userHasLiked]);
 
 
     const likePost = () => {
+
         // get server url from env
         const url = process.env.SERVER_PUBLIC_API_URL;
         axios
             .post(
-                url + `/post/${post.id}/like`,
-                {
-                },
+                url + `/post/${data.id}/like`,
+                {},
                 {
                     headers: {
                         "Content-Type": "application/json",
@@ -42,23 +69,20 @@ const Post = (props: any) => {
                 }
             )
             .then((res) => {
-                console.log(res.data);
-                Display.pushSuccess("Post liked");
-                // force update the component
-                setLiked(!liked);
-            }
-            )
+                if (userHasLiked) {
+                    setLikesCount(LikesCount - 1);
+                } else {
+                    setLikesCount(LikesCount + 1);
+                }
+                setUserHaLiked(!userHasLiked);
+            })
             .catch((err) => {
-                console.log(err);
-            }
-            );
-
+                console.log(err.response.data);
+                setUserHaLiked(!userHasLiked);
+                Display.pushFailure("Une erreur s'est survenue.");
+            });
     };
-    useEffect(() => {
-
-    }, [liked]);
     // check if the user has liked the post
-
 
     return (
         <div className="Post">
@@ -75,23 +99,50 @@ const Post = (props: any) => {
                 </div>
             </div>
             <div className="PostBody">
-                <p>{post.content}</p>
+                <p>{data.content}</p>
             </div>
             <div className="PostActions">
                 {/* check if the user has already liked this post */}
-                {
-                    likes.find((like: any) => like.user_id === user?.id) ? (
-                        <DefaultButton onClick={likePost} className="Liked">
-                            {likes.length} <FavoriteIcon />
-                        </DefaultButton>
-                    ) : (
-                        <DefaultButton onClick={likePost} className="Like">
-                            {likes.length} <FavoriteBorderIcon />
-                        </DefaultButton>
-                    )
-                }
+                {userHasLiked ? (
+                    <DefaultButton onClick={likePost} className="Liked">
+                        {LikesCount} <FavoriteIcon />
+                    </DefaultButton>
+                ) : (
+                    <DefaultButton onClick={likePost} className="Like">
+                        {LikesCount} <FavoriteBorderIcon />
+                    </DefaultButton>
+                )}
                 <DefaultButton>Comment</DefaultButton>
                 <DefaultButton>Save</DefaultButton>
+            </div>
+            <div className="CommentsArea">
+                <div className="PostComments">
+                    <div className="Comment">
+                        <div className="CommentPoster">
+                            <Image
+                                width={40}
+                                height={40}
+                                src="/assets/img/pp/pp1.png"
+                                alt="avatar"
+                            />
+                            <p className="UserName">User Name</p>
+                        </div>
+                        <p className="CommentContent">
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                            Quisquam, quod.
+                        </p>
+                    </div>
+                </div>
+
+                <div className="CommentForm">
+                    <Image
+                        width={40}
+                        height={40}
+                        src="/assets/img/pp/pp1.png"
+                        alt="avatar"
+                    />
+                    <textarea placeholder="Add a comment..." ></textarea>
+                </div>
             </div>
         </div>
     );

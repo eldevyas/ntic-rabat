@@ -41,7 +41,6 @@ const ForgotPassword = () => {
     };
     return (
         <div className="ForgotPassword">
-            <Header />
             <div className="Container">
                 <div className="Form">
                     <div className="FormTitle">
@@ -59,7 +58,7 @@ const ForgotPassword = () => {
                             </p>
                         </p>
                     </div>
-                    <form className="Form-group">
+                    <div className="Form-group">
                         <div className="Input Username">
                             <div className="Input-icon">
                                 <EmailIcon />
@@ -70,9 +69,15 @@ const ForgotPassword = () => {
                                 className="form-control"
                                 placeholder="Addresse Email"
                                 required
+                                // if the user taps on enter, the form will be submitted
+                                onKeyPress={(e) => {
+                                    if (e.key === "Enter") {
+                                        handleResetPassword();
+                                    }
+                                }}
                             ></input>
                         </div>
-                    </form>
+                    </div>
                     {loading ? (
                         <LoadingButton
                             variant="contained"
