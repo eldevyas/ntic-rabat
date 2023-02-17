@@ -116,13 +116,12 @@ const Connect = () => {
                             <div className="Form">
                                 <div className="Input">
                                     <textarea
-                                        placeholder={`Que pensez-vous ? ${
-                                            session?.user?.name?.split(" ")[0]
-                                        }.`}
+                                        placeholder={`Que pensez-vous ? ${session?.user?.name?.split(" ")[0]
+                                            }.`}
                                         onChange={(e: any) =>
                                             setContent(e.target.value)
                                         }
-                                        value={content}
+                                        value={content ? content : ""}
                                     ></textarea>
                                 </div>
                                 <div className="Actions">
