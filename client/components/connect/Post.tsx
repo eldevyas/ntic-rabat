@@ -5,6 +5,8 @@ import { formatDistanceToNow } from "date-fns";
 import axios from "axios";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import * as Display from "../../services/displayAlert";
+import CommentIcon from '@mui/icons-material/Comment';
+
 
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { TextField } from "@mui/material";
@@ -26,7 +28,9 @@ const Post = (props: any) => {
     let timeAgo = formatDistanceToNow(new Date(created_at), {
         addSuffix: false,
     });
-    const [comment, setComment] = useState(null)
+    // const [comment, setComment] = useState(null)
+    // useState for comment , type string
+    const [comment, setComment] = useState("");
     const [isRefetching, setIsRefetching] = useState(false);
 
     timeAgo = timeAgo.replace("about", "");
@@ -129,28 +133,54 @@ const Post = (props: any) => {
                     <p className="TimeAgo">{timeAgo}</p>
                 </div>
             </div>
-            <div className="PostBody">
-                <p>{data.content}</p>
+            <div className="PostBody" >
+                {
+                    // check if the post content has hashtags 
+                    data.content.includes("#") ? (
+
+                        <>
+                            {
+                                data.content.split(/[\s\n]+/).map((word: any, index: any) => {
+                                    if (word.includes("#")) {
+                                        return (
+                                            <p>
+                                                <span className="HashTag" key={index}>
+                                                    {word}
+                                                </span>
+                                            </p>
+                                        );
+                                    }
+                                    return word + " ";
+                                })
+                            }
+                        </>
+                    ) : (
+                        <p className="PostContent">{data.content}</p>
+                    )
+                }
             </div>
             <div className="PostActions">
                 {/* check if the user has already liked this post */}
                 {userHasLiked ? (
                     <DefaultButton onClick={likePost} className="Liked">
-                        {LikesCount} <FavoriteIcon />
+                        {LikesCount} <FavoriteIcon className="ButtonIcon" />
                     </DefaultButton>
                 ) : (
                     <DefaultButton onClick={likePost} className="Like">
-                        {LikesCount} <FavoriteBorderIcon />
+                        {LikesCount} <FavoriteBorderIcon className="ButtonIcon" />
                     </DefaultButton>
                 )}
-                <DefaultButton onClick={() => setIsCommenting(!isCommenting)}>Comment</DefaultButton>
+                <DefaultButton onClick={() => setIsCommenting(!isCommenting)}>
+                    {Comments.length}
+                    <CommentIcon className="ButtonIcon" />
+                </DefaultButton>
                 <DefaultButton>Save</DefaultButton>
             </div>
             {isCommenting ? (
                 <div className="CommentsArea">
                     <div className="PostComments">
-                        {Comments.map((comment: any) => (
-                            <div className="Comment">
+                        {Comments.map((comment: any, index: any) => (
+                            <div className="Comment" key={index}>
                                 <div className="CommentPoster">
                                     <Image
                                         width={40}

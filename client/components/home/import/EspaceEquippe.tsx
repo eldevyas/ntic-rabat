@@ -22,7 +22,7 @@ const EspaceEquippe = () => {
                     <div className="Button">
                         <DefaultButton
                             color="Black"
-                            onClick={() => Router.push("/inscription")}
+                            onClick={() => Router.push("/auth/register")}
                         >
                             S&apos;inscrire maintenant
                         </DefaultButton>

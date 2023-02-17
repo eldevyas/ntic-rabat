@@ -19,9 +19,9 @@ const Connect = () => {
     const { data: session, status }: any = useSession();
     const [content, setContent] = useState<any>(null);
     const [posts, setPosts] = useState<any>([]);
+    const [isRefreshing, setIsRefreshing] = useState<boolean>(false);
 
     const router = useRouter();
-
     useEffect(() => {
         if (status === "loading") return;
         if (!session || status == "unauthenticated") {
@@ -42,10 +42,7 @@ const Connect = () => {
                 },
             })
             .then((res) => {
-                // convert the response to an array
-                // sort the array by id
-                // set the posts state
-                const arrayFiltered = Object.values(res.data).sort(
+                let arrayFiltered = Object.values(res.data).sort(
                     (a: any, b: any) => {
                         return b?.id - a?.id;
                     }
@@ -54,11 +51,26 @@ const Connect = () => {
             })
             .catch((err) => {
                 console.log(err.response.data);
+                Display.pushFailure("Une erreur est survenue");
             });
     }, []);
 
+    useEffect(() => {
+        if (status === "loading") return;
+        if (!session || status == "unauthenticated") {
+            router.push("/auth/login");
+        }
+        // This is added to return undefined if there is no cleanup to be performed
+        return undefined;
+    }, [status, session]);
+
+    // get all posts once the component is mounted
+
+
     const handlePublish = () => {
         // check if content is empty or has only spaces
+        // convert the new line breaker in content to /n
+
 
         if (content?.trim() === "") {
             Display.pushFailure("Veuillez saisir un contenu");
@@ -70,6 +82,7 @@ const Connect = () => {
             .post(
                 url + "/post",
                 {
+
                     content: content,
                 },
                 {
@@ -83,6 +96,8 @@ const Connect = () => {
                 Display.pushSuccess("Publication effectuée avec succès");
                 // reset the content
                 setContent("");
+                // refresh the posts
+                setIsRefreshing(true);
             })
             .catch((err) => {
                 console.log(err.response.data);
