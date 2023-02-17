@@ -1,14 +1,12 @@
 .SideBar {
     position: relative;
     width: fit-content;
-    height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
     font-weight: 800;
     color: $C1;
     gap: $GlobalGap;
-
     &__Pages {
         position: relative;
         width: auto;
@@ -25,7 +23,6 @@
         justify-content: flex-start;
         flex-direction: column;
         gap: $GlobalGap * 2;
-
         .Buttons {
             width: 100%;
             height: auto;
@@ -33,13 +30,11 @@
             display: flex;
             justify-content: center;
             align-items: center;
-
             svg {
                 width: 100%;
                 height: auto;
             }
         }
-
         .Pages {
             display: flex;
             flex-direction: column;
@@ -48,13 +43,11 @@
             width: auto;
             height: auto;
             gap: $GlobalGap;
-
             .IconButton {
                 border-radius: $FormsRadius / 2;
             }
         }
     }
-
     &__Navigation {
         height: 100%;
         min-width: 200px;
@@ -67,7 +60,6 @@
         z-index: 2;
         align-items: stretch;
         justify-content: space-between;
-
         // padding: $GlobalGap;
         &__Header {
             width: 100%;
@@ -76,7 +68,6 @@
             flex-direction: column;
             gap: $GlobalGap;
             padding: $GlobalGap;
-
             hr {
                 margin: 0;
                 // smooth color
@@ -85,7 +76,6 @@
                 border-width: 0.5px;
                 border-radius: 50%;
             }
-
             .Logo {
                 position: relative;
                 width: 100%;
@@ -94,7 +84,6 @@
                 align-items: center;
                 justify-content: center;
             }
-
             .Profile {
                 display: flex;
                 align-items: center;
@@ -102,7 +91,6 @@
                 flex-direction: row;
                 gap: $GlobalGap;
                 width: 100%;
-
                 .Avatar {
                     $AvatarSize: 40px;
                     display: flex;
@@ -113,17 +101,14 @@
                     background: $G1;
                     border-radius: $FormsRadius / 2;
                 }
-
                 .Name {
                     display: flex;
                     flex-direction: column;
                     gap: $GlobalGap / 2;
-
                     .Greeting {
                         font-size: 0.65rem;
                         font-weight: 600;
                     }
-
                     .UserName {
                         font-size: 1rem;
                         font-weight: 800;
@@ -137,7 +122,6 @@
                 }
             }
         }
-
         .Navigation {
             position: relative;
             display: flex;
@@ -147,12 +131,10 @@
             flex: 3;
             overflow-x: hidden;
             overflow-y: auto;
-
             // hide scrollbar
             &::-webkit-scrollbar {
                 display: none;
             }
-
             .Current {
                 position: absolute;
                 left: -10px;
@@ -160,7 +142,6 @@
                 height: 50px;
                 width: 27px;
             }
-
             .NavigationItem {
                 display: flex;
                 flex-direction: row;
@@ -168,12 +149,10 @@
                 justify-content: start;
                 width: 100%;
                 height: 50px;
-
                 &.Active {
                     $NavigationItemActiveBackgroundColor: rgba($C2, 5%);
                     background-color: $NavigationItemActiveBackgroundColor;
                 }
-
                 .NavigationName {
                     width: 100%;
                     display: flex;
@@ -188,22 +167,18 @@
                     line-height: 23px;
                     color: rgba(0, 0, 0, 0.4);
                     font-weight: 650;
-
                     img {
                         height: auto;
                         aspect-ratio: 1/1;
                     }
-
                     .MuiTouchRipple-root {
                         color: rgba($C2, 0.5);
                     }
                 }
             }
         }
-
         .UploadContainer {
             padding: $GlobalGap;
-
             .Upload {
                 border: dotted 1px $C2;
                 border-radius: 7.5px;
@@ -218,7 +193,6 @@
                 padding: $GlobalGap;
                 position: relative;
                 overflow: hidden;
-
                 .Hover {
                     background-color: transparent;
                     position: absolute;
@@ -227,7 +201,6 @@
                     top: 0;
                     left: 0;
                 }
-
                 .AddProject {
                     font-family: 'Outfit';
                     font-style: normal;
@@ -239,7 +212,6 @@
                     -webkit-text-fill-color: transparent;
                     background-clip: text;
                 }
-
                 .SharePotential {
                     font-family: 'Outfit';
                     font-style: normal;

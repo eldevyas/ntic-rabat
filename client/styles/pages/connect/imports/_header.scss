@@ -6,14 +6,12 @@
     display: grid;
     grid-template-columns: 2fr 2fr 1fr;
     z-index: 2;
-
     .Left {
         display: flex;
         flex-direction: row;
         align-items: center;
         justify-content: flex-start;
         gap: $GlobalGap;
-
         .ConnectHeaderButton {
             background-color: $C4;
             border-radius: 10px;
@@ -27,7 +25,6 @@
             line-height: 25px;
             color: rgba(0, 0, 0, 0.5);
             opacity: 0.75;
-
             &.Active {
                 background: $G3;
                 color: white;
@@ -35,12 +32,10 @@
             }
         }
     }
-
     .Middle {
         display: flex;
         flex-direction: row;
         align-items: center;
-
         .SearchInput {
             position: absolute;
             width: 35%;
@@ -55,14 +50,12 @@
             line-height: 25px;
             color: rgba(0, 0, 0, 0.75);
         }
-
         .SearchIcon {
             position: relative;
             left: 12px;
             font-size: unset;
         }
     }
-
     .Right {
         .User {
             position: relative;
@@ -73,7 +66,6 @@
             display: flex;
             align-items: stretch;
             gap: $GlobalGap;
-
             &__Info {
                 position: relative;
                 display: flex;
@@ -84,7 +76,6 @@
                 width: 100%;
                 height: 100%;
                 overflow: hidden;
-
                 &__Avatar {
                     position: relative;
                     height: 100%;
@@ -95,7 +86,6 @@
                     align-items: center;
                     justify-content: center;
                     gap: $GlobalGap;
-
                     img {
                         position: absolute;
                         top: 0;
@@ -106,7 +96,6 @@
                         border-radius: $FormsRadius;
                     }
                 }
-
                 &__Name {
                     display: flex;
                     flex-direction: column;
@@ -115,14 +104,12 @@
                     gap: $GlobalGap / 4;
                     height: 100%;
                     width: 100%;
-
                     h3 {
                         font-size: 0.9rem;
                         font-weight: 600;
                         color: rgba($C1, 75%);
                         width: 100%;
                     }
-
                     p {
                         font-size: 0.75rem;
                         font-weight: 400;
@@ -134,7 +121,6 @@
                     }
                 }
             }
-
             &__Action {
                 position: relative;
                 background-color: transparent;
@@ -145,7 +131,6 @@
                 align-items: center;
                 justify-content: center;
             }
-
             // Dropdown
             &__Dropdown {
                 box-shadow: 0 0px 250px 0px rgba(darken($C2, 25%), 0.25);
@@ -163,7 +148,6 @@
                 gap: $GlobalGap;
                 padding: $GlobalGap;
                 z-index: 100000;
-
                 .UsualButton {
                     @include DefaultButton($C4);
                     background-color: rgba($C1, 5%);
@@ -171,7 +155,6 @@
                     text-align: left;
                     justify-content: flex-start;
                 }
-
                 .DefaultButton {
                     text-align: left;
                     justify-content: flex-start;
