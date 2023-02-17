@@ -47,6 +47,8 @@ export default function Home() {
         if (e.keyCode === 13) {
             if (message) {
                 sendMessage();
+
+
             }
         }
     };
