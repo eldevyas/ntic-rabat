@@ -7,14 +7,9 @@ import PagesIcon from "@mui/icons-material/Pages";
 import LogoutOutlinedIcon from "@mui/icons-material/LogoutOutlined";
 import { setCookie } from "cookies-next";
 import { useRouter } from "next/router";
+import { signOut } from "next-auth/react";
 const Sidebar = () => {
     const Router = useRouter();
-    const handleLogout = () => {
-        const date = new Date();
-        date.setDate(date.getDate() - 1);
-        Router.push("/auth/login"); // redirect the user to the login page
-        setCookie("token", "", { expires: date });
-    };
     return (
         <div className="SideBar">
             <div className="ImageContainer">
@@ -46,7 +41,10 @@ const Sidebar = () => {
                 <Button
                     variant="text"
                     className="NavButton Delogin"
-                    onClick={handleLogout}
+                    onClick={() => {
+                        // sign out
+                        signOut();
+                    }}
                 >
                     <LogoutOutlinedIcon className="BtnIcon" />
                     Se déconnecter

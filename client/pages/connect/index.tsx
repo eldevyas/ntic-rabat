@@ -19,7 +19,7 @@ const Connect = () => {
     const { data: session, status }: any = useSession();
     const [content, setContent] = useState<any>(null);
     const [posts, setPosts] = useState<any>([]);
-    const [isRefreshing, setIsRefreshing] = useState<boolean>(false);
+    const [refresh, setRefresh] = useState<boolean>(false);
 
     const router = useRouter();
     useEffect(() => {
@@ -33,6 +33,7 @@ const Connect = () => {
 
     // get all posts once the component is mounted
     useEffect(() => {
+        setPosts([]);
         // get server url from env
         const url = process.env.SERVER_PUBLIC_API_URL;
         axios
@@ -48,29 +49,19 @@ const Connect = () => {
                     }
                 );
                 setPosts(arrayFiltered);
+                // timeout to refresh the posts
             })
             .catch((err) => {
-                console.log(err.response.data);
                 Display.pushFailure("Une erreur est survenue");
+                console.log(err);
             });
-    }, []);
-
-    useEffect(() => {
-        if (status === "loading") return;
-        if (!session || status == "unauthenticated") {
-            router.push("/auth/login");
-        }
-        // This is added to return undefined if there is no cleanup to be performed
-        return undefined;
-    }, [status, session]);
+    }, [refresh]);
 
     // get all posts once the component is mounted
-
 
     const handlePublish = () => {
         // check if content is empty or has only spaces
         // convert the new line breaker in content to /n
-
 
         if (content?.trim() === "") {
             Display.pushFailure("Veuillez saisir un contenu");
@@ -82,7 +73,6 @@ const Connect = () => {
             .post(
                 url + "/post",
                 {
-
                     content: content,
                 },
                 {
@@ -96,11 +86,10 @@ const Connect = () => {
                 Display.pushSuccess("Publication effectuée avec succès");
                 // reset the content
                 setContent("");
+                setRefresh(!refresh);
                 // refresh the posts
-                setIsRefreshing(true);
             })
             .catch((err) => {
-                console.log(err.response.data);
                 Display.pushFailure("Une erreur est survenue");
             });
     };
@@ -127,8 +116,9 @@ const Connect = () => {
                             <div className="Form">
                                 <div className="Input">
                                     <textarea
-                                        placeholder={`Que pensez-vous ? ${session?.user?.name?.split(" ")[0]
-                                            }.`}
+                                        placeholder={`Que pensez-vous ? ${
+                                            session?.user?.name?.split(" ")[0]
+                                        }.`}
                                         onChange={(e: any) =>
                                             setContent(e.target.value)
                                         }

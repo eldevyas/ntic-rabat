@@ -1,10 +1,9 @@
-
 import Image from "next/image";
-import { useSession } from "next-auth/react"; import MenuIcon from '@mui/icons-material/Menu';
-
+import { useSession } from "next-auth/react";
+import MenuIcon from "@mui/icons-material/Menu";
 
 export default function MobileHeader(props: any) {
-    const { data: session, status } = useSession();
+    const { data: session, status }: any = useSession();
     return (
         <>
             <div className="MobileConnectHeader">
@@ -21,9 +20,9 @@ export default function MobileHeader(props: any) {
                         {
                             // get the first name of the user and the first letter of the last name
                             session?.user?.name.split(" ")[0] +
-                            " " +
-                            session?.user?.name.split(" ")[1][0] +
-                            "."
+                                " " +
+                                session?.user?.name.split(" ")[1][0] +
+                                "."
                         }
                     </span>
                 </div>

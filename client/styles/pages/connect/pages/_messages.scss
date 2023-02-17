@@ -2,23 +2,16 @@
     position: relative;
     width: 100%;
     height: 100%;
-    // background: white;
     border-radius: $FormsRadius;
-    // shaaare servers
-    // done
-    // hder meaya f chat o wri l drari
-    // ok hhhhhhhhhhhhhhhhhhhhhh
-    // kteb ashb hhhhhhhhh
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
     gap: $GlobalGap;
-    height: 90vh;
+    height: 100%;
     max-height: 90vh;
     &__Title {
         width: 100%;
-        min-height: 50px;
         border-radius: $FormsRadius;
         background-color: $C4;
         display: flex;
@@ -49,6 +42,16 @@
             justify-content: center;
             box-shadow: 0 0px 50px 0px rgba($C3, 0.25);
         }
+        @include respond-to('small') {
+            width: 100%;
+            padding: $GlobalGap;
+            &__Text {
+                font-size: 0.85rem;
+            }
+            &__OnlineUsers {
+                font-size: 0.85rem;
+            }
+        }
     }
     &__Content {
         width: 100%;
@@ -57,10 +60,6 @@
         background-color: $C4;
         padding: $GlobalGap;
         gap: $GlobalGap;
-        // display: flex;
-        // flex-direction: column;
-        // justify-content: flex-end;
-        // align-items: flex-end;
         overflow-y: auto;
         text-align: left;
         &__Message {
@@ -122,6 +121,10 @@
             &:not(:last-child) {
                 margin-bottom: $GlobalGap;
             }
+            @include respond-to('small') {
+                max-width: 100%;
+                width: max-content;
+            }
         }
     }
     &__Form {
@@ -142,6 +145,7 @@
             position: relative;
             border-radius: $FormsRadius / 2;
             background-color: $C2;
+            flex: 1;
         }
         &__Input {
             width: 100%;
@@ -150,6 +154,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            flex: 4;
             &__Message {
                 position: relative;
                 width: 100%;
@@ -167,6 +172,18 @@
                 .MuiOutlinedInput-notchedOutline {
                     outline: none !important;
                     border: none !important;
+                }
+            }
+        }
+        .DefaultButton {
+            @include respond-to('small') {
+                font-size: 0;
+                aspect-ratio: 1/1;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                .MuiButton-startIcon {
+                    margin: 0 auto;
                 }
             }
         }

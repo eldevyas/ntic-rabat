@@ -9,46 +9,49 @@ import Connect from "../../../../pages/connect";
 import MobileHeader from "./mobile/MobileHeader";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
-import CommentIcon from '@mui/icons-material/Comment';
+import CommentIcon from "@mui/icons-material/Comment";
 import { useRouter } from "next/router";
 import axios from "axios";
 import * as Display from "../../../../services/displayAlert";
 import Post from "../../../connect/Post";
 
-
 export default function DesktopNavigation(props: any) {
-
     const Router = useRouter();
-    const { data: session, status } = useSession();
+    const { data: session, status }: any = useSession();
     const [content, setContent] = useState<any>(null);
     const [posts, setPosts] = useState<any>([]);
     const [isRefreshing, setIsRefreshing] = useState<boolean>(false);
     // Links and Icons
     const Items = [
-        { name: "Accueil", icon: "/assets/svg/Accueil.svg", link: "/connect", className: "MobileNavigationName" },
+        {
+            name: "Accueil",
+            icon: "/assets/svg/Accueil.svg",
+            link: "/connect",
+            className: "MobileNavigationName",
+        },
         {
             name: "Messages",
             icon: "/assets/svg/Message.svg",
             link: "/connect/messages",
-            className: "MobileNavigationName"
+            className: "MobileNavigationName",
         },
         {
             name: "Ajouter un projet",
             icon: "/assets/svg/Plus.svg",
             link: "/connect/add-project",
-            className: "MobileNavigationName Plus"
+            className: "MobileNavigationName Plus",
         },
         {
             name: "Notifications",
             icon: "/assets/svg/Notification.svg",
             link: "/connect/notifications",
-            className: "MobileNavigationName"
+            className: "MobileNavigationName",
         },
         {
             name: "Profile",
             icon: "/assets/svg/ProfileIcon.svg",
             link: "/connect/Profile",
-            className: "MobileNavigationName"
+            className: "MobileNavigationName",
         },
     ];
     useEffect(() => {
@@ -86,7 +89,6 @@ export default function DesktopNavigation(props: any) {
         // check if content is empty or has only spaces
         // convert the new line breaker in content to /n
 
-
         if (content?.trim() === "") {
             Display.pushFailure("Veuillez saisir un contenu");
             return;
@@ -97,7 +99,6 @@ export default function DesktopNavigation(props: any) {
             .post(
                 url + "/post",
                 {
-
                     content: content,
                 },
                 {
@@ -121,22 +122,22 @@ export default function DesktopNavigation(props: any) {
     };
 
     return (
-
-        <div className="MobileConnect">
-            <div className="Header">
+        <div className="MobileConnect Connect">
+            <div className="MobileConnect__Header">
                 <MobileHeader />
             </div>
-            <div className="MobileConnectContent">
-
-                <div className="CreatePost">
+            <div className="MobileConnectContent Content">
+                {props.children}
+                {/* <div className="CreatePost">
                     <div className="Form">
                         <textarea
-                            placeholder={`Que pensez-vous? ${session?.user?.name.split(" ")[0]} .`}
+                            placeholder={`Que pensez-vous? ${
+                                session?.user?.name.split(" ")[0]
+                            } .`}
                             onChange={(e) => setContent(e.target.value)}
                             value={content}
                         ></textarea>
-                        <DefaultButton
-                        >
+                        <DefaultButton>
                             <Image
                                 src="/assets/svg/Design.svg"
                                 alt="Design"
@@ -145,8 +146,7 @@ export default function DesktopNavigation(props: any) {
                             />
                             Projet / Réalisation
                         </DefaultButton>
-                        <DefaultButton
-                        >
+                        <DefaultButton>
                             <Image
                                 src="/assets/svg/Catalog.svg"
                                 alt="Photo"
@@ -162,25 +162,17 @@ export default function DesktopNavigation(props: any) {
                             Publier
                             <SendIcon fontSize="small" />
                         </DefaultButton>
-
                     </div>
                 </div>
                 <div className="Content">
                     {posts.map((post: any, index: any) => (
-                        <Post
-                            key={index}
-                            post={post}
-                            user={session?.user}
-                        />
+                        <Post key={index} post={post} user={session?.user} />
                     ))}
-                </div>
+                </div> */}
             </div>
             <div className="MobileFooter">
                 {Items.map((item, index) => (
-                    <div
-                        key={index}
-                        className="MobileNavigationItem"
-                    >
+                    <div key={index} className="MobileNavigationItem">
                         <DefaultButton
                             color="white"
                             className={item.className}
@@ -196,11 +188,8 @@ export default function DesktopNavigation(props: any) {
                             />
                         </DefaultButton>
                     </div>
-                ))
-
-                }
+                ))}
             </div>
-
         </div>
     );
 }

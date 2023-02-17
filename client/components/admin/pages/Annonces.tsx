@@ -40,13 +40,10 @@ export default function Annonces() {
     useEffect(() => {
         async function fetchData() {
             const API_URL = process.env.SERVER_PUBLIC_API_URL;
-            let Data: any = axios
-                .get(`${API_URL}/annonces`)
-                // set the data to the state and console.log it with promise
-                .then((res) => {
-                    setAnnounces(res.data.data);
-                    setLoading(false);
-                });
+            let Data: any = axios.get(`${API_URL}/annonces`).then((res) => {
+                setAnnounces(res.data.data);
+                setLoading(false);
+            });
         }
         fetchData();
     }, [refresh]);
