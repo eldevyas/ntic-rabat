@@ -5,6 +5,8 @@ import { formatDistanceToNow } from "date-fns";
 import axios from "axios";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import * as Display from "../../services/displayAlert";
+import CommentIcon from '@mui/icons-material/Comment';
+
 
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { TextField } from "@mui/material";
@@ -161,14 +163,17 @@ const Post = (props: any) => {
                 {/* check if the user has already liked this post */}
                 {userHasLiked ? (
                     <DefaultButton onClick={likePost} className="Liked">
-                        {LikesCount} <FavoriteIcon />
+                        {LikesCount} <FavoriteIcon className="ButtonIcon" />
                     </DefaultButton>
                 ) : (
                     <DefaultButton onClick={likePost} className="Like">
-                        {LikesCount} <FavoriteBorderIcon />
+                        {LikesCount} <FavoriteBorderIcon className="ButtonIcon" />
                     </DefaultButton>
                 )}
-                <DefaultButton onClick={() => setIsCommenting(!isCommenting)}>Comment</DefaultButton>
+                <DefaultButton onClick={() => setIsCommenting(!isCommenting)}>
+                    {Comments.length}
+                    <CommentIcon className="ButtonIcon" />
+                </DefaultButton>
                 <DefaultButton>Save</DefaultButton>
             </div>
             {isCommenting ? (
