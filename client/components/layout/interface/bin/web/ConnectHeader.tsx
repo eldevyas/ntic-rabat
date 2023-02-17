@@ -44,6 +44,7 @@ export default function ConnectHeader() {
                         email={session?.user?.email as string}
                         image={session?.user?.image as string}
                         role={session?.user?.role as string}
+                        token={session?.user?.token as string}
                     />
                 </div>
             </div>

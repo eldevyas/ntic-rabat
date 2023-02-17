@@ -56,6 +56,7 @@ export default function DesktopHeader(props: any) {
                                     name={session?.user?.name as string}
                                     email={session?.user?.email as string}
                                     image={session?.user?.image as string}
+                                    token={session?.user?.token as string}
                                 />
                             ) : (
                                 <>

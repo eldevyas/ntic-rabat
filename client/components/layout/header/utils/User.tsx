@@ -14,7 +14,10 @@ const User = (props: {
     email: string | undefined;
     role: string | undefined;
     token: string | undefined;
-}) => {
+
+}
+
+) => {
     const [isMenuOpen, setisMenuOpen] = React.useState(false);
     const handleisMenuOpenClick = () => {
         setisMenuOpen(!isMenuOpen);

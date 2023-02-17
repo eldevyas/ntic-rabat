@@ -25,10 +25,11 @@ const authOptions: NextAuthOptions = {
             if (session?.user) {
                 session.user.id = token.uid;
                 session.user.username = token.username;
-                session.user.token = token.accessToken;
+                session.user.token = token.token;
                 session.user.profile_picture = token.profile_picture;
                 session.user.email_verified = token.email_verified;
                 session.user.role = token.role;
+
             }
             return session;
         },
@@ -39,8 +40,9 @@ const authOptions: NextAuthOptions = {
                 token.accessToken = user.token;
                 token.profile_picture = user.profile_picture;
                 token.email_verified = user.email_verified;
-                token.role = user.role;
+                token.role = user.role as string;
                 token.username = user.username;
+                token.token = user.token;
             }
             return token;
         },
