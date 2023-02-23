@@ -20,6 +20,7 @@ const Connect = () => {
     const [content, setContent] = useState<any>(null);
     const [posts, setPosts] = useState<any>([]);
     const [refresh, setRefresh] = useState<boolean>(false);
+    const [isProjet, setIsProjet] = useState(false);
 
     const router = useRouter();
     useEffect(() => {
@@ -93,6 +94,9 @@ const Connect = () => {
                 Display.pushFailure("Une erreur est survenue");
             });
     };
+    const handleShareProjet = () => {
+        console.log("projet");
+    }
 
     return (
         <>
@@ -123,9 +127,21 @@ const Connect = () => {
                                         }
                                         value={content ? content : ""}
                                     ></textarea>
+                                    {
+                                        isProjet ? (
+                                            <div className="Urls">
+                                                <input type="text" name="GithubUrl" className="Url" placeholder="Enter github url" />
+                                                <input type="text" name="DemoUrl" className="Url" placeholder="Enter demo url" />
+                                            </div>
+                                        ) : (
+                                            null
+                                        )
+                                    }
                                 </div>
                                 <div className="Actions">
-                                    <DefaultButton>
+                                    <DefaultButton
+                                        onClick={() => setIsProjet(!isProjet)}
+                                    >
                                         <Image
                                             src="/assets/svg/Design.svg"
                                             alt="Design"
@@ -143,15 +159,30 @@ const Connect = () => {
                                         />
                                         Photo / Video
                                     </DefaultButton>
-                                    <DefaultButton
-                                        type="primary"
-                                        size="small"
-                                        className="Publish"
-                                        onClick={handlePublish}
-                                    >
-                                        Publier
-                                        <SendIcon fontSize="small" />
-                                    </DefaultButton>
+                                    {
+                                        isProjet ? (
+                                            <DefaultButton
+                                                type="primary"
+                                                size="small"
+                                                className="Publish"
+                                                onClick={handleShareProjet}
+                                            >
+                                                Partager projet
+                                                <SendIcon fontSize="small" />
+                                            </DefaultButton>
+
+                                        ) : (
+                                            <DefaultButton
+                                                type="primary"
+                                                size="small"
+                                                className="Publish"
+                                                onClick={handlePublish}
+                                            >
+                                                Publier
+                                                <SendIcon fontSize="small" />
+                                            </DefaultButton>
+                                        )
+                                    }
                                 </div>
                             </div>
                         </div>

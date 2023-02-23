@@ -48,6 +48,26 @@
                 height: 60px;
                 resize: none;
             }
+
+            .Urls {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                gap: $GlobalGap;
+
+                .Url {
+                    width: 100%;
+                    border-radius: 7.5px;
+                    border: none;
+                    outline: none;
+                    font-size: 0.8rem;
+                    padding: 0.6rem 1rem;
+                    font-weight: 500;
+                    color: rgba($C1, 75%);
+                    background: rgba(0, 0, 0, 0.025) !important;
+
+                }
+            }
         }
 
         .Actions {

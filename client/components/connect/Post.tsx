@@ -188,14 +188,17 @@ const Post = (props: any) => {
                                         src="/assets/img/pp/pp1.png"
                                         alt="avatar"
                                     />
-                                    <div className="User">
-                                        <p className="UserName">{comment.user.name}</p>
-                                        <p className="TimeAgo">2h</p>
+                                    <div className="CommentContainer">
+
+                                        <div className="User">
+                                            <p className="UserName">{comment.user.name}</p>
+                                            <p className="TimeAgo">2h</p>
+                                        </div>
+                                        <p className="CommentContent">
+                                            {comment.body}
+                                        </p>
                                     </div>
                                 </div>
-                                <p className="CommentContent">
-                                    {comment.body}
-                                </p>
                             </div>
                         ))}
                     </div>
