@@ -19,32 +19,34 @@ $C3: #39b54a;
 $C4: #fff;
 $C5: #303030;
 $G1: linear-gradient(135deg,
-#000000 0%,
-#1A1A1A 100%);
+        #000000 0%,
+        #1A1A1A 100%);
 ;
 $G2: linear-gradient(135deg,
-#29ABE2 0%,
-#4BB8E7 100%);
+        #29ABE2 0%,
+        #4BB8E7 100%);
 ;
 $G3: linear-gradient(135deg,
-#39B54A 0%,
-#64CE72 100%);
+        #39B54A 0%,
+        #64CE72 100%);
 ;
 $G4: linear-gradient(135deg,
-#FFFFFF 0%,
-rgba(204, 204, 204, 0) 100%);
+        #FFFFFF 0%,
+        rgba(204, 204, 204, 0) 100%);
 ;
 $G5: linear-gradient(135deg,
-#303030 0%,
-#666666 100%);
+        #303030 0%,
+        #666666 100%);
 ;
 $GlobalGap: 0.75rem;
 $HorizontalPadding: 5%;
+
 @mixin GlobalPadding() {
     padding: 1rem 2rem;
 }
 
 $FormsRadius: 0.7rem;
+
 // Scrollbar styling
 ::-webkit-scrollbar {
     width: 10px;
@@ -60,6 +62,7 @@ $FormsRadius: 0.7rem;
 ::-webkit-scrollbar-thumb {
     border-radius: $FormsRadius;
     background-color: $C2;
+
     &:hover {
         background-color: lighten($C2, 10%);
         cursor: grabbing !important;

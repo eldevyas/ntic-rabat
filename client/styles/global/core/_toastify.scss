@@ -13,6 +13,7 @@ $ErrorColor: #FF6347;
 $nfWidth: fit-content;
 $nfHeight: fit-content;
 $nfMargin: 20px;
+
 .Toastify__toast-container {
     z-index: 200;
     user-select: none;
@@ -22,8 +23,11 @@ $nfMargin: 20px;
     align-items: flex-start;
     gap: $GlobalGap !important;
     @include GlobalPadding();
-    @include respond-to('small') {
-        width: 100%;
+
+    @include respond-to();
+
+    @include respond-to(small) {
+        gap: 0 !important;
     }
 }
 
@@ -58,18 +62,22 @@ $nfMargin: 20px;
     justify-content: center;
     align-items: center;
     overflow: hidden;
+
     .Toastify__toast-icon {
         margin-right: 1rem;
     }
+
     // animation: SlideFromLeft 3000ms ease forwards;
     &::-webkit-scrollbar {
         display: none;
     }
+
     @include respond-to('small') {
         width: 100%;
         height: fit-content;
         max-width: 100%;
         white-space: normal;
+
         &::-webkit-scrollbar {
             display: none;
         }

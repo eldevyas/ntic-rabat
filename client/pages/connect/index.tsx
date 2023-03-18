@@ -21,6 +21,7 @@ const Connect = () => {
     const [posts, setPosts] = useState<any>([]);
     const [refresh, setRefresh] = useState<boolean>(false);
     const [isProjet, setIsProjet] = useState(false);
+    const [image, setImage] = useState<any>([]);
 
     const router = useRouter();
     useEffect(() => {
@@ -138,9 +139,28 @@ const Connect = () => {
                                         )
                                     }
                                 </div>
+                                <div className="Images">
+                                    {image && (
+                                        // loop through the images
+                                        image.map((img: any) => (
+                                            <div className="Image">
+                                                <Image
+                                                    src={img}
+                                                    alt="image"
+                                                    width={100}
+                                                    height={100}
+                                                />
+                                            </div>
+                                        ))
+
+
+                                    )}
+                                </div>
+
                                 <div className="Actions">
                                     <DefaultButton
                                         onClick={() => setIsProjet(!isProjet)}
+
                                     >
                                         <Image
                                             src="/assets/svg/Design.svg"
@@ -150,7 +170,42 @@ const Connect = () => {
                                         />
                                         Projet / Réalisation
                                     </DefaultButton>
-                                    <DefaultButton>
+                                    {/* input type file , display hidden , accepts img , and display the uploaded image */}
+
+                                    <input
+                                        type="file"
+                                        id="fileInput"
+                                        style={{ display: "none" }}
+                                        // allow multiple images
+                                        multiple
+                                        accept="image/*"
+                                        onChange={(e: any) => {
+                                            // get all the files and convert them to base64
+                                            const files = e.target.files;
+                                            const filesArray = Array.from(files);
+                                            filesArray.forEach((file: any) => {
+                                                const reader = new FileReader();
+                                                reader.onloadend = () => {
+                                                    // push the base64 to the image state
+                                                    setImage((prev: any) => [
+                                                        ...prev,
+                                                        reader.result,
+                                                    ]);
+                                                };
+                                                reader.readAsDataURL(file);
+                                            });
+                                        }}
+
+
+                                    />
+                                    <DefaultButton
+                                        // on click , choose file and upload it
+                                        onClick={() => {
+                                            const fileInput = document.getElementById("fileInput");
+                                            fileInput?.click();
+                                        }
+                                        }
+                                    >
                                         <Image
                                             src="/assets/svg/Catalog.svg"
                                             alt="Photo"
