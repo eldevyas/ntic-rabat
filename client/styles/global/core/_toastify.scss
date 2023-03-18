@@ -26,7 +26,7 @@ $nfMargin: 20px;
 
     @include respond-to();
 
-    @include respond-to(small) {
+    @include respond-to("small") {
         gap: 0 !important;
     }
 }
