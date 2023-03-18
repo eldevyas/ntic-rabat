@@ -22,9 +22,9 @@ export default function MobileData(props: any) {
                                 dataDay={element.Day}
                                 dataDate={Weather && Weather[index] && Weather[index].date}
                                 dataTemperature={Weather && Weather[index] && Weather[index].temperature && Weather[index].temperature.avg}
-                                dataIcon={Weather[index].icon}
-                                dataWeather={Weather[index].weather}
-                                dataShortWeather={Weather[index].shortWeather}
+                                dataIcon={Weather[index]?.icon}
+                                dataWeather={Weather[index]?.weather}
+                                dataShortWeather={Weather[index]?.shortWeather}
                             />
                             <div className="ScheduleDayHours">
                                 {/* <Class.Presential prof={} /> */}
