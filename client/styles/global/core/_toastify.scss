@@ -24,7 +24,6 @@ $nfMargin: 20px;
     gap: $GlobalGap !important;
     @include GlobalPadding();
 
-    @include respond-to();
 
     @include respond-to("small") {
         gap: 0 !important;
