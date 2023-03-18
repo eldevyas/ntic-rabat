@@ -20,8 +20,8 @@ export default function MobileData(props: any) {
                             <DayCell
                                 className="ScheduleDayName"
                                 dataDay={element.Day}
-                                dataDate={Weather && Weather[index] && Weather[index].date}
-                                dataTemperature={Weather && Weather[index] && Weather[index].temperature && Weather[index].temperature.avg}
+                                dataDate={Weather[index]?.date}
+                                dataTemperature={Weather[index]?.temperature?.avg}
                                 dataIcon={Weather[index]?.icon}
                                 dataWeather={Weather[index]?.weather}
                                 dataShortWeather={Weather[index]?.shortWeather}
