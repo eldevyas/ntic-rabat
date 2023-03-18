@@ -9,7 +9,7 @@ import { DefaultButton, OutlinedButton } from "../../components/core/button";
 import Loading from "../../components/core/Loading";
 import Image from "next/image";
 import SendIcon from "@mui/icons-material/Send";
-import { io } from "Socket.IO-client";
+import * as io from 'socket.io-client';
 import axios from "axios";
 import Post from "../../components/connect/Post";
 import * as Display from "../../services/displayAlert";

@@ -1,4 +1,4 @@
-import { io } from "Socket.IO-client";
+import * as io from 'socket.io-client';
 import { useState, useEffect } from "react";
 
 let socket: any;
