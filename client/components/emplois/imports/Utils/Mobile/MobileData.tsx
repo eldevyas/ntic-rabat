@@ -20,7 +20,7 @@ export default function MobileData(props: any) {
                             <DayCell
                                 className="ScheduleDayName"
                                 dataDay={element.Day}
-                                dataDate={Weather[index].date}
+                                dataDate={Weather && Weather[index] && Weather[index].date}
                                 dataTemperature={Weather[index].temperature.avg}
                                 dataIcon={Weather[index].icon}
                                 dataWeather={Weather[index].weather}
@@ -53,7 +53,7 @@ export default function MobileData(props: any) {
                                                 <Class.Absent
                                                     key={index}
                                                     prof={time.Former}
-                                                    // class={time.Hall}
+                                                // class={time.Hall}
                                                 />
                                             );
                                         } else {
