@@ -168,7 +168,7 @@ export default function Card(props: any) {
         let email = user?.email;
         axios
             .delete(
-                `http://localhost:8000/api/annonces/` + id,
+                `${process.env.SERVER_PUBLIC_API_URL}/annonces/` + id,
 
                 {
                     data: {

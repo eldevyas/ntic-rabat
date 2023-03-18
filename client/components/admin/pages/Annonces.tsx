@@ -68,7 +68,8 @@ export default function Annonces() {
             let email = user?.email;
             axios
                 .post(
-                    "http://localhost:8000/api/annonces",
+
+                    `${process.env.SERVER_PUBLIC_API_URL}/annonces`,
                     {
                         title: Title,
                         description: Description,
