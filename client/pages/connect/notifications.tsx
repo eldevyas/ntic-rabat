@@ -9,7 +9,7 @@ import { DefaultButton, OutlinedButton } from "../../components/core/button";
 import Loading from "../../components/core/Loading";
 
 const Connect = () => {
-    const { data: session, status } = useSession();
+    const { data: session, status }: any = useSession();
 
     const router = useRouter();
 

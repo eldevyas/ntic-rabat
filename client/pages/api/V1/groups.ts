@@ -15,7 +15,7 @@ export default async function handler(
     // Get All Groups from "www.nticrabat.com"'s select menu.
     let TargetURL = "https://nticrabat.com/";
     // Send Get Request to the Website - Retrieve data as HTML
-    const { data } = await axios.get(TargetURL + "emploi/index.php");
+    const { data }: any = await axios.get(TargetURL + "emploi/index.php");
     const $ = cheerio.load(data);
     const fetchedSelectBox: any = $('[name=groupe]').html();
     const Groups: Data = [];

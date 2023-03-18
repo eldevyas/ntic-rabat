@@ -8,7 +8,7 @@ import Navigation from "./interface/Navigation";
 
 const Layout = (props: any) => {
     const router = useRouter();
-    const { data: session, status } = useSession();
+    const { data: session, status } : any = useSession();
 
     return (
         <>

@@ -36,7 +36,7 @@ export default async function handler(
         return [];
     }
 
-    const { data } = response;
+    const { data }: any = response;
 
     // filter the data
     let filteredData = data.daily.time.map((date: any, index: number) => {
