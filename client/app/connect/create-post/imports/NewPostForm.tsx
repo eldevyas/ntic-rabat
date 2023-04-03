@@ -125,7 +125,7 @@ const NewPostForm = () => {
     );
 
 
-    // const JoditEditor = dynamic(() => import("jodit-react"), { ssr: false });
+    const JoditEditor = dynamic(() => import("jodit-react"), { ssr: false });
     const Editor = ({ content, onContentChange, ...props }: any) => {
         const { mode } = useColorScheme();
 
