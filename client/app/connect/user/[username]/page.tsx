@@ -19,18 +19,8 @@ const Username = () => {
     const { username }: any = useParams();
     const [posts, setPosts]: any = React.useState([]);
     const [postsLimit, setPostsLimit] = React.useState(4);
-    const getUserPosts = () => {
-        axios.get(`${process.env.SERVER_PUBLIC_API_URL}/user/${username}/posts/${postsLimit}`)
-            .then((response) => {
-                setPosts(response.data);
-                console.log("This shit got me insane", response.data);
-            }
-            )
-            .catch((error) => {
-                console.log(error);
-            }
-            );
-    };
+    const [refresh, setRefresh] = React.useState(false);
+
     useEffect(() => {
         const fetchUser = async () => {
             const response = await fetch(
@@ -42,8 +32,23 @@ const Username = () => {
         };
 
         fetchUser();
-        getUserPosts();
-    }, []);
+        const getUserPosts = (limit: any) => {
+            setRefresh(true);
+            axios.get(`${process.env.SERVER_PUBLIC_API_URL}/user/${username}/posts/${postsLimit}`)
+                .then((response) => {
+                    setPosts(response.data);
+                    console.log("This shit got me insane", response.data);
+                    setRefresh(false)
+                }
+                )
+                .catch((error) => {
+                    console.log(error);
+                    setRefresh(false)
+                }
+                );
+        };
+        getUserPosts(postsLimit);
+    }, [postsLimit]);
 
     return (
         <Box
@@ -135,9 +140,8 @@ const Username = () => {
                 >
                     {
                         posts.length > 0 &&
-                        <PostGrid Posts={posts} Limit={postsLimit} setLimit={() => {
+                        <PostGrid Posts={posts} Refresh={refresh} Limit={postsLimit} setLimit={() => {
                             setPostsLimit(postsLimit + 3)
-                            getUserPosts()
                         }
                         } />
                     }

@@ -27,6 +27,9 @@ import { useRouter } from 'next/navigation';
 import { useSession } from 'next-auth/react';
 import BlogNewPostPreview from './NewPostPreview';
 import Jodit from './utils/JoditEditor';
+import Link from 'next/link';
+import { IconButton } from '@/app/core/Button';
+import { Icon } from '@iconify/react';
 
 
 const LabelStyle = styled(Typography)(({ theme }: any) => ({
@@ -76,7 +79,7 @@ const NewPostForm = () => {
 
 
 
-    const Test = (e: any) => {
+    const HandlePushPost = (e: any) => {
         e.preventDefault();
         var formData = new FormData();
         formData.append('title', title);
@@ -218,12 +221,40 @@ const NewPostForm = () => {
                                 >
                                     Preview
                                 </Button>
-                                <LoadingButton fullWidth variant="contained" size="large"
-                                    onClick={Test}
-                                // loading={isSubmitting}
-                                >
-                                    Post
-                                </LoadingButton>
+                                {
+                                    data?.user ? (
+
+                                        <LoadingButton fullWidth variant="contained" size="large"
+                                            onClick={HandlePushPost}
+                                        >
+                                            Post
+                                        </LoadingButton>
+                                    ) : (
+                                        <Link href="/auth/login"
+                                            style={{
+                                                width: "100%",
+                                                alignSelf: "flex-end",
+                                            }}
+                                            passHref
+                                        >
+                                            <IconButton
+                                                variant="contained"
+                                                color="secondary"
+                                                style={{
+                                                    width: "100%",
+                                                    alignSelf: "flex-end",
+                                                    display: 'flex',
+                                                    flexDirection: 'row',
+                                                    gap: '0.5rem',
+                                                }}
+                                            >
+                                                <Icon icon="uil:lock" fontSize={24} />
+                                                Connectez vous pour pubier
+
+                                            </IconButton>
+                                        </Link>
+                                    )
+                                }
                             </Stack>
                         </Grid>
                     </Grid>

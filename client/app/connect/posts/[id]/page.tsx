@@ -13,6 +13,8 @@ import { AvatarGroup } from '@mui/material';
 import { TextField } from '@mui/material';
 import * as Display from "@/services/displayAlert";
 import LoadingButton from '@mui/lab/LoadingButton/LoadingButton';
+import { IconButton } from '@/app/core/Button';
+import Link from 'next/link';
 
 const Page = () => {
 
@@ -176,14 +178,17 @@ const Page = () => {
                         gap: "0.5rem",
                         alignItems: "center",
                     }}>
-                        {post.likes && (
+                        {post.likes && data?.user ? (
 
                             <Checkbox
                                 defaultChecked={post.likes && post.likes.find((like: any) => like.user_id === data?.user?.id) ? true : false}
                                 onChange={handleLike}
                                 icon={<Icon icon="ph:heart" fontSize={24} style={{ cursor: 'pointer' }} />}
                                 checkedIcon={<Icon icon="ph:heart-fill" fontSize={24} color='red' style={{ cursor: 'pointer' }} />}
-                            />)
+                            />) : (
+                            <Icon icon="ph:heart" fontSize={24} style={{ cursor: 'pointer' }} color='red' />
+
+                        )
                         }
                         <Typography variant="h6">{likes}</Typography>
 
@@ -228,20 +233,49 @@ const Page = () => {
 
                     ></TextField >
 
-                    <LoadingButton
-                        onClick={handleComment}
-                        loading={isCommenting}
-                        loadingPosition="center"
-                        variant="contained"
-                        color="primary"
-                        sx={{
-                            width: "fit-content",
-                            alignSelf: "flex-end",
-                        }}
+                    {
+                        data?.user ? (
 
-                    >
-                        Comment
-                    </LoadingButton>
+                            <LoadingButton
+                                onClick={handleComment}
+                                loading={isCommenting}
+                                loadingPosition="center"
+                                variant="contained"
+                                color="primary"
+                                sx={{
+                                    width: "fit-content",
+                                    alignSelf: "flex-end",
+                                }}
+
+                            >
+                                Comment
+                            </LoadingButton>
+                        ) : (
+                            <Link href="/auth/login"
+                                style={{
+                                    width: "fit-content",
+                                    alignSelf: "flex-end",
+                                }}
+                                passHref
+                            >
+                                <IconButton
+                                    variant="contained"
+                                    color="secondary"
+                                    style={{
+                                        width: "fit-content",
+                                        alignSelf: "flex-end",
+                                        display: 'flex',
+                                        flexDirection: 'row',
+                                        gap: '0.5rem',
+                                    }}
+                                >
+                                    <Icon icon="uil:lock" fontSize={24} />
+                                    Connectez vous pour commenter
+
+                                </IconButton>
+                            </Link>
+                        )
+                    }
                 </Box>
                 <hr />
 

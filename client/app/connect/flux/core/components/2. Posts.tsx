@@ -3,9 +3,10 @@ import React from "react";
 import Post from "./3. Post";
 import { PostsType } from "@/app/connect/types/Posts.types";
 import { DefaultButton } from "@/app/core/Button";
+import LoadingButton from "@mui/lab/LoadingButton/LoadingButton";
 import { Box } from "@mui/material";
 
-export default function PostGrid({ Posts, Limit = false, setLimit = false }: { Posts: PostsType, Limit: any, setLimit: any }) {
+export default function PostGrid({ Posts, Limit = false, setLimit = false, Refresh = false }: { Posts: PostsType, Limit: any, setLimit: any, Refresh: any }) {
     if (!Limit) {
         return UnlimitedPosts(Posts);
     }
@@ -36,22 +37,24 @@ export default function PostGrid({ Posts, Limit = false, setLimit = false }: { P
             {
 
                 Posts.length > Limit - 1 ?
-                    <DefaultButton
+                    <LoadingButton
                         onClick={setLimit}
+                        loadingPosition="center"
+                        loading={Refresh}
                         sx={{
-                            width: "100%",
+                            width: "fit-content",
                             height: "100%",
                             margin: "1rem auto",
                             borderRadius: "1rem",
                             color: "#fff",
-                            backgroundColor: "#000",
+                            backgroundColor: (theme: any) => theme.palette.mode == "light" ? theme.palette.secondary.main : theme.palette.secondary.dark,
                             "&:hover": {
-                                backgroundColor: "#000",
+                                backgroundColor: (theme: any) => theme.palette.secondary.dark,
                             },
                         }}
                     >
                         Load More
-                    </DefaultButton>
+                    </LoadingButton>
                     : null
             }
         </Box>

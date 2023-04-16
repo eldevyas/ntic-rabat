@@ -339,7 +339,7 @@ class UserController extends Controller
             'users' => $users
         ], 200);
     }
-    public function getUserPosts($username, $limit)
+    public function getUserPosts($username, $limit = 4)
     {
         $user = User::where('username', $username)->first();
         $posts = Post::where('user_id', $user->id)->with(['user', 'comments', 'likes'])->limit($limit)->get();
