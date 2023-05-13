@@ -87,7 +87,7 @@
             }
             color: #000;
             text-align: left;
-            &__Text {
+            $* &__Text {
                 position: relative;
                 display: flex;
                 flex-direction: column;
@@ -97,7 +97,7 @@
                 &__User {
                     font-size: 1rem;
                     font-weight: 800;
-                    opacity: 75%;
+                    ` opacity: 75%;
                     ;
                     &__Time {
                         font-size: .8rem;

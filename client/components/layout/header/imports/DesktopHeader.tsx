@@ -10,7 +10,7 @@ import User from "../utils/User";
 
 export default function DesktopHeader(props: any) {
     // session
-    const { data: session, status } = useSession();
+    const { data: session, status }: any = useSession();
 
     const Router = useRouter();
 
