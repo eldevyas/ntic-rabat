@@ -1,5 +1,16 @@
 import Head from "next/head";
 import Background from "./Background";
+import Image from "next/image";
+import Box from "@mui/material/Box";
+import LinearProgress from "@mui/material/LinearProgress";
+
+function LinearIndeterminate() {
+    return (
+        <Box sx={{ width: "100%" }}>
+            <LinearProgress />
+        </Box>
+    );
+}
 
 export default function Loading() {
     return (
@@ -7,41 +18,16 @@ export default function Loading() {
             <Head>
                 <title>NTIC Rabat - Chargement...</title>
             </Head>
-            <svg
-                className="pl"
-                viewBox="0 0 128 128"
-                width="128px"
-                height="128px"
-                xmlns="http://www.w3.org/2000/svg"
-            >
-                <defs>
-                    <linearGradient id="pl-grad" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="0%" stop-color="#29abe2"></stop>
-                        <stop offset="100%" stopColor="#39b54a"></stop>
-                    </linearGradient>
-                </defs>
-                <circle
-                    className="pl__ring"
-                    r="56"
-                    cx="64"
-                    cy="64"
-                    fill="none"
-                    stroke="hsla(0,10%,10%,0.1)"
-                    strokeWidth="16"
-                    strokeLinecap="round"
-                ></circle>
-                <path
-                    className="pl__worm"
-                    d="M92,15.492S78.194,4.967,66.743,16.887c-17.231,17.938-28.26,96.974-28.26,96.974L119.85,59.892l-99-31.588,57.528,89.832L97.8,19.349,13.636,88.51l89.012,16.015S81.908,38.332,66.1,22.337C50.114,6.156,36,15.492,36,15.492a56,56,0,1,0,56,0Z"
-                    fill="none"
-                    stroke="url(#pl-grad)"
-                    strokeWidth="16"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeDasharray="44 1111"
-                    strokeDashoffset="10"
-                ></path>
-            </svg>
+            <Box>
+                <Image
+                    src="/Logo.png"
+                    width={150}
+                    height={150}
+                    alt="Logo"
+                    priority
+                />
+                <LinearIndeterminate />
+            </Box>
         </div>
     );
 }

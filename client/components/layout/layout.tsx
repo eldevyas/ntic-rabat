@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Footer from "./footer/footer";
 import Header from "./header/header";
 import { useRouter } from "next/router";
@@ -6,10 +6,36 @@ import { useSession } from "next-auth/react";
 import Background from "../core/Background";
 import Navigation from "./interface/Navigation";
 
+const HeaderWrapper = () => {
+    const { status } = useSession();
+    const [pageTitle, setPageTitle] = useState("");
+
+    useEffect(() => {
+        setPageTitle(document.title);
+    }, []);
+
+    // use the title to conditionally render the footer
+    const showElement = pageTitle !== "NTIC Rabat - Chargement...";
+
+    if ((showElement && status === "loading") || status === "authenticated") {
+        return null;
+    }
+
+    return <Header />;
+};
+
 const FooterWrapper = () => {
     const { status } = useSession();
+    const [pageTitle, setPageTitle] = useState("");
 
-    if (status === "loading" || status === "authenticated") {
+    useEffect(() => {
+        setPageTitle(document.title);
+    }, []);
+
+    // use the title to conditionally render the footer
+    const showElement = pageTitle !== "NTIC Rabat - Chargement...";
+
+    if ((showElement && status === "loading") || status === "authenticated") {
         return null;
     }
 
@@ -26,7 +52,7 @@ const Layout = (props: any) => {
             {!router.pathname.startsWith("/connect") && <Background />}
 
             {!router.pathname.startsWith("/connect") &&
-                status !== "loading" && <Header />}
+                status !== "loading" && <HeaderWrapper />}
 
             {!router.pathname.startsWith("/connect") && <>{props.children}</>}
 
