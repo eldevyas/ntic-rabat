@@ -5,13 +5,13 @@ import Head from "next/head";
 import Image from "next/image";
 import Header from "../layout/header/header";
 import Footer from "../layout/footer/footer";
-import Landing from "./import/Landing";
-import Service from "./import/Service";
-import EspaceEquippe from "./import/EspaceEquippe";
-import CertificatPuissant from "./import/CertificatPuissant";
-import LaPenseCreative from "./import/LaPenseCreative";
-import FormateursProfessionnels from "./import/FormateursProfessionnels";
-import ContactSection from "./import/ContactSection";
+import Landing from "./import/1. Landing";
+import Service from "./import/2. Service";
+import EspaceEquippe from "./import/3. EspaceEquippe";
+import CertificatPuissant from "./import/4. CertificatPuissant";
+import LaPenseCreative from "./import/6. LaPenseCreative";
+import FormateursProfessionnels from "./import/5. FormateursProfessionnels";
+import ContactSection from "./import/7. ContactSection";
 import Background from "../core/Background";
 
 export default class App extends React.Component {

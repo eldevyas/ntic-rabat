@@ -20,7 +20,6 @@ export default function DesktopHeader(props: any) {
     }[] = props.links;
 
     // let LogoSource = props["data-theme"] === "dark" ? "/Logo.png" : "/Logo.png";
-
     return (
         <header className="Header Desktop" {...props}>
             <div className="Start Logo">

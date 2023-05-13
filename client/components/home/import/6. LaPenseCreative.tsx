@@ -7,7 +7,7 @@ import Router, { useRouter } from "next/router";
 const LaPenseCreative = () => {
     const Router = useRouter();
     return (
-        <div className="LaPenseCreative">
+        <div className="LaPenseCreative" id="LaPenseCreative">
             <div className="Text">
                 <div className="Title">
                     <h3>La pensée créative </h3>

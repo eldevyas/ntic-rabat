@@ -56,7 +56,27 @@ function VectorSVG(props: any) {
     );
 }
 
+import { useState, useEffect } from "react";
+
 export default function Background() {
+    const [opacity, setOpacity] = useState(0);
+
+    useEffect(() => {
+        function handleScroll() {
+            const scrollPosition = window.pageYOffset;
+            const windowHeight = window.innerHeight;
+            const opacity = Math.max(
+                0,
+                Math.min(1, scrollPosition / (windowHeight - 100))
+            );
+            setOpacity(opacity);
+        }
+        window.addEventListener("scroll", handleScroll);
+        return () => {
+            window.removeEventListener("scroll", handleScroll);
+        };
+    }, []);
+
     return (
         <>
             <div className="Background">
@@ -71,6 +91,20 @@ export default function Background() {
                     <VectorSVG Variant={2} />
                     <VectorSVG Variant={3} />
                 </div>
+
+                <div
+                    className={"Background__Overlay"}
+                    style={{
+                        position: "fixed",
+                        width: "100%",
+                        height: "100%",
+                        backgroundColor: "white",
+                        top: 0,
+                        left: 0,
+                        opacity: opacity,
+                        pointerEvents: opacity > 0 ? "auto" : "none",
+                    }}
+                ></div>
             </div>
         </>
     );

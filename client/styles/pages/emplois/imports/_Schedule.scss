@@ -8,16 +8,19 @@
     user-select: none;
     border-radius: 0px;
     @include GlobalPadding();
+
     // If focused, hide message
     &:focus {
         .Message {
             display: none;
         }
     }
+
     table {
         border-spacing: $GlobalGap;
         margin: 0 auto;
         position: relative;
+
         thead>tr>td {
             min-width: 150px;
             min-width: min-content;
@@ -29,7 +32,8 @@
             font-size: 0.9rem;
             padding: 10px;
             // filter box shadow
-            filter: drop-shadow( 0px 0px 5rem rgba($color: $C1, $alpha: 0.5));
+            filter: drop-shadow(0px 0px 5rem rgba($color: $C1, $alpha: 0.5));
+
             // smooth box shadow
             &:first-child {
                 background: $G2;
@@ -38,6 +42,7 @@
                 font-weight: 800;
                 color: transparent;
             }
+
             div {
                 display: flex;
                 justify-content: space-between;
@@ -45,10 +50,12 @@
                 width: 100%;
                 color: rgba($C1, 50%);
             }
+
             &:hover {
                 background-color: darken($color: $C4, $amount: 5%);
             }
         }
+
         tbody>tr>td {
             position: relative;
             overflow: hidden;
@@ -62,21 +69,27 @@
             font-size: 0.9rem;
             border-radius: $FormsRadius;
             height: 1rem;
+
             &:has(> .WeatherCell) {
                 background: $G2;
             }
+
             &:first-child {
                 min-width: 200px;
                 background: $G2;
                 color: $C4;
+
                 div {
                     background: none;
                 }
+
                 span {
                     font-weight: 400;
+
                     &:first-child {
                         font-weight: 800;
                     }
+
                     &:last-child {
                         font-weight: 400;
                         color: lighten($color: #000000, $amount: 90%);
@@ -86,24 +99,27 @@
                     }
                 }
             }
+
             .DayTime {
                 display: flex;
                 position: relative;
                 flex-direction: column;
                 justify-content: space-between;
-                align-items: start;
+                align-items: flex-start;
                 gap: $GlobalGap / 2;
                 // background: $C1;
                 width: 100%;
                 height: 100%;
                 border-radius: $FormsRadius;
                 padding: 0.75rem 0.75rem;
+
                 // min-width: 200px !important;
                 span {
                     font-weight: 600;
                     font-size: 0.8rem;
                     z-index: 2;
                     background-color: transparent;
+
                     &:last-child {
                         font-weight: 600;
                         font-size: 0.8rem;
@@ -111,10 +127,12 @@
                         background-color: $C4;
                         padding: 0.25rem 0.5rem;
                     }
+
                     &:nth-child(1) {
                         font-weight: 600;
                         font-size: 0.8rem;
                     }
+
                     &:nth-child(2) {
                         font-weight: 600;
                         font-size: 0.75rem;
@@ -122,6 +140,7 @@
                         border-radius: $FormsRadius / 2;
                     }
                 }
+
                 .CellIcon {
                     position: absolute;
                     top: 50%;
@@ -137,6 +156,7 @@
                     transition: all 0.3s;
                     display: none;
                 }
+
                 &:hover {
                     .CellIcon {
                         left: -15%;
@@ -145,17 +165,20 @@
             }
         }
     }
+
     .Presential {
         background: #000000;
         /* fallback for old browsers */
         background: -webkit-linear-gradient(to left, #434343, #000000);
         /* Chrome 10-25, Safari 5.1-6 */
         background: linear-gradient(to left, #434343, #000000);
+
         /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
         span {
             font-weight: 600;
             font-size: 0.8rem;
             color: $C4;
+
             &:nth-child(2) {
                 font-weight: 600;
                 font-size: 0.8rem;
@@ -164,21 +187,25 @@
                 padding: 0.25rem 0.5rem;
             }
         }
+
         &:hover {
             filter: brightness(1.1);
         }
     }
+
     .Online {
         background: $C3;
         /* fallback for old browsers */
         background: -webkit-linear-gradient(to right, $C3, #24b05e);
         /* Chrome 10-25, Safari 5.1-6 */
         background: linear-gradient(to right, $C3, #24b05e);
+
         /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
         span {
             font-weight: 600;
             font-size: 0.8rem;
             color: #fff;
+
             &:nth-child(2) {
                 font-weight: 600;
                 font-size: 0.8rem;
@@ -187,21 +214,25 @@
                 padding: 0.25rem 0.5rem;
             }
         }
+
         &:hover {
             filter: brightness(1.1);
         }
     }
+
     .Absent {
         background: #FF4B2B;
         /* fallback for old browsers */
         background: -webkit-linear-gradient(to right, #FF4B2B, #FF416C);
         /* Chrome 10-25, Safari 5.1-6 */
         background: linear-gradient(to right, #FF4B2B, #FF416C);
+
         /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
         span {
             font-weight: 600;
             font-size: 0.8rem;
             color: #fff;
+
             &:nth-child(2) {
                 font-weight: 600;
                 font-size: 0.8rem;
@@ -210,10 +241,12 @@
                 padding: 0.25rem 0.5rem;
             }
         }
+
         &:hover {
             filter: brightness(1.1);
         }
     }
+
     .Free {
         background: #FFFFFF;
         height: 100%;
@@ -221,10 +254,12 @@
         // width: 200px;
         min-width: 150px;
         min-height: 75px;
+
         &:hover {
             filter: brightness(95%);
         }
     }
+
     .WeatherCell {
         position: absolute;
         top: 0;
@@ -241,17 +276,20 @@
         overflow: hidden;
         background: $G2 !important;
         gap: $GlobalGap /2;
+
         span {
             z-index: 6;
             // color: #ffbb3b !important;
             color: #fff;
             // box shadow
             text-shadow: 0 0 50px 10px #000;
+
             &:nth-child(1) {
                 font-weight: 600;
                 font-size: 0.8rem;
                 color: $C4;
             }
+
             &:nth-child(2) {
                 font-weight: 600;
                 font-size: 0.75rem;
@@ -259,33 +297,41 @@
                 color: #fff !important;
             }
         }
+
         // if Has Rainy icon classname
         &:has(svg.Rainy) {
             background: desaturate(darken($C2, 0%), 25%) !important;
         }
+
         // if Has Snowy icon classname
         &:has(svg.Snowy) {
             background: desaturate(darken($C2, 0%), 50%) !important;
         }
+
         // if Has Thunder icon classname
         &:has(svg.Thunder) {
             background: desaturate(darken($C2, 0%), 50%) !important;
         }
+
         // if has fog
         &:has(svg.Fog) {
             background: desaturate(darken($C2, 0%), 25%) !important;
         }
+
         // if has cloudy
         &:has(svg.Cloudy) {
             background: saturate(darken($C2, 0%), 25%) !important;
         }
+
         // if has sunny
         &:has(svg.Sunny) {
             background: saturate(darken($C2, 0%), 50%) !important;
         }
+
         &:hover {
             background: darken($color: $C2, $amount: 5%) !important;
         }
+
         .Icon {
             position: absolute;
             top: 0;
@@ -297,6 +343,7 @@
             align-items: center;
             background: transparent !important;
             z-index: 5;
+
             svg {
                 width: auto;
                 height: 100%;
@@ -305,6 +352,7 @@
                 transform: translateY(-50%);
                 left: -10%;
             }
+
             .Rainy,
             .Snowy,
             .Thunder,
@@ -312,24 +360,30 @@
                 width: auto;
                 height: 70% !important;
             }
+
             .Fog {
                 width: auto;
                 height: 75% !important;
             }
+
             // float animation
             animation: float 3s ease-in-out infinite;
+
             @keyframes float {
                 0% {
                     transform: translatey(0px);
                 }
+
                 50% {
                     transform: translatey(-5px);
                 }
+
                 100% {
                     transform: translatey(0px);
                 }
             }
         }
+
         .Banner {
             position: absolute;
             top: 0;
@@ -338,6 +392,7 @@
             height: 100%;
             width: 100%;
             opacity: 0.35;
+
             .Clouds {
                 position: absolute;
                 bottom: 0%;
@@ -349,22 +404,28 @@
                 justify-content: center;
                 align-items: center;
                 background: transparent !important;
+
                 // img vars
                 img:nth-child(1) {
                     --i: 1;
                 }
+
                 img:nth-child(2) {
                     --i: 2;
                 }
+
                 img:nth-child(3) {
                     --i: 3;
                 }
+
                 img:nth-child(4) {
                     --i: 4;
                 }
+
                 img:nth-child(5) {
                     --i: 5;
                 }
+
                 img {
                     // each image has a unique variable
                     position: absolute;
@@ -372,10 +433,12 @@
                     max-width: 100%;
                     animation: animate calc(16s * var(--i)) linear infinite;
                 }
+
                 @keyframes animate {
                     0% {
                         transform: translateX(-100%);
                     }
+
                     100% {
                         transform: translateX(100%);
                     }

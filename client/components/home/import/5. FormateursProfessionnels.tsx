@@ -4,7 +4,7 @@ import ExpandCircleDownOutlinedIcon from "@mui/icons-material/ExpandCircleDownOu
 import Image from "next/image";
 const FormateursProfessionnels = () => {
     return (
-        <div className="FormateursProfessionnels">
+        <div className="FormateursProfessionnels" id="FormateursProfessionnels">
             <div className="Text">
                 <div className="Title">
                     <h3>Formateurs professionnels</h3>

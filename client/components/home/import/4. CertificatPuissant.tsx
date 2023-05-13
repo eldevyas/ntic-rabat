@@ -10,7 +10,7 @@ import WorkOutlineOutlinedIcon from "@mui/icons-material/WorkOutlineOutlined";
 import ApartmentOutlinedIcon from "@mui/icons-material/ApartmentOutlined";
 const CertificatPuissant = () => {
     return (
-        <div className="CertificatPuissant">
+        <div className="CertificatPuissant" id="CertificatPuissant">
             <div className="Text">
                 <div className="Title">
                     <h3>Certificat Puissant</h3>

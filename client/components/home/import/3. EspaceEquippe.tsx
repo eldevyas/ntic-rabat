@@ -6,7 +6,7 @@ import Router, { useRouter } from "next/router";
 const EspaceEquippe = () => {
     const Router = useRouter();
     return (
-        <div className="EspaceEquippe">
+        <div className="EspaceEquippe" id="EspaceEquippe">
             <div className="Text">
                 <div className="Title">
                     <h3>éspace Moderne</h3>
