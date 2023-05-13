@@ -18,14 +18,14 @@ import { useSession } from "next-auth/react";
 //
 export default function Annonces() {
     // get the user session
-    const { data: session, status } = useSession();
+    const { data: session, status }: any = useSession();
     const user:
         | {
-              name?: string | null | undefined;
-              email?: string | null | undefined;
-              image?: string | null | undefined;
-              token?: string | null | undefined;
-          }
+            name?: string | null | undefined;
+            email?: string | null | undefined;
+            image?: string | null | undefined;
+            token?: string | null | undefined;
+        }
         | undefined = session?.user;
     const ExpirationDate = useRef<HTMLInputElement>(null);
 
@@ -68,7 +68,8 @@ export default function Annonces() {
             let email = user?.email;
             axios
                 .post(
-                    "http://localhost:8000/api/annonces",
+
+                    `${process.env.SERVER_PUBLIC_API_URL}/annonces`,
                     {
                         title: Title,
                         description: Description,

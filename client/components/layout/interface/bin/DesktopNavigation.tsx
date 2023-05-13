@@ -6,7 +6,7 @@ import SendIcon from "@mui/icons-material/Send";
 import { DefaultButton } from "../../../core/button";
 
 export default function DesktopNavigation(props: any) {
-    const { data: session, status } = useSession();
+    const { data: session, status }: any = useSession();
 
     return (
         <div className="Connect">

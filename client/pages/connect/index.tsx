@@ -9,7 +9,7 @@ import { DefaultButton, OutlinedButton } from "../../components/core/button";
 import Loading from "../../components/core/Loading";
 import Image from "next/image";
 import SendIcon from "@mui/icons-material/Send";
-import io from "Socket.IO-client";
+import * as io from 'socket.io-client';
 import axios from "axios";
 import Post from "../../components/connect/Post";
 import * as Display from "../../services/displayAlert";
@@ -20,6 +20,8 @@ const Connect = () => {
     const [content, setContent] = useState<any>(null);
     const [posts, setPosts] = useState<any>([]);
     const [refresh, setRefresh] = useState<boolean>(false);
+    const [isProjet, setIsProjet] = useState(false);
+    const [image, setImage] = useState<any>([]);
 
     const router = useRouter();
     useEffect(() => {
@@ -93,6 +95,9 @@ const Connect = () => {
                 Display.pushFailure("Une erreur est survenue");
             });
     };
+    const handleShareProjet = () => {
+        console.log("projet");
+    }
 
     return (
         <>
@@ -116,17 +121,47 @@ const Connect = () => {
                             <div className="Form">
                                 <div className="Input">
                                     <textarea
-                                        placeholder={`Que pensez-vous ? ${
-                                            session?.user?.name?.split(" ")[0]
-                                        }.`}
+                                        placeholder={`Que pensez-vous ? ${session?.user?.name?.split(" ")[0]
+                                            }.`}
                                         onChange={(e: any) =>
                                             setContent(e.target.value)
                                         }
-                                        value={content}
+                                        value={content ? content : ""}
                                     ></textarea>
+                                    {
+                                        isProjet ? (
+                                            <div className="Urls">
+                                                <input type="text" name="GithubUrl" className="Url" placeholder="Enter github url" />
+                                                <input type="text" name="DemoUrl" className="Url" placeholder="Enter demo url" />
+                                            </div>
+                                        ) : (
+                                            null
+                                        )
+                                    }
                                 </div>
+                                <div className="Images">
+                                    {image && (
+                                        // loop through the images
+                                        image.map((img: any) => (
+                                            <div className="Image">
+                                                <Image
+                                                    src={img}
+                                                    alt="image"
+                                                    width={100}
+                                                    height={100}
+                                                />
+                                            </div>
+                                        ))
+
+
+                                    )}
+                                </div>
+
                                 <div className="Actions">
-                                    <DefaultButton>
+                                    <DefaultButton
+                                        onClick={() => setIsProjet(!isProjet)}
+
+                                    >
                                         <Image
                                             src="/assets/svg/Design.svg"
                                             alt="Design"
@@ -135,7 +170,42 @@ const Connect = () => {
                                         />
                                         Projet / Réalisation
                                     </DefaultButton>
-                                    <DefaultButton>
+                                    {/* input type file , display hidden , accepts img , and display the uploaded image */}
+
+                                    <input
+                                        type="file"
+                                        id="fileInput"
+                                        style={{ display: "none" }}
+                                        // allow multiple images
+                                        multiple
+                                        accept="image/*"
+                                        onChange={(e: any) => {
+                                            // get all the files and convert them to base64
+                                            const files = e.target.files;
+                                            const filesArray = Array.from(files);
+                                            filesArray.forEach((file: any) => {
+                                                const reader = new FileReader();
+                                                reader.onloadend = () => {
+                                                    // push the base64 to the image state
+                                                    setImage((prev: any) => [
+                                                        ...prev,
+                                                        reader.result,
+                                                    ]);
+                                                };
+                                                reader.readAsDataURL(file);
+                                            });
+                                        }}
+
+
+                                    />
+                                    <DefaultButton
+                                        // on click , choose file and upload it
+                                        onClick={() => {
+                                            const fileInput = document.getElementById("fileInput");
+                                            fileInput?.click();
+                                        }
+                                        }
+                                    >
                                         <Image
                                             src="/assets/svg/Catalog.svg"
                                             alt="Photo"
@@ -144,15 +214,30 @@ const Connect = () => {
                                         />
                                         Photo / Video
                                     </DefaultButton>
-                                    <DefaultButton
-                                        type="primary"
-                                        size="small"
-                                        className="Publish"
-                                        onClick={handlePublish}
-                                    >
-                                        Publier
-                                        <SendIcon fontSize="small" />
-                                    </DefaultButton>
+                                    {
+                                        isProjet ? (
+                                            <DefaultButton
+                                                type="primary"
+                                                size="small"
+                                                className="Publish"
+                                                onClick={handleShareProjet}
+                                            >
+                                                Partager projet
+                                                <SendIcon fontSize="small" />
+                                            </DefaultButton>
+
+                                        ) : (
+                                            <DefaultButton
+                                                type="primary"
+                                                size="small"
+                                                className="Publish"
+                                                onClick={handlePublish}
+                                            >
+                                                Publier
+                                                <SendIcon fontSize="small" />
+                                            </DefaultButton>
+                                        )
+                                    }
                                 </div>
                             </div>
                         </div>

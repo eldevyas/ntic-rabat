@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { useSession } from "next-auth/react";
 const Admin = () => {
-    const { data: session, status } = useSession();
+    const { data: session, status } : any = useSession();
     const router = useRouter();
 
     useEffect(() => {

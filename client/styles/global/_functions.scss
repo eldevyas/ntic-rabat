@@ -6,16 +6,19 @@
             @content;
         }
     }
+
     @else if $breakpoint==medium {
         @media (max-width: 1080px) {
             @content;
         }
     }
+
     @else if $breakpoint==large {
         @media (max-width: 1280px) {
             @content;
         }
     }
+
     @else if $breakpoint==xlarge {
         @media (max-width: 1420px) {
             @content;

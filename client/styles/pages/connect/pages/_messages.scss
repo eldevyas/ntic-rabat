@@ -157,13 +157,12 @@
         gap: $GlobalGap;
 
         &__Avatar {
-            width: auto;
-            height: 100%;
+            width: 50px;
+            height: 50px;
             aspect-ratio: 1/1;
             position: relative;
             border-radius: $FormsRadius / 2;
             background-color: $C2;
-            flex: 1;
         }
 
         &__Input {
@@ -201,7 +200,7 @@
         .DefaultButton {
             @include respond-to('small') {
                 font-size: 0;
-                aspect-ratio: 1/1;
+                // aspect-ratio: 1/1;
                 display: flex;
                 justify-content: center;
                 align-items: center;
@@ -212,4 +211,8 @@
             }
         }
     }
+}
+
+.GlobalMessages__Content {
+    min-height: 320px;
 }

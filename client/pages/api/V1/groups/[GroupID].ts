@@ -20,7 +20,7 @@ export default async function handler(
     const GroupID = req.query.GroupID;
 
     // Send Get Request to the Website - Retrieve data as HTML
-    const { data } = await axios.get(TargetURL + "/emploi/index.php?groupe=" + GroupID);
+    const { data }: any = await axios.get(TargetURL + "/emploi/index.php?groupe=" + GroupID);
     const $ = cheerio.load(data);
 
 

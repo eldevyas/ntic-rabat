@@ -6,7 +6,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import { useRouter } from "next/router";
 export default function ConnectHeader() {
     const Router = useRouter();
-    const { data: session } = useSession();
+    const { data: session }: any = useSession();
     return (
         <>
             <div className="ConnectHeader">
@@ -44,6 +44,7 @@ export default function ConnectHeader() {
                         email={session?.user?.email as string}
                         image={session?.user?.image as string}
                         role={session?.user?.role as string}
+                        token={session?.user?.token as string}
                     />
                 </div>
             </div>

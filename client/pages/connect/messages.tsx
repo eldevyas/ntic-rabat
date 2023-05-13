@@ -10,7 +10,7 @@ import Loading from "../../components/core/Loading";
 import Image from "next/image";
 import { TextField } from "@mui/material";
 import SendIcon from "@mui/icons-material/Send";
-import io from "Socket.IO-client";
+import * as io from 'socket.io-client';
 import * as Display from "../../services/displayAlert";
 let socket: any;
 
@@ -49,7 +49,7 @@ const Connect = () => {
         // We just call it because we don't need anything else out of it
         await fetch("/api/socket");
 
-        socket = io();
+        socket = io.io();
 
         socket.on("newIncomingMessage", (msg: any) => {
             Display.pushSuccess("New Incoming message received.");
@@ -118,7 +118,7 @@ const Connect = () => {
                                         Time={
                                             new Date(
                                                 new Date().getTime() -
-                                                    1000 * 60 * 60 * 24 * 1
+                                                1000 * 60 * 60 * 24 * 1
                                             )
                                         }
                                     />

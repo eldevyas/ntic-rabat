@@ -9,7 +9,6 @@ import { useSession } from "next-auth/react";
 import User from "../utils/User";
 
 export default function DesktopHeader(props: any) {
-    // session
     const { data: session, status }: any = useSession();
 
     const Router = useRouter();
@@ -55,6 +54,7 @@ export default function DesktopHeader(props: any) {
                                     name={session?.user?.name as string}
                                     email={session?.user?.email as string}
                                     image={session?.user?.image as string}
+                                    token={session?.user?.token as string}
                                 />
                             ) : (
                                 <>

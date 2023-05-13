@@ -1,7 +1,7 @@
-import io from "socket.io-client";
+import * as io from 'socket.io-client';
 import { useState, useEffect } from "react";
 
-let socket;
+let socket: any;
 
 type Message = {
     author: string;
@@ -22,9 +22,9 @@ export default function Home() {
         // We just call it because we don't need anything else out of it
         await fetch("/api/socket");
 
-        socket = io();
+        socket = io.io();
 
-        socket.on("newIncomingMessage", (msg) => {
+        socket.on("newIncomingMessage", (msg: any) => {
             setMessages((currentMsg) => [
                 ...currentMsg,
                 { author: msg.author, message: msg.message },
@@ -42,11 +42,13 @@ export default function Home() {
         setMessage("");
     };
 
-    const handleKeypress = (e) => {
+    const handleKeypress = (e: any) => {
         //it triggers by pressing the enter key
         if (e.keyCode === 13) {
             if (message) {
                 sendMessage();
+
+
             }
         }
     };

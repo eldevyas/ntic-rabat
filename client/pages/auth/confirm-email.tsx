@@ -14,7 +14,7 @@ import AuthService from "../../services/authServices";
 export default function VerificationPage() {
     const router = useRouter();
 
-    const { data: session, status } = useSession();
+    const { data: session, status }: any = useSession();
 
     const CodeInputRef = useRef<HTMLInputElement>(null);
     const [Code, setCode] = useState<string[]>(["-", "-", "-", "-", "-"]);
@@ -157,15 +157,15 @@ export default function VerificationPage() {
                                     (code === "-" ? "Empty" : "Filled") +
                                     // Current index
                                     (index ===
-                                    CodeInputRef.current?.value.length
+                                        CodeInputRef.current?.value.length
                                         ? " Current"
                                         : "")
                                 }
                                 onClick={() => {
                                     console.log(
                                         "Clicked Code with index [" +
-                                            index +
-                                            "]."
+                                        index +
+                                        "]."
                                     );
                                     CodeInputRef.current?.focus();
                                 }}

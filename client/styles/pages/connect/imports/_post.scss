@@ -7,14 +7,17 @@
     padding: $GlobalGap;
     border-radius: 15px;
     width: 100%;
+
     .PostHeader {
         display: flex;
         flex-direction: row;
         gap: $GlobalGap;
         align-items: center;
+
         .PostHeaderName {
             font-size: 1rem;
             font-weight: 400;
+
             .UserName {
                 font-family: 'Outfit';
                 font-style: normal;
@@ -24,6 +27,7 @@
                 align-items: center;
                 color: #000000;
             }
+
             .TimeAgo {
                 font-family: 'Outfit';
                 font-style: normal;
@@ -37,6 +41,7 @@
             }
         }
     }
+
     .PostBody {
         font-family: 'Outfit';
         font-style: normal;
@@ -44,8 +49,10 @@
         line-height: 25px;
         color: rgba(0, 0, 0, 0.75);
         white-space: 'pre-line' !important;
+
         p {
             white-space: pre-line !important;
+
             .HashTag {
                 white-space: pre-line !important;
                 color: $C3;
@@ -53,93 +60,125 @@
             }
         }
     }
+
     .PostActions {
         display: flex;
         flex-direction: row;
         gap: $GlobalGap;
         align-items: stretch;
         justify-content: space-between;
+
         button {
             flex: 1;
-            $RedButton: rgb(180, 50, 80);
+            $RedButton: #39B54A;
             // Gray
-            $GrayButton: rgb(150, 150, 150);
+            $GrayButton: #29ABE2;
             // Blue
-            $ReportButton: rgb(50, 180, 180);
+            $ReportButton: #F74343;
+            display: flex;
+            flex-direction: row;
+            gap: $GlobalGap/2;
+
             &:nth-child(1) {
                 @include DefaultButton($RedButton);
             }
+
             &:nth-child(2) {
                 @include DefaultButton($GrayButton);
             }
+
             &:nth-child(3) {
                 @include DefaultButton($ReportButton);
             }
         }
     }
+
     .CommentsArea {
         display: flex;
         flex-direction: column;
         gap: $GlobalGap;
+
+
+
         .PostComments {
-            background-color: rgba($C1, 0.1);
+            background-color: rgba($C1, 0.05);
             border-radius: 15px;
             padding: 10px;
             display: flex;
             flex-direction: column;
             margin: 0 10px;
-            gap: $GlobalGap;
+            gap: $GlobalGap / 2;
+
             .Comment {
                 display: flex;
                 flex-direction: column;
                 gap: $GlobalGap;
-                background-color: rgba($C1, 0.2);
-                padding: 15px;
+                // background-color: rgba($C1, 0.2);
+                padding: 10px 15px;
                 border-radius: 10px;
+
                 .CommentPoster {
                     display: flex;
                     flex-direction: row;
                     gap: $GlobalGap;
-                    align-items: center;
-                    .TimeAgo {
-                        font-family: 'Outfit';
-                        font-style: normal;
-                        font-weight: 700;
-                        font-size: 12px;
-                        line-height: 19px;
-                        /* identical to box height */
+                    align-items: start;
+
+                    .CommentContainer {
                         display: flex;
-                        align-items: center;
-                        color: rgba(0, 0, 0, 0.5);
-                    }
-                    .UserName {
-                        font-family: 'Outfit';
-                        font-style: normal;
-                        font-weight: 700;
-                        line-height: 25px;
-                        display: flex;
-                        align-items: center;
-                        color: #000000;
+                        flex-direction: column;
+                        gap: 2px;
+                        align-items: flex-start;
+
+                        justify-content: start;
+
+                        .User {
+                            display: flex;
+                            flex-direction: row;
+                            gap: $GlobalGap;
+
+                            .TimeAgo {
+                                font-family: 'Outfit';
+                                font-style: normal;
+                                font-weight: 700;
+                                font-size: 12px;
+                                line-height: 19px;
+                                /* identical to box height */
+                                display: flex;
+                                align-items: center;
+                                color: rgba(0, 0, 0, 0.5);
+                            }
+
+                            .UserName {
+                                font-family: 'Outfit';
+                                font-style: normal;
+                                font-weight: 700;
+                                line-height: 25px;
+                                display: flex;
+                                align-items: center;
+                                color: #000000;
+                            }
+                        }
                     }
                 }
-                .CommentContent {
-                    margin-left: 15px;
-                }
+
+
             }
         }
+
         .CommentForm {
             display: flex;
             flex-direction: row;
             gap: $GlobalGap;
             align-items: center;
             width: 100%;
+
             textarea {
                 flex: 1;
                 border: none;
                 border-radius: 15px;
                 padding: 10px;
                 height: 60px;
-                background-color: rgba($C1, 0.1);
+                background-color: rgba($C1, 0.05);
                 font-family: 'Outfit';
                 font-style: normal;
                 font-weight: 400;
@@ -147,6 +186,7 @@
                 color: rgba(0, 0, 0, 0.75);
                 resize: unset;
             }
+
             button {
                 background: $G2;
                 text-transform: capitalize;
@@ -168,10 +208,12 @@
             flex-direction: row;
             gap: $GlobalGap;
             align-items: center;
+
             .PostHeaderName {
                 display: flex;
                 flex-direction: column;
                 gap: 2px;
+
                 .UserName {
                     font-family: 'Outfit';
                     font-style: normal;
@@ -180,6 +222,7 @@
                     font-size: 16px;
                     color: #333333;
                 }
+
                 .TimeAgo {
                     font-family: 'Outfit';
                     font-style: normal;
@@ -190,21 +233,24 @@
                 }
             }
         }
+
         .PostBody {
             white-space: pre-line;
             font-size: 0.9rem;
             font-weight: 450;
         }
+
         .PostActions {
             display: flex;
             flex-direction: row;
             gap: $GlobalGap;
             align-items: center;
             margin-top: 10px;
+
             button {
                 display: flex;
                 flex-direction: row;
-                gap: $GlobalGap /2;
+
                 .ButtonIcon {
                     font-size: 18px;
                 }

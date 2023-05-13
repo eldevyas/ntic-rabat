@@ -9,7 +9,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useRouter } from "next/router";
 
 const SideBar = () => {
-    const { data: session, status } = useSession();
+    const { data: session, status }: any = useSession();
     const Router = useRouter();
 
     return (

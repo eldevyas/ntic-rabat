@@ -24,7 +24,7 @@ export default async function handler(
     let dayIndex = 0;
 
     // Send Get Request to the Website - Retrieve data as HTML
-    const { data } = await axios.get(TargetURL + "/emploi/timetable/index.php?groupe=" + GroupID);
+    const { data }: any = await axios.get(TargetURL + "/emploi/timetable/index.php?groupe=" + GroupID);
 
     let FormattedData: { Day: string, Time: any }[] = [];
 

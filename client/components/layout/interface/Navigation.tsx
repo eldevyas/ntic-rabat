@@ -1,10 +1,16 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import SideBar from "./bin/web/SideBar";
 import DesktopNavigation from "./bin/DesktopNavigation";
 import MobileNavigation from "./bin/MobileNavigation";
-
-export default class Navigation extends React.Component {
+interface NavigationProps {
+    children: ReactNode;
+}
+interface NavigationState {
+    isDesktop: boolean;
+}
+export default class Navigation extends React.Component<NavigationProps, NavigationState> {
     constructor(props: any) {
+
         super(props);
         this.state = {
             isDesktop: false,
