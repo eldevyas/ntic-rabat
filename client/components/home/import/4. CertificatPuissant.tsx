@@ -24,13 +24,31 @@ const CertificatPuissant = () => {
                     la facilité d&apos;insertion des lauréats dans
                     l&apos;entreprise. Ceci est rendu possible à travers:
                 </p>
-                <DefaultButton color="Green" startIcon={<ModelTrainingIcon />}>
+                <DefaultButton
+                    color="Green"
+                    startIcon={<ModelTrainingIcon />}
+                    sx={{
+                        cursor: "pointer",
+                    }}
+                >
                     Formation altérnée
                 </DefaultButton>
-                <DefaultButton color="Green" startIcon={<WorkIcon />}>
+                <DefaultButton
+                    color="Green"
+                    startIcon={<WorkIcon />}
+                    sx={{
+                        cursor: "pointer",
+                    }}
+                >
                     Stage de fin d&apos;études
                 </DefaultButton>
-                <DefaultButton color="Green" startIcon={<ApartmentIcon />}>
+                <DefaultButton
+                    color="Green"
+                    startIcon={<ApartmentIcon />}
+                    sx={{
+                        cursor: "pointer",
+                    }}
+                >
                     Partenariats avec les professionnels
                 </DefaultButton>
             </div>
@@ -38,7 +56,7 @@ const CertificatPuissant = () => {
                 <Image
                     alt=""
                     src="/assets/img/Table.png"
-                    layout="fill"
+                    fill
                     className="Image"
                 />
             </div>

@@ -157,15 +157,15 @@ export default function VerificationPage() {
                                     (code === "-" ? "Empty" : "Filled") +
                                     // Current index
                                     (index ===
-                                        CodeInputRef.current?.value.length
+                                    CodeInputRef.current?.value.length
                                         ? " Current"
                                         : "")
                                 }
                                 onClick={() => {
                                     console.log(
                                         "Clicked Code with index [" +
-                                        index +
-                                        "]."
+                                            index +
+                                            "]."
                                     );
                                     CodeInputRef.current?.focus();
                                 }}

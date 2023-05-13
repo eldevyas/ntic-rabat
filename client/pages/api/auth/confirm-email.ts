@@ -8,10 +8,11 @@ export default async function confirmEmail(
 ) {
     const { email, code } = req.body;
     let VERIFY_EMAIL_ENDPOINT = process.env.SERVER_PUBLIC_HOSTNAME + "/api/auth/verify-email";
-    // if has localhost, switch it to 0.0.0.0
-    if (VERIFY_EMAIL_ENDPOINT.includes("localhost")) {
-        VERIFY_EMAIL_ENDPOINT = VERIFY_EMAIL_ENDPOINT.replace("localhost", "0.0.0.0");
-    }
+    console.log(`Verify email url: ${VERIFY_EMAIL_ENDPOINT}`);
+    // // if has localhost, switch it to 0.0.0.0
+    // if (VERIFY_EMAIL_ENDPOINT.includes("localhost")) {
+    //     VERIFY_EMAIL_ENDPOINT = VERIFY_EMAIL_ENDPOINT.replace("localhost", "0.0.0.0");
+    // }
 
     const response = await axios
         .post(
@@ -34,7 +35,7 @@ export default async function confirmEmail(
                 };
             } else {
                 return {
-                    message: 'Email Verification Failed',
+                    message: 'Email Verification Failed because of a client error.',
                     status: "Not Verified",
                 }
             }
@@ -42,7 +43,7 @@ export default async function confirmEmail(
         .catch((err: any) => {
             console.log(err);
             return {
-                message: 'Email Verification Failed',
+                message: 'Email Verification Failed because of a server error.',
                 status: "Error",
             }
         });
