@@ -49,13 +49,7 @@ export default function DesktopHeader(props: any) {
                         {
                             // if user is connected
                             session ? (
-                                <User
-                                    role={session?.user?.role as string}
-                                    name={session?.user?.name as string}
-                                    email={session?.user?.email as string}
-                                    image={session?.user?.image as string}
-                                    token={session?.user?.token as string}
-                                />
+                                <User />
                             ) : (
                                 <>
                                     <DefaultButton

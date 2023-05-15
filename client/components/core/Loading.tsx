@@ -15,7 +15,7 @@ function LinearIndeterminate() {
 
 export default function Loading() {
     useEffect(() => {
-        const Footer: HTMLDivElement = document.querySelector(".Footer");
+        const Footer: HTMLDivElement = document.querySelector(".Footer") as HTMLDivElement;
         if (Footer) {
             Footer.style.display = "none";
         }

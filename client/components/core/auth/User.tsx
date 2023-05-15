@@ -3,38 +3,33 @@ import PropTypes from "prop-types";
 import IconButton from "@mui/material/IconButton";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import { DefaultButton } from "../button";
-import { signOut } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
 import LogoutIcon from "@mui/icons-material/Logout";
 import AccountBoxIcon from "@mui/icons-material/AccountBox";
 import { useRouter } from "next/router";
-import { Avatar, Stack } from "@mui/material";
-import { User as UserAvatar, Dropdown, Text } from "@nextui-org/react";
+import { User as UserAvatar, Dropdown, Text, Avatar } from "@nextui-org/react";
 
-const User = (props: {
-    image: string | any;
-    name: string | any;
-    email: string | any;
-    role: string | any;
-    token?: string | any;
-}) => {
+const User = () => {
     const Router = useRouter();
+    const { data: session, status }: any = useSession();
+
+    const Data = {
+        image: session.user.profile_picture,
+        name: session.user.name,
+        email: session.user.email,
+        role: session.user.role,
+    };
 
     return (
         <Dropdown placement="bottom-right">
             <Dropdown.Trigger>
                 <UserAvatar
-                    src={props.image}
-                    text={
-                        !props.image || props.image == " "
-                            ? (props.name.toLocaleUpperCase() as string)
-                            : ""
-                    }
-                    name={props.name}
-                    description={props.role}
-                    size="md"
+                    src={Data.image}
+                    name={Data.name}
+                    description={Data.role}
+                    size="lg"
                     as="button"
-                    color="primary"
                     squared
                     bordered
                 />
@@ -49,7 +44,7 @@ const User = (props: {
                         Connecté en tant que
                     </Text>
                     <Text b color="inherit" css={{ d: "flex" }}>
-                        {props.email}
+                        {Data.email}
                     </Text>
                 </Dropdown.Item>
                 <Dropdown.Item key="Profile" color="default" withDivider>
@@ -82,32 +77,29 @@ const User = (props: {
     );
 };
 
-const MobileUser = (props: {
-    image: string | any;
-    name: string | any;
-    email: string | any;
-    role: string | any;
-    token?: string | any;
-}) => {
+const MobileUser = () => {
     const Router = useRouter();
+    const { data: session, status }: any = useSession();
+
+    const Data = {
+        image: session.user.profile_picture,
+        name: session.user.name,
+        email: session.user.email,
+        role: session.user.role,
+    };
 
     return (
         <Dropdown placement="bottom-right">
             <Dropdown.Trigger>
-                <UserAvatar
-                    src={props.image}
-                    text={
-                        !props.image || props.image == " "
-                            ? (props.name.toLocaleUpperCase() as string)
-                            : ""
-                    }
-                    name={props.name}
-                    description={props.role}
-                    size="md"
+                <Avatar
+                    src={Data.image}
+                    size="lg"
                     as="button"
-                    color="primary"
                     squared
                     bordered
+                    css={{
+                        color: "var(--C3)",
+                    }}
                 />
             </Dropdown.Trigger>
             <Dropdown.Menu
@@ -119,8 +111,13 @@ const MobileUser = (props: {
                     <Text color="inherit" css={{ d: "flex" }}>
                         Connecté en tant que
                     </Text>
-                    <Text b color="inherit" css={{ d: "flex" }}>
-                        {props.email}
+                    <Text
+                        b
+                        color="inherit"
+                        transform="capitalize"
+                        css={{ d: "flex" }}
+                    >
+                        {Data.name}
                     </Text>
                 </Dropdown.Item>
                 <Dropdown.Item key="Accueil" color="default" withDivider>
@@ -183,12 +180,6 @@ const MobileUser = (props: {
             </Dropdown.Menu>
         </Dropdown>
     );
-};
-
-User.propTypes = {
-    name: PropTypes.string.isRequired,
-    email: PropTypes.string.isRequired,
-    // image: PropTypes.string.isRequired,
 };
 
 export default User;

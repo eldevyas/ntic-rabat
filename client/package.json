@@ -13,6 +13,7 @@
         "@emotion/react": "^11.10.5",
         "@emotion/styled": "^11.10.5",
         "@floating-ui/dom": "^1.1.0",
+        "@heroicons/react": "^2.0.18",
         "@mui/icons-material": "^5.11.0",
         "@mui/lab": "^5.0.0-alpha.116",
         "@mui/material": "^5.11.2",
