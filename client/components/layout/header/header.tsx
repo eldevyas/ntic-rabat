@@ -1,6 +1,18 @@
 import React, { useState, useEffect } from "react";
 import DesktopHeader from "./imports/DesktopHeader";
 import MobileHeader from "./imports/MobileHeader";
+import {
+    Navbar,
+    Link,
+    Text,
+    Avatar,
+    Dropdown,
+    Button,
+} from "@nextui-org/react";
+import { useRouter } from "next/router";
+import Image from "next/image";
+import { useSession } from "next-auth/react";
+import User from "./../../core/auth/User";
 
 const NavigationLinks: {
     href: String;

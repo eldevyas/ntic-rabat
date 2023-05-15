@@ -3,6 +3,7 @@ import Background from "./Background";
 import Image from "next/image";
 import Box from "@mui/material/Box";
 import LinearProgress from "@mui/material/LinearProgress";
+import { useEffect } from "react";
 
 function LinearIndeterminate() {
     return (
@@ -13,6 +14,17 @@ function LinearIndeterminate() {
 }
 
 export default function Loading() {
+    useEffect(() => {
+        const Footer: HTMLDivElement = document.querySelector(".Footer");
+        if (Footer) {
+            Footer.style.display = "none";
+        }
+        return () => {
+            if (Footer) {
+                Footer.style.display = "flex";
+            }
+        };
+    }, []);
     return (
         <div className="LoadingPage">
             <Head>

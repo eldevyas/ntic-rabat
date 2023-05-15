@@ -1,6 +1,6 @@
 import React from "react";
 import { DefaultButton, IconButton } from "../../../../core/button";
-import User from "../../../header/utils/User";
+import User from "../../../../core/auth/User";
 import { useSession } from "next-auth/react";
 import SearchIcon from "@mui/icons-material/Search";
 import { useRouter } from "next/router";

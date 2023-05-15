@@ -6,7 +6,7 @@ import { DefaultButton } from "./../../../core/button";
 import * as Display from "../../../../services/displayAlert";
 import { signIn } from "next-auth/react";
 import { useSession } from "next-auth/react";
-import User from "../utils/User";
+import User from "../../../core/auth/User";
 
 export default function DesktopHeader(props: any) {
     const { data: session, status }: any = useSession();

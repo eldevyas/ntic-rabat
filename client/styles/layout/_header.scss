@@ -8,46 +8,56 @@
     justify-content: space-between;
     flex-direction: row;
     gap: $GlobalGap;
+
     .End,
     .Middle,
     .Start {
         flex: 1;
     }
+
     .Logo {
         max-height: 50px;
         display: flex;
         align-items: center;
         justify-content: flex-start;
+
         img {
             cursor: pointer;
         }
     }
+
     .Middle {
         display: flex;
         align-items: center;
         justify-content: center;
         flex-direction: row;
         gap: $GlobalGap;
+
         .DefaultButton,
         button {
             min-width: 100px;
             height: 100%;
         }
+
         .DefaultButton.Black {
             color: $C4 !important;
         }
     }
+
     .End {
         display: flex;
         justify-content: flex-end;
         width: 100%;
         gap: $GlobalGap;
+
         .DefaultButton {
             min-width: 135px;
+
             &:last-of-type {
                 color: $C4;
             }
         }
+
         .User {
             position: relative;
             width: 60%;
@@ -57,6 +67,7 @@
             display: flex;
             align-items: stretch;
             gap: $GlobalGap;
+
             &__Info {
                 position: relative;
                 display: flex;
@@ -67,6 +78,7 @@
                 width: 100%;
                 height: 100%;
                 overflow: hidden;
+
                 &__Avatar {
                     position: relative;
                     height: 100%;
@@ -77,6 +89,7 @@
                     align-items: center;
                     justify-content: center;
                     gap: $GlobalGap;
+
                     img {
                         position: absolute;
                         top: 0;
@@ -87,6 +100,7 @@
                         border-radius: $FormsRadius;
                     }
                 }
+
                 &__Name {
                     display: flex;
                     flex-direction: column;
@@ -95,12 +109,14 @@
                     gap: $GlobalGap / 4;
                     height: 100%;
                     width: 100%;
+
                     h3 {
                         font-size: 0.9rem;
                         font-weight: 600;
                         color: rgba($C1, 75%);
                         width: 100%;
                     }
+
                     p {
                         font-size: 0.75rem;
                         font-weight: 400;
@@ -112,6 +128,7 @@
                     }
                 }
             }
+
             &__Action {
                 position: relative;
                 background-color: transparent;
@@ -122,6 +139,7 @@
                 align-items: center;
                 justify-content: center;
             }
+
             &__Dropdown {
                 box-shadow: 0 0px 250px 0px rgba(darken($C2, 25%), 0.25);
                 position: absolute;
@@ -138,6 +156,7 @@
                 gap: $GlobalGap;
                 padding: $GlobalGap;
                 z-index: 100000;
+
                 .UsualButton {
                     @include DefaultButton($C4);
                     background-color: rgba($C1, 5%);
@@ -145,6 +164,7 @@
                     text-align: left;
                     justify-content: flex-start;
                 }
+
                 .DefaultButton {
                     text-align: left;
                     justify-content: flex-start;
@@ -163,10 +183,12 @@
     align-items: center;
     justify-content: space-between;
     flex-direction: row;
+
     .End {
         display: flex;
         justify-content: space-between;
         gap: 10px;
+
         .DefaultButton,
         button {
             background-color: lighten($C1, 10%);
@@ -183,6 +205,7 @@
     justify-content: space-between;
     align-items: center;
     @include GlobalPadding();
+
     .Logo {
         width: auto;
         height: 30px;
@@ -191,26 +214,31 @@
         display: flex;
         justify-content: flex-start;
         align-items: center;
+
         &:hover {
             opacity: 0.65;
             cursor: pointer;
         }
+
         &:active {
             opacity: 1;
             cursor: pointer;
         }
     }
+
     .MenuButton {
         display: flex;
         justify-content: flex-end;
         align-items: center;
         min-width: 50%;
         height: auto;
+
         // background: $G3;
         .HeaderButton {
             padding: 1rem;
             color: $C3 !important;
             border-radius: $FormsRadius;
+
             >* {
                 color: $C3 !important;
             }
@@ -226,6 +254,7 @@
     left: 0;
     z-index: 100000;
     overflow: hidden;
+
     .MobileMenu {
         display: flex;
         flex-direction: column;
@@ -241,6 +270,7 @@
         gap: 2rem;
         user-select: none;
         backdrop-filter: brightness(0.1);
+
         .Main {
             display: flex;
             justify-content: space-between;
@@ -250,6 +280,7 @@
             height: auto;
             // background: $G5;
             border-radius: 1rem;
+
             .Logo {
                 width: auto;
                 height: 30px;
@@ -258,15 +289,18 @@
                 display: flex;
                 justify-content: flex-start;
                 align-items: center;
+
                 &:hover {
                     opacity: 0.65;
                     cursor: pointer;
                 }
+
                 &:active {
                     opacity: 1;
                     cursor: pointer;
                 }
             }
+
             .CloseButton {
                 @include IconButton($C3);
                 padding: 1rem !important;
@@ -277,16 +311,18 @@
                 border-color: $C3;
             }
         }
+
         .Items {
             width: 100%;
             height: 1100%;
             border-radius: 1rem;
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            grid-template-rows: repeat(3, auto);
+            grid-template-rows: repeat(var(--RowsCount), auto);
             gap: 0;
             margin-inline: auto;
             position: relative;
+
             .Item {
                 border-radius: 1rem;
                 display: flex;
@@ -295,11 +331,13 @@
                 align-items: center;
                 color: $C4;
                 z-index: 1000;
+
                 svg {
                     margin-bottom: 1rem;
                     pointer-events: none;
                 }
             }
+
             .Current {
                 position: absolute;
                 top: 0;
@@ -307,7 +345,7 @@
                 background: $G2;
                 display: block;
                 width: 50%;
-                height: calc(100% / 3);
+                height: calc(100% / var(--RowsCount));
                 border-radius: 1rem;
                 z-index: 0;
                 transition: all 100ms ease;
