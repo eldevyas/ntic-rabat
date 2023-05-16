@@ -39,13 +39,7 @@ export default function ConnectHeader() {
                     <SearchIcon className="SearchIcon" />
                 </div>
                 <div className="Right">
-                    <User
-                        name={session?.user?.name as string}
-                        email={session?.user?.email as string}
-                        image={session?.user?.image as string}
-                        role={session?.user?.role as string}
-                        token={session?.user?.token as string}
-                    />
+                    <User />
                 </div>
             </div>
         </>
