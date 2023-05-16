@@ -8,7 +8,25 @@ import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
 import LogoutIcon from "@mui/icons-material/Logout";
 import AccountBoxIcon from "@mui/icons-material/AccountBox";
 import { useRouter } from "next/router";
-import { User as UserAvatar, Dropdown, Text, Avatar } from "@nextui-org/react";
+import {
+    User as UserAvatar,
+    Dropdown,
+    Text,
+    Avatar,
+    Button,
+} from "@nextui-org/react";
+import {
+    Category,
+    Home,
+    Calendar,
+    Login,
+    People,
+    Calling,
+    Logout,
+    Password,
+    Chat,
+    User as UserIcon,
+} from "react-iconly";
 
 const User = () => {
     const Router = useRouter();
@@ -21,63 +39,94 @@ const User = () => {
         role: session.user.role,
     };
 
+    const toCapitalCase = (string: string) => {
+        return string.charAt(0).toUpperCase() + string.slice(1);
+    };
+
+    const Navigate = (HREF: string) => {
+        return Router.push(HREF);
+    };
+
     return (
         <Dropdown placement="bottom-right">
             <Dropdown.Trigger>
                 <UserAvatar
                     src={Data.image}
-                    name={Data.name}
-                    description={Data.role}
+                    name={toCapitalCase(Data.name)}
+                    description={toCapitalCase(Data.role)}
                     size="lg"
                     as="button"
                     squared
                     bordered
                 />
             </Dropdown.Trigger>
+
             <Dropdown.Menu
                 aria-label="User menu actions"
                 color="default"
-                onAction={(actionKey) => console.log({ actionKey })}
+                onAction={(key) => {
+                    return Navigate(key as string);
+                }}
             >
-                <Dropdown.Item key="profile" css={{ height: "$18" }}>
-                    <Text color="inherit" css={{ d: "flex" }}>
-                        Connecté en tant que
-                    </Text>
-                    <Text b color="inherit" css={{ d: "flex" }}>
-                        {Data.email}
-                    </Text>
-                </Dropdown.Item>
-                <Dropdown.Item key="Profile" color="default" withDivider>
-                    <Text
-                        b
-                        color="inherit"
-                        css={{ d: "flex" }}
-                        onClick={() => {
-                            Router.push("/connect/profile");
-                        }}
+                <Dropdown.Section title="Navigation">
+                    <Dropdown.Item
+                        key="/connect/profile"
+                        color="default"
+                        description="Consultez ou modifiez votre profil public 🖼️"
+                        icon={
+                            <UserIcon
+                                primaryColor={"var(--nextui-colors-primary)"}
+                                set="bulk"
+                            />
+                        }
                     >
                         Profile
-                    </Text>
-                </Dropdown.Item>
-                <Dropdown.Item key="Logout" color="error" withDivider>
-                    <Text
-                        b
-                        color="inherit"
-                        css={{ d: "flex" }}
-                        onClick={() => {
-                            // sign out
-                            signOut();
-                        }}
+                    </Dropdown.Item>
+                    <Dropdown.Item
+                        key="/connect/messages"
+                        color="default"
+                        description="Consultez ou modifiez votre profil public 🖼️"
+                        icon={
+                            <Chat
+                                primaryColor={"var(--nextui-colors-primary)"}
+                                set="bulk"
+                            />
+                        }
                     >
-                        Se déconnecter
-                    </Text>
-                </Dropdown.Item>
+                        Messagerie
+                    </Dropdown.Item>
+                </Dropdown.Section>
+                <Dropdown.Section title="Actions">
+                    <Dropdown.Item
+                        key="/"
+                        color="error"
+                        description="Pensez-vous quitter cet endroit incroyable pour de vrai ?"
+                        icon={
+                            <Logout
+                                primaryColor={"var(--nextui-colors-error)"}
+                                set="bulk"
+                            />
+                        }
+                    >
+                        <Text
+                            b
+                            color="inherit"
+                            css={{ d: "flex" }}
+                            onClick={() => {
+                                // sign out
+                                signOut();
+                            }}
+                        >
+                            Se déconnecter
+                        </Text>
+                    </Dropdown.Item>
+                </Dropdown.Section>
             </Dropdown.Menu>
         </Dropdown>
     );
 };
 
-const MobileUser = () => {
+const MobileMenuWithAuth = () => {
     const Router = useRouter();
     const { data: session, status }: any = useSession();
 
@@ -88,6 +137,9 @@ const MobileUser = () => {
         role: session.user.role,
     };
 
+    const Navigate = (HREF: string) => {
+        return Router.push(HREF);
+    };
     return (
         <Dropdown placement="bottom-right">
             <Dropdown.Trigger>
@@ -105,11 +157,13 @@ const MobileUser = () => {
             <Dropdown.Menu
                 aria-label="User menu actions"
                 color="default"
-                onAction={(actionKey) => console.log({ actionKey })}
+                onAction={(key) => {
+                    return Navigate(key as string);
+                }}
             >
                 <Dropdown.Item key="profile" css={{ height: "$18" }}>
-                    <Text color="inherit" css={{ d: "flex" }}>
-                        Connecté en tant que
+                    <Text small color="inherit" css={{ d: "flex" }}>
+                        Bonjour 👋🏻
                     </Text>
                     <Text
                         b
@@ -120,67 +174,202 @@ const MobileUser = () => {
                         {Data.name}
                     </Text>
                 </Dropdown.Item>
-                <Dropdown.Item key="Accueil" color="default" withDivider>
-                    <Text
-                        color="inherit"
-                        css={{ d: "flex" }}
-                        onClick={() => {
-                            Router.push("/");
-                        }}
+                <Dropdown.Section title="Navigation">
+                    <Dropdown.Item
+                        key={"/"}
+                        color="secondary"
+                        icon={
+                            <Home
+                                primaryColor={"var(--nextui-colors-primary)"}
+                                set="bulk"
+                            />
+                        }
+                        description="Rien à faire là-bas frèrot 😶‍🌫️"
                     >
                         Accueil
-                    </Text>
-                </Dropdown.Item>
-                <Dropdown.Item key="Emplois" color="default">
-                    <Text
-                        color="inherit"
-                        css={{ d: "flex" }}
-                        onClick={() => {
-                            Router.push("/connect/profile");
-                        }}
+                    </Dropdown.Item>
+                    <Dropdown.Item
+                        key={"/emplois"}
+                        color="secondary"
+                        icon={
+                            <Calendar
+                                primaryColor={"var(--nextui-colors-primary)"}
+                                set="bulk"
+                            />
+                        }
+                        description="Consultez le planning de tous les cours aux NTIC Rabat, vous pouvez voir la météo aussi 😍"
                     >
                         Emplois
-                    </Text>
-                </Dropdown.Item>
-                <Dropdown.Item key="Profile" color="default">
-                    <Text
-                        color="inherit"
-                        css={{ d: "flex" }}
-                        onClick={() => {
-                            Router.push("/connect/profile");
-                        }}
+                    </Dropdown.Item>
+                    <Dropdown.Item
+                        key={"/connect"}
+                        color="secondary"
+                        icon={
+                            <People
+                                primaryColor={"var(--nextui-colors-primary)"}
+                                set="bulk"
+                            />
+                        }
+                        description="Facebook du NTIC 📲"
                     >
                         Connect
-                    </Text>
-                </Dropdown.Item>
-                <Dropdown.Item key="Profile" color="default">
-                    <Text
-                        color="inherit"
-                        css={{ d: "flex" }}
-                        onClick={() => {
-                            Router.push("/connect/profile");
-                        }}
+                    </Dropdown.Item>
+                    <Dropdown.Item
+                        key={"/connect/profile"}
+                        color="default"
+                        description="Consultez ou modifiez votre profil public 🖼️"
+                        icon={
+                            <UserIcon
+                                primaryColor={"var(--nextui-colors-primary)"}
+                                set="bulk"
+                            />
+                        }
                     >
                         Profile
-                    </Text>
-                </Dropdown.Item>
-                <Dropdown.Item key="Logout" color="error" withDivider>
-                    <Text
-                        b
-                        color="inherit"
-                        css={{ d: "flex" }}
-                        onClick={() => {
-                            // sign out
-                            signOut();
-                        }}
+                    </Dropdown.Item>
+                    <Dropdown.Item
+                        key={"/#contact"}
+                        color="secondary"
+                        icon={
+                            <Calling
+                                primaryColor={"var(--nextui-colors-primary)"}
+                                set="bulk"
+                            />
+                        }
                     >
-                        Se déconnecter
-                    </Text>
-                </Dropdown.Item>
+                        Contact
+                    </Dropdown.Item>
+                </Dropdown.Section>
+                <Dropdown.Section title="Actions">
+                    <Dropdown.Item
+                        key="Logout"
+                        color="error"
+                        description="Pensez-vous quitter cet endroit incroyable pour de vrai ?"
+                        icon={
+                            <Logout
+                                primaryColor={"var(--nextui-colors-error)"}
+                                set="bulk"
+                            />
+                        }
+                    >
+                        <Text
+                            b
+                            color="inherit"
+                            css={{ d: "flex" }}
+                            onClick={() => {
+                                // sign out
+                                signOut();
+                            }}
+                        >
+                            Se déconnecter
+                        </Text>
+                    </Dropdown.Item>
+                </Dropdown.Section>
+            </Dropdown.Menu>
+        </Dropdown>
+    );
+};
+
+const MobileMenuWithoutAuth = () => {
+    const Router = useRouter();
+
+    const Navigate = (HREF: string) => {
+        return Router.push(HREF);
+    };
+    return (
+        <Dropdown placement="bottom-right">
+            <Dropdown.Trigger>
+                <Button
+                    auto
+                    icon={
+                        <Category
+                            set="bulk"
+                            primaryColor={"var(--nextui-colors-secondary)"}
+                        />
+                    }
+                    color="secondary"
+                    flat
+                />
+            </Dropdown.Trigger>
+            <Dropdown.Menu
+                aria-label="Static Actions"
+                css={{
+                    d: "flex",
+                    flexDirection: "column",
+                    gap: "0.5rem",
+                }}
+                onAction={(key) => {
+                    return Navigate(key as string);
+                }}
+            >
+                <Dropdown.Section title="Navigation">
+                    <Dropdown.Item
+                        key={"/"}
+                        color="secondary"
+                        icon={<Home primaryColor={"default"} set="bulk" />}
+                        // css={{
+                        //     background: "$secondary",
+                        //     color: "$primaryLight",
+                        // }}
+                    >
+                        Accueil
+                    </Dropdown.Item>
+                    <Dropdown.Item
+                        key={"/emplois"}
+                        color="secondary"
+                        icon={<Calendar primaryColor={"default"} set="bulk" />}
+                        description="Consultez le planning de tous les cours aux NTIC Rabat, vous pouvez voir la météo aussi 😍"
+                    >
+                        Emplois
+                    </Dropdown.Item>
+                    <Dropdown.Item
+                        key={"Connect"}
+                        color="secondary"
+                        icon={<People primaryColor={"default"} set="bulk" />}
+                        description="Facebook du NTIC 📲"
+                    >
+                        Connect
+                    </Dropdown.Item>
+                    <Dropdown.Item
+                        key={"/#contact"}
+                        color="secondary"
+                        icon={<Calling primaryColor={"default"} set="bulk" />}
+                    >
+                        Contact
+                    </Dropdown.Item>
+                </Dropdown.Section>
+                <Dropdown.Section title="Espace Stagiaires">
+                    <Dropdown.Item
+                        key={"/auth/register"}
+                        color="success"
+                        description="Frèrot, ne t'inscris pas."
+                        icon={
+                            <Login
+                                set="bulk"
+                                primaryColor={"var(--nextui-colors-secondary)"}
+                            />
+                        }
+                    >
+                        S'inscrire
+                    </Dropdown.Item>
+                    <Dropdown.Item
+                        key={"/auth/login"}
+                        color="success"
+                        description="Soyez courtois."
+                        icon={
+                            <Password
+                                primaryColor={"var(--nextui-colors-secondary)"}
+                                set="bulk"
+                            />
+                        }
+                    >
+                        Se Connecter
+                    </Dropdown.Item>
+                </Dropdown.Section>
             </Dropdown.Menu>
         </Dropdown>
     );
 };
 
 export default User;
-export { User, MobileUser };
+export { User, MobileMenuWithAuth, MobileMenuWithoutAuth };

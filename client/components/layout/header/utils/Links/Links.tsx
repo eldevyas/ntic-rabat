@@ -1,10 +1,4 @@
-// Links Icons
-import HomeIcon from "@mui/icons-material/Home";
-import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
-import GroupsIcon from "@mui/icons-material/Groups";
-import PhoneIcon from "@mui/icons-material/Phone";
-import ExitToAppIcon from "@mui/icons-material/ExitToApp";
-import LoginIcon from "@mui/icons-material/Login";
+import { Home, Calendar, Login, People, Calling, Logout } from "react-iconly";
 
 export const Links: {
     href: String;
@@ -19,42 +13,42 @@ export const Links: {
 }[] = [
     {
         href: "/",
-        icon: <HomeIcon />,
+        icon: Home,
         title: "Accueil",
         positionLeft: "0%",
         positionTop: "0%",
     },
     {
         href: "/emplois",
-        icon: <CalendarTodayIcon />,
+        icon: Calendar,
         title: "Emplois",
         positionLeft: "50%",
         positionTop: "0%",
     },
     {
         href: "/connect",
-        icon: <GroupsIcon />,
+        icon: People,
         title: "Connect",
         positionLeft: "0%",
         positionTop: `calc(100% /3 * 1)`, // updated positionTop
     },
     {
         href: "/#contact",
-        icon: <PhoneIcon />,
+        icon: Calling,
         title: "Contact",
         positionLeft: "50%",
         positionTop: `calc(100%/3 * 1)`,
     },
     {
         href: "/auth/register",
-        icon: <ExitToAppIcon />,
+        icon: Logout,
         title: "S'inscrire",
         positionLeft: "0%",
         positionTop: "calc(100%/3 * 2)",
     },
     {
         href: "/auth/login",
-        icon: <LoginIcon />,
+        icon: Login,
         title: "Se Connecter",
         positionLeft: "50%",
         positionTop: "calc(100%/3 * 2)",

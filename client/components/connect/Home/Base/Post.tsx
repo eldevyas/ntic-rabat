@@ -1,12 +1,11 @@
 import React, { useEffect, useState, useRef } from "react";
 import Image from "next/image";
-import { DefaultButton } from "../../components/core/button";
+import { DefaultButton } from "../../../core/button";
 import { formatDistanceToNow } from "date-fns";
 import axios from "axios";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
-import * as Display from "../../services/displayAlert";
-import CommentIcon from '@mui/icons-material/Comment';
-
+import * as Display from "../../../../services/displayAlert";
+import CommentIcon from "@mui/icons-material/Comment";
 
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { TextField } from "@mui/material";
@@ -40,7 +39,6 @@ const Post = (props: any) => {
     timeAgo = timeAgo.replace("days", "j");
     timeAgo = timeAgo.replace("months", "mois");
 
-
     // get post data with UseEffect
     useEffect(() => {
         // get server url from env
@@ -62,9 +60,7 @@ const Post = (props: any) => {
             });
     }, [userHasLiked, isCommenting, isRefetching]);
 
-
     const likePost = () => {
-
         // get server url from env
         const url = process.env.SERVER_PUBLIC_API_URL;
         axios
@@ -91,7 +87,6 @@ const Post = (props: any) => {
                 Display.pushFailure("Une erreur s'est survenue.");
             });
     };
-
 
     const handleComment = () => {
         // get server url from env
@@ -133,26 +128,28 @@ const Post = (props: any) => {
                     <p className="TimeAgo">{timeAgo}</p>
                 </div>
             </div>
-            <div className="PostBody" >
+            <div className="PostBody">
                 {
-                    // check if the post content has hashtags 
+                    // check if the post content has hashtags
                     data.content.includes("#") ? (
-
                         <>
-                            {
-                                data.content.split(/[\s\n]+/).map((word: any, index: any) => {
+                            {data.content
+                                .split(/[\s\n]+/)
+                                .map((word: any, index: any) => {
                                     if (word.includes("#")) {
                                         return (
                                             <p>
-                                                <span className="HashTag" key={index}>
+                                                <span
+                                                    className="HashTag"
+                                                    key={index}
+                                                >
                                                     {word}
                                                 </span>
                                             </p>
                                         );
                                     }
                                     return word + " ";
-                                })
-                            }
+                                })}
                         </>
                     ) : (
                         <p className="PostContent">{data.content}</p>
@@ -167,7 +164,8 @@ const Post = (props: any) => {
                     </DefaultButton>
                 ) : (
                     <DefaultButton onClick={likePost} className="Like">
-                        {LikesCount} <FavoriteBorderIcon className="ButtonIcon" />
+                        {LikesCount}{" "}
+                        <FavoriteBorderIcon className="ButtonIcon" />
                     </DefaultButton>
                 )}
                 <DefaultButton onClick={() => setIsCommenting(!isCommenting)}>
@@ -189,9 +187,10 @@ const Post = (props: any) => {
                                         alt="avatar"
                                     />
                                     <div className="CommentContainer">
-
                                         <div className="User">
-                                            <p className="UserName">{comment.user.name}</p>
+                                            <p className="UserName">
+                                                {comment.user.name}
+                                            </p>
                                             <p className="TimeAgo">2h</p>
                                         </div>
                                         <p className="CommentContent">
@@ -210,14 +209,17 @@ const Post = (props: any) => {
                             src="/assets/img/pp/pp1.png"
                             alt="avatar"
                         />
-                        <textarea placeholder="Ajouter un commentaire..."
+                        <textarea
+                            placeholder="Ajouter un commentaire..."
                             onChange={(e: any) => setComment(e.target.value)}
                             value={comment}
                         ></textarea>
-                        <DefaultButton onClick={handleComment}>Poster</DefaultButton>
+                        <DefaultButton onClick={handleComment}>
+                            Poster
+                        </DefaultButton>
                     </div>
-                </div>) : (null)
-            }
+                </div>
+            ) : null}
         </div>
     );
 };

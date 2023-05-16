@@ -19,11 +19,11 @@ export default function Card(props: any) {
     const { data: session, status }: any = useSession();
     const user:
         | {
-            name?: string | null | undefined;
-            email?: string | null | undefined;
-            image?: string | null | undefined;
-            token?: string | null | undefined;
-        }
+              name?: string | null | undefined;
+              email?: string | null | undefined;
+              image?: string | null | undefined;
+              token?: string | null | undefined;
+          }
         | undefined = session?.user;
     const Router = useRouter();
     const [isEditing, setEditing] = useState(false);

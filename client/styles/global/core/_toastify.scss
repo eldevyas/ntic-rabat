@@ -23,11 +23,6 @@ $nfMargin: 20px;
     align-items: flex-start;
     gap: $GlobalGap !important;
     @include GlobalPadding();
-
-
-    @include respond-to("small") {
-        gap: 0 !important;
-    }
 }
 
 .Toastify__toast-container--bottom-left {

@@ -1,9 +1,11 @@
 import React from "react";
 import Image from "next/image";
-import MobileMenu from "./../utils/MobileMenu";
 import { useRouter } from "next/router";
 import { useSession } from "next-auth/react";
-import { MobileUser } from "../../../core/auth/User";
+import {
+    MobileMenuWithAuth,
+    MobileMenuWithoutAuth,
+} from "../../../core/auth/User";
 
 export interface IOpenMenu {
     isOpen: boolean;
@@ -32,12 +34,12 @@ export default function MobileHeader(props: any) {
 
                 {status != "authenticated" && (
                     <div className="MenuButton">
-                        <MobileMenu />
+                        <MobileMenuWithoutAuth />
                     </div>
                 )}
                 {status == "authenticated" && (
                     <div className="MenuButton">
-                        <MobileUser />
+                        <MobileMenuWithAuth />
                     </div>
                 )}
             </div>

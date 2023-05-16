@@ -18,11 +18,11 @@ export const Free = (props: any) => {
 export const Presential = (props: any) => {
     let prof = props.prof;
     // delete the prof. from the prof name
-    if (prof.startsWith("Prof.")) {
-        prof = prof.substring(5);
-    }
-    prof = prof.toLowerCase();
-    prof = prof.charAt(0).toUpperCase() + prof.slice(1);
+    // if (prof.startsWith("Prof.")) {
+    //     prof = prof.substring(5);
+    // }
+    // prof = prof.toLowerCase();
+    // prof = prof.charAt(0).toUpperCase() + prof.slice(1);
     return (
         <div className="ScheduleTimeCell Presential">
             <span className="Prof">{prof}</span>
@@ -33,12 +33,12 @@ export const Presential = (props: any) => {
 
 export const Online = (props: any) => {
     let prof = props.prof;
-    // delete the prof. from the prof name
-    if (prof.startsWith("Prof.")) {
-        prof = prof.substring(5);
-    }
-    prof = prof.toLowerCase();
-    prof = prof.charAt(0).toUpperCase() + prof.slice(1);
+    // // delete the prof. from the prof name
+    // if (prof.startsWith("Prof.")) {
+    //     prof = prof.substring(5);
+    // }
+    // prof = prof.toLowerCase();
+    // prof = prof.charAt(0).toUpperCase() + prof.slice(1);
     return (
         <div className="ScheduleTimeCell Online">
             <span className="Prof">{prof}</span>
@@ -50,12 +50,12 @@ export const Online = (props: any) => {
 export const Absent = (props: any) => {
     let prof = props.prof;
     // delete the prof. from the prof name
-    if (prof.startsWith("Prof.")) {
-        prof = prof.substring(5);
-    }
-    prof = prof.toLowerCase();
-    prof = prof.charAt(0).toUpperCase() + prof.slice(1);
-    // and lowercase the rest
+    // if (prof.startsWith("Prof.")) {
+    //     prof = prof.substring(5);
+    // }
+    // prof = prof.toLowerCase();
+    // prof = prof.charAt(0).toUpperCase() + prof.slice(1);
+    // // and lowercase the rest
     return (
         <div className="ScheduleTimeCell Absent">
             <span className="Prof">{prof}</span>

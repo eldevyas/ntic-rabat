@@ -55,47 +55,6 @@ export default function DayCell(props: any) {
                     {Temperature}° C{/* - {Weather} */}
                 </span>
                 <div className="Icon">{FinalWeatherIcon}</div>
-
-                <div className="Banner">
-                    <div className="Clouds">
-                        {/* eslint-disable-next-line @next/next/no-img-element */}
-                        <img
-                            src="/assets/img/cloud1.png"
-                            alt=""
-                            style={{ zIndex: 1 }}
-                        />
-
-                        {/* eslint-disable-next-line @next/next/no-img-element */}
-                        <img
-                            src="/assets/img/cloud2.png"
-                            alt=""
-                            style={{ zIndex: 2 }}
-                        />
-
-                        {/* eslint-disable-next-line @next/next/no-img-element */}
-                        <img
-                            src="/assets/img/cloud3.png"
-                            alt=""
-                            style={{
-                                zIndex: 3,
-                            }}
-                        />
-
-                        {/* eslint-disable-next-line @next/next/no-img-element */}
-                        <img
-                            src="/assets/img/cloud4.png"
-                            alt=""
-                            style={{ zIndex: 4 }}
-                        />
-
-                        {/* eslint-disable-next-line @next/next/no-img-element */}
-                        <img
-                            src="/assets/img/cloud5.png"
-                            alt=""
-                            style={{ zIndex: 5 }}
-                        />
-                    </div>
-                </div>
             </div>
         </Tooltip>
     );

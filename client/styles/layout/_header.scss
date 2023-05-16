@@ -300,57 +300,6 @@
                     cursor: pointer;
                 }
             }
-
-            .CloseButton {
-                @include IconButton($C3);
-                padding: 1rem !important;
-                color: $C3;
-                border-radius: $FormsRadius;
-                background-color: transparent;
-                outline-color: $C3;
-                border-color: $C3;
-            }
-        }
-
-        .Items {
-            width: 100%;
-            height: 1100%;
-            border-radius: 1rem;
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            grid-template-rows: repeat(var(--RowsCount), auto);
-            gap: 0;
-            margin-inline: auto;
-            position: relative;
-
-            .Item {
-                border-radius: 1rem;
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-                color: $C4;
-                z-index: 1000;
-
-                svg {
-                    margin-bottom: 1rem;
-                    pointer-events: none;
-                }
-            }
-
-            .Current {
-                position: absolute;
-                top: 0;
-                left: 0;
-                background: $G2;
-                display: block;
-                width: 50%;
-                height: calc(100% / var(--RowsCount));
-                border-radius: 1rem;
-                z-index: 0;
-                transition: all 100ms ease;
-                box-shadow: 0 1rem 30px 10px rgba(#000, 25%);
-            }
         }
     }
 }
