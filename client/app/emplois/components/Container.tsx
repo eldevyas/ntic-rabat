@@ -1,11 +1,18 @@
 import React, { useState, useEffect } from "react";
-import Schedule from "./Schedule";
-import SelectClass from "./SelectClass";
 import axios from "axios";
 import { useRouter } from "next/router";
-import MobileSchedule from "./MobileSchedule";
-
-export default function Emploi(props: any) {
+//
+//
+// Class Selection Dropdown
+import SelectClass from "./base/A. Select Class";
+//
+//
+// Screen Width Based Schedule Displays
+import Schedule from "./base/B. Desktop Schedule";
+import MobileSchedule from "./base/C. Mobile Schedule";
+//
+//
+export default function Container(props: any) {
     const [width, setWidth] = useState<number>();
 
     const Router = useRouter();

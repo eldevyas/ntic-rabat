@@ -1,0 +1,178 @@
+@import "@/app/global/Global.scss";
+
+.Background {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    background: $C4;
+
+    &__Elipses {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: $C4;
+        z-index: -1;
+
+        &__Elipse {
+            width: 50vh;
+            height: 0;
+            padding-bottom: 50vh;
+            position: absolute;
+            border-radius: 100%;
+            aspect-ratio: 1/1;
+            filter: blur(100px);
+            opacity: 50%;
+            background: $C2;
+
+            // First
+            &:nth-child(1) {
+                background: $C2;
+                top: 20%;
+                left: -5%;
+                transform: translate(0, 0);
+            }
+
+            // Second
+            &:nth-child(2) {
+                background: $C3;
+                top: 50%;
+                right: -5%;
+                transform: translate(0, 0);
+            }
+
+            // Third
+            &:nth-child(3) {
+                background: $C3;
+                top: 80%;
+                left: 30%;
+                transform: translate(0, 0);
+            }
+
+            // Fourth
+            &:nth-child(4) {
+                background: $C2;
+                top: -20%;
+                right: 15%;
+                transform: translate(0, 0);
+            }
+        }
+    }
+
+    // Vectors
+    &__Vectors {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+
+        &__Vector {
+            position: absolute;
+            aspect-ratio: 1/1;
+            fill: $C1 !important;
+            max-width: 100%;
+            max-height: 100%;
+            width: 50vh;
+            height: auto;
+            filter: drop-shadow(0 0 0.5rem 1rem $C1);
+
+            path {
+                fill: $C4 !important;
+            }
+
+            // First
+            &:nth-child(1) {
+                top: 50%;
+                left: 2.5%;
+                transform: translate(0, 0);
+            }
+
+            // Second
+            &:nth-child(2) {
+                top: 50%;
+                right: 5%;
+                transform: translate(0, 0);
+            }
+
+            // Third
+            &:nth-child(3) {
+                width: 75vh;
+                top: -20%;
+                left: 50%;
+                transform: translate(0, 0);
+            }
+        }
+    }
+
+    // responsive width and position for all devices
+    @include respond-to("small") {
+        &__Elipses {
+            &__Elipse {
+                width: 50%;
+                opacity: 35%;
+                padding-bottom: 50%;
+
+                // First
+                &:nth-child(1) {
+                    top: 20%;
+                    left: -5%;
+                    transform: translate(0, 0);
+                }
+
+                // Second
+                &:nth-child(2) {
+                    top: 50%;
+                    right: -5%;
+                    transform: translate(0, 0);
+                }
+
+                // Third
+                &:nth-child(3) {
+                    top: 80%;
+                    left: 30%;
+                    transform: translate(0, 0);
+                }
+
+                // Fourth
+                &:nth-child(4) {
+                    top: -20%;
+                    right: 15%;
+                    transform: translate(0, 0);
+                }
+            }
+        }
+
+        &__Vectors {
+            &__Vector {
+
+                // First
+                // width: 25vh;
+                &:nth-child(1) {
+                    top: 50%;
+                    left: 2.5%;
+                    transform: translate(0, 0);
+                }
+
+                // Second
+                &:nth-child(2) {
+                    top: 20%;
+                    right: 5%;
+                    transform: translate(0, 0);
+                }
+
+                // Third
+                &:nth-child(3) {
+                    top: -20%;
+                    left: 50%;
+                    transform: translate(0, 0);
+                }
+            }
+        }
+    }
+}
