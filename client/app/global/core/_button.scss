@@ -1,4 +1,5 @@
 @use "sass:color";
+
 @mixin DefaultButton($color) {
     background: $color;
     box-shadow: none;
@@ -9,6 +10,7 @@
     border-radius: $FormsRadius;
     box-shadow: none !important;
     color: $C4;
+
     &:hover {
         background: darken($color, 10%);
         box-shadow: none;
@@ -30,9 +32,11 @@
     max-width: 75px;
     font-family: inherit;
     box-shadow: none !important;
+
     .Icon {
         font-size: 1rem;
     }
+
     &:hover {
         box-shadow: none;
         background-color: darken($color: $color, $amount: 50%);
@@ -52,6 +56,7 @@
     outline: none;
     box-sizing: unset !important;
     box-shadow: none !important;
+
     &:hover {
         background: darken($color, 20%);
         box-shadow: none;
@@ -59,112 +64,112 @@
     }
 }
 
-.DefaultButton {
-    $primary: $C2;
-    @include DefaultButton($primary);
-}
+// .DefaultButton {
+//     $primary: $C2;
+//     @include DefaultButton($primary);
+// }
 
-.DefaultButton.Blue {
-    $primary: $C2;
-    @include DefaultButton($primary);
-}
+// .DefaultButton.Blue {
+//     $primary: $C2;
+//     @include DefaultButton($primary);
+// }
 
-.DefaultButton.White {
-    $white: $C4;
-    @include DefaultButton($white);
-    color: $C1;
-}
+// .DefaultButton.White {
+//     $white: $C4;
+//     @include DefaultButton($white);
+//     color: $C1;
+// }
 
-.DefaultButton.Gray {
-    $gray: rgba($C1, 5%);
-    @include DefaultButton($gray);
-    color: rgba($C1, 25%);
-}
+// .DefaultButton.Gray {
+//     $gray: rgba($C1, 5%);
+//     @include DefaultButton($gray);
+//     color: rgba($C1, 25%);
+// }
 
-.DefaultButton.Black {
-    $gray: $C1;
-    @include DefaultButton($gray);
-}
+// .DefaultButton.Black {
+//     $gray: $C1;
+//     @include DefaultButton($gray);
+// }
 
-.DefaultButton.Green {
-    $primary: $C3;
-    @include DefaultButton($primary);
-}
+// .DefaultButton.Green {
+//     $primary: $C3;
+//     @include DefaultButton($primary);
+// }
 
-.DefaultButton.LightGreen {
-    $primary: lighten($C3, 40%);
-    @include DefaultButton($primary);
-    color: $C3 !important;
-}
+// .DefaultButton.LightGreen {
+//     $primary: lighten($C3, 40%);
+//     @include DefaultButton($primary);
+//     color: $C3 !important;
+// }
 
-.IconButton {
-    $primary: $C2;
-    @include IconButton($primary);
-}
+// .IconButton {
+//     $primary: $C2;
+//     @include IconButton($primary);
+// }
 
-.IconButton.White {
-    $white: $C4;
-    @include IconButton($white);
-}
+// .IconButton.White {
+//     $white: $C4;
+//     @include IconButton($white);
+// }
 
-.IconButton.Green {
-    $color: $C3;
-    @include IconButton($color);
-}
+// .IconButton.Green {
+//     $color: $C3;
+//     @include IconButton($color);
+// }
 
-.IconButton.Black {
-    $color: $C1;
-    @include IconButton($color);
-    color: $C4;
-}
+// .IconButton.Black {
+//     $color: $C1;
+//     @include IconButton($color);
+//     color: $C4;
+// }
 
-.IconButton.Blue {
-    $color: $C2;
-    @include IconButton($color);
-    color: $C4;
-}
+// .IconButton.Blue {
+//     $color: $C2;
+//     @include IconButton($color);
+//     color: $C4;
+// }
 
-.IconButton.LightBlue {
-    $color: rgba($C2, 20%);
-    @include IconButton($color);
-    color: $C2;
-}
+// .IconButton.LightBlue {
+//     $color: rgba($C2, 20%);
+//     @include IconButton($color);
+//     color: $C2;
+// }
 
-.IconButton.LightGreen {
-    $color: rgba($C3, 20%);
-    @include IconButton($color);
-    color: $C3;
-}
+// .IconButton.LightGreen {
+//     $color: rgba($C3, 20%);
+//     @include IconButton($color);
+//     color: $C3;
+// }
 
-.OutlinedButton {
-    $primary: $C2;
-    @include OutlinedButton($primary);
-}
+// .OutlinedButton {
+//     $primary: $C2;
+//     @include OutlinedButton($primary);
+// }
 
-.OutlinedButton.Blue {
-    $color: $C2;
-    @include OutlinedButton($color);
-}
+// .OutlinedButton.Blue {
+//     $color: $C2;
+//     @include OutlinedButton($color);
+// }
 
-.OutlinedButton.LightBlue {
-    $color: rgba($C2, 15%);
-    @include OutlinedButton($color);
-    color: $C2;
-}
+// .OutlinedButton.LightBlue {
+//     $color: rgba($C2, 15%);
+//     @include OutlinedButton($color);
+//     color: $C2;
+// }
 
-.OutlinedButton.Green {
-    $color: $C3;
-    @include OutlinedButton($color);
-}
+// .OutlinedButton.Green {
+//     $color: $C3;
+//     @include OutlinedButton($color);
+// }
 
-.OutlinedButton.LightGreen {
-    $color: rgba($C3, 15%);
-    @include OutlinedButton($color);
-    color: $C3;
-}
+// .OutlinedButton.LightGreen {
+//     $color: rgba($C3, 15%);
+//     @include OutlinedButton($color);
+//     color: $C3;
+// }
 
-.OutlinedButton.White {
-    $color: $C4;
-    @include OutlinedButton($color);
-    color: $C1;
-}
+// .OutlinedButton.White {
+//     $color: $C4;
+//     @include OutlinedButton($color);
+//     color: $C1;
+// }

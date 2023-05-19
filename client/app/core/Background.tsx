@@ -1,6 +1,3 @@
-import { motion } from "framer-motion";
-import "./styles/Background.scss";
-
 function VectorSVG(props: any) {
     // Ovale random svg shape that can be animated with motion
     return (
@@ -12,7 +9,6 @@ function VectorSVG(props: any) {
                     viewBox="0 0 535 466"
                     fill="none"
                     xmlns="http://www.w3.org/2000/svg"
-                    className="Background__Vectors__Vector"
                 >
                     <path
                         opacity="0.5"
@@ -28,7 +24,6 @@ function VectorSVG(props: any) {
                     viewBox="0 0 474 544"
                     fill="none"
                     xmlns="http://www.w3.org/2000/svg"
-                    className="Background__Vectors__Vector"
                 >
                     <path
                         opacity="0.5"
@@ -44,7 +39,6 @@ function VectorSVG(props: any) {
                     viewBox="0 0 584 284"
                     fill="none"
                     xmlns="http://www.w3.org/2000/svg"
-                    className="Background__Vectors__Vector"
                 >
                     <path
                         opacity="0.5"
@@ -58,6 +52,16 @@ function VectorSVG(props: any) {
 }
 
 import { useState, useEffect } from "react";
+import { Box, styled } from "@mui/material";
+
+const Elipse = styled("div")({
+    height: 0,
+    position: "absolute",
+    borderRadius: "100%",
+    aspectRatio: "1/1",
+    msFilter: "blur(5rem)",
+    opacity: 0.5,
+});
 
 export default function Background() {
     const [opacity, setOpacity] = useState(0);
@@ -68,7 +72,7 @@ export default function Background() {
             const windowHeight = window.innerHeight;
             const opacity = Math.max(
                 0,
-                Math.min(1, scrollPosition / (windowHeight - 100))
+                Math.min(0.75, scrollPosition / (windowHeight - 100))
             );
             setOpacity(opacity);
         }
@@ -80,33 +84,296 @@ export default function Background() {
 
     return (
         <>
-            <div className="Background">
-                <div className="Background__Elipses">
-                    <div className="Background__Elipses__Elipse"></div>
-                    <div className="Background__Elipses__Elipse"></div>
-                    <div className="Background__Elipses__Elipse"></div>
-                    <div className="Background__Elipses__Elipse"></div>
-                </div>
-                <div className="Background__Vectors">
+            <Box
+                sx={{
+                    position: "fixed",
+                    width: "100%",
+                    height: "100%",
+                    top: 0,
+                    left: 0,
+                    bottom: 0,
+                    right: 0,
+                    zIndex: -1,
+                    background: (theme) => theme.palette.background.default,
+                }}
+            >
+                <Box
+                    sx={{
+                        position: "absolute",
+                        width: "100%",
+                        height: "100%",
+                        top: 0,
+                        left: 0,
+                        bottom: 0,
+                        right: 0,
+                        background: "transparent",
+                        zIndex: -1,
+                    }}
+                >
+                    <Elipse
+                        sx={{
+                            background: (theme) => theme.palette.primary.main,
+                            width: {
+                                xs: "25vh",
+                                sm: "25vh",
+                                md: "50vh",
+                                lg: "50vh",
+                                xl: "50vh",
+                            },
+                            paddingBottom: {
+                                xs: "25vh",
+                                sm: "25vh",
+                                md: "50vh",
+                                lg: "50vh",
+                                xl: "50vh",
+                            },
+                            filter: "blur(5rem)",
+                            top: {
+                                xs: "20%",
+                                sm: "20%",
+                                md: "20%",
+                                lg: "20%",
+                                xl: "20%",
+                            },
+                            left: {
+                                xs: "-5%",
+                                sm: "-5%",
+                                md: "-5%",
+                                lg: "-5%",
+                                xl: "-5%",
+                            },
+                            transform: "translate(0, 0)",
+                        }}
+                    />
+                    <Elipse
+                        sx={{
+                            background: (theme) => theme.palette.secondary.main,
+                            width: {
+                                xs: "25vh",
+                                sm: "25vh",
+                                md: "50vh",
+                                lg: "50vh",
+                                xl: "50vh",
+                            },
+                            paddingBottom: {
+                                xs: "25vh",
+                                sm: "25vh",
+                                md: "50vh",
+                                lg: "50vh",
+                                xl: "50vh",
+                            },
+                            filter: "blur(5rem)",
+                            top: {
+                                xs: "50%",
+                                sm: "50%",
+                                md: "50%",
+                                lg: "50%",
+                                xl: "50%",
+                            },
+                            right: {
+                                xs: "-5%",
+                                sm: "-5%",
+                                md: "-5%",
+                                lg: "-5%",
+                                xl: "-5%",
+                            },
+                            transform: "translate(0, 0)",
+                        }}
+                    />
+                    <Elipse
+                        sx={{
+                            background: (theme) => theme.palette.secondary.main,
+                            width: {
+                                xs: "25vh",
+                                sm: "25vh",
+                                md: "50vh",
+                                lg: "50vh",
+                                xl: "50vh",
+                            },
+                            paddingBottom: {
+                                xs: "25vh",
+                                sm: "25vh",
+                                md: "50vh",
+                                lg: "50vh",
+                                xl: "50vh",
+                            },
+                            filter: "blur(5rem)",
+                            top: {
+                                xs: "80%",
+                                sm: "80%",
+                                md: "80%",
+                                lg: "80%",
+                                xl: "80%",
+                            },
+                            left: {
+                                xs: "30%",
+                                sm: "30%",
+                                md: "30%",
+                                lg: "30%",
+                                xl: "30%",
+                            },
+                            transform: "translate(0, 0)",
+                        }}
+                    />
+                    <Elipse
+                        sx={{
+                            background: (theme) => theme.palette.primary.main,
+                            width: {
+                                xs: "25vh",
+                                sm: "25vh",
+                                md: "50vh",
+                                lg: "50vh",
+                                xl: "50vh",
+                            },
+                            paddingBottom: {
+                                xs: "25vh",
+                                sm: "25vh",
+                                md: "50vh",
+                                lg: "50vh",
+                                xl: "50vh",
+                            },
+                            filter: "blur(5rem)",
+                            top: {
+                                xs: "-20%",
+                                sm: "-20%",
+                                md: "-20%",
+                                lg: "-20%",
+                                xl: "-20%",
+                            },
+                            right: {
+                                xs: "15%",
+                                sm: "15%",
+                                md: "15%",
+                                lg: "15%",
+                                xl: "15%",
+                            },
+                            transform: "translate(0, 0)",
+                        }}
+                    />
+                </Box>
+                <Box
+                    sx={{
+                        position: "absolute",
+                        width: "100%",
+                        height: "100%",
+                        top: 0,
+                        left: 0,
+                        bottom: 0,
+                        right: 0,
+                        background: "transparent",
+                        zIndex: -1,
+                        svg: {
+                            position: "absolute",
+                            maxWidth: "100%",
+                            maxHeight: "100%",
+                            aspectRatio: "1/1",
+                            fill: (theme) => theme.palette.background.default,
+                            filter: (theme) =>
+                                `drop-shadow(0 -6mm 4mm ${theme.palette.background.default})`,
+                            path: {
+                                fill: (theme) =>
+                                    theme.palette.background.default,
+                            },
+                            width: "50vh",
+                            height: "auto",
+                            "&:nth-child(1)": {
+                                width: {
+                                    xs: "75vh",
+                                    sm: "75vh",
+                                    md: "75vh",
+                                    lg: "50vh",
+                                    xl: "50vh",
+                                },
+                                top: {
+                                    xs: "70%",
+                                    sm: "70%",
+                                    md: "70%",
+                                    lg: "70%",
+                                    xl: "70%",
+                                },
+                                left: {
+                                    xs: "-25%",
+                                    sm: "-25%",
+                                    md: "-15%",
+                                    lg: "-5%",
+                                    xl: "-5%",
+                                },
+                                transform: "translate(0, 0)",
+                            },
+                            "&:nth-child(2)": {
+                                width: {
+                                    xs: "75vh",
+                                    sm: "75vh",
+                                    md: "75vh",
+                                    lg: "60vh",
+                                    xl: "60vh",
+                                },
+                                top: {
+                                    xs: "15%",
+                                    sm: "15%",
+                                    md: "15%",
+                                    lg: "50%",
+                                    xl: "50%",
+                                },
+                                right: {
+                                    xs: "30%",
+                                    sm: "30%",
+                                    md: "30%",
+                                    lg: "5%",
+                                    xl: "5%",
+                                },
+                                transform: "translate(0, 0)",
+                            },
+                            "&:nth-child(3)": {
+                                width: {
+                                    xs: "75vh",
+                                    sm: "75vh",
+                                    md: "75vh",
+                                    lg: "75vh",
+                                    xl: "75vh",
+                                },
+                                top: {
+                                    xs: "-20%",
+                                    sm: "-20%",
+                                    md: "-20%",
+                                    lg: "-20%",
+                                    xl: "-20%",
+                                },
+                                left: {
+                                    xs: "50%",
+                                    sm: "50%",
+                                    md: "50%",
+                                    lg: "50%",
+                                    xl: "50%",
+                                },
+                                transform: "translate(0, 0)",
+                            },
+                        },
+                    }}
+                >
                     <VectorSVG Variant={1} />
                     <VectorSVG Variant={2} />
                     <VectorSVG Variant={3} />
-                </div>
+                </Box>
 
-                <div
-                    className={"Background__Overlay"}
-                    style={{
+                <Box
+                    sx={{
                         position: "fixed",
                         width: "100%",
                         height: "100%",
-                        backgroundColor: "white",
+                        backgroundColor: (theme) =>
+                            theme.palette.background.default,
                         top: 0,
                         left: 0,
                         opacity: opacity,
                         pointerEvents: opacity > 0 ? "auto" : "none",
+                        backdropFilter: "blur(5rem)",
+                        zIndex: 0,
+                        willChange: "opacity",
+                        transition: "opacity .2s ease",
                     }}
-                ></div>
-            </div>
+                ></Box>
+            </Box>
         </>
     );
 }

@@ -10,9 +10,6 @@ const nextConfig = {
         NEXTAUTH_URL: 'http://192.168.11.106:3000',
         NEXTAUTH_SECRET: 'eQNTCuuDStNOELBXjIqHeEgEpJYOhQd9x6eMej+toGg='
     },
-      experimental: {
-        appDir: true,
-    },
 }
 
 module.exports = nextConfig;

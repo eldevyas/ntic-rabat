@@ -8,7 +8,7 @@ import { SessionProvider } from "next-auth/react";
 import { NextUIProvider as NextProvider } from "@nextui-org/react";
 import { ThemeProvider } from "@mui/material/styles";
 import { theme as NextUITheme } from "@/themes/NexUI";
-import { theme as MUITheme } from "@/themes/MUI";
+import { MUI_Theme } from "@/themes/MUI";
 //
 //
 // Framer Motion Page Transitions
@@ -22,6 +22,7 @@ import { CacheProvider } from "@emotion/react";
 import createCache from "@emotion/cache";
 import { useServerInsertedHTML } from "next/navigation";
 import { useState } from "react";
+import React from "react";
 
 type Props = {
     children?: React.ReactNode;
@@ -37,9 +38,31 @@ export const NextUIProvider = ({ children }: Props) => {
     return <NextProvider theme={NextUITheme}>{children}</NextProvider>;
 };
 
-// NextUI
+// MUI
+export const ColorModeContext = React.createContext({ toggleColorMode: () => {} });
+
 export const MUIProvider = ({ children }: Props) => {
-    return <ThemeProvider theme={MUITheme}>{children}</ThemeProvider>;
+    const [Mode, setMode] = React.useState<"Light" | "Dark">("Light");
+    const colorMode = React.useMemo(
+        () => ({
+            toggleColorMode: () => {
+                setMode((prevMode) =>
+                    prevMode === "Light" ? "Dark" : "Light"
+                );
+            },
+        }),
+        []
+    );
+
+    return (
+        <ColorModeContext.Provider value={colorMode}>
+            <ThemeProvider
+                theme={Mode == "Light" ? MUI_Theme.Light : MUI_Theme.Dark}
+            >
+                {children}
+            </ThemeProvider>
+        </ColorModeContext.Provider>
+    );
 };
 
 // Layout & Transitions

@@ -2,12 +2,11 @@ import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { useRouter, usePathname } from "next/navigation";
 import Link from "./../utils/MiddleLink";
-import { DefaultButton } from "../../../core/Button";
-import * as Display from "../../../../services/displayAlert";
-import { signIn } from "next-auth/react";
 import { useSession } from "next-auth/react";
 import User from "../../../core/auth/User";
-import { Box } from "@mui/material";
+import { Box, Button } from "@mui/material";
+import { useTheme, ThemeProvider, createTheme } from "@mui/material/styles";
+import { ColorModeContext } from "@/app/providers";
 
 export default function DesktopHeader(props: any) {
     const { data: session }: any = useSession();
@@ -18,9 +17,12 @@ export default function DesktopHeader(props: any) {
     const MiddleLinks: {
         href: String;
         text: String;
+        icon: any;
     }[] = props.links;
 
-    // let LogoSource = props["data-theme"] === "dark" ? "/Logo.png" : "/Logo.png";
+    const theme = useTheme();
+    const colorMode = React.useContext(ColorModeContext);
+
     return (
         <Box
             className="Header"
@@ -86,6 +88,7 @@ export default function DesktopHeader(props: any) {
                         key={index}
                         href={middleLink.href}
                         text={middleLink.text}
+                        icon={middleLink.icon}
                     >
                         {middleLink.text}
                     </Link>
@@ -100,12 +103,6 @@ export default function DesktopHeader(props: any) {
                         justifyContent: "flex-end",
                         gap: "0.75rem",
                         flex: 1,
-                        button: {
-                            minWidth: 135,
-                            "&:last-of-type": {
-                                color: "white",
-                            },
-                        },
                     }}
                 >
                     {
@@ -114,22 +111,30 @@ export default function DesktopHeader(props: any) {
                             <User />
                         ) : (
                             <>
-                                <DefaultButton
-                                    color="LightGreen"
+                                <Button
+                                    variant="outlined"
+                                    color="secondary"
                                     onClick={() => {
                                         Router.push("/auth/register");
                                     }}
+                                    sx={{
+                                        minWidth: 135,
+                                    }}
                                 >
                                     {"S'inscrire"}
-                                </DefaultButton>
-                                <DefaultButton
-                                    color="Green"
+                                </Button>
+                                <Button
+                                    variant="contained"
+                                    color="secondary"
                                     onClick={() => {
                                         Router.push("/auth/login");
                                     }}
+                                    sx={{
+                                        minWidth: 135,
+                                    }}
                                 >
                                     Se Connecter
-                                </DefaultButton>
+                                </Button>
                             </>
                         )
                     }

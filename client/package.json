@@ -36,7 +36,7 @@
         "next": "^13.4.2",
         "next-auth": "^4.0.0",
         "next-cookies": "^2.0.3",
-        "nextjs-progressbar": "^0.0.16",
+        "next-nprogress-bar": "^1.2.1",
         "profanity-filter": "^0.2.1",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",

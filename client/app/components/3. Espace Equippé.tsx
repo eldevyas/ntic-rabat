@@ -8,51 +8,143 @@ import { useRouter } from "next/navigation";
 //
 //
 // SCSS
-import "./style/3. Espace Equippé.scss";
+import { Box, Button, Grid, Stack, Typography } from "@mui/material";
 
 const EspaceEquippe = () => {
     const Router = useRouter();
     return (
-        <div className="EspaceEquippe" id="EspaceEquippe">
-            <div className="Text">
-                <div className="Title">
-                    <h3>éspace Moderne</h3>
-                    <h2>Un éspace de formation moderne et très bien équippé</h2>
-                </div>
-                <p>
+        <Box
+            id="EspaceEquippe"
+            sx={{
+                position: "relative",
+                width: "100%",
+                gap: "0.75rem",
+                display: "flex",
+                flexDirection: {
+                    xs: "column-reverse",
+                    md: "column-reverse",
+                    lg: "row",
+                },
+                justifyContent: {
+                    xs: "center",
+                    md: "center",
+                    lg: "space-between",
+                },
+                alignItems: {
+                    xs: "center",
+                    md: "center",
+                    lg: "stretch",
+                },
+                padding: "1rem 2rem",
+                height: { xs: "100%" },
+            }}
+        >
+            <Box
+                sx={{
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "flex-end",
+                    alignItems: "flex-start",
+                    padding: 0,
+                    paddingTop: "5rem",
+                    gap: "0.75rem",
+                    flex: 1,
+                }}
+            >
+                <Box
+                    sx={{
+                        display: "flex",
+                        flexDirection: "column",
+                        justifyContent: "flex-start",
+                        alignItems: "flex-start",
+                        width: "100%",
+                        gap: "1rem",
+                        mb: "0.75rem",
+                    }}
+                >
+                    <Typography
+                        variant="subtitle1"
+                        color="secondary"
+                        textTransform={"uppercase"}
+                        fontWeight={800}
+                    >
+                        éspace Moderne
+                    </Typography>
+                    <Typography
+                        variant="h4"
+                        textTransform={"capitalize"}
+                        fontWeight={800}
+                        color={"text.primary"}
+                    >
+                        Un éspace de formation moderne et très bien équippé
+                    </Typography>
+                </Box>
+                <Typography
+                    variant="body1"
+                    color={"text.secondary"}
+                    textTransform={"none"}
+                    fontWeight={400}
+                    sx={{ mb: "2rem" }}
+                >
                     L&apos;ISTA de Hay Riad est doté des salles spécialisées
                     pour permettre un apprentissage efficace et dans les
                     meilleurs conditions. L&apos;école heberge plusieurs centres
                     de certification.
-                </p>
-                <div className="Buttons">
-                    <div className="Button">
-                        <DefaultButton
-                            color="Black"
-                            onClick={() => Router.push("/auth/register")}
-                        >
-                            S&apos;inscrire maintenant
-                        </DefaultButton>
-                    </div>
-                    <div className="Button">
-                        <DefaultButton
-                            color="White"
-                            startIcon={<ExpandCircleDownOutlinedIcon />}
-                        >
-                            Lire Plus
-                        </DefaultButton>
-                    </div>
-                </div>
-            </div>
-            <div className="ImageContainer">
+                </Typography>
+                <Stack gap="0.75rem" direction={"row"} flexWrap={"wrap"}>
+                    <Button
+                        variant="contained"
+                        color="black"
+                        onClick={() => Router.push("/auth/register")}
+                        sx={{ whiteSpace: "nowrap" }}
+                    >
+                        S&apos;inscrire maintenant
+                    </Button>
+                    <Button
+                        variant="contained"
+                        color="white"
+                        sx={{ whiteSpace: "nowrap" }}
+                    >
+                        Lire Plus
+                    </Button>
+                </Stack>
+            </Box>
+            <Box
+                sx={{
+                    position: "relative",
+                    borderRadius: "0.7rem",
+                    overflow: "hidden",
+                    flex: 1,
+                    minHeight: {
+                        xs: 250,
+                        sm: 250,
+                        md: null,
+                        lg: null,
+                        xl: null,
+                    },
+                    minWidth: {
+                        xs: "100%",
+                        sm: "100%",
+                        md: null,
+                        lg: null,
+                        xl: null,
+                    },
+                }}
+            >
                 <Image
                     alt=""
                     src="/assets/img/Workspace.png"
-                    layout="fill"
+                    fill
                     className="Image"
+                    style={{
+                        width: "100%",
+                        height: "100%",
+                        objectFit: "contain",
+                        objectPosition: "center bottom",
+                    }}
                 />
-            </div>
-        </div>
+            </Box>
+        </Box>
     );
 };
 

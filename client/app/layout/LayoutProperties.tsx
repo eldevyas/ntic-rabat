@@ -3,28 +3,23 @@
 import React from "react";
 import Footer from "./footer/footer";
 import Header from "./header/header";
-import { useRouter, usePathname } from "next/navigation";
+import { useRouter, usePathname, useSearchParams } from "next/navigation";
 import { useSession } from "next-auth/react";
 import Background from "@/app//core/Background";
 import Navigation from "./interface/Navigation";
 import { ToastContainer } from "react-toastify";
 import { Flip } from "react-toastify";
-import NextNProgress from "nextjs-progressbar";
+import ProgressBar from "next-nprogress-bar";
 
 const ProgressIndicator = () => {
     return (
         <>
-            <NextNProgress
+            <ProgressBar
                 color="#39b54a"
-                startPosition={0.3}
-                stopDelayMs={500}
-                height={5}
-                showOnShallow={true}
-                options={{ showSpinner: false, easing: "ease", speed: 500 }}
-                transformCSS={(css) => {
-                    // css is the default css string. You can modify it and return it or return your own css.
-                    return <style>{css}</style>;
-                }}
+                height="10px"
+                options={{ showSpinner: false }}
+                shallowRouting
+                appDirectory
             />
         </>
     );

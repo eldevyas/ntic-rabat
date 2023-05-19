@@ -4,38 +4,131 @@ import React from "react";
 import Image from "next/image";
 //
 //
-import "./style/5. Formateurs Professionnels.scss";
+import { Box, Typography } from "@mui/material";
 //
 //
 const FormateursProfessionnels = () => {
     return (
-        <div className="FormateursProfessionnels" id="FormateursProfessionnels">
-            <div className="Text">
-                <div className="Title">
-                    <h3>Formateurs professionnels</h3>
-                    <h2>
-                        Nos formateurs passionnés jouent un rôle dans la
-                        réussite de nos stagiaires
-                    </h2>
-                </div>
-                <p>
-                    Nous avons amené les meilleurs formateurs dans notre
-                    institut, non seulement pour améliorer la qualité de
-                    l&apos;enseignement, mais aussi la qualité de
-                    l&apos;apprentissage des stagiaires. La façon dont
-                    l&apos;information leur est envoyée est la clé de leur
-                    compréhension et de leur amour pour leur domaine de travail.
-                </p>
-            </div>
-            <div className="ImageContainer">
-                <Image
-                    alt=""
-                    src="/assets/img/Man.png"
-                    layout="fill"
-                    className="Image"
-                />
-            </div>
-        </div>
+        <>
+            <Box
+                id="FormateursProfessionnels"
+                sx={{
+                    position: "relative",
+                    width: "100%",
+                    gap: "0.75rem",
+                    display: "flex",
+                    flexDirection: {
+                        xs: "column-reverse",
+                        md: "column-reverse",
+                        lg: "row",
+                    },
+                    justifyContent: {
+                        xs: "center",
+                        md: "center",
+                        lg: "space-between",
+                    },
+                    alignItems: {
+                        xs: "center",
+                        md: "center",
+                        lg: "stretch",
+                    },
+                    padding: "1rem 2rem",
+                    height: { xs: "100%" },
+                }}
+            >
+                <Box
+                    sx={{
+                        display: "flex",
+                        flexDirection: "column",
+                        justifyContent: "flex-end",
+                        alignItems: "flex-start",
+                        padding: 0,
+                        gap: "0.75rem",
+                        flex: 1,
+                    }}
+                >
+                    <Box
+                        sx={{
+                            display: "flex",
+                            flexDirection: "column",
+                            justifyContent: "flex-start",
+                            alignItems: "flex-start",
+                            width: "100%",
+                            gap: "1rem",
+                            mb: "0.75rem",
+                        }}
+                    >
+                        <Typography
+                            variant="subtitle1"
+                            color="secondary"
+                            textTransform={"uppercase"}
+                            fontWeight={800}
+                        >
+                            Formateurs professionnels
+                        </Typography>
+                        <Typography
+                            variant="h4"
+                            color="black"
+                            textTransform={"capitalize"}
+                            fontWeight={800}
+                        >
+                            Nos formateurs passionnés jouent un rôle dans la
+                            réussite de nos stagiaires
+                        </Typography>
+                    </Box>
+                    <Typography
+                        variant="body1"
+                        color="black"
+                        textTransform={"none"}
+                        fontWeight={400}
+                        sx={{ opacity: 0.6, mb: "0rem" }}
+                    >
+                        Nous avons amené les meilleurs formateurs dans notre
+                        institut, non seulement pour améliorer la qualité de
+                        l&apos;enseignement, mais aussi la qualité de
+                        l&apos;apprentissage des stagiaires. La façon dont
+                        l&apos;information leur est envoyée est la clé de leur
+                        compréhension et de leur amour pour leur domaine de
+                        travail.
+                    </Typography>
+                </Box>
+                <Box
+                    sx={{
+                        position: "relative",
+                        borderRadius: "0.7rem",
+                        overflow: "hidden",
+                        flex: 1,
+                        minHeight: {
+                            xs: 250,
+                            sm: 250,
+                            md: 350,
+                            lg: 350,
+                            xl: 350,
+                        },
+                        minWidth: {
+                            xs: "100%",
+                            sm: "100%",
+                            md: null,
+                            lg: null,
+                            xl: null,
+                        },
+                        border: 1,
+                        borderColor: "secondary.main",
+                    }}
+                >
+                    <Image
+                        alt=""
+                        src="/assets/img/Man.png"
+                        fill
+                        className="Image"
+                        style={{
+                            objectFit: "contain",
+                            objectPosition: "center bottom",
+                        }}
+                    />
+                </Box>
+            </Box>
+        </>
     );
 };
 

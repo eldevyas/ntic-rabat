@@ -12,21 +12,21 @@ export const metadata = {
 
 export default async function EmploisPage() {
     // Query
-    const searchParams = useSearchParams();
-    const QueryID = searchParams?.get("GroupID");
+    // const searchParams = useSearchParams();
+    // const QueryID = searchParams?.get("GroupID");
 
     // Data
-    const GroupID = QueryID ? QueryID : "";
-    const Schedule = await Fetcher.getSchedule(GroupID);
-    const Weather = await Fetcher.getWeather();
+    // const GroupID = QueryID ? QueryID : "";
+    // const Schedule = await Fetcher.getSchedule(GroupID);
+    // const Weather = await Fetcher.getWeather();
 
     return (
         <div className="EmploisPage">
-            <Container
+            {/* <Container
                 data-GroupID={GroupID}
                 data-Schedule={Schedule}
                 data-Weather={Weather}
-            />
+            /> */}
         </div>
     );
 }

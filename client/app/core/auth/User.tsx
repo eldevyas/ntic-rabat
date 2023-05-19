@@ -8,6 +8,7 @@ import {
     Avatar,
     Button,
 } from "@nextui-org/react";
+
 import {
     Category,
     Home,
@@ -20,6 +21,7 @@ import {
     Chat,
     User as UserIcon,
 } from "react-iconly";
+import { IconButton } from "@mui/material";
 
 const User = () => {
     const Router = useRouter();
@@ -272,17 +274,12 @@ const MobileMenuWithoutAuth = () => {
     return (
         <Dropdown placement="bottom-right">
             <Dropdown.Trigger>
-                <Button
-                    auto
-                    icon={
-                        <Category
-                            set="bulk"
-                            primaryColor={"var(--nextui-colors-secondary)"}
-                        />
-                    }
-                    color="secondary"
-                    flat
-                />
+                <IconButton color="secondary">
+                    <Category
+                        set="bulk"
+                        primaryColor={"var(--nextui-colors-secondary)"}
+                    />
+                </IconButton>
             </Dropdown.Trigger>
             <Dropdown.Menu
                 aria-label="Static Actions"

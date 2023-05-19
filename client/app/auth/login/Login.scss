@@ -1,0 +1,336 @@
+@import "@/app/global/Global.scss";
+
+.Login {
+    width: 100%;
+    height: 100%;
+    min-height: 100vh;
+    overflow: hidden;
+    position: relative;
+
+    .Header {
+        z-index: 100 !important;
+
+        .End {
+            display: none;
+        }
+    }
+
+    .LoginContainer {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        min-height: 75vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        z-index: 0 !important;
+
+        .wrapper {
+            width: 350px;
+
+            @include respond-to('small') {
+                width: 90%;
+            }
+
+            .Form {
+                width: 100%;
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+
+                .FormTitle {
+                    width: 100%;
+                    height: auto;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: flex-start;
+                    align-items: flex;
+                    gap: $GlobalGap / 2;
+                    color: $C1;
+                    text-align: center;
+                    margin: $GlobalGap 0;
+
+                    h1 {
+                        font-size: 1.5rem;
+                        font-weight: 800;
+                        color: $C1;
+
+                        span {
+                            color: $C2;
+                        }
+                    }
+
+                    p {
+                        font-size: 0.85rem;
+                        font-weight: 500;
+                        color: rgba($C1, 50%);
+                    }
+                }
+
+                .FormFooter {
+                    margin: $GlobalGap 0;
+                    width: 100%;
+                    height: auto;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: flex;
+                    gap: $GlobalGap;
+
+                    p {
+                        width: 100%;
+                        height: auto;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        gap: 5px;
+                        color: $C1;
+                        font-size: 0.85rem;
+                        font-weight: 500;
+                        text-decoration: none;
+
+                        a {
+                            color: $C2;
+                            font-weight: 800;
+                            text-decoration: none;
+
+                            &:hover {
+                                text-decoration: underline;
+                            }
+                        }
+                    }
+                }
+            }
+
+            .Form-group {
+                width: 100%;
+                height: auto;
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-start;
+                align-items: flex-start;
+
+                .Input {
+                    position: relative;
+                    width: 100%;
+                    height: 50px;
+                    border-radius: $FormsRadius;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    background-color: #fff;
+
+                    &:not(:first-child) {
+                        margin-top: 15px;
+                    }
+
+                    // has focused input
+                    &:has(input:focus) {
+                        .Input-icon {
+                            background-color: $C2;
+                            // border
+                            border: 2.5px solid rgba($C4, 0.15);
+
+                            svg {
+                                color: $C4;
+                            }
+                        }
+
+                        input {
+                            outline: none;
+                            background: $G4;
+                            color: #000;
+
+                            &::placeholder {
+                                color: rgba(#000, 0.5);
+                            }
+                        }
+                    }
+
+                    input {
+                        width: 100%;
+                        height: 100%;
+                        border: none;
+                        outline: none;
+                        font-size: 14px;
+                        font-weight: 700;
+                        color: rgba($C1, 0.5);
+                        text-align: left;
+                        padding: 0 $FormsRadius;
+                        padding-left: 65px;
+                        padding-right: 65px;
+                        border-radius: $FormsRadius;
+                        transition: all 0.3s ease;
+
+                        &::placeholder {
+                            color: rgba($C1, 0.25);
+                        }
+                    }
+
+                    .Input-icon {
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        width: 50px;
+                        height: 100%;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        background-color: $C2;
+                        border-radius: $FormsRadius;
+
+                        svg {
+                            width: 20px;
+                            height: 20px;
+                            color: $C4;
+                        }
+                    }
+
+                    .Visibility {
+                        position: absolute;
+                        top: 0;
+                        right: 0;
+                        width: 50px;
+                        height: 100%;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        background-color: transparent;
+                        border-radius: 5px;
+
+                        svg {
+                            width: 20px;
+                            height: 20px;
+                            color: rgba($C1, 0.25);
+
+                            &:hover {
+                                color: rgba($C1, 0.35);
+                                cursor: pointer;
+                            }
+                        }
+                    }
+                }
+            }
+
+            .RememberMe {
+                position: relative;
+                margin: 15px 0px;
+                width: 100%;
+                height: 30px;
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+                font-size: 12px;
+                line-height: 30px;
+                color: rgba($C1, 0.5);
+
+                .cont {
+                    display: flex;
+                    align-items: center;
+                    transform: scale(0.65);
+                    transform-origin: left center;
+
+                    input[type="checkbox"] {
+                        transition: all 0.3s ease;
+                        height: 1.7rem;
+                        width: 1.7rem;
+                        display: inline-block;
+                        appearance: none;
+                        // margin-right: 5px;
+                        position: relative;
+                        background-color: transparent;
+                        border: 2px solid rgba($C1, 0.5);
+                        border-radius: 15%;
+                        cursor: pointer;
+                        overflow: hidden;
+                        outline: none;
+
+                        &::after {
+                            content: '';
+                            display: block;
+                            height: 0.9rem;
+                            width: .4rem;
+                            border-bottom: .31rem solid rgba(#fff, 0.75);
+                            border-right: .31rem solid rgba(#fff, 0.75);
+                            opacity: 0;
+                            transform: rotate(45deg) translate(-50%, -50%);
+                            position: absolute;
+                            top: 45%;
+                            left: 21%;
+                            transition: .25s ease;
+                        }
+
+                        &::before {
+                            content: '';
+                            display: block;
+                            height: 0;
+                            width: 0;
+                            background-color: $C2;
+                            border-radius: 50%;
+                            opacity: .5;
+                            transform: translate(-50%, -50%);
+                            position: absolute;
+                            top: 50%;
+                            left: 50%;
+                            transition: .3s ease;
+                        }
+
+                        &:checked {
+                            border: 0px solid rgba($C2, 1) !important;
+
+                            &:before {
+                                height: 130%;
+                                width: 130%;
+                                opacity: 100%;
+                            }
+
+                            &::after {
+                                opacity: 100%;
+                            }
+                        }
+                    }
+
+                    span {
+                        font-size: 2rem;
+                    }
+                }
+            }
+
+            .btnPrimary {
+                @include DefaultButton($C2);
+                width: 100%;
+                height: 50px;
+                box-shadow: none;
+                color: #fff !important;
+
+                &.Loading {
+                    background-color: rgba($C2, 1);
+                    border: 2.5px solid rgba($C4, 0.25);
+                    pointer-events: all;
+                    cursor: not-allowed;
+
+                    svg {
+                        color: $C4;
+                    }
+                }
+            }
+
+            .btnSecondary {
+                @include DefaultButton($C2);
+                width: 100%;
+                height: 50px;
+                box-shadow: none;
+                color: $C2 !important;
+                background-color: rgba($C2, 0.2);
+                margin-top: 10px;
+
+                &:hover {
+                    background-color: rgba($C2, 0.4);
+                }
+            }
+        }
+    }
+}

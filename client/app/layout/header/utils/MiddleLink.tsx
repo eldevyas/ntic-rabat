@@ -1,8 +1,7 @@
 import React from "react";
-import { DefaultButton } from "../../../core/Button";
 import { useRouter, usePathname } from "next/navigation";
+import { Button } from "@mui/material";
 
-import * as Display from "../../../../services/displayAlert";
 export default function Link(props: any) {
     const [active, setActive] = React.useState(false);
     const Router = useRouter();
@@ -24,18 +23,20 @@ export default function Link(props: any) {
     return (
         <>
             {active ? (
-                <DefaultButton color="Black">
+                <Button color="black" variant="contained">
                     {props.children || props.text}
-                </DefaultButton>
+                </Button>
             ) : (
-                <DefaultButton
-                    color="Gray"
+                <Button
+                    variant="contained"
+                    color="muted"
                     onClick={(e: any) => {
                         changeRoute(e);
                     }}
+                    // startIcon={<props.icon set="bulk" />}
                 >
                     {props.children}
-                </DefaultButton>
+                </Button>
             )}
         </>
     );

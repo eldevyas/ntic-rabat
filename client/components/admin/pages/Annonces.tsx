@@ -21,11 +21,11 @@ export default function Annonces() {
     const { data: session, status }: any = useSession();
     const user:
         | {
-            name?: string | null | undefined;
-            email?: string | null | undefined;
-            image?: string | null | undefined;
-            token?: string | null | undefined;
-        }
+              name?: string | null | undefined;
+              email?: string | null | undefined;
+              image?: string | null | undefined;
+              token?: string | null | undefined;
+          }
         | undefined = session?.user;
     const ExpirationDate = useRef<HTMLInputElement>(null);
 
@@ -68,7 +68,6 @@ export default function Annonces() {
             let email = user?.email;
             axios
                 .post(
-
                     `${process.env.SERVER_PUBLIC_API_URL}/annonces`,
                     {
                         title: Title,

@@ -5,6 +5,7 @@ import Select from "react-select";
 import Button from "@mui/material/Button";
 import { useRouter } from "next/navigation";
 import { HomeStyles } from "@/app/core/SelectStyles";
+import { Calendar } from "react-iconly";
 
 const SelectGroup = () => {
     const router = useRouter();
@@ -103,8 +104,11 @@ const SelectGroup = () => {
                     Control: () => (
                         <Button
                             onClick={() => setIsOpen(!isOpen)}
-                            variant="text"
-                            startIcon={<CalendarMonthOutlinedIcon />}
+                            variant="contained"
+                            color="primary"
+                            startIcon={
+                                <Calendar set="bulk" primaryColor="#fff" />
+                            }
                             sx={{
                                 width: "100%",
                                 height: "100%",

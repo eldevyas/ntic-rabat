@@ -1,62 +1,149 @@
 "use client";
 
 import React from "react";
-import { DefaultButton } from "@/app/core/Button";
-import ArrowCircleUpIcon from "@mui/icons-material/ArrowCircleUp";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-//
-//
-import "./style/6. La Pensée Creative.scss";
-//
-//
+import { Button, Box, Typography, Stack } from "@mui/material";
+
 const LaPenseCreative = () => {
     const Router = useRouter();
     return (
-        <div className="LaPenseCreative" id="LaPenseCreative">
-            <div className="Text">
-                <div className="Title">
-                    <h3>La pensée créative </h3>
-                    <h2>
+        <Box
+            id="LaPenseCreative"
+            sx={{
+                position: "relative",
+                width: "100%",
+                gap: "0.75rem",
+                display: "flex",
+                flexDirection: {
+                    xs: "column-reverse",
+                    md: "column-reverse",
+                    lg: "row-reverse",
+                },
+                justifyContent: {
+                    xs: "center",
+                    md: "center",
+                    lg: "space-between",
+                },
+                alignItems: {
+                    xs: "center",
+                    md: "center",
+                    lg: "stretch",
+                },
+                padding: "1rem 2rem",
+                height: { xs: "100%" },
+            }}
+        >
+            <Box
+                sx={{
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "flex-end",
+                    alignItems: "flex-start",
+                    padding: 0,
+                    gap: "0.75rem",
+                    flex: 1,
+                }}
+            >
+                <Box
+                    sx={{
+                        display: "flex",
+                        flexDirection: "column",
+                        justifyContent: "flex-start",
+                        alignItems: "flex-start",
+                        width: "100%",
+                        gap: "1rem",
+                        mb: "0.75rem",
+                    }}
+                >
+                    <Typography
+                        variant="subtitle1"
+                        color="primary"
+                        textTransform={"uppercase"}
+                        fontWeight={800}
+                    >
+                        La pensée créative
+                    </Typography>
+                    <Typography
+                        variant="h4"
+                        color="black"
+                        textTransform={"capitalize"}
+                        fontWeight={800}
+                    >
                         La créativité, l&apos;invention, la passion, et la
                         persévérance, sont les qualités de nos stagiaires
-                    </h2>
-                </div>
-                <p>
+                    </Typography>
+                </Box>
+                <Typography
+                    variant="body1"
+                    color="black"
+                    textTransform={"none"}
+                    fontWeight={400}
+                    sx={{ opacity: 0.6, mb: "0rem" }}
+                >
                     Tous les stagiaires de l&apos;institut obtiennent de bonnes
                     notes, en raison de leur persévérance et de leur créativité
                     dans leur travail, ils font de leur mieux dans le domaine du
                     monde professionnel. Vous êtes une entreprise à la recherche
                     de bons employés pour votre entreprise?
-                </p>
-                <div className="Buttons">
-                    <div className="Button">
-                        <DefaultButton
-                            color="Blue"
-                            onClick={() => Router.push("/#contact")}
-                        >
-                            Contactez nous
-                        </DefaultButton>
-                    </div>
-                    <div className="Button">
-                        <DefaultButton
-                            color="White"
-                            startIcon={<ArrowCircleUpIcon />}
-                        >
-                            Faites une visite à l'institut
-                        </DefaultButton>
-                    </div>
-                </div>
-            </div>
-            <div className="ImageContainer">
+                </Typography>
+                <Stack gap="0.75rem" direction={"row"} flexWrap={"wrap"}>
+                    <Button
+                        variant="contained"
+                        color="primary"
+                        onClick={() => Router.push("/#contact")}
+                        sx={{ whiteSpace: "nowrap" }}
+                    >
+                        Contactez nous
+                    </Button>
+                    <Button
+                        variant="outlined"
+                        color="primary"
+                        sx={{ whiteSpace: "nowrap" }}
+                        onClick={() => Router.push("/#contact")}
+                    >
+                        Faites une visite à l'institut
+                    </Button>
+                </Stack>
+            </Box>
+            <Box
+                sx={{
+                    position: "relative",
+                    borderRadius: "0.7rem",
+                    overflow: "hidden",
+                    flex: 1,
+                    minHeight: {
+                        xs: 250,
+                        sm: 250,
+                        md: null,
+                        lg: null,
+                        xl: null,
+                    },
+                    minWidth: {
+                        xs: "100%",
+                        sm: "100%",
+                        md: null,
+                        lg: null,
+                        xl: null,
+                    },
+                    border: 1,
+                    borderColor: "primary.main",
+                }}
+            >
                 <Image
                     alt=""
                     src="/assets/img/Businessman.png"
-                    layout="fill"
+                    fill
                     className="Image"
+                    style={{
+                        width: "100%",
+                        height: "100%",
+                        objectFit: "contain",
+                        objectPosition: "center bottom",
+                    }}
                 />
-            </div>
-        </div>
+            </Box>
+        </Box>
     );
 };
 

@@ -1,26 +1,32 @@
 import React from "react";
 import DesktopHeader from "./imports/DesktopHeader";
 import MobileHeader from "./imports/MobileHeader";
+import { Home, Calendar, People, Calling } from "react-iconly";
 
 const NavigationLinks: {
     href: String;
     text: String;
+    icon: any;
 }[] = [
     {
         href: "/",
         text: "Accueil",
+        icon: Home,
     },
     {
         href: "/emplois",
         text: "Emplois",
+        icon: Calendar,
     },
     {
         href: "/connect",
         text: "Connect",
+        icon: People,
     },
     {
         href: "/#contact",
         text: "Contact",
+        icon: Calling,
     },
 ];
 

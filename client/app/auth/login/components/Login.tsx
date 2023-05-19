@@ -7,7 +7,7 @@ import LockIcon from "@mui/icons-material/Lock";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import VisibilityOn from "@mui/icons-material/Visibility";
 
-import * as Display from "../../../services/displayAlert";
+import * as Display from "@/services/displayAlert";
 import { redirect } from "react-router";
 import { signIn, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
