@@ -7,7 +7,6 @@ import User from "../../../core/auth/User";
 import { Box, Button } from "@mui/material";
 import { useTheme as useNextTheme } from "next-themes";
 import ToggleButton from "@mui/material/ToggleButton";
-import CheckIcon from "@mui/icons-material/Check";
 import { useTheme } from "@nextui-org/react";
 import { ColorModeContext } from "@/app/providers";
 import { MdDarkMode, MdLightMode } from "react-icons/md";

@@ -5,6 +5,8 @@ import Image from "next/image";
 //
 //
 import { Box, Typography } from "@mui/material";
+import ImageSource from "@/public/assets/img/home/FormateursProfessionnels.jpg";
+
 //
 //
 const FormateursProfessionnels = () => {
@@ -40,7 +42,7 @@ const FormateursProfessionnels = () => {
                     sx={{
                         display: "flex",
                         flexDirection: "column",
-                        justifyContent: "flex-end",
+                        justifyContent: "center",
                         alignItems: "flex-start",
                         padding: 0,
                         gap: "0.75rem",
@@ -102,8 +104,8 @@ const FormateursProfessionnels = () => {
                             xs: 250,
                             sm: 250,
                             md: 350,
-                            lg: 350,
-                            xl: 350,
+                            lg: 400,
+                            xl: 450,
                         },
                         minWidth: {
                             xs: "100%",
@@ -114,17 +116,17 @@ const FormateursProfessionnels = () => {
                         },
                         border: 1,
                         borderColor: "secondary.main",
+                        paddingTop: "2rem",
                     }}
                 >
                     <Image
-                        alt=""
-                        src="/assets/img/Man.png"
                         fill
-                        className="Image"
+                        alt=""
                         style={{
-                            objectFit: "contain",
-                            objectPosition: "center bottom",
+                            objectFit: "cover",
                         }}
+                        placeholder="blur"
+                        src={ImageSource}
                     />
                 </Box>
             </Box>

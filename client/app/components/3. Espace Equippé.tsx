@@ -7,11 +7,23 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 //
 //
+import ImageSource from "@/public/assets/img/home/EspaceEquippe.webp";
+
 // SCSS
 import { Box, Button, Grid, Stack, Typography } from "@mui/material";
 
 const EspaceEquippe = () => {
     const Router = useRouter();
+
+    const handleScroll = () => {
+        const targetId = "#LaPenseCreative";
+        // get the element by id and use scrollIntoView
+        const elem = document.getElementById(targetId);
+        elem?.scrollIntoView({
+            behavior: "smooth",
+        });
+    };
+
     return (
         <Box
             id="EspaceEquippe"
@@ -43,7 +55,7 @@ const EspaceEquippe = () => {
                 sx={{
                     display: "flex",
                     flexDirection: "column",
-                    justifyContent: "flex-end",
+                    justifyContent: "center",
                     alignItems: "flex-start",
                     padding: 0,
                     paddingTop: "5rem",
@@ -64,7 +76,7 @@ const EspaceEquippe = () => {
                 >
                     <Typography
                         variant="subtitle1"
-                        color="secondary"
+                        color="primary"
                         textTransform={"uppercase"}
                         fontWeight={800}
                     >
@@ -94,16 +106,17 @@ const EspaceEquippe = () => {
                 <Stack gap="0.75rem" direction={"row"} flexWrap={"wrap"}>
                     <Button
                         variant="contained"
-                        color="black"
+                        color="primary"
                         onClick={() => Router.push("/auth/register")}
                         sx={{ whiteSpace: "nowrap" }}
                     >
                         S&apos;inscrire maintenant
                     </Button>
                     <Button
-                        variant="contained"
-                        color="white"
+                        variant="outlined"
+                        color="primary"
                         sx={{ whiteSpace: "nowrap" }}
+                        onClick={handleScroll}
                     >
                         Lire Plus
                     </Button>
@@ -118,9 +131,9 @@ const EspaceEquippe = () => {
                     minHeight: {
                         xs: 250,
                         sm: 250,
-                        md: null,
-                        lg: null,
-                        xl: null,
+                        md: 350,
+                        lg: 400,
+                        xl: 450,
                     },
                     minWidth: {
                         xs: "100%",
@@ -129,19 +142,18 @@ const EspaceEquippe = () => {
                         lg: null,
                         xl: null,
                     },
+                    border: 1,
+                    borderColor: "primary.main",
                 }}
             >
                 <Image
-                    alt=""
-                    src="/assets/img/Workspace.png"
                     fill
-                    className="Image"
+                    alt=""
                     style={{
-                        width: "100%",
-                        height: "100%",
-                        objectFit: "contain",
-                        objectPosition: "center bottom",
+                        objectFit: "cover",
                     }}
+                    placeholder="blur"
+                    src={ImageSource}
                 />
             </Box>
         </Box>

@@ -8,6 +8,8 @@ import ApartmentIcon from "@mui/icons-material/Apartment";
 import Image from "next/image";
 //
 //
+import ImageSource from "@/public/assets/img/home/CertificatPuissant.webp";
+
 //
 //
 const CertificatPuissant = () => {
@@ -42,7 +44,7 @@ const CertificatPuissant = () => {
                 sx={{
                     display: "flex",
                     flexDirection: "column",
-                    justifyContent: "flex-end",
+                    justifyContent: "center",
                     alignItems: "flex-start",
                     padding: 0,
                     gap: "0.75rem",
@@ -129,9 +131,9 @@ const CertificatPuissant = () => {
                     minHeight: {
                         xs: 250,
                         sm: 250,
-                        md: null,
-                        lg: null,
-                        xl: null,
+                        md: 350,
+                        lg: 400,
+                        xl: 450,
                     },
                     minWidth: {
                         xs: "100%",
@@ -140,19 +142,18 @@ const CertificatPuissant = () => {
                         lg: null,
                         xl: null,
                     },
+                    border: 1,
+                    borderColor: "secondary.main",
                 }}
             >
                 <Image
-                    alt=""
-                    src="/assets/img/Table.png"
                     fill
-                    className="Image"
+                    alt=""
                     style={{
-                        width: "100%",
-                        height: "100%",
-                        objectFit: "contain",
-                        objectPosition: "center bottom",
+                        objectFit: "cover",
                     }}
+                    placeholder="blur"
+                    src={ImageSource}
                 />
             </Box>
         </Box>

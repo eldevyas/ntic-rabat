@@ -4,6 +4,7 @@ import React from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { Button, Box, Typography, Stack } from "@mui/material";
+import ImageSource from "@/public/assets/img/home/LaPenseCreative.jpg";
 
 const LaPenseCreative = () => {
     const Router = useRouter();
@@ -38,7 +39,7 @@ const LaPenseCreative = () => {
                 sx={{
                     display: "flex",
                     flexDirection: "column",
-                    justifyContent: "flex-end",
+                    justifyContent: "center",
                     alignItems: "flex-start",
                     padding: 0,
                     gap: "0.75rem",
@@ -115,9 +116,9 @@ const LaPenseCreative = () => {
                     minHeight: {
                         xs: 250,
                         sm: 250,
-                        md: null,
-                        lg: null,
-                        xl: null,
+                        md: 350,
+                        lg: 400,
+                        xl: 450,
                     },
                     minWidth: {
                         xs: "100%",
@@ -131,16 +132,13 @@ const LaPenseCreative = () => {
                 }}
             >
                 <Image
-                    alt=""
-                    src="/assets/img/Businessman.png"
                     fill
-                    className="Image"
+                    alt=""
                     style={{
-                        width: "100%",
-                        height: "100%",
-                        objectFit: "contain",
-                        objectPosition: "center bottom",
+                        objectFit: "cover",
                     }}
+                    placeholder="blur"
+                    src={ImageSource}
                 />
             </Box>
         </Box>

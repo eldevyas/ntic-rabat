@@ -72,7 +72,7 @@ export default function Background() {
             const windowHeight = window.innerHeight;
             const opacity = Math.max(
                 0,
-                Math.min(0.75, scrollPosition / (windowHeight - 100))
+                Math.min(1, scrollPosition / (windowHeight - 100))
             );
             setOpacity(opacity);
         }

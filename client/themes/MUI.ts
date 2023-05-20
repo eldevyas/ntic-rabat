@@ -43,6 +43,14 @@ const Light: any = createTheme({
         },
         // contrastThreshold: 3,
         // tonalOffset: 0.6,
+        background: {
+            default: "#fff",
+            paper: "#fff"
+        },
+        text: {
+            primary: '#000',
+            secondary: '#151515',
+        },
     },
     // 
     // Font Family
@@ -210,12 +218,16 @@ const Dark: any = createTheme({
             light: "#555",
             dark: "#333333"
         },
+        background: {
+            default: "#000",
+            paper: "#000",
+        },
+        text: {
+            primary: '#ddd',
+            secondary: '#aaa',
+        },
         contrastThreshold: 3,
         tonalOffset: 0.6,
-    },
-    background: {
-        default: "#000",
-        paper: "#000",
     },
     // 
     // Font Family

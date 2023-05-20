@@ -22,6 +22,11 @@ import {
     User as UserIcon,
 } from "react-iconly";
 import { IconButton } from "@mui/material";
+import { useTheme } from "@nextui-org/react";
+import { useTheme as useNextTheme } from "next-themes";
+
+import { ColorModeContext } from "@/app/providers";
+import { MdDarkMode, MdLightMode } from "react-icons/md";
 
 const User = () => {
     const Router = useRouter();
@@ -42,6 +47,10 @@ const User = () => {
         return Router.push(HREF);
     };
 
+    const colorMode = React.useContext(ColorModeContext);
+    const { isDark, type } = useTheme();
+    const { setTheme } = useNextTheme();
+
     return (
         <Dropdown placement="bottom-right">
             <Dropdown.Trigger>
@@ -55,7 +64,6 @@ const User = () => {
                     bordered
                 />
             </Dropdown.Trigger>
-
             <Dropdown.Menu
                 aria-label="User menu actions"
                 color="default"
@@ -92,6 +100,24 @@ const User = () => {
                     </Dropdown.Item>
                 </Dropdown.Section>
                 <Dropdown.Section title="Actions">
+                    <Dropdown.Item
+                        key="#!"
+                        color="default"
+                        description="Changer le mode de couleurs."
+                        icon={isDark ? <MdDarkMode /> : <MdLightMode />}
+                    >
+                        <Text
+                            b
+                            color="inherit"
+                            css={{ d: "flex" }}
+                            onClick={() => {
+                                colorMode.toggleColorMode();
+                                setTheme(isDark ? "light" : "dark");
+                            }}
+                        >
+                            Mode {isDark ? "sombre" : "lumineux"}
+                        </Text>
+                    </Dropdown.Item>
                     <Dropdown.Item
                         key="/"
                         color="error"
@@ -135,6 +161,11 @@ const MobileMenuWithAuth = () => {
     const Navigate = (HREF: string) => {
         return Router.push(HREF);
     };
+
+    const colorMode = React.useContext(ColorModeContext);
+    const { isDark, type } = useTheme();
+    const { setTheme } = useNextTheme();
+
     return (
         <Dropdown placement="bottom-right">
             <Dropdown.Trigger>
@@ -237,6 +268,24 @@ const MobileMenuWithAuth = () => {
                 </Dropdown.Section>
                 <Dropdown.Section title="Actions">
                     <Dropdown.Item
+                        key="#!"
+                        color="default"
+                        description="Changer le mode de couleurs."
+                        icon={isDark ? <MdDarkMode /> : <MdLightMode />}
+                    >
+                        <Text
+                            b
+                            color="inherit"
+                            css={{ d: "flex" }}
+                            onClick={() => {
+                                colorMode.toggleColorMode();
+                                setTheme(isDark ? "light" : "dark");
+                            }}
+                        >
+                            Mode {isDark ? "sombre" : "lumineux"}
+                        </Text>
+                    </Dropdown.Item>
+                    <Dropdown.Item
                         key="Logout"
                         color="error"
                         description="Pensez-vous quitter cet endroit incroyable pour de vrai ?"
@@ -271,6 +320,10 @@ const MobileMenuWithoutAuth = () => {
     const Navigate = (HREF: string) => {
         return Router.push(HREF);
     };
+
+    const colorMode = React.useContext(ColorModeContext);
+    const { isDark, type } = useTheme();
+    const { setTheme } = useNextTheme();
     return (
         <Dropdown placement="bottom-right">
             <Dropdown.Trigger>
@@ -295,8 +348,13 @@ const MobileMenuWithoutAuth = () => {
                 <Dropdown.Section title="Navigation">
                     <Dropdown.Item
                         key={"/"}
-                        color="secondary"
-                        icon={<Home primaryColor={"default"} set="bulk" />}
+                        color="default"
+                        icon={
+                            <Home
+                                primaryColor={"var(--nextui-colors-text)"}
+                                set="bulk"
+                            />
+                        }
                         // css={{
                         //     background: "$secondary",
                         //     color: "$primaryLight",
@@ -306,26 +364,61 @@ const MobileMenuWithoutAuth = () => {
                     </Dropdown.Item>
                     <Dropdown.Item
                         key={"/emplois"}
-                        color="secondary"
-                        icon={<Calendar primaryColor={"default"} set="bulk" />}
+                        color="default"
+                        icon={
+                            <Calendar
+                                primaryColor={"var(--nextui-colors-text)"}
+                                set="bulk"
+                            />
+                        }
                         description="Consultez le planning de tous les cours aux NTIC Rabat, vous pouvez voir la météo aussi 😍"
                     >
                         Emplois
                     </Dropdown.Item>
                     <Dropdown.Item
                         key={"Connect"}
-                        color="secondary"
-                        icon={<People primaryColor={"default"} set="bulk" />}
+                        color="default"
+                        icon={
+                            <People
+                                primaryColor={"var(--nextui-colors-text)"}
+                                set="bulk"
+                            />
+                        }
                         description="Facebook du NTIC 📲"
                     >
                         Connect
                     </Dropdown.Item>
                     <Dropdown.Item
                         key={"/#contact"}
-                        color="secondary"
-                        icon={<Calling primaryColor={"default"} set="bulk" />}
+                        color="default"
+                        icon={
+                            <Calling
+                                primaryColor={"var(--nextui-colors-text)"}
+                                set="bulk"
+                            />
+                        }
                     >
                         Contact
+                    </Dropdown.Item>
+                </Dropdown.Section>
+                <Dropdown.Section title="Espace Stagiaires">
+                    <Dropdown.Item
+                        key="#!"
+                        color="default"
+                        description="Changer le mode de couleurs."
+                        icon={isDark ? <MdDarkMode /> : <MdLightMode />}
+                    >
+                        <Text
+                            b
+                            color="inherit"
+                            css={{ d: "flex" }}
+                            onClick={() => {
+                                colorMode.toggleColorMode();
+                                setTheme(isDark ? "light" : "dark");
+                            }}
+                        >
+                            Mode {isDark ? "sombre" : "lumineux"}
+                        </Text>
                     </Dropdown.Item>
                 </Dropdown.Section>
                 <Dropdown.Section title="Espace Stagiaires">
