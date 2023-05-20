@@ -4,8 +4,6 @@ const Light = createTheme({
     type: "light", // it could be "light" or "dark"
     theme: {
         colors: {
-            // brand colors
-
             // Primary
             primary: "#29abe2",
             primaryLight: "#C4E6F4",

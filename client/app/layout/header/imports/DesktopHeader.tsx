@@ -5,8 +5,12 @@ import Link from "./../utils/MiddleLink";
 import { useSession } from "next-auth/react";
 import User from "../../../core/auth/User";
 import { Box, Button } from "@mui/material";
-import { useTheme, ThemeProvider, createTheme } from "@mui/material/styles";
+import { useTheme as useNextTheme } from "next-themes";
+import ToggleButton from "@mui/material/ToggleButton";
+import CheckIcon from "@mui/icons-material/Check";
+import { useTheme } from "@nextui-org/react";
 import { ColorModeContext } from "@/app/providers";
+import { MdDarkMode, MdLightMode } from "react-icons/md";
 
 export default function DesktopHeader(props: any) {
     const { data: session }: any = useSession();
@@ -20,8 +24,9 @@ export default function DesktopHeader(props: any) {
         icon: any;
     }[] = props.links;
 
-    const theme = useTheme();
     const colorMode = React.useContext(ColorModeContext);
+    const { isDark, type } = useTheme();
+    const { setTheme } = useNextTheme();
 
     return (
         <Box
@@ -84,14 +89,31 @@ export default function DesktopHeader(props: any) {
                 }}
             >
                 {MiddleLinks.map((middleLink, index) => (
-                    <Link
-                        key={index}
-                        href={middleLink.href}
-                        text={middleLink.text}
-                        icon={middleLink.icon}
-                    >
-                        {middleLink.text}
-                    </Link>
+                    <>
+                        {index == 2 && (
+                            <Button
+                                variant="contained"
+                                color={"muted"}
+                                onClick={() => {
+                                    colorMode.toggleColorMode();
+                                    setTheme(isDark ? "light" : "dark");
+                                }}
+                                sx={{
+                                    height: "100%",
+                                }}
+                            >
+                                {isDark ? <MdDarkMode /> : <MdLightMode />}
+                            </Button>
+                        )}
+                        <Link
+                            key={index}
+                            href={middleLink.href}
+                            text={middleLink.text}
+                            icon={middleLink.icon}
+                        >
+                            {middleLink.text}
+                        </Link>
+                    </>
                 ))}
             </Box>
             {/* Hidden on Login and Register Pages */}

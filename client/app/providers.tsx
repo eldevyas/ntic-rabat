@@ -5,16 +5,22 @@ import { SessionProvider } from "next-auth/react";
 //
 //
 // Next UI Provider
-import { NextUIProvider as NextProvider } from "@nextui-org/react";
+import {
+    ThemeProvider as NextThemesProvider,
+    useTheme as useNextTheme,
+} from "next-themes";
+import { NextUIProvider as NextProvider, useTheme } from "@nextui-org/react";
 import { ThemeProvider } from "@mui/material/styles";
 import { NextUI_Theme } from "@/themes/NexUI";
 import { MUI_Theme } from "@/themes/MUI";
+import CssBaseline from "@mui/material/CssBaseline";
+
 //
 //
 // Framer Motion Page Transitions
 import { motion, AnimatePresence } from "framer-motion";
 import Layout from "@/app/layout/LayoutProperties";
-import { useMemo } from "react";
+import { useEffect, useMemo } from "react";
 //
 //
 // Emotion
@@ -33,38 +39,47 @@ export const NextAuthProvider = ({ children }: Props) => {
     return <SessionProvider>{children}</SessionProvider>;
 };
 
-// Themes
 export const ColorModeContext = React.createContext({
     toggleColorMode: () => {},
 });
 
 export const StylingProvider = ({ children }: Props) => {
-    const [Mode, setMode] = React.useState<"Light" | "Dark">("Light");
+    const { setTheme } = useNextTheme();
+    const { isDark, type } = useTheme();
+
+    const [mode, setMode] = React.useState<string>(type);
     const colorMode = React.useMemo(
         () => ({
             toggleColorMode: () => {
-                setMode((prevMode) =>
-                    prevMode === "Light" ? "Dark" : "Light"
-                );
+                setTheme(!isDark ? "dark" : "light");
+                setMode((prevMode) => {
+                    return prevMode === "light" ? "dark" : "light";
+                });
             },
         }),
-        []
+        [mode, isDark]
+    );
+
+    const theme = React.useMemo(
+        () => (mode == "light" ? MUI_Theme.Dark : MUI_Theme.Light),
+        [mode, isDark]
     );
 
     return (
         <ColorModeContext.Provider value={colorMode}>
-            {children}
-            <ThemeProvider
-                theme={Mode == "Light" ? MUI_Theme.Light : MUI_Theme.Dark}
+            <NextThemesProvider
+                defaultTheme="system"
+                attribute="class"
+                value={{
+                    light: NextUI_Theme.Light.className,
+                    dark: NextUI_Theme.Dark.className,
+                }}
             >
-                <NextProvider
-                    theme={
-                        Mode == "Light" ? NextUI_Theme.Light : NextUI_Theme.Dark
-                    }
-                >
-                    {children}
+                <CssBaseline />
+                <NextProvider>
+                    <ThemeProvider theme={theme}>{children}</ThemeProvider>
                 </NextProvider>
-            </ThemeProvider>
+            </NextThemesProvider>
         </ColorModeContext.Provider>
     );
 };
