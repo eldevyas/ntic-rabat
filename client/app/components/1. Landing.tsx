@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import SelectGroup from "@/app/components/base/A. Select Group";
 import Announces from "@/app/components/base/C. Announces";
 import { Button, Box, Typography, styled, Grid } from "@mui/material";
-import { useSpring, animated, SpringValue } from "react-spring";
+import { useSpring, animated } from "react-spring";
 import { People } from "react-iconly";
 // SCSS
 
