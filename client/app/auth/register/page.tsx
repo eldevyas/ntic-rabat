@@ -1,11 +1,11 @@
 "use client";
 
 import React, { useEffect } from "react";
-import RegisterPage from "../../../components/auth/registerPage";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import Loading from "@/app/core/Loading";
 import "./Register.scss";
+import RegisterComponent from "./components/Register";
 
 const Register = () => {
     const { data: session, status }: any = useSession();
@@ -32,7 +32,13 @@ const Register = () => {
             {status === "authenticated" || session || status === "loading" ? (
                 <Loading />
             ) : (
-                <RegisterPage />
+                <div className="Register">
+                    <div className="RegisterContainer">
+                        <div className="wrapper">
+                            <RegisterComponent />
+                        </div>
+                    </div>
+                </div>
             )}
         </>
     );
