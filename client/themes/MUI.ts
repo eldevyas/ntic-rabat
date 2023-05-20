@@ -131,40 +131,40 @@ const Light: any = createTheme({
                 {
                     props: { variant: "contained", color: "primary" },
                     style: {
-                        background: "primary.main",
-                        color: "primary.contrastText",
+                        background: "#29abe2",
+                        color: "#e0f3fb",
                         "&:hover": {
-                            background: "primary.dark"
+                            background: "#b0e1f5"
                         }
                     }
                 },
                 {
                     props: { variant: "contained", color: "secondary" },
                     style: {
-                        background: "secondary.main",
-                        color: "secondary.contrastText",
+                        background: "#39b54a",
+                        color: "#e7f6e9",
                         "&:hover": {
-                            background: "secondary.dark"
+                            background: "#006316"
                         }
                     }
                 },
                 {
                     props: { variant: "contained", color: "black" },
                     style: {
-                        background: "black.main",
-                        color: "black.contrastText",
+                        background: "#000",
+                        color: "#fcfcfc",
                         "&:hover": {
-                            background: "black.dark"
+                            background: "#111"
                         }
                     }
                 },
                 {
                     props: { variant: "contained", color: "white" },
                     style: {
-                        background: "white.main",
-                        color: "white.contrastText",
+                        background: "#fff",
+                        color: "#151515",
                         "&:hover": {
-                            background: "white.dark"
+                            background: "#eee"
                         }
                     }
                 },

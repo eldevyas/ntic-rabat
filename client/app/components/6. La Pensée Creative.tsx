@@ -66,7 +66,7 @@ const LaPenseCreative = () => {
                     </Typography>
                     <Typography
                         variant="h4"
-                        color="black"
+                        color="text.primary"
                         textTransform={"capitalize"}
                         fontWeight={800}
                     >
@@ -76,10 +76,10 @@ const LaPenseCreative = () => {
                 </Box>
                 <Typography
                     variant="body1"
-                    color="black"
+                    color="text.secondary"
                     textTransform={"none"}
                     fontWeight={400}
-                    sx={{ opacity: 0.6, mb: "0rem" }}
+                    sx={{ mb: "0rem" }}
                 >
                     Tous les stagiaires de l&apos;institut obtiennent de bonnes
                     notes, en raison de leur persévérance et de leur créativité

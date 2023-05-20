@@ -7,7 +7,7 @@ import { SessionProvider } from "next-auth/react";
 // Next UI Provider
 import { NextUIProvider as NextProvider } from "@nextui-org/react";
 import { ThemeProvider } from "@mui/material/styles";
-import { theme as NextUITheme } from "@/themes/NexUI";
+import { NextUI_Theme } from "@/themes/NexUI";
 import { MUI_Theme } from "@/themes/MUI";
 //
 //
@@ -33,15 +33,12 @@ export const NextAuthProvider = ({ children }: Props) => {
     return <SessionProvider>{children}</SessionProvider>;
 };
 
-// NextUI
-export const NextUIProvider = ({ children }: Props) => {
-    return <NextProvider theme={NextUITheme}>{children}</NextProvider>;
-};
+// Themes
+export const ColorModeContext = React.createContext({
+    toggleColorMode: () => {},
+});
 
-// MUI
-export const ColorModeContext = React.createContext({ toggleColorMode: () => {} });
-
-export const MUIProvider = ({ children }: Props) => {
+export const StylingProvider = ({ children }: Props) => {
     const [Mode, setMode] = React.useState<"Light" | "Dark">("Light");
     const colorMode = React.useMemo(
         () => ({
@@ -56,10 +53,17 @@ export const MUIProvider = ({ children }: Props) => {
 
     return (
         <ColorModeContext.Provider value={colorMode}>
+            {children}
             <ThemeProvider
                 theme={Mode == "Light" ? MUI_Theme.Light : MUI_Theme.Dark}
             >
-                {children}
+                <NextProvider
+                    theme={
+                        Mode == "Light" ? NextUI_Theme.Light : NextUI_Theme.Dark
+                    }
+                >
+                    {children}
+                </NextProvider>
             </ThemeProvider>
         </ColorModeContext.Provider>
     );
@@ -100,11 +104,9 @@ export const MegaProvider = ({ children }: Props) => {
     return (
         <NextAuthProvider>
             <RootStyleRegistry>
-                <MUIProvider>
-                    <NextUIProvider>
-                        <LayoutProvider>{children}</LayoutProvider>
-                    </NextUIProvider>
-                </MUIProvider>
+                <StylingProvider>
+                    <LayoutProvider>{children}</LayoutProvider>
+                </StylingProvider>
             </RootStyleRegistry>
         </NextAuthProvider>
     );

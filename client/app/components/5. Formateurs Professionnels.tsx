@@ -68,7 +68,7 @@ const FormateursProfessionnels = () => {
                         </Typography>
                         <Typography
                             variant="h4"
-                            color="black"
+                            color="text.primary"
                             textTransform={"capitalize"}
                             fontWeight={800}
                         >
@@ -78,10 +78,10 @@ const FormateursProfessionnels = () => {
                     </Box>
                     <Typography
                         variant="body1"
-                        color="black"
+                        color="text.secondary"
                         textTransform={"none"}
                         fontWeight={400}
-                        sx={{ opacity: 0.6, mb: "0rem" }}
+                        sx={{ mb: "0rem" }}
                     >
                         Nous avons amené les meilleurs formateurs dans notre
                         institut, non seulement pour améliorer la qualité de
