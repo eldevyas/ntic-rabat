@@ -3,8 +3,9 @@ import React from "react";
 import Button from "@mui/material/Button";
 import Image from "next/image";
 import ExpandMoreOutlinedIcon from "@mui/icons-material/ExpandMoreOutlined";
-import { IconButton } from "../../core/button";
 import { useRouter } from "next/router";
+import { IconButton } from "@mui/material";
+import User from "@/app/core/auth/User";
 const Header = () => {
     const Router = useRouter();
     return (
@@ -40,29 +41,7 @@ const Header = () => {
                     Administration
                 </Button>
             </div>
-            <div className="User">
-                <div className="UserImage">
-                    <Image
-                        src="/assets/img/pp/pp1.png"
-                        alt="User Avatar"
-                        className="Image"
-                        width={45}
-                        height={45}
-                        onClick={() => Router.push("/")}
-                    />
-                </div>
-                <div className="UserInfos">
-                    <p className="UserName">Mohammed El Aissaoui</p>
-                    <p className="UserRole">Admin</p>
-                </div>
-                <IconButton
-                    variant="text"
-                    color="White"
-                    className="UserActions"
-                >
-                    <ExpandMoreOutlinedIcon className="UserIcon" />
-                </IconButton>
-            </div>
+            <User />
         </div>
     );
 };
