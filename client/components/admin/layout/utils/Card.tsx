@@ -12,7 +12,7 @@ import { getCookie } from "cookies-next";
 // Required 3rd Party Components
 import Button from "@mui/material/Button";
 import axios from "axios";
-import * as Display from "../../../../services/displayAlert";
+import * as Display from "@/services/displayAlert";
 import { useSession } from "next-auth/react";
 
 export default function Card(props: any) {
