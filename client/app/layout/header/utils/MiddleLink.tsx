@@ -12,7 +12,7 @@ export default function Link(props: any) {
             return setActive(true);
         }
         setActive(false);
-    }, []);
+    }, [Pathname]);
 
     // ChangeRoute function
     const changeRoute = (e: any) => {
