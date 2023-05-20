@@ -78,7 +78,16 @@ async function Handler(request: Request) {
         fetchedTable.push(DayObject);
     }
 
-    NextResponse.json(fetchedTable);
+    if (fetchedTable.length < 3) {
+        return new Response("The Group ID provided is not valid.", {
+            status: 404,
+        });
+    }
+
+    // Create HTML Elements
+    return new Response(JSON.stringify(fetchedTable), {
+        status: 200,
+    });
 }
 
 

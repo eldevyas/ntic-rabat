@@ -40,7 +40,9 @@ async function Handler() {
     Groups.shift();
 
     // Create HTML Elements
-    NextResponse.json(Groups);
+    return new Response(JSON.stringify(Groups), {
+        status: 200,
+    });
 }
 
 export { Handler as GET }

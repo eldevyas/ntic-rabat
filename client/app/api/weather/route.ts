@@ -1,5 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import axios from 'axios';
+import { NextResponse } from 'next/server';
 
 function convert(date: any) {
     const d = Date.parse(date)
@@ -7,10 +8,7 @@ function convert(date: any) {
     return `${date_obj.getFullYear()}-${date_obj.toLocaleString("default", { month: "2-digit" })}-${date_obj.toLocaleString("default", { day: "2-digit" })}`
 }
 
-export default async function handler(
-    req: NextApiRequest,
-    res: NextApiResponse
-) {
+export async function GET() {
     var curr = new Date();
     var dayOfWeek = curr.getDay();
     var first = curr.getDate() - dayOfWeek;
@@ -222,5 +220,9 @@ export default async function handler(
     });
 
 
-    res.status(200).json(filteredData);
+    // return NextResponse.json({ filteredData: "Yassine" });
+
+    return new Response(JSON.stringify(filteredData), {
+        status: 200,
+    });
 }

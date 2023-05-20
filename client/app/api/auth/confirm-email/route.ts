@@ -1,17 +1,27 @@
-import { NextApiRequest, NextApiResponse } from "next";
+import { NextResponse } from 'next/server';
 import axios from "axios";
 
 
-export default async function confirmEmail(
-    req: any,
-    res: NextApiResponse
-) {
-    const { email, code } = req.body;
+export async function GET(request: Request | any) {
+    const { searchParams } = new URL(request.url);
+    const email = searchParams.get("email");
+    const code = searchParams.get("code");
+
+
     let VERIFY_EMAIL_ENDPOINT = process.env.SERVER_PUBLIC_HOSTNAME + "/api/auth/verify-email";
     console.log(`Verify email url: ${VERIFY_EMAIL_ENDPOINT}`);
     // // if has localhost, switch it to 0.0.0.0
     // if (VERIFY_EMAIL_ENDPOINT.includes("localhost")) {
     //     VERIFY_EMAIL_ENDPOINT = VERIFY_EMAIL_ENDPOINT.replace("localhost", "0.0.0.0");
+
+    if (!email || !code) {
+        return new Response(JSON.stringify({
+            message: `Please provide the user's email and the confirmation code for this request.`,
+            status: "Error"
+        }), {
+            status: 401,
+        });
+    }
     // }
 
     const response = await axios
@@ -26,8 +36,8 @@ export default async function confirmEmail(
         .then((res: any) => {
             if (res.status === 200) {
                 // Change req session user verified email
-                if (req.session != null) {
-                    req.session.user.email_verified = true;
+                if (request.session != null) {
+                    request.session.user.email_verified = true;
                 }
                 return {
                     message: `Email Verification Successful`,
@@ -56,5 +66,7 @@ export default async function confirmEmail(
         status = 401;
     }
 
-    return res.status(status).json(response);
+    return new Response(JSON.stringify(response), {
+        status: status,
+    });
 }

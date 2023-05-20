@@ -29,7 +29,10 @@ async function Handler() {
         });
     });
     // Create HTML Elements
-    NextResponse.json(Groups);
+    // Create HTML Elements
+    return new Response(JSON.stringify(Groups), {
+        status: 200,
+    });
 }
 
 export { Handler as GET };
