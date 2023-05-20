@@ -3,8 +3,6 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 import axios from 'axios';
 import { useSelector } from 'react-redux';
 
-
-import cheerio from "cheerio";
 type Data = {
     Day: string, Time: {
         Former: string,

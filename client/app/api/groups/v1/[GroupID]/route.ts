@@ -1,27 +1,31 @@
-// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-import { NextResponse } from 'next/server';
 import axios from 'axios';
+import { load } from "cheerio";
 
-import cheerio from "cheerio";
 type Data = {
     name: string,
     value: string
 }[]
 
-async function Handler(request: Request) {
+export async function GET(request: Request, {
+    params,
+}: {
+    params: { GroupID: string };
+}) {
     // console.log(groupValue);
     // Get All Groups from "www.nticrabat.com"'s select menu.
     let TargetURL = "https://nticrabat.com/";
-
-    // Get Params
-    const { searchParams } = new URL(request.url);
-
     // get group id from get request
-    const GroupID = searchParams.get('GroupID');
+    const GroupID = params.GroupID;
+
+    if (!GroupID) {
+        return new Response("Please provide a valid Group ID.", {
+            status: 404,
+        });
+    }
 
     // Send Get Request to the Website - Retrieve data as HTML
     const { data }: any = await axios.get(TargetURL + "/emploi/index.php?groupe=" + GroupID);
-    const $ = cheerio.load(data);
+    const $ = load(data);
 
     const fetchedTable: any = [];
     for (let index = 3; index <= 8; index++) {
@@ -89,6 +93,3 @@ async function Handler(request: Request) {
         status: 200,
     });
 }
-
-
-export { Handler as GET, Handler as POST };

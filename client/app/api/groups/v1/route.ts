@@ -12,13 +12,13 @@ async function Handler() {
     // Get All Groups from "www.nticrabat.com"'s select menu.
     let TargetURL = "https://nticrabat.com/";
     // Send Get Request to the Website - Retrieve data as HTML
-    const { data }: any = await axios.get(TargetURL + "emploi/index.php");
+    const { data }: any = await axios.get(TargetURL + "index.php");
     const $ = cheerio.load(data);
     const fetchedSelectBox: any = $('[name=groupe]').html();
     const Groups: Data = [];
     // Loop through each option
-    $(fetchedSelectBox).each((element: any) => {
-        const option = $(element);
+    $(fetchedSelectBox).each((i, el) => {
+        const option = $(el);
 
         const optionName: string = option.text();
         const optionValue: string = String(option.attr('value'));
@@ -28,11 +28,21 @@ async function Handler() {
             value: optionValue
         });
     });
-    // Create HTML Elements
+
+    // Remove undefined value records from group
+    Groups.forEach(element => {
+        if (element.value === "undefined" || element.value == "") {
+            Groups.splice(Groups.indexOf(element), 1);
+        }
+    });
+    // 
+    // 
+    Groups.shift();
+
     // Create HTML Elements
     return new Response(JSON.stringify(Groups), {
         status: 200,
     });
 }
 
-export { Handler as GET };
+export { Handler as GET }
