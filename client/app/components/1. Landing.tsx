@@ -13,9 +13,7 @@ import { People } from "react-iconly";
 const DefaultCard = styled("div")(({ theme }) => ({
     color: theme.palette.primary.main,
     backgroundColor:
-        theme.palette.mode == "light"
-            ? theme.palette.primary.light
-            : `rgba(${theme.palette.secondary.light}, 0.5)`,
+        theme.palette.mode == "light" ? theme.palette.primary.light : `#000`,
     padding: theme.spacing(4),
     borderRadius: theme.shape.borderRadius,
     userSelect: "none",

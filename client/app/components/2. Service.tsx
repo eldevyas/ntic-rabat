@@ -85,8 +85,8 @@ const Card = (Props: {
             ? `#000`
             : Props.color == "white"
             ? theme.palette.mode == "light"
-                ? `${Props.color}.light`
-                : "transparent"
+                ? `#fff`
+                : "#000"
             : `${Props.color}.light`;
 
     return (

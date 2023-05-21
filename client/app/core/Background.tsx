@@ -95,6 +95,7 @@ export default function Background() {
                     right: 0,
                     zIndex: -1,
                     background: (theme) => theme.palette.background.default,
+                    overflow: "hidden",
                 }}
             >
                 <Box
@@ -361,11 +362,40 @@ export default function Background() {
                         position: "fixed",
                         width: "100%",
                         height: "100%",
+                        top: 0,
+                        left: 0,
+                        opacity: 0.1,
+                        pointerEvents: "none",
+                        zIndex: 0,
+                        bakcgroundColor: (theme) =>
+                            theme.palette.background.default,
+                        "--square-size": {
+                            xs: "calc(100vw / 10)",
+                            sm: "calc(100vw / 10)",
+                            md: "calc(100vw / 15)",
+                            lg: "calc(100vw / 50)",
+                            xl: "calc(100vw / 50)",
+                        },
+                        background: (theme) =>
+                            `conic-gradient(from 90deg at 1px 1px, transparent 90deg, ${theme.palette.primary.main} 0) 0 0/var(--square-size) var(--square-size)`,
+                        // backgroundImage: (theme) =>
+                        //     theme.palette.mode == "light"
+                        //         ? `linear-gradient(${theme.palette.primary.main} 1px, transparent 1px), linear-gradient(to right, ${theme.palette.primary.main} 1px, transparent 1px)`
+                        //         : `linear-gradient(${theme.palette.primary.main} 1px, transparent 1px), linear-gradient(to right, ${theme.palette.primary.main} 1px, transparent 1px)`,
+                        // backgroundSize: "calc(100vw/20) calc(100vw/20)",
+                    }}
+                ></Box>
+
+                <Box
+                    sx={{
+                        position: "fixed",
+                        width: "100%",
+                        height: "100%",
                         backgroundColor: (theme) =>
                             theme.palette.background.default,
                         top: 0,
                         left: 0,
-                        opacity: opacity,
+                        opacity: 0,
                         pointerEvents: opacity > 0 ? "auto" : "none",
                         backdropFilter: "blur(5rem)",
                         zIndex: 0,
