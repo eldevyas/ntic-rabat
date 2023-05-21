@@ -4,7 +4,7 @@ import React from "react";
 import Gallery from "@/app/components/base/B. Gallery";
 import Link from "next/link";
 import { ShieldDone, Edit, Heart2, Work, ArrowDownSquare } from "react-iconly";
-import { Box, Button, Grid, Typography } from "@mui/material";
+import { Box, Button, Grid, Typography, useTheme } from "@mui/material";
 
 const Cards: {
     title: string;
@@ -54,6 +54,7 @@ const Card = (Props: {
     href?: string;
     color: string;
 }) => {
+    const theme = useTheme();
     // 4adi ydeer scroll bla maykhelli l ID fel'URL
     const handleScroll = (
         e: React.MouseEvent<HTMLAnchorElement, MouseEvent>
@@ -74,14 +75,18 @@ const Card = (Props: {
         Props.color == "black"
             ? `primary.main`
             : Props.color == "white"
-            ? `${Props.color}.contrastText`
+            ? theme.palette.mode == "dark"
+                ? `${Props.color}.main`
+                : `${Props.color}.contrastText`
             : `${Props.color}.main`;
 
     const BackgroundColor =
         Props.color == "black"
-            ? `black.main`
+            ? `#000`
             : Props.color == "white"
-            ? `#fff`
+            ? theme.palette.mode == "light"
+                ? `${Props.color}.light`
+                : "transparent"
             : `${Props.color}.light`;
 
     return (
@@ -117,7 +122,19 @@ const Card = (Props: {
                     borderRadius: `${0.75 / 2}rem`,
                 }}
             >
-                <Props.icon set="bulk" color="#fff" size="xlarge" />
+                <Props.icon
+                    set="bulk"
+                    color={
+                        Props.color == "black"
+                            ? `#fff`
+                            : Props.color == "white"
+                            ? theme.palette.mode == "dark"
+                                ? `#000`
+                                : `#fff`
+                            : `#fff`
+                    }
+                    size="xlarge"
+                />
             </Box>
             <Typography variant="h5" fontWeight={600} color={PrimaryColor}>
                 {Props.title}
@@ -152,7 +169,9 @@ const Card = (Props: {
                             Props.color == "black"
                                 ? `primary.main`
                                 : Props.color == "white"
-                                ? `${Props.color}.contrastText`
+                                ? theme.palette.mode == "light"
+                                    ? "black"
+                                    : `white.main`
                                 : `${Props.color}.main`,
                         background: "none !important",
                     }}
@@ -161,7 +180,9 @@ const Card = (Props: {
                         Props.color == "black"
                             ? "primary"
                             : Props.color == "white"
-                            ? (`black` as any)
+                            ? theme.palette.mode == "light"
+                                ? "black"
+                                : "white"
                             : (Props.color as any)
                     }
                     endIcon={
@@ -171,7 +192,9 @@ const Card = (Props: {
                                 Props.color == "black"
                                     ? `var(--nextui-colors-primary)`
                                     : Props.color == "white"
-                                    ? `#000`
+                                    ? theme.palette.mode == "dark"
+                                        ? `#fff`
+                                        : `#000`
                                     : `var(--nextui-colors-${Props.color})`
                             }
                         />

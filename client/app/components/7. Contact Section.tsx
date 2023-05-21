@@ -7,7 +7,6 @@ import FaceIcon from "@mui/icons-material/Face";
 import SendIcon from "@mui/icons-material/Send";
 //
 //
-import "./style/7. Contact Section.scss";
 import { Box, Typography } from "@mui/material";
 //
 //

@@ -29,6 +29,7 @@ import createCache from "@emotion/cache";
 import { useServerInsertedHTML } from "next/navigation";
 import { useState } from "react";
 import React from "react";
+import useMediaQuery from "@mui/material/useMediaQuery";
 
 type Props = {
     children?: React.ReactNode;
@@ -46,40 +47,38 @@ export const ColorModeContext = React.createContext({
 export const StylingProvider = ({ children }: Props) => {
     const { setTheme } = useNextTheme();
     const { isDark, type } = useTheme();
+    const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
 
-    const [mode, setMode] = React.useState<string>(type);
+    const [Mode, setMode] = React.useState<string>(
+        prefersDarkMode ? "dark" : "light"
+    );
     const colorMode = React.useMemo(
         () => ({
             toggleColorMode: () => {
-                setTheme(!isDark ? "dark" : "light");
                 setMode((prevMode) => {
                     return prevMode === "light" ? "dark" : "light";
                 });
             },
         }),
-        [mode, isDark]
+        [Mode, isDark, type]
     );
 
-    const theme = React.useMemo(
-        () => (mode == "light" ? MUI_Theme.Dark : MUI_Theme.Light),
-        [mode, isDark]
+    const MTheme = React.useMemo(
+        () => (Mode == "light" ? MUI_Theme.Light : MUI_Theme.Dark),
+        [Mode, isDark]
+    );
+
+    const NTheme = React.useMemo(
+        () => (Mode == "light" ? NextUI_Theme.Light : NextUI_Theme.Dark),
+        [Mode, isDark]
     );
 
     return (
         <ColorModeContext.Provider value={colorMode}>
-            <NextThemesProvider
-                defaultTheme="system"
-                attribute="class"
-                value={{
-                    light: NextUI_Theme.Light.className,
-                    dark: NextUI_Theme.Dark.className,
-                }}
-            >
-                <CssBaseline />
-                <NextProvider>
-                    <ThemeProvider theme={theme}>{children}</ThemeProvider>
-                </NextProvider>
-            </NextThemesProvider>
+            <CssBaseline />
+            <NextProvider theme={NTheme}>
+                <ThemeProvider theme={MTheme}>{children}</ThemeProvider>
+            </NextProvider>
         </ColorModeContext.Provider>
     );
 };

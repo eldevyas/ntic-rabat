@@ -147,7 +147,7 @@ export default function Background() {
                     />
                     <Elipse
                         sx={{
-                            background: (theme) => theme.palette.secondary.main,
+                            background: (theme) => theme.palette.primary.main,
                             width: {
                                 xs: "25vh",
                                 sm: "25vh",
@@ -182,7 +182,7 @@ export default function Background() {
                     />
                     <Elipse
                         sx={{
-                            background: (theme) => theme.palette.secondary.main,
+                            background: (theme) => theme.palette.primary.main,
                             width: {
                                 xs: "25vh",
                                 sm: "25vh",
