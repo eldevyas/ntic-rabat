@@ -14,6 +14,7 @@ import { ThemeProvider } from "@mui/material/styles";
 import { NextUI_Theme } from "@/themes/NexUI";
 import { MUI_Theme } from "@/themes/MUI";
 import CssBaseline from "@mui/material/CssBaseline";
+import { CssBaseline as NextCssBaseline } from "@nextui-org/react";
 
 //
 //
@@ -44,40 +45,61 @@ export const ColorModeContext = React.createContext({
     toggleColorMode: () => {},
 });
 
-export const StylingProvider = ({ children }: Props) => {
+const StylingProvider = ({ children }: Props) => {
     const { setTheme } = useNextTheme();
     const { isDark, type } = useTheme();
     const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
 
-    const [Mode, setMode] = React.useState<string>(
-        prefersDarkMode ? "dark" : "light"
-    );
-    const colorMode = React.useMemo(
-        () => ({
-            toggleColorMode: () => {
-                setMode((prevMode) => {
-                    return prevMode === "light" ? "dark" : "light";
-                });
-            },
-        }),
-        [Mode, isDark, type]
+    const [mode, setMode] = useState(() => {
+        const savedMode = localStorage.getItem("colorMode");
+        return savedMode ? savedMode : prefersDarkMode ? "dark" : "light";
+    });
+
+    const toggleColorMode = () => {
+        setMode((prevMode) => {
+            const newMode = prevMode === "light" ? "dark" : "light";
+            localStorage.setItem("colorMode", newMode);
+            setTheme(newMode);
+            return newMode;
+        });
+    };
+
+    useEffect(() => {
+        const savedMode = localStorage.getItem("colorMode");
+        if (savedMode) {
+            setMode(savedMode);
+        }
+    }, []);
+
+    useEffect(() => {
+        const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
+        const handleMediaQueryChange = (e: { matches: any }) => {
+            setMode(e.matches ? "dark" : "light");
+        };
+        mediaQuery.addListener(handleMediaQueryChange);
+        return () => {
+            mediaQuery.removeListener(handleMediaQueryChange);
+        };
+    }, []);
+
+    const colorMode = useMemo(() => ({ toggleColorMode }), []);
+
+    const muiTheme = useMemo(
+        () => (mode === "light" ? MUI_Theme.Light : MUI_Theme.Dark),
+        [mode, isDark, type]
     );
 
-    const MTheme = React.useMemo(
-        () => (Mode == "light" ? MUI_Theme.Light : MUI_Theme.Dark),
-        [Mode, isDark]
-    );
-
-    const NTheme = React.useMemo(
-        () => (Mode == "light" ? NextUI_Theme.Light : NextUI_Theme.Dark),
-        [Mode, isDark]
+    const nextTheme = useMemo(
+        () => (mode === "light" ? NextUI_Theme.Light : NextUI_Theme.Dark),
+        [mode, isDark, type]
     );
 
     return (
         <ColorModeContext.Provider value={colorMode}>
             <CssBaseline />
-            <NextProvider theme={NTheme}>
-                <ThemeProvider theme={MTheme}>{children}</ThemeProvider>
+            {/* <NextCssBaseline /> */}
+            <NextProvider theme={nextTheme}>
+                <ThemeProvider theme={muiTheme}>{children}</ThemeProvider>
             </NextProvider>
         </ColorModeContext.Provider>
     );
@@ -99,14 +121,17 @@ function RootStyleRegistry({ children }: { children: JSX.Element }) {
 
     useServerInsertedHTML(() => {
         return (
-            <style
-                data-emotion={`${cache.key} ${Object.keys(cache.inserted).join(
-                    " "
-                )}`}
-                dangerouslySetInnerHTML={{
-                    __html: Object.values(cache.inserted).join(" "),
-                }}
-            />
+            <>
+                {/* {NextCssBaseline.flush()} */}
+                <style
+                    data-emotion={`${cache.key} ${Object.keys(
+                        cache.inserted
+                    ).join(" ")}`}
+                    dangerouslySetInnerHTML={{
+                        __html: Object.values(cache.inserted).join(" "),
+                    }}
+                />
+            </>
         );
     });
 

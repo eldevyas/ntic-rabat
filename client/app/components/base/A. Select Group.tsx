@@ -20,7 +20,7 @@ const SelectGroup = () => {
     const SendRequest = async () => {
         setLoading(true);
         try {
-            const response = await axios.get("/api/V2/groups");
+            const response = await axios.get("/api/groups/v2");
             setGroups(response.data);
             setLoading(false);
             return response.data;
@@ -32,10 +32,7 @@ const SelectGroup = () => {
     };
 
     const ChangeGroup = (Group: string) => {
-        // router.push({
-        //     pathname: "/emplois",
-        //     query: { GroupID: Group },
-        // });
+        router.push(`/emplois?GroupID=${Group}`);
     };
 
     React.useEffect(() => {

@@ -10,7 +10,7 @@ export const metadata = {
 
 export default async function RootLayout({ children }: any) {
     return (
-        <html lang="en">
+        <html lang="fr" suppressHydrationWarning>
             <body>
                 <MegaProvider>{children}</MegaProvider>
             </body>

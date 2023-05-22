@@ -86,7 +86,7 @@ export default function Background() {
         <>
             <Box
                 sx={{
-                    position: "fixed",
+                    position: "absolute",
                     width: "100%",
                     height: "100%",
                     top: 0,
@@ -100,9 +100,9 @@ export default function Background() {
             >
                 <Box
                     sx={{
-                        position: "absolute",
+                        position: "fixed",
                         width: "100%",
-                        height: "100%",
+                        height: "100vh",
                         top: 0,
                         left: 0,
                         bottom: 0,
@@ -254,9 +254,9 @@ export default function Background() {
                 </Box>
                 <Box
                     sx={{
-                        position: "absolute",
+                        position: "fixed",
                         width: "100%",
-                        height: "100%",
+                        height: "100vh",
                         top: 0,
                         left: 0,
                         bottom: 0,
@@ -359,7 +359,7 @@ export default function Background() {
 
                 <Box
                     sx={{
-                        position: "fixed",
+                        position: "absolute",
                         width: "100%",
                         height: "100%",
                         top: 0,
