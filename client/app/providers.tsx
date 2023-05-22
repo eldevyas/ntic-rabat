@@ -58,16 +58,20 @@ const StylingProvider = ({ children }: Props) => {
     const toggleColorMode = () => {
         setMode((prevMode) => {
             const newMode = prevMode === "light" ? "dark" : "light";
-            localStorage.setItem("colorMode", newMode);
+            if (typeof window !== "undefined") {
+                localStorage.setItem("colorMode", newMode);
+            }
             setTheme(newMode);
             return newMode;
         });
     };
 
     useEffect(() => {
-        const savedMode = localStorage.getItem("colorMode");
-        if (savedMode) {
-            setMode(savedMode);
+        if (typeof window !== "undefined") {
+            const savedMode = localStorage.getItem("colorMode");
+            if (savedMode) {
+                setMode(savedMode);
+            }
         }
     }, []);
 
