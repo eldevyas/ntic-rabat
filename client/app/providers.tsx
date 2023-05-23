@@ -51,8 +51,11 @@ const StylingProvider = ({ children }: Props) => {
     const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
 
     const [mode, setMode] = useState(() => {
-        const savedMode = localStorage.getItem("colorMode");
-        return savedMode ? savedMode : prefersDarkMode ? "dark" : "light";
+        if (typeof window !== "undefined") {
+            const savedMode = localStorage.getItem("colorMode");
+            return savedMode ? savedMode : prefersDarkMode ? "dark" : "light";
+        }
+        return prefersDarkMode ? "dark" : "light";
     });
 
     const toggleColorMode = () => {
