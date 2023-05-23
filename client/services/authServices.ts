@@ -81,7 +81,7 @@ const Register = (credentials: any) => {
 // Confirm Email address
 const ConfirmEmailAddress = async (code: string, email: string) => {
     // Call API
-    let response = await axios.post(`${process.env.NEXT_PUBLIC_HOSTNAME}/api/auth/confirm-email`,
+    let response = await axios.post("/api/auth/confirm-email",
         {
             code,
             email
