@@ -370,7 +370,7 @@ const Desktop = {
                                 height: "100%",
                                 borderRadius: "0.7rem",
                                 border: 1,
-                                // backdropFilter: "blur(0.5rem)",
+                                minHeight: "60px",
                                 borderColor: (theme) =>
                                     theme.palette.mode == "light"
                                         ? alpha("#000", 0.1)
@@ -532,20 +532,13 @@ const Desktop = {
                 return (
                     <td>
                         <Box
-                            sx={{
+                            sx={(theme) => ({
                                 position: "relative",
                                 width: "100%",
                                 height: "100%",
-                                backgroundColor: (theme) =>
-                                    theme.palette.mode == "dark"
-                                        ? alpha("#000", 0.5)
-                                        : theme.palette.error.main,
+                                backgroundColor: theme.palette.error.main,
                                 borderRadius: "0.7rem",
-                                // backdropFilter: "blur(0.5rem)",
-                                color: (theme) =>
-                                    theme.palette.mode == "dark"
-                                        ? theme.palette.error.main
-                                        : theme.palette.error.main,
+                                color: theme.palette.error.main,
                                 display: "flex",
                                 flexDirection: "column",
                                 alignItems: "center",
@@ -556,11 +549,8 @@ const Desktop = {
                                 fontWeight: 800,
                                 userSelect: "none",
                                 border: 1,
-                                borderColor: (theme) =>
-                                    theme.palette.mode == "dark"
-                                        ? alpha(theme.palette.error.main, 0.5)
-                                        : "#fff",
-                            }}
+                                borderColor: "#fff",
+                            })}
                         >
                             <Typography
                                 fontSize={"0.9rem"}
@@ -569,10 +559,7 @@ const Desktop = {
                                 width={"100%"}
                                 textAlign={"left"}
                                 sx={{
-                                    color: (theme) =>
-                                        theme.palette.mode == "light"
-                                            ? "#fff"
-                                            : theme.palette.error.main,
+                                    color: "#fff",
                                 }}
                             >
                                 {Former}
@@ -585,14 +572,8 @@ const Desktop = {
                                 textAlign={"left"}
                                 sx={{
                                     position: "relative",
-                                    backgroundColor: (theme) =>
-                                        theme.palette.mode == "dark"
-                                            ? theme.palette.error.main
-                                            : "#fff",
-                                    color: (theme) =>
-                                        theme.palette.mode == "light"
-                                            ? theme.palette.error.main
-                                            : "#000",
+                                    backgroundColor: "#fff",
+                                    color: (theme) => theme.palette.error.main,
                                     borderRadius: "0.35rem",
                                     padding: "0.25rem",
                                 }}

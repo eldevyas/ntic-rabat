@@ -13,7 +13,8 @@ async function GetPlanning(GroupID: string) {
     const Hostname = process.env.NEXT_PUBLIC_HOSTNAME;
     if (!GroupID || GroupID == "") return [];
     const Response = await fetch(
-        `${Hostname}/api/groups/v2/${GroupID}` // Revalidate every 2 months
+        `${Hostname}/api/groups/v2/${GroupID}`,
+        { cache: "no-store" } // No Caching
     );
     let Planning;
     if (Response.ok) {

@@ -147,6 +147,20 @@ export default function MobileSchedule({
                             </tr>
                         </tbody>
                     ))}
+                {Planning.length == 0 &&
+                    Array(1, 2, 3, 4, 5).map((WeekRow: any, Index: number) => (
+                        <tbody>
+                            <tr>
+                                {Array(1, 2, 3, 4, 5).map(
+                                    (CellIndex: number) => (
+                                        <Desktop.Body.CourseCell.Skeleton
+                                            key={CellIndex}
+                                        />
+                                    )
+                                )}
+                            </tr>
+                        </tbody>
+                    ))}
             </table>
         </Box>
     );
