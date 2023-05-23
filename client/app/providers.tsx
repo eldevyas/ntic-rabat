@@ -50,31 +50,28 @@ const StylingProvider = ({ children }: Props) => {
     const { isDark, type } = useTheme();
     const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
 
-    const [mode, setMode] = useState(() => {
-        if (typeof window !== "undefined") {
+    const [mode, setMode] = useState(prefersDarkMode ? "dark" : "light");
+
+    useEffect(() => {
+        setMode(() => {
             const savedMode = localStorage.getItem("colorMode");
             return savedMode ? savedMode : prefersDarkMode ? "dark" : "light";
-        }
-        return prefersDarkMode ? "dark" : "light";
-    });
+        });
+    }, []);
 
     const toggleColorMode = () => {
         setMode((prevMode) => {
             const newMode = prevMode === "light" ? "dark" : "light";
-            if (typeof window !== "undefined") {
-                localStorage.setItem("colorMode", newMode);
-            }
+            localStorage.setItem("colorMode", newMode);
             setTheme(newMode);
             return newMode;
         });
     };
 
     useEffect(() => {
-        if (typeof window !== "undefined") {
-            const savedMode = localStorage.getItem("colorMode");
-            if (savedMode) {
-                setMode(savedMode);
-            }
+        const savedMode = localStorage.getItem("colorMode");
+        if (savedMode) {
+            setMode(savedMode);
         }
     }, []);
 
@@ -104,7 +101,6 @@ const StylingProvider = ({ children }: Props) => {
     return (
         <ColorModeContext.Provider value={colorMode}>
             <CssBaseline />
-            {/* <NextCssBaseline /> */}
             <NextProvider theme={nextTheme}>
                 <ThemeProvider theme={muiTheme}>{children}</ThemeProvider>
             </NextProvider>

@@ -12,7 +12,9 @@ export const metadata = {
 async function GetPlanning(GroupID: string) {
     const Hostname = process.env.NEXT_PUBLIC_HOSTNAME;
     if (!GroupID || GroupID == "") return [];
-    const Response = await fetch(`${Hostname}/api/groups/v2/${GroupID}`);
+    const Response = await fetch(
+        `${Hostname}/api/groups/v2/${GroupID}` // Revalidate every 2 months
+    );
     let Planning;
     if (Response.ok) {
         Planning = await Response.json();
@@ -23,7 +25,10 @@ async function GetPlanning(GroupID: string) {
 
 async function GetWeather() {
     const Hostname = process.env.NEXT_PUBLIC_HOSTNAME;
-    const Response = await fetch(`${Hostname}/api/weather`);
+    const Response = await fetch(`${Hostname}/api/weather`, {
+        // Revalidate every 1 hour
+        next: { revalidate: 60 * 60 },
+    });
     const Weather = await Response.json();
     return Weather;
 }
@@ -32,7 +37,10 @@ async function GetGroups() {
     const Hostname = process.env.NEXT_PUBLIC_HOSTNAME;
     let Groups = [];
     try {
-        const Response = await fetch(`${Hostname}/api/groups/v2`);
+        const Response = await fetch(`${Hostname}/api/groups/v2`, {
+            // Revalidate every 2 months
+            next: { revalidate: 60 * 60 * 24 * 30 * 2 },
+        });
         Groups = await Response.json();
     } catch (e) {
         console.log(e);
