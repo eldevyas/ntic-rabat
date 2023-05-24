@@ -51,7 +51,7 @@ export default function Loading() {
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
-                background: (theme) => theme.palette.background.default,
+                // background: (theme) => theme.palette.background.default,
             }}
         >
             <Box>

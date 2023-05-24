@@ -14,10 +14,14 @@ export default function SelectGroup({
     GroupID,
     setGroup,
     Groups,
+    Loading,
+    setLoading,
 }: {
     GroupID: string;
     setGroup: (GroupID: string) => void;
     Groups: [];
+    Loading: boolean;
+    setLoading: (loading: boolean) => void;
 }) {
     // Routing Constants
     const NextRouter = useRouter();
@@ -28,6 +32,7 @@ export default function SelectGroup({
         // Give the new GroupID to the query
         if (searchParams?.get("GroupID") != Group) {
             NextRouter.push(`${Pathname}?GroupID=${Group}`);
+            setLoading(true);
         }
     };
 
@@ -37,6 +42,7 @@ export default function SelectGroup({
                 ? searchParams?.get("GroupID")
                 : "") as string
         );
+        setLoading(false);
     }, [searchParams, Pathname]);
 
     const AllOptions = Groups.map((group: { name: any; value: string }) => {
@@ -90,6 +96,7 @@ export default function SelectGroup({
                 // placeholder
                 placeholder="Sélectionnez un groupe"
                 isSearchable={false}
+                isLoading={Loading}
                 onChange={(choice: any) => ChangeGroup(choice.value)}
                 // default value
                 value={

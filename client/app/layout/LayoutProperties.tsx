@@ -16,9 +16,8 @@ const ProgressIndicator = () => {
         <>
             <ProgressBar
                 color="#39b54a"
-                height="10px"
+                height="5px"
                 options={{ showSpinner: false }}
-                shallowRouting
                 appDirectory
             />
         </>

@@ -1,7 +1,4 @@
-import React from "react";
 import Container from "@/app/emplois/components/Container";
-import axios from "axios";
-// import { useSearchParams } from "next/navigation";
 //
 export const metadata = {
     title: "NTIC Rabat - Emplois",
@@ -12,10 +9,9 @@ export const metadata = {
 async function GetPlanning(GroupID: string) {
     const Hostname = process.env.NEXT_PUBLIC_HOSTNAME;
     if (!GroupID || GroupID == "") return [];
-    const Response = await fetch(
-        `${Hostname}/api/groups/v2/${GroupID}`,
-        { cache: "no-store" } // No Caching
-    );
+    const Response = await fetch(`${Hostname}/api/groups/v2/${GroupID}`, {
+        next: { revalidate: 10 },
+    });
     let Planning;
     if (Response.ok) {
         Planning = await Response.json();

@@ -6,10 +6,14 @@ export default function SelectClass({
     GroupID,
     setGroup,
     Groups,
+    Loading,
+    setLoading,
 }: {
     GroupID: string;
     setGroup: (GroupID: string) => void;
     Groups: [];
+    Loading: boolean;
+    setLoading: (loading: boolean) => void;
 }) {
     return (
         <Box
@@ -36,7 +40,13 @@ export default function SelectClass({
                 },
             }}
         >
-            <Select GroupID={GroupID} setGroup={setGroup} Groups={Groups} />
+            <Select
+                GroupID={GroupID}
+                setGroup={setGroup}
+                Groups={Groups}
+                Loading={Loading}
+                setLoading={setLoading}
+            />
         </Box>
     );
 }

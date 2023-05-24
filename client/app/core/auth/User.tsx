@@ -317,8 +317,16 @@ const MobileMenuWithAuth = () => {
 const MobileMenuWithoutAuth = () => {
     const Router = useRouter();
 
-    const Navigate = (HREF: string) => {
-        return Router.push(HREF);
+    const ExecuteAction = (ACTION: string) => {
+        switch (ACTION) {
+            case "Color Mode":
+                colorMode.toggleColorMode();
+                setTheme(isDark ? "light" : "dark");
+                break;
+            default:
+                Router.push(ACTION);
+                break;
+        }
     };
 
     const colorMode = React.useContext(ColorModeContext);
@@ -342,7 +350,7 @@ const MobileMenuWithoutAuth = () => {
                     gap: "0.5rem",
                 }}
                 onAction={(key) => {
-                    return Navigate(key as string);
+                    return ExecuteAction(key as string);
                 }}
             >
                 <Dropdown.Section title="Navigation">
@@ -401,22 +409,14 @@ const MobileMenuWithoutAuth = () => {
                         Contact
                     </Dropdown.Item>
                 </Dropdown.Section>
-                <Dropdown.Section title="Espace Stagiaires">
+                <Dropdown.Section title="Actions">
                     <Dropdown.Item
-                        key="#!"
+                        key="Color Mode"
                         color="default"
                         description="Changer le mode de couleurs."
                         icon={isDark ? <MdDarkMode /> : <MdLightMode />}
                     >
-                        <Text
-                            b
-                            color="inherit"
-                            css={{ d: "flex" }}
-                            onClick={() => {
-                                colorMode.toggleColorMode();
-                                setTheme(isDark ? "light" : "dark");
-                            }}
-                        >
+                        <Text b color="inherit" css={{ d: "flex" }}>
                             Mode {isDark ? "sombre" : "lumineux"}
                         </Text>
                     </Dropdown.Item>
