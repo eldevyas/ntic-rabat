@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use App\Models\Role;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
@@ -25,9 +26,14 @@ class PostsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function TeamPosts()
     {
-        //
+        // $teamPosts = Post::with(['user','comments','likes']);
+        // get all posts where user role = 2
+        $teamPosts = Post::with(['user', 'comments', 'likes'])->whereHas('user', function ($query) {
+            $query->where('role_id', '=', Role::whereName('admin')->firstOrFail()->id);
+        })->get();
+        return response()->json($teamPosts, 200);
     }
 
     /**

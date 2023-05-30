@@ -52,22 +52,6 @@
                     color: $C1;
                     text-align: center;
                     margin: $GlobalGap 0;
-
-                    h1 {
-                        font-size: 1.5rem;
-                        font-weight: 800;
-                        color: $C1;
-
-                        span {
-                            color: $C2;
-                        }
-                    }
-
-                    p {
-                        font-size: 0.85rem;
-                        font-weight: 500;
-                        color: rgba($C1, 50%);
-                    }
                 }
 
                 .FormFooter {
@@ -80,26 +64,25 @@
                     align-items: flex;
                     gap: $GlobalGap;
 
-                    p {
-                        width: 100%;
-                        height: auto;
-                        display: flex;
-                        justify-content: center;
-                        align-items: center;
-                        gap: 5px;
-                        color: $C1;
-                        font-size: 0.85rem;
-                        font-weight: 500;
+                    // p {
+                    //     width: 100%;
+                    //     height: auto;
+                    //     display: flex;
+                    //     justify-content: center;
+                    //     align-items: center;
+                    //     gap: 5px;
+                    //     color: $C1;
+                    //     font-size: 0.85rem;
+                    //     font-weight: 500;
+                    //     text-decoration: none;
+
+                    a {
+                        color: $C2;
+                        font-weight: 800;
                         text-decoration: none;
 
-                        a {
-                            color: $C2;
-                            font-weight: 800;
-                            text-decoration: none;
-
-                            &:hover {
-                                text-decoration: underline;
-                            }
+                        &:hover {
+                            text-decoration: underline;
                         }
                     }
                 }

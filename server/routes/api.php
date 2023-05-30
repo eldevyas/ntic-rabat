@@ -74,6 +74,7 @@ Route::post('/user/update-password', [UserController::class, 'UpdatePassword'])-
 // Posts group routes
 Route::group(['prefix' => 'post'], function () {
     Route::get('/', [PostsController::class, 'index']);
+    Route::get('/team', [PostsController::class, 'TeamPosts']);
     Route::get('/{post}', [PostsController::class, 'show']);
     Route::post('/', [PostsController::class, 'store'])->middleware('auth:api');
     Route::put('/{post}', [PostsController::class, 'update'])->middleware('auth:api');

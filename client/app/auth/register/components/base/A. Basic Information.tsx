@@ -584,18 +584,22 @@ export default function BasicInformation(props: any) {
 
             {userNameIsChecking || emailIsChecking ? (
                 <LoadingButton
-                    variant="text"
-                    className="btnPrimary Loading"
+                    variant="contained"
+                    color="primary"
+                    // className="btnPrimary Loading"
                     loadingPosition="center"
                     loading
                     sx={{
                         cursor: "default !important",
+                        width: "100%",
+                        minHeight: 50,
                     }}
                 />
             ) : (
                 <Button
-                    variant="text"
-                    className="btnPrimary"
+                    variant="contained"
+                    color="primary"
+                    sx={{ width: "100%" }}
                     onClick={() => {
                         handleNext();
                     }}

@@ -31,8 +31,8 @@ export default function Announces() {
             {/* <h1>Annonces d'administration</h1> */}
             <div className="Cards">
                 {announces
-                    ? announces.map((announce) => {
-                          return <Announce {...announce} />;
+                    ? announces.map((announce, index) => {
+                          return <Announce {...announce} key={index} />;
                       })
                     : null}
             </div>

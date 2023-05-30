@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import Loading from "@/app/core/Loading";
 import "./Register.scss";
 import RegisterComponent from "./components/Register";
+import { Box } from "@mui/material";
 
 const Register = () => {
     const { data: session, status }: any = useSession();
@@ -32,13 +33,25 @@ const Register = () => {
             {status === "authenticated" || session || status === "loading" ? (
                 <Loading />
             ) : (
-                <div className="Register">
-                    <div className="RegisterContainer">
+                <Box
+                    className="Register"
+                    sx={{
+                        width: "100%",
+                        height: "100%",
+                        minHeight: "100vh",
+                        overflow: "hidden",
+                        position: "relative",
+                        "*": {
+                            fontFamily: "inherit !important",
+                        },
+                    }}
+                >
+                    <Box className="RegisterContainer">
                         <div className="wrapper">
                             <RegisterComponent />
                         </div>
-                    </div>
-                </div>
+                    </Box>
+                </Box> 
             )}
         </>
     );
