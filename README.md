@@ -84,4 +84,4 @@ The user should have some services on his dashboard, and we’ll be focusing on 
 
 ## ✏️ Project’s USE CASE Diagram
 
-[https://www.figma.com/file/E2pdqofyV2xQ0O1RCG9yQw/Use-Case-Diagram?node-id=0%3A1](https://www.figma.com/file/E2pdqofyV2xQ0O1RCG9yQw/Use-Case-Diagram?node-id=0%3A1)
+[https://www.figma.com/file/E2pdqofyV2xQ0O1RCG9yQw/Use-Case-Diagram?node-id=0%3A1](Prototype UI/UX Link)

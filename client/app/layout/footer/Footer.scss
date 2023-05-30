@@ -1,0 +1,157 @@
+@import "@/app/global/Global";
+
+.Footer {
+    background: $C1;
+    color: $C4;
+    padding: 1rem 2rem;
+    padding-bottom: 5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 2rem;
+
+    // All Divs same width
+    >div {
+        flex: 1;
+        min-width: 250px;
+    }
+
+    .Infos {
+        h3 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: $C4;
+            max-width: 80%;
+        }
+
+        p {
+            font-size: 0.8rem;
+            font-weight: 400;
+            color: $C4;
+            margin-bottom: 1rem;
+            max-width: 80%;
+            opacity: 75%;
+        }
+
+        button {
+            background: $C4;
+            color: $C1;
+            font-size: 0.8rem;
+            font-family: inherit;
+            text-transform: none;
+            border-radius: 1rem;
+            font-weight: 700;
+            padding: 0.5rem 1.15rem;
+        }
+    }
+
+    .Team {
+        position: relative;
+        padding-top: 100px;
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+        flex-direction: column;
+
+        h3 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: $C4;
+        }
+
+        p {
+            font-size: 0.8rem;
+            font-weight: 400;
+            color: $C4;
+            margin-bottom: 1rem;
+        }
+
+        .Informations {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: flex-start;
+            gap: 0.5rem;
+
+            .Developer {
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+                gap: 0.5rem;
+
+                .Name {
+                    color: $C3;
+                    font-size: 0.8rem;
+                    font-weight: 500;
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+
+    .Contact {
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+        flex-direction: column;
+        position: relative;
+        padding-top: 100px;
+
+        h3 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: $C4;
+            margin-bottom: 1rem;
+        }
+
+        .Informations {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: flex-start;
+            gap: 0.5rem;
+
+            .Row {
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+                gap: 0.5rem;
+
+                .Text {
+                    font-size: 0.8rem;
+                    font-weight: 400;
+                    color: $C4;
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .Footer {
+        display: flex;
+        flex-wrap: wrap;
+        width: 100%;
+        gap: 50px;
+        justify-content: center;
+        align-items: center;
+        padding: 2rem $HorizontalPadding;
+
+        .Team {
+            padding-top: 0px;
+            padding: 0;
+            display: flex;
+        }
+
+        .Contact {
+            padding-top: 0px;
+            padding: 0px;
+            display: flex;
+            width: 100%;
+        }
+    }
+}

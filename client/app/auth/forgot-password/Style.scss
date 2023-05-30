@@ -1,0 +1,174 @@
+@import "@/app/global/Global.scss";
+
+.ForgotPassword {
+    width: 100%;
+    height: 100%;
+    min-height: 100vh;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .Container {
+        position: relative;
+        width: 100%;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        z-index: 0 !important;
+        max-width: 400px;
+
+        .Form {
+            // width: 50%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+            .FormTitle {
+                width: 100%;
+                height: auto;
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-start;
+                align-items: flex;
+                gap: $GlobalGap / 2;
+                color: $C1;
+                text-align: center;
+                margin: $GlobalGap 0;
+
+                h1 {
+                    font-size: 1.5rem;
+                    font-weight: 800;
+                    color: $C1;
+
+                    span {
+                        color: $C2;
+                    }
+                }
+
+                p {
+                    font-size: 0.85rem;
+                    font-weight: 500;
+                    color: rgba($C1, 50%);
+                }
+            }
+        }
+
+        .Form-group {
+            width: 100%;
+            height: auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: flex-start;
+
+            .Input {
+                position: relative;
+                width: 100%;
+                height: 50px;
+                border-radius: $FormsRadius;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background-color: #fff;
+
+                &:not(:first-child) {
+                    margin-top: 15px;
+                }
+
+                // has focused input
+                &:has(input:focus) {
+                    .Input-icon {
+                        background-color: $C2;
+                        // border
+                        border: 2.5px solid rgba($C4, 0.15);
+
+                        svg {
+                            color: $C4;
+                        }
+                    }
+
+                    input {
+                        outline: none;
+                        background: $G4;
+                        color: #000;
+
+                        &::placeholder {
+                            color: rgba(#000, 0.5);
+                        }
+                    }
+                }
+
+                input {
+                    width: 100%;
+                    height: 100%;
+                    border: none;
+                    outline: none;
+                    font-size: 14px;
+                    font-weight: 700;
+                    color: rgba($C1, 0.5);
+                    text-align: left;
+                    padding: 0 $FormsRadius;
+                    padding-left: 65px;
+                    padding-right: 65px;
+                    border-radius: $FormsRadius;
+                    transition: all 0.3s ease;
+
+                    &::placeholder {
+                        color: rgba($C1, 0.25);
+                    }
+                }
+
+                .Input-icon {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 50px;
+                    height: 100%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    background-color: $C2;
+                    border-radius: $FormsRadius;
+
+                    svg {
+                        width: 20px;
+                        height: 20px;
+                        color: $C4;
+                    }
+                }
+            }
+        }
+    }
+
+    .btnPrimary {
+        @include DefaultButton($C2);
+        width: 100%;
+        margin-top: 15px;
+        height: 50px;
+        box-shadow: none;
+        background-color: $C2;
+        color: #fff !important;
+        background-color: rgba($C2, 1);
+        border: 2.5px solid rgba($C4, 0.25);
+        pointer-events: all;
+
+        &.Loading {
+            background-color: rgba($C2, 1);
+            border: 2.5px solid rgba($C4, 0.25);
+            pointer-events: all;
+            text-align: center;
+            cursor: not-allowed;
+
+            svg {
+                color: $C4;
+            }
+        }
+    }
+}

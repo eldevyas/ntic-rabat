@@ -234,9 +234,19 @@ class UserController extends Controller
         $email = $request->email;
         $user_token = DB::table('email_verifications')->where('email', $email)->where('code', $code)
             ->first();
+
+        $Debug_Response = [
+            "Response" => $user_token,
+            "Email of Request" => $email,
+            "Code of Request" => $code,
+            "Email Found" => DB::table('email_verifications')->where('email', $email)->first(),
+            "Code Found" => DB::table('email_verifications')->where('code', $code)->first(),
+        ];
+
         if (!$user_token) {
             return response()->json([
-                'message' => 'Invalid code'
+                'message' => 'Invalid code - No match.',
+                'debug' => $Debug_Response
             ], 401);
         } else if ($user_token) {
             $user = User::where('email', $email)->first();

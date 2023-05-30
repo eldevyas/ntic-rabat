@@ -1,0 +1,122 @@
+@import "@/app/global/Global.scss";
+
+.VerificationPage {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    .Content {
+        @include GlobalPadding();
+        width: 100%;
+        max-width: 500px;
+        min-height: 500px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background-color: transparent;
+        gap: $GlobalGap;
+        .Text {
+            text-align: start;
+            .Title {
+                font-size: auto;
+                font-weight: 800;
+                margin-bottom: 1rem;
+                font-size: auth;
+            }
+            .Paragraph {
+                font-size: auth;
+                font-weight: 500;
+                margin-bottom: 1rem;
+                color: rgba(0, 0, 0, 0.5);
+                .Bold {
+                    font-weight: 800;
+                    color: inherit;
+                    &:is(a) {
+                        color: $C3;
+                        // hover
+                        &:hover {
+                            color: rgba($C3, 0.75);
+                        }
+                    }
+                }
+            }
+        }
+        .CodeContainer {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            position: relative;
+            .Code {
+                font-size: 2rem;
+                font-weight: 800;
+                display: flex;
+                align-items: stretch;
+                justify-content: space-between;
+                min-height: 100px;
+                width: 100%;
+                gap: $GlobalGap;
+                .CodeNumber {
+                    width: 100%;
+                    height: auto;
+                    border: none;
+                    border-radius: $FormsRadius;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    font-size: 2rem;
+                    font-weight: 800;
+                    background-color: white;
+                    color: rgba($C1, 0.25);
+                    box-shadow: 0 0px 250px 0px rgba(0, 0, 0, 0.25);
+                }
+                .Empty {
+                    outline: none;
+                }
+                .Filled {
+                    color: $C2;
+                    background-color: rgba($color: $C2, $alpha: 0.2);
+                }
+                .Current {
+                    color: $C4;
+                    background-color: $C2;
+                    color: $C4;
+                }
+            }
+            .CodeInput {
+                position: absolute;
+                top: 0;
+                left: 0;
+                opacity: 0;
+                width: 100%;
+                height: 100%;
+                border: none;
+                border-radius: $FormsRadius;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 2rem;
+                font-weight: 800;
+                background-color: white;
+                color: $C1;
+                box-shadow: 0 0px 250px 0px rgba(0, 0, 0, 0.25);
+            }
+        }
+        .Buttons {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: stretch;
+            width: 100%;
+            gap: $GlobalGap;
+            overflow: hidden;
+            .Loading {
+                background-color: rgba($C2, 0.25);
+                padding: 20px;
+            }
+        }
+    }
+}

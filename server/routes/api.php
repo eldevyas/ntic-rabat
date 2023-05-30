@@ -25,36 +25,53 @@ use App\Http\Middleware\CheckResetPasswordToken;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
 Route::apiResource('annonces', AnnonceController::class);
+
 // Make middleware for store route in annonces api resource
 Route::post('/annonces', [AnnonceController::class, 'store'])->middleware('auth:api');
+
 Route::delete('/annonces/{id}', [AnnonceController::class, 'delete'])->middleware('auth:api');
+
 Route::put('/annonces/{id}', [AnnonceController::class, 'update'])->middleware('auth:api');
+
 Route::post('/login', [UserController::class, 'login']);
+
 // login with token
 Route::post('/register', [UserController::class, 'register']);
+
 Route::post('/logout', [UserController::class, 'logout'])->middleware('auth:api');
+
 Route::apiResource('projects', ProjectController::class);
 
 // Route to check username availability
 Route::get('/users/check-username/{username}', [UserController::class, 'checkUsername']);
+
 // Route to check email availability
 Route::get('/users/check-email/{email}', [UserController::class, 'checkEmail']);
+
 // Forget password route for sending email
 Route::post('/auth/forget-password', [UserController::class, 'forgetPassword']);
-// reset password route
+
+// Reset password route
 Route::post('/reset-password', [UserController::class, 'resetPasswordByToken'])->middleware('CheckResetPasswordToken');
-// route for email verification
+
+// Route for email verification
 Route::post('/auth/verify-email', [UserController::class, 'verifyEmailCode']);
-// check if email is verified
+
+// Check if email is verified
 Route::post('/auth/check-email-verified', [UserController::class, 'checkEmailVerified']);
-// resend email verification code
+
+// Resend email verification code
 Route::post('auth/resend-confirmation', [UserController::class, 'sendEmailVerification']);
-// view user profile
+
+// View user profile
 Route::get('/user/{username}', [UserController::class, 'show']);
-// update password
+
+// Update password
 Route::post('/user/update-password', [UserController::class, 'UpdatePassword'])->middleware('auth:api');
-// posts group routes
+
+// Posts group routes
 Route::group(['prefix' => 'post'], function () {
     Route::get('/', [PostsController::class, 'index']);
     Route::get('/{post}', [PostsController::class, 'show']);
@@ -62,15 +79,14 @@ Route::group(['prefix' => 'post'], function () {
     Route::put('/{post}', [PostsController::class, 'update'])->middleware('auth:api');
     Route::delete('/{post}', [PostsController::class, 'destroy'])->middleware('auth:api');
 });
-// group like routes
+
+// Group like routes
 Route::group(['prefix' => 'post'], function () {
     Route::post('/{post}/like', [LikesController::class, 'like'])->middleware('auth:api');
 });
 
-// group comment routes
+// Group comment routes
 Route::group(['prefix' => 'post'], function () {
     Route::post('/{post}/comment', [CommentsController::class, 'store'])->middleware('auth:api');
     Route::delete('/{post}/comment/{comment}', [CommentsController::class, 'destroy'])->middleware('auth:api');
 });
-
-
