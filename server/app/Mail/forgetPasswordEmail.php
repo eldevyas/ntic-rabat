@@ -13,7 +13,6 @@ class forgetPasswordEmail extends Mailable
 {
     use Queueable, SerializesModels;
     public $token;
-    public $code;
     public $email;
 
     /**
@@ -21,11 +20,10 @@ class forgetPasswordEmail extends Mailable
      *
      * @return void
      */
-    public function __construct($token, $code, $email)
+    public function __construct($token, $email)
     {
 
         $this->token = $token;
-        $this->code = $code;
         $this->email = $email;
     }
 
@@ -50,7 +48,6 @@ class forgetPasswordEmail extends Mailable
     {
         return $this->view('mail.forgetPasswordEmail')->with([
             'token' => $this->token,
-            'code' => $this->code,
             'email' => $this->email,
         ]);
     }

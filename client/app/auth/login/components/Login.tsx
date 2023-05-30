@@ -12,6 +12,7 @@ import { redirect } from "react-router";
 import { signIn, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { Typography } from "@mui/material";
 
 const LoginComponent = () => {
     const Router = useRouter();
@@ -94,13 +95,36 @@ const LoginComponent = () => {
     return (
         <form className="Form">
             <div className="FormTitle">
-                <h1>
-                    Connexion sur <span>NTIC Connect</span>
-                </h1>
-                <p>
+                <Typography
+                    variant="h5"
+                    component="h5"
+                    align="center"
+                    fontWeight={600}
+                    gutterBottom
+                    color={"text.primary"}
+                >
+                    Connexion sur{" "}
+                    <Typography
+                        variant="h5"
+                        component="span"
+                        align="center"
+                        fontWeight={600}
+                        color={"primary"}
+                    >
+                        NTIC Connect
+                    </Typography>
+                </Typography>
+                <Typography
+                    variant="body1"
+                    component="p"
+                    align="center"
+                    fontWeight={400}
+                    gutterBottom
+                    color={"text.secondary"}
+                >
                     Connectez-vous à votre compte pour accéder à votre tableau
                     de bord et à vos données.
-                </p>
+                </Typography>
             </div>
             <div className="Form-group">
                 <div className="Input Username">
@@ -141,7 +165,15 @@ const LoginComponent = () => {
                     <input type="checkbox" ref={rememberMeRef} />
                     <span></span>
                 </label>
-                Se souvenir de moi
+                <Typography
+                    variant="body2"
+                    component="span"
+                    fontWeight={400}
+                    gutterBottom
+                    color={"text.secondary"}
+                >
+                    Se souvenir de moi
+                </Typography>
             </div>
 
             {isLoading ? (
@@ -175,10 +207,17 @@ const LoginComponent = () => {
                 Mot de passe oublié ?
             </Button>
             <div className="FormFooter">
-                <p>
+                <Typography
+                    variant="body2"
+                    component="p"
+                    align="center"
+                    fontWeight={400}
+                    gutterBottom
+                    color={"text.secondary"}
+                >
                     Vous n'avez pas un compte ?{" "}
                     <Link href="/auth/register">Inscrivez-vous</Link>
-                </p>
+                </Typography>
             </div>
         </form>
     );

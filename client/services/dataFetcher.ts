@@ -50,18 +50,44 @@ export const getWeather = async () => {
             }
         );
     return Weather;
-    // Currently working properly✅
-    // Let's fix the Announces.
 }
 
 
 // Get announces
 export const getAnnounces = async () => {
-    const API_URL = process.env.SERVER_PUBLIC_API_URL;
-
     let Data: { data?: [] } = {};
 
-    await axios.get(`${API_URL}/annonces`).then(
+    await axios.get(`${process.env.SERVER_PUBLIC_API_URL}/annonces`).then(
+        (response) => {
+            if (response.status = 200) {
+                return Data = response.data;
+            }
+            console.log(response);
+            pushFailure('La connexion avec l\'API des annonces s\est échouée, vérifiez votre connexion internet.');
+            return Data = {};
+        }
+    ).catch(
+        (error) => {
+            pushFailure('La connexion avec l\'API des annonces s\est échouée, vérifiez votre connexion internet.');
+            pushWarning(error.message);
+            return Data = {};
+        }
+    );
+
+    if (
+        Data == undefined
+    ) {
+        pushFailure('La connexion avec l\'API des annonces s\est échouée, vérifiez votre connexion internet.');
+        return Data;
+    } else {
+        return Data;
+    }
+}
+
+export const getTeamPosts = async () => {
+    let Data: { data?: [] } = {};
+
+    await axios.get(`${process.env.SERVER_PUBLIC_API_URL}/post/team`).then(
         (response) => {
             if (response.status = 200) {
                 return Data = response.data;

@@ -258,7 +258,7 @@ const Service = () => {
                 {" "}
                 {Cards.map((card, index) => {
                     return (
-                        <Grid item xs={16} md={8} lg={4} xl={4}>
+                        <Grid item xs={16} md={8} lg={4} xl={4} key={index}>
                             <Card {...card} key={index} />
                         </Grid>
                     );

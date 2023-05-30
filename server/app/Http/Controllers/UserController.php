@@ -147,56 +147,55 @@ class UserController extends Controller
     public function forgetPassword(Request $request)
     {
         $email = $request->email;
-        $user = User::where('email', $email)->first();
-        if (!$user) {
+        if(User::where('email',$email)->doesntExist()){
             return response()->json([
-                'message' => 'Email not found'
-            ], 401);
+                'message' => 'User not found'
+            ], 404);
         }
+        $token = Str::random(20);
+        try{
 
-        $token = $user->createToken('api-application')->accessToken;
-        $code = rand(10000, 99999);
-        DB::table('password_resets')->where('email', $email)->delete();
-        DB::table('password_resets')->insert([
-            'email' => $user->email,
-            'token' => $token,
-            'code' => $code,
-            'created_at' => Carbon::now()
-        ]);
+            DB::table('password_resets')->insert([
+                'email' => $email,
+                'token' => $token,
+                'code'  => rand(10000,99999),
+            ]);
+        }catch(\Exception $e){
+            return response()->json([
+                'message' => $e->getMessage()
+            ], 500);
+        }
         // Send email
         try {
-            Mail::to($email)->send(new forgetPasswordEmail($token, $code, $email));
-            return response()->json([
-                'message' => 'Reset password mail was sent to your email'
-            ], 200);
-            // delete all the values from the table
+            Mail::to($email)->send(new forgetPasswordEmail($token,$email));
+            $success['message'] = 'Reset password mail was sent to your email';
+            return response()->json($success, 200);
         } catch (\Exception $e) {
-            return response()->json([
-                'message' => 'Error sending email' . $e->getMessage()
-            ], 500);
+            $success['message'] = 'Error sending email ' . $e->getMessage();
+            return response()->json($success, 401);
         }
     }
     public function resetPasswordByToken(Request $request)
     {
-        if (!$request->token || !$request->email) {
-            return response()->json([
-                'message' => 'Invalid request'
-            ], 400);
-        }
-        $token = urldecode($request->token);
-        $email = urldecode($request->email);
-        $email = Crypt::decrypt($email);
-        $user_token = DB::table('password_resets')->where('email', $email)->where('token', $token)
-            ->first();
-        if (!$user_token) {
+        $token = $request->token;
+        // $email = $request->email;
+        if(!$passwordResets = DB::table('password_resets')->where('token',$token)->first()){
             return response()->json([
                 'message' => 'Invalid token'
             ], 404);
-        } else {
-            return response()->json([
-                'message' => 'Valid token'
-            ], 200);
         }
+        if(!$user = User::where('email',$passwordResets->email)->first()){
+            return response()->json([
+                'message' => 'User not found'
+            ], 404);
+        }
+        $user->password = bcrypt($request->password);
+        $user->save();
+        // delete token
+        DB::table('password_resets')->where('token',$token)->delete();
+        return response()->json([
+            'message' => 'Password reset successfully'
+        ], 200);
     }
     public function verifyEmailToken(Request $request)
     {

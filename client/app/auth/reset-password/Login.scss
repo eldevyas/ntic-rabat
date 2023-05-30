@@ -17,7 +17,8 @@
 
     .LoginContainer {
         position: relative;
-        width: 100%;
+        width: 350px;
+        margin: 0 auto;
         height: 100%;
         min-height: 75vh;
         display: flex;
@@ -25,9 +26,6 @@
         justify-content: center;
         align-items: center;
         z-index: 0 !important;
-
-        .wrapper {
-            width: 350px;
 
             @include respond-to('small') {
                 width: 90%;
@@ -95,6 +93,7 @@
                 flex-direction: column;
                 justify-content: flex-start;
                 align-items: flex-start;
+                margin-bottom: 1rem;
 
                 .Input {
                     position: relative;
@@ -314,6 +313,5 @@
                     background-color: rgba($C2, 0.4);
                 }
             }
-        }
     }
 }

@@ -5,6 +5,8 @@ import Button from "@mui/material/Button";
 import * as Display from "@/services/displayAlert";
 import LoadingButton from "@mui/lab/LoadingButton";
 import EmailIcon from "@mui/icons-material/Email";
+import { Typography } from "@mui/material";
+
 // Styling
 import "./Style.scss";
 
@@ -44,19 +46,43 @@ const ForgotPassword = () => {
             <div className="Container">
                 <div className="Form">
                     <div className="FormTitle">
-                        <h1>
-                            Récupérez votre accès à <span>Ntic Connect</span>
-                        </h1>
+                        <Typography
+                            variant="h4"
+                            component="h4"
+                            align="center"
+                            fontWeight={600}
+                            gutterBottom
+                            color={"text.primary"}
+                        >
+                            Récupérez votre accès à{" "}
+                            <Typography
+                                variant="h4"
+                                component="h4"
+                                align="center"
+                                fontWeight={600}
+                                gutterBottom
+                                color={"primary"}
+                            >
+                                Ntic Connect
+                            </Typography>
+                        </Typography>
 
-                        <p>
-                            <p>
-                                Entrez votre adresse email enregistrée avec
-                                votre compte Ntic Rabat pour recevoir un lien de
-                                réinitialisation de mot de passe. Nous vous
-                                aiderons à retrouver l'accès à votre compte en
-                                toute sécurité.
-                            </p>
-                        </p>
+                        {/* <p> */}
+                        <Typography
+                            variant="body1"
+                            component="p"
+                            align="center"
+                            fontWeight={400}
+                            gutterBottom
+                            color={"text.secondary"}
+                        >
+                            Entrez votre adresse email enregistrée avec votre
+                            compte Ntic Rabat pour recevoir un lien de
+                            réinitialisation de mot de passe. Nous vous aiderons
+                            à retrouver l'accès à votre compte en toute
+                            sécurité.
+                        </Typography>
+                        {/* </p> */}
                     </div>
                     <div className="Form-group">
                         <div className="Input Username">

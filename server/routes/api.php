@@ -54,7 +54,7 @@ Route::get('/users/check-email/{email}', [UserController::class, 'checkEmail']);
 Route::post('/auth/forget-password', [UserController::class, 'forgetPassword']);
 
 // Reset password route
-Route::post('/reset-password', [UserController::class, 'resetPasswordByToken'])->middleware('CheckResetPasswordToken');
+Route::post('/reset-password', [UserController::class, 'resetPasswordByToken']);
 
 // Route for email verification
 Route::post('/auth/verify-email', [UserController::class, 'verifyEmailCode']);
@@ -74,6 +74,7 @@ Route::post('/user/update-password', [UserController::class, 'UpdatePassword'])-
 // Posts group routes
 Route::group(['prefix' => 'post'], function () {
     Route::get('/', [PostsController::class, 'index']);
+    Route::get('/team', [PostsController::class, 'TeamPosts']);
     Route::get('/{post}', [PostsController::class, 'show']);
     Route::post('/', [PostsController::class, 'store'])->middleware('auth:api');
     Route::put('/{post}', [PostsController::class, 'update'])->middleware('auth:api');
