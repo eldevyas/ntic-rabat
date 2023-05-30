@@ -32,7 +32,14 @@ export default function Container({
     // State for data
     // GroupID state
     const [StateGroupID, setGroupID] = useState(GroupID);
-    const [StatePlanning, setGroupSchedule] = useState(Planning);
+    const [StatePlanning, setGroupPlanning] = useState(Planning);
+    const [StateLoading, setGroupLoading] = useState(false);
+
+    useEffect(() => {
+        setGroupID(GroupID);
+        setGroupPlanning(Planning);
+        setGroupLoading(false);
+    }, [GroupID, Planning]);
 
     // Change group function
     const setGroup = (Group: string) => {
@@ -42,6 +49,17 @@ export default function Container({
             setGroupID(QueryGroupID as string);
         }
     };
+
+    useEffect(() => {
+        setWidth(window.innerWidth);
+        function handleResize() {
+            setWidth(window.innerWidth);
+        }
+        window.addEventListener("resize", handleResize);
+        return () => {
+            window.removeEventListener("resize", handleResize);
+        };
+    }, []);
 
     return (
         <Box
@@ -53,24 +71,30 @@ export default function Container({
                 width: "100%",
                 minHeight: "50vh",
                 color: "text.primary",
+                background: "transparent",
+                backdropFilter: "blur(1rem)",
             }}
         >
             <SelectClass
                 GroupID={StateGroupID}
                 setGroup={setGroup}
                 Groups={Groups}
+                Loading={StateLoading}
+                setLoading={setGroupLoading}
             />
             {width && width < 768 ? (
-                <Schedule
-                    GroupID={GroupID}
-                    Planning={Planning}
+                <MobileSchedule
+                    GroupID={StateGroupID}
+                    Planning={StatePlanning}
                     Weather={Weather}
+                    Loading={StateLoading}
                 />
             ) : (
                 <Schedule
-                    GroupID={GroupID}
-                    Planning={Planning}
+                    GroupID={StateGroupID}
+                    Planning={StatePlanning}
                     Weather={Weather}
+                    Loading={StateLoading}
                 />
             )}
         </Box>

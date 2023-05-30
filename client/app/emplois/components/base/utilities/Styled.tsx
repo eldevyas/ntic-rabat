@@ -2,6 +2,83 @@ import { Grid, Tooltip, Typography, Skeleton, Box } from "@mui/material";
 import * as WeatherIcon from "./WeatherIcons";
 import { alpha, styled } from "@mui/material/styles";
 
+// Switch function
+function SwitchIcon(Icon: string) {
+    switch (Icon) {
+        case "Sun":
+            return <WeatherIcon.Sunny />;
+        case "Fog":
+            return <WeatherIcon.Fog />;
+        case "Rain":
+            return <WeatherIcon.Rainy />;
+        case "Thunder":
+            return <WeatherIcon.Thunder />;
+        case "Cloudy":
+            return <WeatherIcon.Cloudy />;
+        case "CloudySun":
+            return <WeatherIcon.CloudySun />;
+        case "Snow":
+            return <WeatherIcon.Snowy />;
+        default:
+            return <WeatherIcon.Sunny />;
+    }
+}
+
+const Cells = {
+    Shared: {
+        position: "relative",
+        width: "100%",
+        height: "100%",
+        minHeight: 80,
+        borderRadius: "0.7rem",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "flex-end",
+        gap: "0.35rem",
+        padding: "0.5rem",
+        fontSize: "0.9rem",
+        fontWeight: 800,
+        userSelect: "none",
+        border: 1,
+        borderColor: "#fff",
+    },
+    Presential: {
+        color: "#141e30",
+        backgroundColor: "#141e30",
+        backgroundImage: "linear-gradient(to right, #141e30, #243b55)",
+    },
+    Online: {
+        color: "#11998e",
+        backgroundColor: "#11998e",
+        backgroundImage: "linear-gradient(to right, #11998e, #38ef7d)",
+    },
+    Absent: {
+        color: "#EB3349",
+        backgroundColor: "#EB3349",
+        backgroundImage: "linear-gradient(to right, #F45C43, #EB3349)",
+    },
+    MobileShared: {
+        position: "relative",
+        width: "fit-content",
+        flex: 1,
+        height: "100%",
+        borderRadius: "0.7rem",
+        border: 1,
+        borderColor: alpha("#fff", 0.5),
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "flex-start",
+        justifyContent: "flex-end",
+        gap: "0.35rem",
+        padding: "0.5rem",
+        fontSize: "0.9rem",
+        fontWeight: 800,
+        userSelect: "none",
+        minHeight: 70,
+    },
+};
+
 const Desktop = {
     Header: {
         SpecialCell: ({ GroupID }: { GroupID: string }) => {
@@ -28,7 +105,7 @@ const Desktop = {
                                           0.75
                                       )} 0%, ${alpha("#000", 1)} 100%)`
                                     : `linear-gradient(135deg, #29ABE2 0%, #4BB8E7 100%)`,
-                            minHeight: 40,
+                            minHeight: 50,
                             borderRadius: "0.7rem",
                             color: (theme) => "#fff",
                             display: "flex",
@@ -55,6 +132,7 @@ const Desktop = {
                             width: "100%",
                             height: "100%",
                             border: 1,
+                            minHeight: 50,
                             borderColor: (theme) =>
                                 theme.palette.mode == "light"
                                     ? alpha("#000", 0.1)
@@ -92,28 +170,6 @@ const Desktop = {
         }: {
             [key: string]: string | any;
         }) => {
-            // Switch function
-            function SwitchIcon(Icon: string) {
-                switch (Icon) {
-                    case "Sun":
-                        return <WeatherIcon.Sunny />;
-                    case "Fog":
-                        return <WeatherIcon.Fog />;
-                    case "Rain":
-                        return <WeatherIcon.Rainy />;
-                    case "Thunder":
-                        return <WeatherIcon.Thunder />;
-                    case "Cloudy":
-                        return <WeatherIcon.Cloudy />;
-                    case "CloudySun":
-                        return <WeatherIcon.CloudySun />;
-                    case "Snow":
-                        return <WeatherIcon.Snowy />;
-                    default:
-                        return <WeatherIcon.Sunny />;
-                }
-            }
-
             // Get weather icon
             const FinalWeatherIcon = SwitchIcon(Icon);
 
@@ -160,9 +216,9 @@ const Desktop = {
                                               0.75
                                           )} 0%, ${alpha("#000", 1)} 100%)`
                                         : `linear-gradient(135deg, #29ABE2 0%, #4BB8E7 100%)`,
-                                minHeight: 40,
+                                minHeight: 80,
                                 borderRadius: "0.7rem",
-                                color: (theme) => "#fff",
+                                color: "#fff",
                                 display: "flex",
                                 flexDirection: "column",
                                 alignItems: "center",
@@ -370,7 +426,7 @@ const Desktop = {
                                 height: "100%",
                                 borderRadius: "0.7rem",
                                 border: 1,
-                                // backdropFilter: "blur(0.5rem)",
+                                minHeight: 80,
                                 borderColor: (theme) =>
                                     theme.palette.mode == "light"
                                         ? alpha("#000", 0.1)
@@ -392,8 +448,8 @@ const Desktop = {
                                 position: "relative",
                                 width: "100%",
                                 height: "100%",
+                                minHeight: 80,
                                 borderRadius: "0.7rem",
-                                // backdropFilter: "blur(0.5rem)",
                                 border: 1,
                                 borderColor: (theme) =>
                                     theme.palette.mode == "light"
@@ -418,25 +474,10 @@ const Desktop = {
                 return (
                     <td>
                         <Box
-                            sx={(theme) => ({
-                                position: "relative",
-                                width: "100%",
-                                height: "100%",
-                                backgroundColor: theme.palette.primary.main,
-                                borderRadius: "0.7rem",
-                                color: theme.palette.primary.main,
-                                display: "flex",
-                                flexDirection: "column",
-                                alignItems: "center",
-                                justifyContent: "flex-end",
-                                gap: "0.35rem",
-                                padding: "0.5rem",
-                                fontSize: "0.9rem",
-                                fontWeight: 800,
-                                userSelect: "none",
-                                border: 1,
-                                borderColor: "#fff",
-                            })}
+                            sx={{
+                                ...Cells.Shared,
+                                ...Cells.Presential,
+                            }}
                         >
                             <Typography
                                 fontSize={"0.9rem"}
@@ -444,6 +485,7 @@ const Desktop = {
                                 zIndex={10}
                                 width={"100%"}
                                 textAlign={"left"}
+                                whiteSpace={"nowrap"}
                                 sx={{
                                     color: "#fff",
                                 }}
@@ -456,13 +498,14 @@ const Desktop = {
                                 zIndex={10}
                                 width={"100%"}
                                 textAlign={"left"}
+                                whiteSpace={"nowrap"}
                                 sx={{
                                     position: "relative",
                                     backgroundColor: "#fff",
-                                    color: (theme) =>
-                                        theme.palette.primary.main,
+                                    color: Cells.Presential.color,
                                     borderRadius: "0.35rem",
-                                    padding: "0.25rem",
+                                    padding: "0.25rem 0.5rem",
+                                    mixBlendMode: "screen",
                                 }}
                             >
                                 {Hall}
@@ -475,25 +518,10 @@ const Desktop = {
                 return (
                     <td>
                         <Box
-                            sx={(theme) => ({
-                                position: "relative",
-                                width: "100%",
-                                height: "100%",
-                                backgroundColor: theme.palette.secondary.main,
-                                borderRadius: "0.7rem",
-                                color: theme.palette.secondary.main,
-                                display: "flex",
-                                flexDirection: "column",
-                                alignItems: "center",
-                                justifyContent: "flex-end",
-                                gap: "0.35rem",
-                                padding: "0.5rem",
-                                fontSize: "0.9rem",
-                                fontWeight: 800,
-                                userSelect: "none",
-                                border: 1,
-                                borderColor: "#fff",
-                            })}
+                            sx={{
+                                ...Cells.Shared,
+                                ...Cells.Online,
+                            }}
                         >
                             <Typography
                                 fontSize={"0.9rem"}
@@ -501,6 +529,7 @@ const Desktop = {
                                 zIndex={10}
                                 width={"100%"}
                                 textAlign={"left"}
+                                whiteSpace={"nowrap"}
                                 sx={{
                                     color: "#fff",
                                 }}
@@ -513,13 +542,14 @@ const Desktop = {
                                 zIndex={10}
                                 width={"100%"}
                                 textAlign={"left"}
+                                whiteSpace={"nowrap"}
                                 sx={{
                                     position: "relative",
                                     backgroundColor: "#fff",
-                                    color: (theme) =>
-                                        theme.palette.secondary.main,
+                                    color: Cells.Online.color,
                                     borderRadius: "0.35rem",
-                                    padding: "0.25rem",
+                                    padding: "0.25rem 0.5rem",
+                                    mixBlendMode: "screen",
                                 }}
                             >
                                 {"En ligne"}
@@ -533,33 +563,8 @@ const Desktop = {
                     <td>
                         <Box
                             sx={{
-                                position: "relative",
-                                width: "100%",
-                                height: "100%",
-                                backgroundColor: (theme) =>
-                                    theme.palette.mode == "dark"
-                                        ? alpha("#000", 0.5)
-                                        : theme.palette.error.main,
-                                borderRadius: "0.7rem",
-                                // backdropFilter: "blur(0.5rem)",
-                                color: (theme) =>
-                                    theme.palette.mode == "dark"
-                                        ? theme.palette.error.main
-                                        : theme.palette.error.main,
-                                display: "flex",
-                                flexDirection: "column",
-                                alignItems: "center",
-                                justifyContent: "flex-end",
-                                gap: "0.35rem",
-                                padding: "0.5rem",
-                                fontSize: "0.9rem",
-                                fontWeight: 800,
-                                userSelect: "none",
-                                border: 1,
-                                borderColor: (theme) =>
-                                    theme.palette.mode == "dark"
-                                        ? alpha(theme.palette.error.main, 0.5)
-                                        : "#fff",
+                                ...Cells.Shared,
+                                ...Cells.Absent,
                             }}
                         >
                             <Typography
@@ -568,11 +573,9 @@ const Desktop = {
                                 zIndex={10}
                                 width={"100%"}
                                 textAlign={"left"}
+                                whiteSpace={"nowrap"}
                                 sx={{
-                                    color: (theme) =>
-                                        theme.palette.mode == "light"
-                                            ? "#fff"
-                                            : theme.palette.error.main,
+                                    color: "#fff",
                                 }}
                             >
                                 {Former}
@@ -582,19 +585,15 @@ const Desktop = {
                                 fontWeight={800}
                                 zIndex={10}
                                 width={"100%"}
+                                whiteSpace={"nowrap"}
                                 textAlign={"left"}
                                 sx={{
                                     position: "relative",
-                                    backgroundColor: (theme) =>
-                                        theme.palette.mode == "dark"
-                                            ? theme.palette.error.main
-                                            : "#fff",
-                                    color: (theme) =>
-                                        theme.palette.mode == "light"
-                                            ? theme.palette.error.main
-                                            : "#000",
+                                    backgroundColor: "#fff",
+                                    color: Cells.Absent.color,
                                     borderRadius: "0.35rem",
-                                    padding: "0.25rem",
+                                    padding: "0.25rem 0.5rem",
+                                    mixBlendMode: "screen",
                                 }}
                             >
                                 {"Absent"}
@@ -607,6 +606,319 @@ const Desktop = {
     },
 };
 
-const Mobile = {};
+const Mobile = {
+    Header: {
+        Container: ({ children }: any) => (
+            <Box
+                sx={{
+                    position: "relative",
+                    width: "100%",
+                    height: "auto",
+                    maxWidth: "100vw",
+                    minHeight: 50,
+                    display: "flex",
+                    flexDirection: "row",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                    gap: "0.75rem",
+                    marginBottom: "0.75rem",
+                }}
+            >
+                {children}
+            </Box>
+        ),
+        TimeCell: ({ children }: { children: string }) => (
+            <Box
+                sx={(theme) => ({
+                    position: "relative",
+                    flex: "1",
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    border: 1,
+                    minHeight: 50,
+                    borderColor:
+                        theme.palette.mode == "light"
+                            ? alpha("#000", 0.1)
+                            : alpha("#fff", 0.1),
+                    backgroundColor:
+                        theme.palette.mode == "light"
+                            ? alpha("#fff", 0.25)
+                            : alpha("#000", 0.25),
+                    borderRadius: "0.7rem",
+                    color: theme.palette.text.disabled,
+                })}
+            >
+                {children}
+            </Box>
+        ),
+    },
+    Body: {
+        Container: ({ children }: any) => (
+            <Box
+                sx={{
+                    position: "relative",
+                    width: "100%",
+                    height: "auto",
+                    maxWidth: "100vw",
+                    minHeight: 50,
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "flex-start",
+                    alignItems: "flex-start",
+                    gap: "0.325rem",
+                    marginBottom: "0.75rem",
+                }}
+            >
+                {children}
+            </Box>
+        ),
+        Weather: ({
+            Day,
+            CellDate,
+            Temperature,
+            Icon,
+            Weather,
+            ShortWeather,
+        }: {
+            [key: string]: string | any;
+        }) => (
+            <Box
+                sx={{
+                    position: "relative",
+                    width: "100%",
+                    height: "auto",
+                    // color: (theme) => "#fff",
+                    fontSize: "0.9rem",
+                    fontWeight: 800,
+                    userSelect: "none",
+                    overflow: "hidden",
+                    gap: "0.75rem",
+                }}
+            >
+                {/* Weather Infos and Day */}
+                <Typography
+                    fontSize={"1rem"}
+                    fontWeight={800}
+                    zIndex={10}
+                    whiteSpace={"nowrap"}
+                >
+                    {Day}
+                </Typography>
+                <Typography
+                    fontSize={"0.8rem"}
+                    fontWeight={500}
+                    zIndex={10}
+                    whiteSpace={"nowrap"}
+                    color={(theme) => theme.palette.text.disabled}
+                >
+                    {Temperature}° C - {ShortWeather}
+                </Typography>
+            </Box>
+        ),
+        CoursesContainer: ({ children }: any) => (
+            <Box
+                sx={{
+                    position: "relative",
+                    width: "100%",
+                    height: "auto",
+                    maxWidth: "100%",
+                    minHeight: 70,
+                    display: "flex",
+                    flexDirection: "row",
+                    justifyContent: "flex-start",
+                    alignItems: "stretch",
+                    gap: "0.75rem",
+                    overflowX: "auto",
+                    "&::-webkit-scrollbar": {
+                        appearance: "none",
+                        display: "none",
+                    },
+                }}
+            >
+                {children}
+            </Box>
+        ),
+        Courses: {
+            Skeleton: () => {
+                return (
+                    <Skeleton
+                        variant="rectangular"
+                        animation="wave"
+                        sx={{
+                            position: "relative",
+                            width: "max-content",
+                            flex: 1,
+                            minWidth: 100,
+                            minHeight: 70,
+                            borderRadius: "0.7rem",
+                            border: 1,
+                            borderColor: (theme) =>
+                                theme.palette.mode == "light"
+                                    ? alpha("#000", 0.1)
+                                    : alpha("#fff", 0.1),
+                            backgroundColor: (theme) =>
+                                theme.palette.mode == "light"
+                                    ? alpha("#fff", 0.25)
+                                    : alpha("#000", 0.25),
+                        }}
+                    />
+                );
+            },
+            Free: () => {
+                return (
+                    <Box
+                        sx={{
+                            position: "relative",
+                            width: "max-content",
+                            flex: 1,
+                            minWidth: 100,
+                            borderRadius: "0.7rem",
+                            border: 1,
+                            minHeight: 70,
+                            borderColor: (theme) =>
+                                theme.palette.mode == "light"
+                                    ? alpha("#000", 0.1)
+                                    : alpha("#fff", 0.1),
+                            backgroundColor: (theme) =>
+                                theme.palette.mode == "light"
+                                    ? alpha("#fff", 0.25)
+                                    : alpha("#000", 0.25),
+                        }}
+                    />
+                );
+            },
+            Presential: ({
+                Former,
+                Hall,
+            }: {
+                Former: string;
+                Hall: string;
+            }) => {
+                return (
+                    <Box
+                        sx={{
+                            ...Cells.MobileShared,
+                            ...Cells.Presential,
+                        }}
+                    >
+                        <Typography
+                            fontSize={"0.9rem"}
+                            fontWeight={800}
+                            zIndex={10}
+                            textAlign={"left"}
+                            sx={{
+                                color: "#fff",
+                            }}
+                            whiteSpace={"nowrap"}
+                        >
+                            {Former}
+                        </Typography>
+                        <Typography
+                            whiteSpace={"nowrap"}
+                            fontSize={"0.9rem"}
+                            fontWeight={800}
+                            zIndex={10}
+                            width={"100%"}
+                            textAlign={"left"}
+                            sx={{
+                                position: "relative",
+                                backgroundColor: "#fff",
+                                color: Cells.Presential.color,
+                                borderRadius: "0.35rem",
+                                padding: "0.25rem 0.5rem",
+                                mixBlendMode: "screen",
+                            }}
+                        >
+                            {Hall}
+                        </Typography>
+                    </Box>
+                );
+            },
+            Online: ({ Former }: { Former: string }) => {
+                return (
+                    <Box
+                        sx={{
+                            ...Cells.MobileShared,
+                            ...Cells.Online,
+                        }}
+                    >
+                        <Typography
+                            fontSize={"0.9rem"}
+                            fontWeight={800}
+                            zIndex={10}
+                            textAlign={"left"}
+                            whiteSpace={"nowrap"}
+                            sx={{
+                                color: "#fff",
+                            }}
+                        >
+                            {Former}
+                        </Typography>
+                        <Typography
+                            fontSize={"0.9rem"}
+                            fontWeight={800}
+                            zIndex={10}
+                            width={"100%"}
+                            textAlign={"left"}
+                            whiteSpace={"nowrap"}
+                            sx={{
+                                position: "relative",
+                                backgroundColor: "#fff",
+                                color: Cells.Online.color,
+                                borderRadius: "0.35rem",
+                                padding: "0.25rem 0.5rem",
+                                mixBlendMode: "screen",
+                            }}
+                        >
+                            {"En ligne"}
+                        </Typography>
+                    </Box>
+                );
+            },
+            Absent: ({ Former }: { Former: string }) => {
+                return (
+                    <Box
+                        sx={{
+                            ...Cells.MobileShared,
+                            ...Cells.Absent,
+                        }}
+                    >
+                        <Typography
+                            fontSize={"0.9rem"}
+                            fontWeight={800}
+                            zIndex={10}
+                            textAlign={"left"}
+                            whiteSpace={"nowrap"}
+                            sx={{
+                                color: "#fff",
+                            }}
+                        >
+                            {Former}
+                        </Typography>
+                        <Typography
+                            fontSize={"0.9rem"}
+                            fontWeight={800}
+                            zIndex={10}
+                            width={"100%"}
+                            textAlign={"left"}
+                            whiteSpace={"nowrap"}
+                            sx={{
+                                position: "relative",
+                                backgroundColor: "#fff",
+                                color: Cells.Absent.color,
+                                borderRadius: "0.35rem",
+                                padding: "0.25rem 0.5rem",
+                                mixBlendMode: "screen",
+                            }}
+                        >
+                            {"Absent"}
+                        </Typography>
+                    </Box>
+                );
+            },
+        },
+    },
+};
 
 export { Desktop, Mobile };

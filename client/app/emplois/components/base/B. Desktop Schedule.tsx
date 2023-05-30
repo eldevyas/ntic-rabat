@@ -1,14 +1,16 @@
 import { Box } from "@mui/material";
 import React from "react";
 import { Desktop } from "./utilities/Styled";
-export default function MobileSchedule({
+export default function DesktopSchedule({
     GroupID,
     Planning,
     Weather,
+    Loading,
 }: {
     GroupID: string;
     Planning: any[];
     Weather: any[];
+    Loading: Boolean;
 }) {
     return (
         <Box
@@ -79,7 +81,7 @@ export default function MobileSchedule({
                         />
                     </tr>
                 </thead>
-                {Planning.length > 0 &&
+                {(!Loading && Planning.length > 0) &&
                     Planning.map((WeekRow: any, Index: number) => (
                         <tbody>
                             <tr>
@@ -147,7 +149,86 @@ export default function MobileSchedule({
                             </tr>
                         </tbody>
                     ))}
+                {(Loading || Planning.length == 0) &&
+                    Array(1, 2, 3, 4, 5).map((WeekRow: any, Index: number) => (
+                        <tbody>
+                            <tr>
+                                {Array(1, 2, 3, 4, 5).map(
+                                    (CellIndex: number) => (
+                                        <Desktop.Body.CourseCell.Skeleton
+                                            key={CellIndex}
+                                        />
+                                    )
+                                )}
+                            </tr>
+                        </tbody>
+                    ))}
             </table>
         </Box>
     );
 }
+
+export const EmptySchedule = () => {
+    return (
+        <Box
+            sx={{
+                position: "relative",
+                width: "100%",
+                height: "auto",
+                padding: "1rem 2rem",
+                overflowX: "auto",
+                userSelect: "none",
+                borderRadius: "0px",
+                table: {
+                    width: "%100",
+                    height: "auto",
+                    border: "none",
+                    borderSpacing: "0.75rem",
+                    margin: "0 auto",
+                    td: {
+                        transition: "filter .3s ease",
+                        willChange: "filter",
+                        "&:hover": {
+                            filter: "brightness(120%)",
+                        },
+                    },
+                    thead: {
+                        tr: {
+                            td: {
+                                minWidth: "150px",
+                                maxWidth: "max-content",
+                                filter: "drop-shadow(0px 0px 5rem rgba($color: $C1, $alpha: 0.5))",
+                            },
+                        },
+                    },
+                    tbody: {
+                        tr: {
+                            td: {
+                                position: "relative",
+                                overflow: "hidden",
+                                width: "200px",
+                                minWidth: "150px",
+                                filter: "drop-shadow(0px 0px 5rem rgba($color: $C1, $alpha: 0.5))",
+                                height: "1rem",
+                            },
+                        },
+                    },
+                },
+            }}
+        >
+            <table>
+                {Array(1, 2, 3, 4, 5).map((Index: number) => (
+                    <tbody key={Index}>
+                        <tr>
+                            {Array(1, 2, 3, 4, 5).map((CellIndex: number) => (
+                                <Desktop.Body.CourseCell.Skeleton
+                                    key={CellIndex}
+                                />
+                            ))}
+                        </tr>
+                    </tbody>
+                ))}
+            </table>
+        </Box>
+    );
+};
