@@ -24,8 +24,8 @@ const NavigationLinks: {
         icon: People,
     },
     {
-        href: "/team",
-        text: "Team",
+        href: "/creators",
+        text: "Créateurs",
         icon: Calling,
     },
 ];

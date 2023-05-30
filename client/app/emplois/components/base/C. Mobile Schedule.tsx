@@ -38,7 +38,7 @@ export default function MobileSchedule({
             {!Loading &&
                 Planning.length > 0 &&
                 Planning.map((WeekRow: any, Index: number) => (
-                    <Mobile.Body.Container>
+                    <Mobile.Body.Container key={Index}>
                         {Weather && Weather.length >= 6 ? (
                             <Mobile.Body.Weather
                                 Day={WeekRow.Day}

@@ -81,10 +81,11 @@ export default function DesktopSchedule({
                         />
                     </tr>
                 </thead>
-                {(!Loading && Planning.length > 0) &&
-                    Planning.map((WeekRow: any, Index: number) => (
-                        <tbody>
-                            <tr>
+                <tbody>
+                    {!Loading &&
+                        Planning.length > 0 &&
+                        Planning.map((WeekRow: any, Index: number) => (
+                            <tr key={Index}>
                                 {Weather && Weather.length >= 6 ? (
                                     <Desktop.Body.WeatherCell
                                         Day={WeekRow.Day}
@@ -131,8 +132,8 @@ export default function DesktopSchedule({
                                         } else if (Cell.Hall == "dist") {
                                             return (
                                                 <Desktop.Body.CourseCell.Online
-                                                    Former={Cell.Former}
                                                     key={Cell_Index}
+                                                    Former={Cell.Former}
                                                 />
                                             );
                                         } else {
@@ -147,22 +148,22 @@ export default function DesktopSchedule({
                                     }
                                 )}
                             </tr>
-                        </tbody>
-                    ))}
-                {(Loading || Planning.length == 0) &&
-                    Array(1, 2, 3, 4, 5).map((WeekRow: any, Index: number) => (
-                        <tbody>
-                            <tr>
-                                {Array(1, 2, 3, 4, 5).map(
-                                    (CellIndex: number) => (
-                                        <Desktop.Body.CourseCell.Skeleton
-                                            key={CellIndex}
-                                        />
-                                    )
-                                )}
-                            </tr>
-                        </tbody>
-                    ))}
+                        ))}
+                    {(Loading || Planning.length == 0) &&
+                        Array(1, 2, 3, 4, 5).map(
+                            (WeekRow: any, Index: number) => (
+                                <tr key={Index}>
+                                    {Array(1, 2, 3, 4, 5).map(
+                                        (CellIndex: number) => (
+                                            <Desktop.Body.CourseCell.Skeleton
+                                                key={CellIndex}
+                                            />
+                                        )
+                                    )}
+                                </tr>
+                            )
+                        )}
+                </tbody>
             </table>
         </Box>
     );

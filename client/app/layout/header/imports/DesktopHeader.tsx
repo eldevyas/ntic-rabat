@@ -91,6 +91,7 @@ export default function DesktopHeader(props: any) {
                     <>
                         {index == 2 && (
                             <Button
+                                key={index}
                                 variant="contained"
                                 color={"muted"}
                                 onClick={() => {

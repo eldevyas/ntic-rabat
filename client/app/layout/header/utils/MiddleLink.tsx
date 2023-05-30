@@ -28,7 +28,7 @@ export default function Link(props: any) {
                 </Button>
             ) : (
                 <Button
-                    variant="contained"
+                    variant="outlined"
                     color="muted"
                     onClick={(e: any) => {
                         changeRoute(e);
