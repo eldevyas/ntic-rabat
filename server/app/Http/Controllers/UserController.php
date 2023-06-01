@@ -147,27 +147,27 @@ class UserController extends Controller
     public function forgetPassword(Request $request)
     {
         $email = $request->email;
-        if(User::where('email',$email)->doesntExist()){
+        if (User::where('email', $email)->doesntExist()) {
             return response()->json([
                 'message' => 'User not found'
             ], 404);
         }
         $token = Str::random(20);
-        try{
+        try {
 
             DB::table('password_resets')->insert([
                 'email' => $email,
                 'token' => $token,
-                'code'  => rand(10000,99999),
+                'code'  => rand(10000, 99999),
             ]);
-        }catch(\Exception $e){
+        } catch (\Exception $e) {
             return response()->json([
                 'message' => $e->getMessage()
             ], 500);
         }
         // Send email
         try {
-            Mail::to($email)->send(new forgetPasswordEmail($token,$email));
+            Mail::to($email)->send(new forgetPasswordEmail($token, $email));
             $success['message'] = 'Reset password mail was sent to your email';
             return response()->json($success, 200);
         } catch (\Exception $e) {
@@ -179,12 +179,12 @@ class UserController extends Controller
     {
         $token = $request->token;
         // $email = $request->email;
-        if(!$passwordResets = DB::table('password_resets')->where('token',$token)->first()){
+        if (!$passwordResets = DB::table('password_resets')->where('token', $token)->first()) {
             return response()->json([
                 'message' => 'Invalid token'
             ], 404);
         }
-        if(!$user = User::where('email',$passwordResets->email)->first()){
+        if (!$user = User::where('email', $passwordResets->email)->first()) {
             return response()->json([
                 'message' => 'User not found'
             ], 404);
@@ -192,7 +192,7 @@ class UserController extends Controller
         $user->password = bcrypt($request->password);
         $user->save();
         // delete token
-        DB::table('password_resets')->where('token',$token)->delete();
+        DB::table('password_resets')->where('token', $token)->delete();
         return response()->json([
             'message' => 'Password reset successfully'
         ], 200);
@@ -304,5 +304,17 @@ class UserController extends Controller
                 'message' => 'Current password is incorrect'
             ], 401);
         }
+    }
+
+
+    public function UpdateAvatar(Request $request)
+    {
+        $email = $request->email;
+        $user = User::where('email', $email)->first();
+        $user->avatar = $request->avatar;
+        $user->save();
+        return response()->json([
+            'message' => 'Avatar updated successfully'
+        ], 200);
     }
 }
