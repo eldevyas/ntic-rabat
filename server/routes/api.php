@@ -68,6 +68,9 @@ Route::post('auth/resend-confirmation', [UserController::class, 'sendEmailVerifi
 // View user profile
 Route::get('/user/{username}', [UserController::class, 'show']);
 
+// Update user profile
+Route::post('/user/update-profile', [UserController::class, 'UpdateProfile'])->middleware('auth:api');
+
 // Update password
 Route::post('/user/update-password', [UserController::class, 'UpdatePassword'])->middleware('auth:api');
 
