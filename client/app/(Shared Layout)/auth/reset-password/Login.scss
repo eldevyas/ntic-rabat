@@ -280,38 +280,5 @@
                     }
                 }
             }
-
-            .btnPrimary {
-                @include DefaultButton($C2);
-                width: 100%;
-                height: 50px;
-                box-shadow: none;
-                color: #fff !important;
-
-                &.Loading {
-                    background-color: rgba($C2, 1);
-                    border: 2.5px solid rgba($C4, 0.25);
-                    pointer-events: all;
-                    cursor: not-allowed;
-
-                    svg {
-                        color: $C4;
-                    }
-                }
-            }
-
-            .btnSecondary {
-                @include DefaultButton($C2);
-                width: 100%;
-                height: 50px;
-                box-shadow: none;
-                color: $C2 !important;
-                background-color: rgba($C2, 0.2);
-                margin-top: 10px;
-
-                &:hover {
-                    background-color: rgba($C2, 0.4);
-                }
-            }
     }
 }
