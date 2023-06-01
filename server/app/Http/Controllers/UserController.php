@@ -307,14 +307,14 @@ class UserController extends Controller
     }
 
 
-    public function UpdateAvatar(Request $request)
+    public function Update(Request $request)
     {
         $email = $request->email;
         $user = User::where('email', $email)->first();
-        $user->avatar = $request->avatar;
+        $user->name = $request->name;
         $user->save();
         return response()->json([
-            'message' => 'Avatar updated successfully'
+            'message' => 'User updated successfully'
         ], 200);
     }
 }
