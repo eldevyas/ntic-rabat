@@ -1,5 +1,3 @@
-@import url("https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;500;700;800;900;1000&family=Outfit:wght@100;200;300;400;500;600;700;800;900&display=swap");
-
 /* Variables */
 
 :root {
@@ -73,7 +71,8 @@ $FormsRadius: 0.7rem;
     box-sizing: border-box;
     padding: 0;
     margin: 0;
-    font-family: 'Outfit', 'Cairo', sans-serif !important;
+    font-family: var(--font-outfit),
+        var(--font-cairo), Arial, sans-serif !important;
 }
 
 html,
@@ -89,8 +88,6 @@ a {
 }
 
 // Other Files
-@import "./core/button";
 @import "./core/card";
 @import "./core/functions";
-@import "./core/Loading";
 @import "./core/toastify";

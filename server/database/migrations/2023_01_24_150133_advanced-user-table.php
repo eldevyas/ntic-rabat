@@ -14,21 +14,19 @@ return new class extends Migration
      */
     public function up()
     {
-        //
-        // users table
         Schema::table('users', function (Blueprint $table) {
-            // column name default to first plus last name
-            $table->string('username')->default(DB::raw("CONCAT(LOWER(first_name), '_', LOWER(last_name))"))->change();
-            $table->string('first_name')->after('name')->change();
-            $table->string('last_name')->after('first_name')->change();
-            // make email column unique
-            // profile picture
-            $table->string('profile_picture')->nullable()->change();
+            $table->string('username')->nullable();
+            $table->string('first_name')->nullable()->after('name');
+            $table->string('last_name')->nullable()->after('first_name');
         });
 
-        // update the first_name and last_name with the value of the name column
-        DB::statement("UPDATE users SET first_name = SUBSTRING_INDEX(name, ' ', 1), last_name =
-SUBSTRING_INDEX(SUBSTRING_INDEX(name, ' ', 2), ' ', -1) where first_name is null and last_name is null ");
+        DB::statement("UPDATE users SET first_name = SUBSTRING_INDEX(name, ' ', 1), last_name = SUBSTRING_INDEX(SUBSTRING_INDEX(name, ' ', 2), ' ', -1) WHERE first_name IS NULL AND last_name IS NULL");
+
+        Schema::table('users', function (Blueprint $table) {
+            $table->string('username')->default(DB::raw("CONCAT(LOWER(first_name), '_', LOWER(last_name))"))->change();
+            $table->string('first_name')->change();
+            $table->string('last_name')->change();
+        });
     }
 
     /**
@@ -38,10 +36,8 @@ SUBSTRING_INDEX(SUBSTRING_INDEX(name, ' ', 2), ' ', -1) where first_name is null
      */
     public function down()
     {
-        //
         Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn(['username', 'first_name', 'last_name', 'profile_picture']);
-            $table->string('email')->change();
+            $table->dropColumn(['username', 'first_name', 'last_name']);
         });
     }
 };

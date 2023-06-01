@@ -63,7 +63,7 @@ const Elipse = styled("div")({
     opacity: 0.5,
 });
 
-export default function Background() {
+export default function Background(props: { zIndex?: number }) {
     const [opacity, setOpacity] = useState(0);
 
     useEffect(() => {
@@ -93,7 +93,7 @@ export default function Background() {
                     left: 0,
                     bottom: 0,
                     right: 0,
-                    zIndex: -1,
+                    zIndex: props.zIndex ? props.zIndex - 1 : -1,
                     background: (theme) => theme.palette.background.default,
                     overflow: "hidden",
                 }}
@@ -108,7 +108,7 @@ export default function Background() {
                         bottom: 0,
                         right: 0,
                         background: "transparent",
-                        zIndex: -1,
+                        zIndex: props.zIndex ? props.zIndex - 1 : -1,
                     }}
                 >
                     <Elipse
@@ -262,7 +262,7 @@ export default function Background() {
                         bottom: 0,
                         right: 0,
                         background: "transparent",
-                        zIndex: -1,
+                        zIndex: props.zIndex ? props.zIndex - 1 : -1,
                         svg: {
                             position: "absolute",
                             maxWidth: "100%",
@@ -366,7 +366,7 @@ export default function Background() {
                         left: 0,
                         opacity: 0.1,
                         pointerEvents: "none",
-                        zIndex: 0,
+                        zIndex: props.zIndex ? props.zIndex : 0,
                         bakcgroundColor: (theme) =>
                             theme.palette.background.default,
                         "--square-size": {
@@ -398,7 +398,7 @@ export default function Background() {
                         opacity: 0,
                         pointerEvents: opacity > 0 ? "auto" : "none",
                         backdropFilter: "blur(5rem)",
-                        zIndex: 0,
+                        zIndex: props.zIndex ? props.zIndex : 0,
                         willChange: "opacity",
                         transition: "opacity .2s ease",
                     }}

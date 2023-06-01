@@ -30,27 +30,36 @@ const Light: any = createTheme({
         },
         black: {
             main: '#000',
-            light: "#fcfcfc",
+            dark: "#151515",
+            light: "#303030",
             contrastText: '#fff',
         },
         white: {
-            main: "#fff",
+            main: "#ffffff",
+            light: "#f5f5f5",
+            dark: "#E9E9E9",
             contrastText: '#000'
         },
         muted: {
             main: "#ddd",
             contrastText: '#555'
         },
-        // contrastThreshold: 3,
-        // tonalOffset: 0.6,
         background: {
             default: "#fff",
             paper: "#fff"
         },
-        text: {
-            primary: '#000',
-            secondary: '#151515',
+        // text: {
+        //     primary: '#000',
+        //     secondary: '#151515',
+        // },
+        error: {
+            main: "#F31260",
+            dark: "#44041A",
+            light: "#F75F94",
+            contrastText: "#FDD8E5"
         },
+        contrastThreshold: 3,
+        tonalOffset: 0.6,
     },
     // 
     // Font Family
@@ -80,10 +89,6 @@ const Light: any = createTheme({
             },
             styleOverrides: {
                 root: ({ ownerState }: any) => ({
-                    // ...(ownerState.variant === 'flat' && {
-                    //     backgroundColor: '#202020',
-                    //     color: '#fff',
-                    // }),
                     fontSize: '1rem',
                     boxShadow: "none",
                     textTransform: "capitalize",
@@ -120,6 +125,18 @@ const Light: any = createTheme({
                     style: {
                         background: "#fcfcfc",
                         color: "#000",
+                        "&:hover": {
+                            background: "#fff"
+                        }
+                    }
+                },
+                {
+                    props: { variant: "outlined", color: "white" },
+                    style: {
+                        background: "#fcfcfc",
+                        color: "#000",
+                        border: 1,
+                        borderColor: "#000",
                         "&:hover": {
                             background: "#fff"
                         }
@@ -226,6 +243,12 @@ const Dark: any = createTheme({
             primary: '#ddd',
             secondary: '#aaa',
         },
+        error: {
+            main: "#F31260",
+            dark: "#44041A",
+            light: "#F75F94",
+            contrastText: "#FDD8E5"
+        },
         contrastThreshold: 3,
         tonalOffset: 0.6,
     },
@@ -294,10 +317,24 @@ const Dark: any = createTheme({
                 {
                     props: { variant: "outlined", color: "black" },
                     style: {
+                        background: "#fff",
+                        color: "#000",
+                        border: 1,
+                        borderColor: "#000",
+                        "&:hover": {
+                            background: "#fcfcfc"
+                        }
+                    }
+                },
+                {
+                    props: { variant: "outlined", color: "white" },
+                    style: {
                         background: "#000",
                         color: "#fff",
+                        border: 1,
+                        borderColor: "#fff",
                         "&:hover": {
-                            background: "#1a1a1a"
+                            background: "#151515"
                         }
                     }
                 },

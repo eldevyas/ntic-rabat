@@ -28,12 +28,11 @@ export default function Link(props: any) {
                 </Button>
             ) : (
                 <Button
-                    variant="outlined"
-                    color="muted"
+                    variant={props.variant}
+                    color={props.color}
                     onClick={(e: any) => {
                         changeRoute(e);
                     }}
-                    // startIcon={<props.icon set="bulk" />}
                 >
                     {props.children}
                 </Button>

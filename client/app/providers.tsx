@@ -15,12 +15,11 @@ import { NextUI_Theme } from "@/themes/NexUI";
 import { MUI_Theme } from "@/themes/MUI";
 import CssBaseline from "@mui/material/CssBaseline";
 import { CssBaseline as NextCssBaseline } from "@nextui-org/react";
-
+import { Flip } from "react-toastify";
 //
 //
 // Framer Motion Page Transitions
 import { motion, AnimatePresence } from "framer-motion";
-import Layout from "@/app/layout/LayoutProperties";
 import { useEffect, useMemo } from "react";
 //
 //
@@ -31,6 +30,11 @@ import { useServerInsertedHTML } from "next/navigation";
 import { useState } from "react";
 import React from "react";
 import useMediaQuery from "@mui/material/useMediaQuery";
+//
+//
+// Components
+import { ToastContainer } from "react-toastify";
+import ProgressBar from "next-nprogress-bar";
 
 type Props = {
     children?: React.ReactNode;
@@ -108,11 +112,6 @@ const StylingProvider = ({ children }: Props) => {
     );
 };
 
-// Layout & Transitions
-export const LayoutProvider = ({ children }: Props) => {
-    return <Layout>{children}</Layout>;
-};
-
 // Emotion Support for App Router
 
 function RootStyleRegistry({ children }: { children: JSX.Element }) {
@@ -141,13 +140,48 @@ function RootStyleRegistry({ children }: { children: JSX.Element }) {
     return <CacheProvider value={cache}>{children}</CacheProvider>;
 }
 
+const ProgressIndicator = () => {
+    return (
+        <>
+            <ProgressBar
+                color="#39b54a"
+                height="5px"
+                options={{ showSpinner: false }}
+                appDirectory
+            />
+        </>
+    );
+};
+
+const CustomToastContainer = () => {
+    return (
+        <ToastContainer
+            position="top-left"
+            autoClose={5000}
+            hideProgressBar={true}
+            newestOnTop={false}
+            closeOnClick={true}
+            rtl={false}
+            pauseOnFocusLoss={false}
+            draggable={true}
+            pauseOnHover
+            transition={Flip}
+            limit={3}
+        />
+    );
+};
+
 // Mega Provider
 export const MegaProvider = ({ children }: Props) => {
     return (
         <NextAuthProvider>
             <RootStyleRegistry>
                 <StylingProvider>
-                    <LayoutProvider>{children}</LayoutProvider>
+                    {/* Progress Bar on Top of the Page */}
+                    <ProgressIndicator />
+                    {/* Notifications Container */}
+                    <CustomToastContainer />
+                    {children}
                 </StylingProvider>
             </RootStyleRegistry>
         </NextAuthProvider>

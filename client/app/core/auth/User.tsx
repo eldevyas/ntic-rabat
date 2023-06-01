@@ -335,10 +335,15 @@ const MobileMenuWithoutAuth = () => {
     return (
         <Dropdown placement="bottom-right">
             <Dropdown.Trigger>
-                <IconButton color="secondary">
+                <IconButton
+                    color="primary"
+                    sx={{
+                        borderRadius: "0.75rem",
+                    }}
+                >
                     <Category
                         set="bulk"
-                        primaryColor={"var(--nextui-colors-secondary)"}
+                        primaryColor={"var(--nextui-colors-primary)"}
                     />
                 </IconButton>
             </Dropdown.Trigger>
@@ -359,14 +364,10 @@ const MobileMenuWithoutAuth = () => {
                         color="default"
                         icon={
                             <Home
-                                primaryColor={"var(--nextui-colors-text)"}
+                                primaryColor={"var(--nextui-colors-primary)"}
                                 set="bulk"
                             />
                         }
-                    // css={{
-                    //     background: "$secondary",
-                    //     color: "$primaryLight",
-                    // }}
                     >
                         Accueil
                     </Dropdown.Item>
@@ -375,7 +376,7 @@ const MobileMenuWithoutAuth = () => {
                         color="default"
                         icon={
                             <Calendar
-                                primaryColor={"var(--nextui-colors-text)"}
+                                primaryColor={"var(--nextui-colors-primary)"}
                                 set="bulk"
                             />
                         }
@@ -384,11 +385,11 @@ const MobileMenuWithoutAuth = () => {
                         Emplois
                     </Dropdown.Item>
                     <Dropdown.Item
-                        key={"Connect"}
+                        key={"/connect"}
                         color="default"
                         icon={
                             <People
-                                primaryColor={"var(--nextui-colors-text)"}
+                                primaryColor={"var(--nextui-colors-primary)"}
                                 set="bulk"
                             />
                         }
@@ -401,7 +402,7 @@ const MobileMenuWithoutAuth = () => {
                         color="default"
                         icon={
                             <Calling
-                                primaryColor={"var(--nextui-colors-text)"}
+                                primaryColor={"var(--nextui-colors-primary)"}
                                 set="bulk"
                             />
                         }

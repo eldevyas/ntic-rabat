@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Image from "next/image";
 import { useRouter, usePathname } from "next/navigation";
 import Link from "./../utils/MiddleLink";
@@ -6,7 +6,6 @@ import { useSession } from "next-auth/react";
 import User from "../../../core/auth/User";
 import { Box, Button } from "@mui/material";
 import { useTheme as useNextTheme } from "next-themes";
-import ToggleButton from "@mui/material/ToggleButton";
 import { useTheme } from "@nextui-org/react";
 import { ColorModeContext } from "@/app/providers";
 import { MdDarkMode, MdLightMode } from "react-icons/md";
@@ -23,7 +22,7 @@ export default function DesktopHeader(props: any) {
         icon: any;
     }[] = props.links;
 
-    const colorMode = React.useContext(ColorModeContext);
+    const colorMode: any = React.useContext(ColorModeContext);
     const { isDark, type } = useTheme();
     const { setTheme } = useNextTheme();
 
@@ -77,7 +76,6 @@ export default function DesktopHeader(props: any) {
                 />
             </Box>
             <Box
-                className="Middle"
                 sx={{
                     display: "flex",
                     alignItems: "center",
@@ -87,34 +85,38 @@ export default function DesktopHeader(props: any) {
                     flex: 1,
                 }}
             >
-                {MiddleLinks.map((middleLink, index) => (
-                    <>
-                        {index == 2 && (
-                            <Button
-                                key={index}
-                                variant="contained"
-                                color={"muted"}
-                                onClick={() => {
-                                    colorMode.toggleColorMode();
-                                    setTheme(isDark ? "light" : "dark");
-                                }}
-                                sx={{
-                                    height: "100%",
-                                }}
+                {MiddleLinks.map((middleLink, index) => {
+                    return (
+                        <>
+                            {index == 2 && (
+                                <Button
+                                    key={index}
+                                    variant="outlined"
+                                    color="white"
+                                    onClick={() => {
+                                        colorMode.toggleColorMode();
+                                        setTheme(isDark ? "light" : "dark");
+                                    }}
+                                    sx={{
+                                        height: "100%",
+                                    }}
+                                >
+                                    {isDark ? <MdDarkMode /> : <MdLightMode />}
+                                </Button>
+                            )}
+                            <Link
+                                key={index >= 2 ? index + 1 : index}
+                                href={middleLink.href}
+                                text={middleLink.text}
+                                icon={middleLink.icon}
+                                variant={"outlined"}
+                                color={"white"}
                             >
-                                {isDark ? <MdDarkMode /> : <MdLightMode />}
-                            </Button>
-                        )}
-                        <Link
-                            key={index}
-                            href={middleLink.href}
-                            text={middleLink.text}
-                            icon={middleLink.icon}
-                        >
-                            {middleLink.text}
-                        </Link>
-                    </>
-                ))}
+                                {middleLink.text}
+                            </Link>
+                        </>
+                    );
+                })}
             </Box>
             {/* Hidden on Login and Register Pages */}
             {Pathname !== "/auth/login" && Pathname !== "/auth/register" && (
