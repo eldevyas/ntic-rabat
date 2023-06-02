@@ -1,20 +1,8 @@
 import React from "react";
-import {
-    Box,
-    Button,
-    Divider,
-    Tabs,
-    Typography,
-    Tab,
-    styled,
-} from "@mui/material";
+import { Box, Tabs, Tab, styled } from "@mui/material";
 import Image from "next/image";
-import { Avatar } from "@nextui-org/react";
 import { Chat, Home, User } from "react-iconly";
-import { useTheme as useNextTheme } from "next-themes";
 import { useTheme } from "@nextui-org/react";
-import { ColorModeContext } from "@/app/providers";
-import { MdDarkMode, MdLightMode } from "react-icons/md";
 import { useSession } from "next-auth/react";
 import { useRouter, usePathname } from "next/navigation";
 
@@ -92,10 +80,6 @@ export default function Footer() {
         setValue(Pathname);
     }, [Pathname]);
 
-    const colorMode: any = React.useContext(ColorModeContext);
-    const { isDark, type } = useTheme();
-    const { setTheme } = useNextTheme();
-
     const handleChange = (event: React.SyntheticEvent, newValue: string) => {
         setValue(newValue);
         Router.push(newValue);
@@ -149,7 +133,7 @@ export default function Footer() {
                                 set="bulk"
                                 primaryColor={
                                     value == "/connect"
-                                        ? "var(--nextui-colors-primary)"
+                                        ? "var(--mui-palette-primary-main)"
                                         : "#fff"
                                 }
                                 size={"medium"}
@@ -166,7 +150,7 @@ export default function Footer() {
                                 set="bulk"
                                 primaryColor={
                                     value == "/connect/chat-room"
-                                        ? "var(--nextui-colors-primary)"
+                                        ? "var(--mui-palette-primary-main)"
                                         : "#fff"
                                 }
                             />
@@ -182,7 +166,7 @@ export default function Footer() {
                                 set="bulk"
                                 primaryColor={
                                     value == "/connect/profile"
-                                        ? "var(--nextui-colors-primary)"
+                                        ? "var(--mui-palette-primary-main)"
                                         : "#fff"
                                 }
                             />

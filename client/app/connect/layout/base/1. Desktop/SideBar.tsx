@@ -2,18 +2,14 @@ import React from "react";
 import {
     Box,
     Button,
-    Divider,
     Tabs,
     Typography,
     Tab,
     styled,
+    useColorScheme,
 } from "@mui/material";
-import Image from "next/image";
 import { Avatar } from "@nextui-org/react";
 import { Chat, Home, User } from "react-iconly";
-import { useTheme as useNextTheme } from "next-themes";
-import { useTheme } from "@nextui-org/react";
-import { ColorModeContext } from "@/app/providers";
 import { MdDarkMode, MdLightMode } from "react-icons/md";
 import { useSession } from "next-auth/react";
 import { useRouter, usePathname } from "next/navigation";
@@ -94,9 +90,7 @@ export default function SideBar() {
         setValue(Pathname);
     }, [Pathname]);
 
-    const colorMode: any = React.useContext(ColorModeContext);
-    const { isDark, type } = useTheme();
-    const { setTheme } = useNextTheme();
+    const { mode, setMode } = useColorScheme();
 
     const handleChange = (event: React.SyntheticEvent, newValue: string) => {
         Router.push(newValue);
@@ -291,7 +285,7 @@ export default function SideBar() {
                                         set="bulk"
                                         primaryColor={
                                             value == "/connect"
-                                                ? "var(--nextui-colors-primary)"
+                                                ? "var(--mui-palette-primary-main)"
                                                 : "#fff"
                                         }
                                         size={"medium"}
@@ -313,7 +307,7 @@ export default function SideBar() {
                                         set="bulk"
                                         primaryColor={
                                             value == "/connect/chat-room"
-                                                ? "var(--nextui-colors-primary)"
+                                                ? "var(--mui-palette-primary-main)"
                                                 : "#fff"
                                         }
                                     />
@@ -334,7 +328,7 @@ export default function SideBar() {
                                         set="bulk"
                                         primaryColor={
                                             value == "/connect/profile"
-                                                ? "var(--nextui-colors-primary)"
+                                                ? "var(--mui-palette-primary-main)"
                                                 : "#fff"
                                         }
                                     />
@@ -368,19 +362,18 @@ export default function SideBar() {
                 }}
             >
                 <Button
-                    variant={isDark ? "outlined" : "outlined"}
-                    color={isDark ? "error" : "error"}
+                    variant={mode == "dark" ? "outlined" : "outlined"}
+                    color={mode == "dark" ? "error" : "error"}
                     onClick={() => {
-                        colorMode.toggleColorMode();
-                        setTheme(isDark ? "light" : "dark");
+                        setMode(mode == "dark" ? "light" : "dark");
                     }}
                     fullWidth
                 >
-                    {isDark ? <MdDarkMode /> : <MdLightMode />}
+                    {mode == "dark" ? <MdDarkMode /> : <MdLightMode />}
                 </Button>
                 <Button
-                    variant={isDark ? "contained" : "contained"}
-                    color={isDark ? "error" : "error"}
+                    variant={mode == "dark" ? "contained" : "contained"}
+                    color={mode == "dark" ? "error" : "error"}
                     onClick={() => {
                         Router.push("/");
                     }}

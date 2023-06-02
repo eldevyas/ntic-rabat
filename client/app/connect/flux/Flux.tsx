@@ -196,13 +196,13 @@ export default function Flux() {
                                 overflowY: "auto",
                                 scrollbarWidth: "thin",
                                 scrollbarColor:
-                                    "var(--nextui-colors-background) var(--nextui-colors-primaryDark)",
+                                    "var(--mui-palette-common-background) var(--nextui-colors-primaryDark)",
                                 "&::-webkit-scrollbar": {
                                     width: "8px",
                                 },
                                 "&::-webkit-scrollbar-track": {
                                     backgroundColor:
-                                        "var(--nextui-colors-background)",
+                                        "var(--mui-palette-common-background)",
                                 },
                                 "&::-webkit-scrollbar-thumb": {
                                     backgroundColor:

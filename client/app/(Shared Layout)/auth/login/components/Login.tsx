@@ -184,12 +184,19 @@ const LoginComponent = () => {
 
                         {isLoading ? (
                             <LoadingButton
-                                variant="text"
-                                className="btnPrimary Loading"
+                                variant="contained"
+                                color="primary"
                                 loadingPosition="center"
                                 loading
                                 sx={{
                                     cursor: "default !important",
+                                    minHeight: "50px",
+                                    backgroundColor:
+                                        "var(--mui-palette-primary-main) !important",
+                                    background:
+                                        "var(--mui-palette-primary-main) !important",
+                                    width: "100%",
+                                    marginBottom: "0.75rem",
                                 }}
                             />
                         ) : (

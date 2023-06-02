@@ -9,12 +9,11 @@ import {
     Button,
     TextField,
     InputAdornment,
+    useColorScheme,
 } from "@mui/material";
 import Image from "next/image";
 import { Chat, Home, Search, User } from "react-iconly";
-import { useTheme as useNextTheme } from "next-themes";
 import { useTheme, Avatar, Input } from "@nextui-org/react";
-import { ColorModeContext } from "@/app/providers";
 import { MdDarkMode, MdLightMode } from "react-icons/md";
 import { useSession } from "next-auth/react";
 import { useRouter, usePathname } from "next/navigation";
@@ -30,10 +29,6 @@ export default function Header() {
 
     const Router = useRouter();
     const Pathname: string = usePathname() as string;
-
-    const colorMode: any = React.useContext(ColorModeContext);
-    const { isDark, type } = useTheme();
-    const { setTheme } = useNextTheme();
 
     return (
         <Box
@@ -69,8 +64,6 @@ export default function Header() {
                     type="search"
                     placeholder="Rechercher..."
                     size="small"
-                    // value={""}
-                    // onChange={handleChange}
                     fullWidth
                     variant="outlined"
                     sx={{ width: "auto", fontSize: "0.85rem" }}

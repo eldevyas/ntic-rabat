@@ -1,6 +1,6 @@
 const Control = (base: any, state: any) => ({
     ...base,
-    backgroundColor: "var(--nextui-colors-background)",
+    backgroundColor: "var(--mui-palette-common-background)",
     color: "var(--nextui-colors-text)",
     boxShadow: "none",
     borderRadius: "10px",
@@ -11,7 +11,7 @@ const Control = (base: any, state: any) => ({
 
 const Menu = (base: any, state: any) => ({
     ...base,
-    backgroundColor: "var(--nextui-colors-background)",
+    backgroundColor: "var(--mui-palette-common-background)",
     color: state.isFocused ? "#39b54a" : "#fff",
     // boxShadow: "none",
     borderRadius: "10px",
@@ -24,7 +24,7 @@ const Menu = (base: any, state: any) => ({
 const Option = (base: any, state: any) => ({
     ...base,
     backgroundColor: state.isSelected
-        ? "var(--nextui-colors-primary)"
+        ? "var(--mui-palette-primary-main)"
         : "transparent",
     color: state.isSelected ? "var(--nextui-colors-primaryLight)" : "var(--nextui-colors-text)",
     fontFamily: "Outfit, sans-serif",
@@ -35,7 +35,7 @@ const Option = (base: any, state: any) => ({
     // hover
     "&:hover": {
         backgroundColor: "var(--nextui-colors-primaryLight)",
-        color: "var(--nextui-colors-primary)",
+        color: "var(--mui-palette-primary-main)",
         cursor: state.isSelected
             ? "default"
             : "pointer"

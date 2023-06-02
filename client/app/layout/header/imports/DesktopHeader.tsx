@@ -4,10 +4,7 @@ import { useRouter, usePathname } from "next/navigation";
 import Link from "./../utils/MiddleLink";
 import { useSession } from "next-auth/react";
 import User from "../../../core/auth/User";
-import { Box, Button } from "@mui/material";
-import { useTheme as useNextTheme } from "next-themes";
-import { useTheme } from "@nextui-org/react";
-import { ColorModeContext } from "@/app/providers";
+import { Box, Button, useColorScheme } from "@mui/material";
 import { MdDarkMode, MdLightMode } from "react-icons/md";
 
 export default function DesktopHeader(props: any) {
@@ -16,15 +13,13 @@ export default function DesktopHeader(props: any) {
     const Router = useRouter();
     const Pathname: string = usePathname() as string;
 
+    const { mode, setMode } = useColorScheme();
+
     const MiddleLinks: {
         href: String;
         text: String;
         icon: any;
     }[] = props.links;
-
-    const colorMode: any = React.useContext(ColorModeContext);
-    const { isDark, type } = useTheme();
-    const { setTheme } = useNextTheme();
 
     return (
         <Box
@@ -94,14 +89,19 @@ export default function DesktopHeader(props: any) {
                                     variant="outlined"
                                     color="white"
                                     onClick={() => {
-                                        colorMode.toggleColorMode();
-                                        setTheme(isDark ? "light" : "dark");
+                                        setMode(
+                                            mode == "dark" ? "light" : "dark"
+                                        );
                                     }}
                                     sx={{
                                         height: "100%",
                                     }}
                                 >
-                                    {isDark ? <MdDarkMode /> : <MdLightMode />}
+                                    {mode == "dark" ? (
+                                        <MdDarkMode />
+                                    ) : (
+                                        <MdLightMode />
+                                    )}
                                 </Button>
                             )}
                             <Link

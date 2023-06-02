@@ -18,41 +18,45 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Validator;
+use Intervention\Image\Facades\Image;
+
 
 class UserController extends Controller
 {
     public function register(Request $request)
     {
-        $validation = Validator::make($request->all(), [
+        $validator = Validator::make($request->all(), [
             'username' => 'required|string|unique:users',
             'firstname' => 'required|string',
             'lastname' => 'required|string',
-            // check if the email ends with @ofppt-edu.ma or @OFPPT-EDU.MA
             'email' => 'required|email|unique:users|ends_with:@ofppt-edu.ma,@OFPPT-EDU.MA',
-            'password' => 'required',
-            'password_confirmation' => 'required|same:password',
+            'password' => 'required|confirmed',
         ]);
-        if ($validation->fails()) {
-            return response()->json($validation->errors(), 422);
-        }
-        $input = $request->all();
-        $input['role_id'] = Role::whereName('stagiaire')->firstOrFail()->id;
-        $input['password'] = bcrypt($input['password']);
-        $user = new User();
 
-        $user->username = $input['username'];
-        $user->name = $input['firstname'] . ' ' . $input['lastname'];
-        $user->first_name = $input['firstname'];
-        $user->last_name = $input['lastname'];
-        $user->email = $input['email'];
-        $user->password = $input['password'];
-        $user->role_id = $input['role_id'];
-        $user->save();
-        $success['token'] = $user->createToken('api-application')->accessToken;
+        if ($validator->fails()) {
+            return response()->json($validator->errors(), 422);
+        }
+
+        $input = $validator->validated();
+        $input['role_id'] = Role::where('name', 'stagiaire')->value('id');
+        $input['password'] = Hash::make($input['password']);
+
+        $user = User::create([
+            'username' => $input['username'],
+            'name' => $input['firstname'] . ' ' . $input['lastname'],
+            'first_name' => $input['firstname'],
+            'last_name' => $input['lastname'],
+            'email' => $input['email'],
+            'password' => $input['password'],
+            'role_id' => $input['role_id'],
+        ]);
+
+        $token = $user->createToken('api-application')->accessToken;
+
         // send email verification
         $this->sendEmailVerification($request);
 
-        return response()->json($success, 201);
+        return response()->json(['token' => $token], 201);
     }
 
 

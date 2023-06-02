@@ -9,6 +9,7 @@
         "barryvdh/laravel-cors": "^3.0",
         "doctrine/dbal": "^3.5",
         "guzzlehttp/guzzle": "^7.2",
+        "intervention/image": "^2.7",
         "laravel/framework": "^9.19",
         "laravel/passport": "^11.6",
         "laravel/sanctum": "^3.0",

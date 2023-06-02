@@ -92,7 +92,7 @@
                     display: flex;
                     justify-content: center;
                     align-items: center;
-                    background-color: var(--nextui-colors-background);
+                    background-color: var(--mui-palette-common-background);
 
                     &:not(:first-child) {
                         margin-top: 15px;
@@ -107,7 +107,7 @@
                             // border
 
                             svg {
-                                color: var(--nextui-colors-background);
+                                color: var(--mui-palette-common-background);
                             }
                         }
 
@@ -132,7 +132,7 @@
                         font-size: 14px;
                         font-weight: 700;
                         color: var(--nextui-colors-text);
-                        background: var(--nextui-colors-background);
+                        background: var(--mui-palette-common-background);
                         text-align: left;
                         padding: 0 $FormsRadius;
                         padding-left: 65px;
@@ -160,7 +160,7 @@
                         svg {
                             width: 20px;
                             height: 20px;
-                            color: var(--nextui-colors-background);
+                            color: var(--mui-palette-common-background);
                         }
                     }
 
@@ -216,7 +216,7 @@
                         appearance: none;
                         // margin-right: 5px;
                         position: relative;
-                        background-color: var(--nextui-colors-background);
+                        background-color: var(--mui-palette-common-background);
                         border: 2px solid rgba($C1, 0.5);
                         border-radius: 15%;
                         cursor: pointer;

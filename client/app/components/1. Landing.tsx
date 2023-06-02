@@ -121,7 +121,7 @@ export default function Landing() {
                         startIcon={
                             <People
                                 set="bulk"
-                                primaryColor="var(--nextui-colors-primary)"
+                                primaryColor="var(--mui-palette-primary-main)"
                             />
                         }
                         variant={"outlined"}

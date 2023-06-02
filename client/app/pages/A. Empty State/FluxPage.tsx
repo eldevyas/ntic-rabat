@@ -100,7 +100,7 @@ export default function EmptyFluxPage() {
                         width="66.6179"
                         height="9.23718"
                         rx="4.61859"
-                        fill="var(--nextui-colors-primary)"
+                        fill="var(--mui-palette-primary-main)"
                     />
                     <rect
                         x="58.3892"
@@ -115,7 +115,7 @@ export default function EmptyFluxPage() {
                         cy="189.568"
                         rx="11.4858"
                         ry="11.5465"
-                        fill="var(--nextui-colors-primary)"
+                        fill="var(--mui-palette-primary-main)"
                     />
                     <defs>
                         <linearGradient

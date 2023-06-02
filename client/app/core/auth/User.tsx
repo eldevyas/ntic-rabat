@@ -21,11 +21,7 @@ import {
     Chat,
     User as UserIcon,
 } from "react-iconly";
-import { IconButton } from "@mui/material";
-import { useTheme } from "@nextui-org/react";
-import { useTheme as useNextTheme } from "next-themes";
-
-import { ColorModeContext } from "@/app/providers";
+import { IconButton, useColorScheme } from "@mui/material";
 import { MdDarkMode, MdLightMode } from "react-icons/md";
 
 const User = () => {
@@ -47,9 +43,7 @@ const User = () => {
         return Router.push(HREF);
     };
 
-    const colorMode = React.useContext(ColorModeContext);
-    const { isDark, type } = useTheme();
-    const { setTheme } = useNextTheme();
+    const { mode, setMode } = useColorScheme();
 
     return (
         <Dropdown placement="bottom-right">
@@ -78,7 +72,7 @@ const User = () => {
                         description="Consultez ou modifiez votre profil public 🖼️"
                         icon={
                             <UserIcon
-                                primaryColor={"var(--nextui-colors-primary)"}
+                                primaryColor={"var(--mui-palette-primary-main)"}
                                 set="bulk"
                             />
                         }
@@ -91,7 +85,7 @@ const User = () => {
                         description="Consultez ou modifiez votre profil public 🖼️"
                         icon={
                             <Chat
-                                primaryColor={"var(--nextui-colors-primary)"}
+                                primaryColor={"var(--mui-palette-primary-main)"}
                                 set="bulk"
                             />
                         }
@@ -104,18 +98,17 @@ const User = () => {
                         key="#!"
                         color="default"
                         description="Changer le mode de couleurs."
-                        icon={isDark ? <MdDarkMode /> : <MdLightMode />}
+                        icon={mode == "dark" ? <MdDarkMode /> : <MdLightMode />}
                     >
                         <Text
                             b
                             color="inherit"
                             css={{ d: "flex" }}
                             onClick={() => {
-                                colorMode.toggleColorMode();
-                                setTheme(isDark ? "light" : "dark");
+                                setMode(mode == "dark" ? "light" : "dark");
                             }}
                         >
-                            Mode {isDark ? "sombre" : "lumineux"}
+                            Mode {mode == "dark" ? "sombre" : "lumineux"}
                         </Text>
                     </Dropdown.Item>
                     <Dropdown.Item
@@ -162,9 +155,7 @@ const MobileMenuWithAuth = () => {
         return Router.push(HREF);
     };
 
-    const colorMode = React.useContext(ColorModeContext);
-    const { isDark, type } = useTheme();
-    const { setTheme } = useNextTheme();
+    const { mode, setMode } = useColorScheme();
 
     return (
         <Dropdown placement="bottom-right">
@@ -206,7 +197,7 @@ const MobileMenuWithAuth = () => {
                         color="secondary"
                         icon={
                             <Home
-                                primaryColor={"var(--nextui-colors-primary)"}
+                                primaryColor={"var(--mui-palette-primary-main)"}
                                 set="bulk"
                             />
                         }
@@ -219,7 +210,7 @@ const MobileMenuWithAuth = () => {
                         color="secondary"
                         icon={
                             <Calendar
-                                primaryColor={"var(--nextui-colors-primary)"}
+                                primaryColor={"var(--mui-palette-primary-main)"}
                                 set="bulk"
                             />
                         }
@@ -232,7 +223,7 @@ const MobileMenuWithAuth = () => {
                         color="secondary"
                         icon={
                             <People
-                                primaryColor={"var(--nextui-colors-primary)"}
+                                primaryColor={"var(--mui-palette-primary-main)"}
                                 set="bulk"
                             />
                         }
@@ -246,7 +237,7 @@ const MobileMenuWithAuth = () => {
                         description="Consultez ou modifiez votre profil public 🖼️"
                         icon={
                             <UserIcon
-                                primaryColor={"var(--nextui-colors-primary)"}
+                                primaryColor={"var(--mui-palette-primary-main)"}
                                 set="bulk"
                             />
                         }
@@ -258,7 +249,7 @@ const MobileMenuWithAuth = () => {
                         color="secondary"
                         icon={
                             <Calling
-                                primaryColor={"var(--nextui-colors-primary)"}
+                                primaryColor={"var(--mui-palette-primary-main)"}
                                 set="bulk"
                             />
                         }
@@ -271,18 +262,17 @@ const MobileMenuWithAuth = () => {
                         key="#!"
                         color="default"
                         description="Changer le mode de couleurs."
-                        icon={isDark ? <MdDarkMode /> : <MdLightMode />}
+                        icon={mode == "dark" ? <MdDarkMode /> : <MdLightMode />}
                     >
                         <Text
                             b
                             color="inherit"
                             css={{ d: "flex" }}
                             onClick={() => {
-                                colorMode.toggleColorMode();
-                                setTheme(isDark ? "light" : "dark");
+                                setMode(mode == "dark" ? "light" : "dark");
                             }}
                         >
-                            Mode {isDark ? "sombre" : "lumineux"}
+                            Mode {mode == "dark" ? "sombre" : "lumineux"}
                         </Text>
                     </Dropdown.Item>
                     <Dropdown.Item
@@ -316,12 +306,12 @@ const MobileMenuWithAuth = () => {
 
 const MobileMenuWithoutAuth = () => {
     const Router = useRouter();
+    const { mode, setMode } = useColorScheme();
 
     const ExecuteAction = (ACTION: string) => {
         switch (ACTION) {
             case "Color Mode":
-                colorMode.toggleColorMode();
-                setTheme(isDark ? "light" : "dark");
+                setMode(mode == "dark" ? "light" : "dark");
                 break;
             default:
                 Router.push(ACTION);
@@ -329,9 +319,6 @@ const MobileMenuWithoutAuth = () => {
         }
     };
 
-    const colorMode = React.useContext(ColorModeContext);
-    const { isDark, type } = useTheme();
-    const { setTheme } = useNextTheme();
     return (
         <Dropdown placement="bottom-right">
             <Dropdown.Trigger>
@@ -343,7 +330,7 @@ const MobileMenuWithoutAuth = () => {
                 >
                     <Category
                         set="bulk"
-                        primaryColor={"var(--nextui-colors-primary)"}
+                        primaryColor={"var(--mui-palette-primary-main)"}
                     />
                 </IconButton>
             </Dropdown.Trigger>
@@ -364,7 +351,7 @@ const MobileMenuWithoutAuth = () => {
                         color="default"
                         icon={
                             <Home
-                                primaryColor={"var(--nextui-colors-primary)"}
+                                primaryColor={"var(--mui-palette-primary-main)"}
                                 set="bulk"
                             />
                         }
@@ -376,7 +363,7 @@ const MobileMenuWithoutAuth = () => {
                         color="default"
                         icon={
                             <Calendar
-                                primaryColor={"var(--nextui-colors-primary)"}
+                                primaryColor={"var(--mui-palette-primary-main)"}
                                 set="bulk"
                             />
                         }
@@ -389,7 +376,7 @@ const MobileMenuWithoutAuth = () => {
                         color="default"
                         icon={
                             <People
-                                primaryColor={"var(--nextui-colors-primary)"}
+                                primaryColor={"var(--mui-palette-primary-main)"}
                                 set="bulk"
                             />
                         }
@@ -402,7 +389,7 @@ const MobileMenuWithoutAuth = () => {
                         color="default"
                         icon={
                             <Calling
-                                primaryColor={"var(--nextui-colors-primary)"}
+                                primaryColor={"var(--mui-palette-primary-main)"}
                                 set="bulk"
                             />
                         }
@@ -415,10 +402,10 @@ const MobileMenuWithoutAuth = () => {
                         key="Color Mode"
                         color="default"
                         description="Changer le mode de couleurs."
-                        icon={isDark ? <MdDarkMode /> : <MdLightMode />}
+                        icon={mode == "dark" ? <MdDarkMode /> : <MdLightMode />}
                     >
                         <Text b color="inherit" css={{ d: "flex" }}>
-                            Mode {isDark ? "sombre" : "lumineux"}
+                            Mode {mode == "dark" ? "sombre" : "lumineux"}
                         </Text>
                     </Dropdown.Item>
                 </Dropdown.Section>
@@ -456,4 +443,88 @@ const MobileMenuWithoutAuth = () => {
 };
 
 export default User;
-export { User, MobileMenuWithAuth, MobileMenuWithoutAuth };
+export {
+    User,
+    MobileMenuWithAuth,
+    // MobileMenuWithoutAuth
+};
+
+import Menu from "@mui/material/Menu";
+import MenuItem from "@mui/material/MenuItem";
+import ListItemIcon from "@mui/material/ListItemIcon";
+import ListItemText from "@mui/material/ListItemText";
+
+const CustomDropdown = () => {
+    const [anchorEl, setAnchorEl] = React.useState(null);
+    const Router = useRouter();
+    const { mode, setMode } = useColorScheme();
+
+    const handleClick = (event: any) => {
+        setAnchorEl(event.currentTarget);
+    };
+
+    const handleClose = () => {
+        setAnchorEl(null);
+    };
+
+    const handleItemClick = (action: any) => {
+        // Perform the corresponding action or navigation based on the selected item
+        switch (action) {
+            case "Color Mode":
+                // Handle color mode change
+                break;
+            case "/":
+                // Handle navigation to Accueil
+                break;
+            // Handle other menu item actions and navigation cases
+            default:
+                break;
+        }
+
+        handleClose();
+    };
+
+    return (
+        <>
+            <IconButton color="primary" onClick={handleClick}>
+                <Category
+                    set="bulk"
+                    primaryColor={"var(--mui-palette-primary-main)"}
+                />
+            </IconButton>
+            <Menu
+                anchorEl={anchorEl}
+                open={Boolean(anchorEl)}
+                onClose={handleClose}
+                elevation={0}
+                sx={{
+                    backdropFilter: "blur(5px)",
+                }}
+            >
+                {/* Render dropdown menu items */}
+                <MenuItem onClick={() => handleItemClick("Color Mode")}>
+                    <ListItemIcon>
+                        {mode === "dark" ? <MdDarkMode /> : <MdLightMode />}
+                    </ListItemIcon>
+                    <ListItemText
+                        primary={`Mode ${
+                            mode === "dark" ? "sombre" : "lumineux"
+                        }`}
+                    />
+                </MenuItem>
+                <MenuItem onClick={() => handleItemClick("/")}>
+                    <ListItemIcon>
+                        <Home />
+                    </ListItemIcon>
+                    <ListItemText
+                        primary="Accueil"
+                        secondary="this is secondary."
+                    />
+                </MenuItem>
+                {/* Render other dropdown menu items */}
+            </Menu>
+        </>
+    );
+};
+
+export { CustomDropdown as MobileMenuWithoutAuth };

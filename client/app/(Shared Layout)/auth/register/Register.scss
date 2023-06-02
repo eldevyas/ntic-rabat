@@ -132,12 +132,12 @@
                                     border-radius: $FormsRadius;
 
                                     svg {
-                                        color: var(--nextui-colors-background);
+                                        color: var(--mui-palette-common-background);
                                     }
                                 }
 
                                 svg {
-                                    color: var(--nextui-colors-background) !important;
+                                    color: var(--mui-palette-common-background) !important;
                                 }
                             }
 
@@ -180,7 +180,7 @@
                                     }
 
                                     .MuiInputBase-input {
-                                        background-color: var(--nextui-colors-background);
+                                        background-color: var(--mui-palette-common-background);
                                         width: 100%;
                                         height: auto;
                                         max-height: 50px;
@@ -200,7 +200,7 @@
                                             border: 1px solid var(--nextui-colors-error);
                                             outline: none !important;
                                             box-shadow: none !important;
-                                            background-color: var(--nextui-colors-background);
+                                            background-color: var(--mui-palette-common-background);
                                             color: var(--nextui-colors-error);
 
                                             &::placeholder {
@@ -237,7 +237,7 @@
                                 svg {
                                     width: 20px;
                                     height: 20px;
-                                    color: var(--nextui-colors-background);
+                                    color: var(--mui-palette-common-background);
                                 }
                             }
 

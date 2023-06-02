@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Annonce;
@@ -55,11 +55,11 @@ class AnnonceController extends Controller
                 $annonce = Annonce::create($request->all());
                 return new AnnonceResource($annonce);
             } else {
-                return response("You are not allowed to create an annonce", 401);
+                return response("You are not allowed to create an announce.", 401);
             }
         }
         // return json response
-        return response("You are not allowed to create an annonce", 401);
+        return response("You are not allowed to create an announce.", 401);
     }
 
     /**

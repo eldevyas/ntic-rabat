@@ -1,9 +1,22 @@
 import React from "react";
-import { Box, TextField, Typography } from "@mui/material";
+import { Box, Skeleton, TextField, Typography } from "@mui/material";
 import Avatar from "@mui/material/Avatar";
+import { useRouter } from "next/navigation";
 
 export default function UsersList() {
+    const Router = useRouter();
+
     const [isMobile, setIsMobile] = React.useState(false);
+    const [isLoading, setLoading] = React.useState(true);
+    const [Users, setUsers] = React.useState([]);
+
+    const Skeletons = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
+
+    React.useEffect(() => {
+        fetch("/api/users")
+            .then((res) => res.json())
+            .then((data) => setUsers(data));
+    }, []);
 
     React.useEffect(() => {
         const handleResize = () => {
@@ -47,113 +60,134 @@ export default function UsersList() {
 
     return (
         <div>
-            {!isMobile && (
-                <Box
-                    className="Users"
-                    sx={{
-                        position: "sticky",
-                        top: HeaderHeight,
-                        height: ContainerHeight,
-                        width: "100%",
-                        minWidth: 250,
-                        maxHeight: "100vh",
-                        maxWidth: "max-content",
-                    }}
-                >
-                    <Box
-                        className="List"
-                        sx={{
-                            position: "relative",
-                            width: "100%",
-                            height: "100%",
-                            display: "flex",
-                            flexDirection: "column",
-                            gap: "0.5rem",
-                            minWidth: 250,
-                            color: (theme) => theme.palette.text.primary,
-                            backgroundColor: (theme) =>
-                                theme.palette.background.default,
-                            padding: "1rem",
-                        }}
-                    >
-                        <Typography fontWeight="bold" variant="body1">
-                            Stagiares
-                        </Typography>
+            {isLoading ? (
+                <>
+                    {Skeletons.map((Number: number) => (
                         <Box
-                            className="Avatars"
+                            className="User"
                             sx={{
-                                position: "relative",
                                 display: "flex",
-                                flexDirection: "column",
+                                flexDirection: "row",
+                                justifyContent: "flex-start",
+                                alignItems: "center",
                                 gap: "0.5rem",
-                                overflowX: "hidden",
-                                overflowY: "auto",
-                                scrollbarWidth: "thin",
-                                scrollbarColor:
-                                    "var(--nextui-colors-background) var(--nextui-colors-primaryDark)",
-                                "&::-webkit-scrollbar": {
-                                    width: "8px",
-                                },
-                                "&::-webkit-scrollbar-track": {
-                                    backgroundColor:
-                                        "var(--nextui-colors-background)",
-                                },
-                                "&::-webkit-scrollbar-thumb": {
-                                    backgroundColor:
-                                        "var(--nextui-colors-primaryDark)",
-                                    borderRadius: "4px",
+                                "&:hover": {
+                                    cursor: "pointer",
                                 },
                             }}
+                            key={Number}
                         >
+                            <Skeleton
+                                variant="circular"
+                                width={40}
+                                height={40}
+                            />
+
                             <Box
-                                className="User"
+                                className="Name"
                                 sx={{
                                     display: "flex",
-                                    flexDirection: "row",
-                                    justifyContent: "flex-start",
-                                    alignItems: "center",
-                                    gap: "0.5rem",
+                                    flexDirection: "column",
+                                    justifyContent: "center",
+                                    alignItems: "flex-start",
                                 }}
                             >
-                                <Avatar
-                                    alt="Anonymous"
-                                    src="/broken-image.jpg"
-                                    sizes="large"
-                                />
-                                <Box
-                                    className="Name"
+                                <Typography
+                                    variant="body2"
+                                    fontWeight="bold"
                                     sx={{
-                                        display: "flex",
-                                        flexDirection: "column",
-                                        justifyContent: "center",
-                                        alignItems: "flex-start",
+                                        color: (theme) =>
+                                            theme.palette.text.primary,
                                     }}
                                 >
-                                    <Typography
-                                        variant="body2"
-                                        fontWeight="bold"
+                                    <Skeleton
+                                        variant="text"
                                         sx={{
-                                            color: (theme) =>
-                                                theme.palette.text.primary,
+                                            fontSize: "1rem",
+                                            width: "200px",
                                         }}
-                                    >
-                                        Anonymous
-                                    </Typography>
-                                    <Typography
-                                        variant="caption"
-                                        fontWeight="medium"
+                                    />
+                                </Typography>
+                                <Typography
+                                    variant="caption"
+                                    fontWeight="medium"
+                                    sx={{
+                                        color: (theme) =>
+                                            theme.palette.text.secondary,
+                                    }}
+                                >
+                                    <Skeleton
+                                        variant="text"
                                         sx={{
-                                            color: (theme) =>
-                                                theme.palette.text.secondary,
+                                            fontSize: "1rem",
+                                            width: "200px",
                                         }}
-                                    >
-                                        Anonymous
-                                    </Typography>
-                                </Box>
+                                    />
+                                </Typography>
                             </Box>
                         </Box>
-                    </Box>
-                </Box>
+                    ))}
+                </>
+            ) : (
+                <>
+                    {Users.map((user: any, index: number) => (
+                        <Box
+                            key={index}
+                            className="User"
+                            sx={{
+                                display: "flex",
+                                flexDirection: "row",
+                                justifyContent: "flex-start",
+                                alignItems: "center",
+                                gap: "0.5rem",
+                                "&:hover": {
+                                    cursor: "pointer",
+                                },
+                            }}
+                            onClick={() => {
+                                Router.push(
+                                    `/connect/profile/${user.username}`
+                                );
+                            }}
+                        >
+                            <Avatar
+                                alt={user.name}
+                                src="/assets/avatars/Default.png"
+                                sizes="large"
+                            />
+                            <Box
+                                className="Name"
+                                sx={{
+                                    display: "flex",
+                                    flexDirection: "column",
+                                    justifyContent: "center",
+                                    alignItems: "flex-start",
+                                }}
+                            >
+                                <Typography
+                                    variant="body2"
+                                    fontWeight="bold"
+                                    sx={{
+                                        color: (theme) =>
+                                            theme.palette.text.primary,
+                                    }}
+                                >
+                                    {user.name}
+                                </Typography>
+                                <Typography
+                                    variant="caption"
+                                    fontWeight="medium"
+                                    sx={{
+                                        color: (theme) =>
+                                            theme.palette.text.secondary,
+                                    }}
+                                >
+                                    {user.email}
+                                </Typography>
+                            </Box>
+                        </Box>
+                    ))}
+                </>
             )}
         </div>
     );

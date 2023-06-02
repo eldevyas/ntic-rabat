@@ -1,16 +1,16 @@
 <?php
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\UserController;
+use App\Http\Controllers\AnnonceController;
+use App\Http\Controllers\CommentsController;
 use App\Http\Controllers\LikesController;
 use App\Http\Controllers\PostsController;
-use App\Http\Resources\AnnonceCollection;
-use App\Http\Controllers\CommentsController;
-// import CheckResetPasswordToken middleware
-use App\Http\Controllers\Api\AnnonceController;
+use App\Http\Controllers\UserController;
 use App\Http\Middleware\CheckResetPasswordToken;
-// import AdminCheck middleware
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
+
+// Import CheckResetPasswordToken middleware
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -29,23 +29,21 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::apiResource('annonces', AnnonceController::class);
 
 // Make middleware for store route in annonces api resource
-Route::post('/annonces', [AnnonceController::class, 'store'])->middleware('auth:api');
-
-Route::delete('/annonces/{id}', [AnnonceController::class, 'delete'])->middleware('auth:api');
-
-Route::put('/annonces/{id}', [AnnonceController::class, 'update'])->middleware('auth:api');
+Route::middleware('auth:api')->group(function () {
+    Route::post('/annonces', [AnnonceController::class, 'store']);
+    Route::delete('/annonces/{id}', [AnnonceController::class, 'delete']);
+    Route::put('/annonces/{id}', [AnnonceController::class, 'update']);
+});
 
 Route::post('/login', [UserController::class, 'login']);
 
 // Get all users
 Route::get('/users', [UserController::class, 'getUsers']);
 
-// login with token
 Route::post('/register', [UserController::class, 'register']);
 
+// Login with token
 Route::post('/logout', [UserController::class, 'logout'])->middleware('auth:api');
-
-Route::apiResource('projects', ProjectController::class);
 
 // Route to check username availability
 Route::get('/users/check-username/{username}', [UserController::class, 'checkUsername']);
@@ -72,28 +70,7 @@ Route::post('auth/resend-confirmation', [UserController::class, 'sendEmailVerifi
 Route::get('/user/{username}', [UserController::class, 'show']);
 
 // Update user profile
-Route::post('/user/update-profile', [UserController::class, 'UpdateProfile'])->middleware('auth:api');
-
-// Update password
-Route::post('/user/update-password', [UserController::class, 'UpdatePassword'])->middleware('auth:api');
-
-// Posts group routes
-Route::group(['prefix' => 'post'], function () {
-    Route::get('/', [PostsController::class, 'index']);
-    Route::get('/team', [PostsController::class, 'TeamPosts']);
-    Route::get('/{post}', [PostsController::class, 'show']);
-    Route::post('/', [PostsController::class, 'store'])->middleware('auth:api');
-    Route::put('/{post}', [PostsController::class, 'update'])->middleware('auth:api');
-    Route::delete('/{post}', [PostsController::class, 'destroy'])->middleware('auth:api');
-});
-
-// Group like routes
-Route::group(['prefix' => 'post'], function () {
-    Route::post('/{post}/like', [LikesController::class, 'like'])->middleware('auth:api');
-});
-
-// Group comment routes
-Route::group(['prefix' => 'post'], function () {
-    Route::post('/{post}/comment', [CommentsController::class, 'store'])->middleware('auth:api');
-    Route::delete('/{post}/comment/{comment}', [CommentsController::class, 'destroy'])->middleware('auth:api');
+Route::middleware('auth:api')->group(function () {
+    Route::post('/user/update-profile', [UserController::class, 'UpdateProfile']);
+    Route::post('/user/update-password', [UserController::class, 'UpdatePassword']);
 });

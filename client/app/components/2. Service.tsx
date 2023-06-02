@@ -190,7 +190,7 @@ const Card = (Props: {
                             set="bulk"
                             primaryColor={
                                 Props.color == "black"
-                                    ? `var(--nextui-colors-primary)`
+                                    ? `var(--mui-palette-primary-main)`
                                     : Props.color == "white"
                                     ? theme.palette.mode == "dark"
                                         ? `#fff`

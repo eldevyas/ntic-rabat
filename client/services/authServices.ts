@@ -32,6 +32,14 @@ const Register = (credentials: any) => {
             password_confirmation: credentials.passwordConfirmation,
         });
 
+        console.table({
+            username: credentials.username,
+            firstname: credentials.firstName,
+            lastname: credentials.lastName,
+            email: credentials.email,
+            password: credentials.password,
+            password_confirmation: credentials.passwordConfirmation,
+        });
 
         return axios
             .post(REGISTER_ENDPOINT, data, {
