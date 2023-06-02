@@ -17,7 +17,7 @@ export default function RegisterComponent(props: any) {
         password: "",
         passwordConfirmation: "",
     });
-
+ 
     const handleRegistration = (Credentials: any) => {
         setCredentials(Credentials);
         let Register = Auth.Register(Credentials);
