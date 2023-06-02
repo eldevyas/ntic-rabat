@@ -322,7 +322,7 @@ class UserController extends Controller
 
     public function getUsers(Request $request)
     {
-        $users = User::where('id', '!=', Auth::user()->id)->get();
+        $users = User::all();
         return response()->json([
             'users' => $users
         ], 200);
