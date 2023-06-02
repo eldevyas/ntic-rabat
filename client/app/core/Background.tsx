@@ -13,7 +13,7 @@ function VectorSVG(props: any) {
                     <path
                         opacity="0.5"
                         d="M386.666 1.19218C262.26 -15.1815 77.5696 303.621 0.77514 465.069C154.362 444.811 471.271 398.131 510.208 373.474C558.88 342.653 542.173 21.6593 386.666 1.19218Z"
-                        fill="white"
+                        fill="var(--mui-palette-background-default)"
                     />
                 </svg>
             )}
@@ -28,7 +28,7 @@ function VectorSVG(props: any) {
                     <path
                         opacity="0.5"
                         d="M411.234 2.23469C286.828 -14.139 96.809 85.9598 20.0145 247.408C-91.2303 481.282 301.026 564.326 339.964 539.669C388.636 508.848 566.742 22.7018 411.234 2.23469Z"
-                        fill="white"
+                        fill="var(--mui-palette-background-default)"
                     />
                 </svg>
             )}
@@ -43,7 +43,7 @@ function VectorSVG(props: any) {
                     <path
                         opacity="0.5"
                         d="M564.881 15.7265C478.632 4.3749 67.5703 -34.2266 14.3301 77.7024C-62.7939 239.843 209.15 297.416 236.145 280.322C269.888 258.954 672.691 29.9159 564.881 15.7265Z"
-                        fill="white"
+                        fill="var(--mui-palette-background-default)"
                     />
                 </svg>
             )}
@@ -113,7 +113,7 @@ export default function Background(props: { zIndex?: number }) {
                 >
                     <Elipse
                         sx={{
-                            background: (theme) => theme.palette.primary.main,
+                            background: "var(--mui-palette-primary-main)",
                             width: {
                                 xs: "25vh",
                                 sm: "25vh",
@@ -148,7 +148,7 @@ export default function Background(props: { zIndex?: number }) {
                     />
                     <Elipse
                         sx={{
-                            background: (theme) => theme.palette.primary.main,
+                            background: "var(--mui-palette-primary-main)",
                             width: {
                                 xs: "25vh",
                                 sm: "25vh",
@@ -183,7 +183,7 @@ export default function Background(props: { zIndex?: number }) {
                     />
                     <Elipse
                         sx={{
-                            background: (theme) => theme.palette.primary.main,
+                            background: "var(--mui-palette-primary-main)",
                             width: {
                                 xs: "25vh",
                                 sm: "25vh",
@@ -218,7 +218,7 @@ export default function Background(props: { zIndex?: number }) {
                     />
                     <Elipse
                         sx={{
-                            background: (theme) => theme.palette.primary.main,
+                            background: "var(--mui-palette-primary-main)",
                             width: {
                                 xs: "25vh",
                                 sm: "25vh",
@@ -268,12 +268,10 @@ export default function Background(props: { zIndex?: number }) {
                             maxWidth: "100%",
                             maxHeight: "100%",
                             aspectRatio: "1/1",
-                            fill: (theme) => theme.palette.background.default,
-                            filter: (theme) =>
-                                `drop-shadow(0 -6mm 4mm ${theme.palette.background.default})`,
+                            fill: "var(--mui-palette-background-default)",
+                            filter: "drop-shadow(0 -6mm 4mm var(--mui-palette-background-default))",
                             path: {
-                                fill: (theme) =>
-                                    theme.palette.background.default,
+                                fill: "var(--mui-palette-background-default)",
                             },
                             width: "50vh",
                             height: "auto",
@@ -367,8 +365,8 @@ export default function Background(props: { zIndex?: number }) {
                         opacity: 0.1,
                         pointerEvents: "none",
                         zIndex: props.zIndex ? props.zIndex : 0,
-                        bakcgroundColor: (theme) =>
-                            theme.palette.background.default,
+                        bakcgroundColor:
+                            "var(--mui-palette-background-default)",
                         "--square-size": {
                             xs: "calc(100vw / 10)",
                             sm: "calc(100vw / 10)",
@@ -376,13 +374,8 @@ export default function Background(props: { zIndex?: number }) {
                             lg: "calc(100vw / 50)",
                             xl: "calc(100vw / 50)",
                         },
-                        background: (theme) =>
-                            `conic-gradient(from 90deg at 1px 1px, transparent 90deg, ${theme.palette.primary.main} 0) 0 0/var(--square-size) var(--square-size)`,
-                        // backgroundImage: (theme) =>
-                        //     theme.palette.mode == "light"
-                        //         ? `linear-gradient(${theme.palette.primary.main} 1px, transparent 1px), linear-gradient(to right, ${theme.palette.primary.main} 1px, transparent 1px)`
-                        //         : `linear-gradient(${theme.palette.primary.main} 1px, transparent 1px), linear-gradient(to right, ${theme.palette.primary.main} 1px, transparent 1px)`,
-                        // backgroundSize: "calc(100vw/20) calc(100vw/20)",
+                        background:
+                            "conic-gradient(from 90deg at 1px 1px, transparent 90deg, var(--mui-palette-primary-main) 0) 0 0/var(--square-size) var(--square-size)",
                     }}
                 ></Box>
 
