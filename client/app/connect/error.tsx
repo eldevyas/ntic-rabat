@@ -2,7 +2,6 @@
 
 import { useEffect } from "react";
 import ErrorPage from "@/app/pages/B. Error/ErrorPage";
-import Dashboard from "./layout/Dashboard";
 
 export default function Error({
     error,
@@ -16,9 +15,5 @@ export default function Error({
         console.error(error);
     }, [error]);
 
-    return (
-        <Dashboard>
-            <ErrorPage Error={error} Reset={reset} />
-        </Dashboard>
-    );
+    return <ErrorPage Error={error} Reset={reset} />;
 }

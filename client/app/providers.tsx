@@ -30,6 +30,12 @@ import { useServerInsertedHTML } from "next/navigation";
 import { useState } from "react";
 import React from "react";
 import useMediaQuery from "@mui/material/useMediaQuery";
+import {
+    getInitColorSchemeScript,
+    useColorScheme,
+    Experimental_CssVarsProvider as CssVarsProvider,
+} from "@mui/material/styles";
+
 //
 //
 // Components
@@ -53,18 +59,18 @@ const StylingProvider = ({ children }: Props) => {
     const { setTheme } = useNextTheme();
     const { isDark, type } = useTheme();
     const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
-
-    const [mode, setMode] = useState(prefersDarkMode ? "dark" : "light");
+    const { mode, setMode }: any = useColorScheme();
 
     useEffect(() => {
-        setMode(() => {
+        const Mode: () => string = () => {
             const savedMode = localStorage.getItem("colorMode");
             return savedMode ? savedMode : prefersDarkMode ? "dark" : "light";
-        });
+        };
+        setMode(Mode);
     }, []);
 
     const toggleColorMode = () => {
-        setMode((prevMode) => {
+        setMode((prevMode: string) => {
             const newMode = prevMode === "light" ? "dark" : "light";
             localStorage.setItem("colorMode", newMode);
             setTheme(newMode);
@@ -175,14 +181,17 @@ const CustomToastContainer = () => {
 export const MegaProvider = ({ children }: Props) => {
     return (
         <NextAuthProvider>
+            {getInitColorSchemeScript()}
             <RootStyleRegistry>
-                <StylingProvider>
-                    {/* Progress Bar on Top of the Page */}
-                    <ProgressIndicator />
-                    {/* Notifications Container */}
-                    <CustomToastContainer />
-                    {children}
-                </StylingProvider>
+                <CssVarsProvider>
+                    <StylingProvider>
+                        {/* Progress Bar on Top of the Page */}
+                        <ProgressIndicator />
+                        {/* Notifications Container */}
+                        <CustomToastContainer />
+                        {children}
+                    </StylingProvider>
+                </CssVarsProvider>
             </RootStyleRegistry>
         </NextAuthProvider>
     );

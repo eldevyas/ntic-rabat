@@ -33,6 +33,7 @@
         "eslint": "8.30.0",
         "firebase": "^9.22.0",
         "framer-motion": "^8.2.4",
+        "iconsax-react": "^0.0.8",
         "next": "^13.4.3",
         "next-auth": "^4.0.0",
         "next-cookies": "^2.0.3",

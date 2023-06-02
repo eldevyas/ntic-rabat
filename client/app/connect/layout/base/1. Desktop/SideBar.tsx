@@ -99,9 +99,9 @@ export default function SideBar() {
     const { setTheme } = useNextTheme();
 
     const handleChange = (event: React.SyntheticEvent, newValue: string) => {
-        setValue(newValue);
         Router.push(newValue);
     };
+
     return (
         <Box
             className="SideBar"

@@ -4,6 +4,7 @@ import "react-toastify/dist/ReactToastify.css";
 import MegaProvider from "./providers";
 import Loading from "./core/Loading";
 import { Outfit, Cairo } from "next/font/google";
+import { getInitColorSchemeScript } from "@mui/material/styles";
 
 // If loading a variable font, you don't need to specify the font weight
 const OutfitFont = Outfit({

@@ -51,7 +51,7 @@ export default function Header() {
                 gap: "1rem",
                 color: (theme) => theme.palette.text.primary,
                 padding: "1rem",
-                zIndex: "9999",
+                zIndex: "100",
                 backgroundColor: "var(--nextui-colors-backgroundAlpha)",
                 backdropFilter: "blur(5rem)",
             }}
