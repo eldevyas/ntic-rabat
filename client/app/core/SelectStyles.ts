@@ -1,7 +1,7 @@
 const Control = (base: any, state: any) => ({
     ...base,
     backgroundColor: "var(--mui-palette-common-background)",
-    color: "var(--nextui-colors-text)",
+    color: "var(--mui-palette-text-primary)",
     boxShadow: "none",
     borderRadius: "10px",
     outline: "none",
@@ -26,7 +26,7 @@ const Option = (base: any, state: any) => ({
     backgroundColor: state.isSelected
         ? "var(--mui-palette-primary-main)"
         : "transparent",
-    color: state.isSelected ? "var(--nextui-colors-primaryLight)" : "var(--nextui-colors-text)",
+    color: state.isSelected ? "var(--mui-palette-primary-light)" : "var(--mui-palette-text-primary)",
     fontFamily: "Outfit, sans-serif",
     fontSize: "1rem",
     fontWeight: "400",
@@ -34,7 +34,7 @@ const Option = (base: any, state: any) => ({
     borderRadius: "10px",
     // hover
     "&:hover": {
-        backgroundColor: "var(--nextui-colors-primaryLight)",
+        backgroundColor: "var(--mui-palette-primary-light)",
         color: "var(--mui-palette-primary-main)",
         cursor: state.isSelected
             ? "default"

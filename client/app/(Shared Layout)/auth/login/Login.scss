@@ -115,11 +115,11 @@
                             outline: none;
                             z-index: 9;
                             background: var(--nextui-colors-backgroundContrast);
-                            color: var(--nextui-colors-text);
-                            border: 1px solid var(--nextui-colors-textLight);
+                            color: var(--mui-palette-text-primary);
+                            border: 1px solid var(--mui-palette-text-secondary);
 
                             &::placeholder {
-                                color: var(--nextui-colors-textLight);
+                                color: var(--mui-palette-text-secondary);
                             }
                         }
                     }
@@ -131,17 +131,17 @@
                         outline: none;
                         font-size: 14px;
                         font-weight: 700;
-                        color: var(--nextui-colors-text);
+                        color: var(--mui-palette-text-primary);
                         background: var(--mui-palette-common-background);
                         text-align: left;
                         padding: 0 $FormsRadius;
                         padding-left: 65px;
                         padding-right: 65px;
                         border-radius: $FormsRadius;
-                        border: 1px solid var(--nextui-colors-textLight);
+                        border: 1px solid var(--mui-palette-text-secondary);
 
                         &::placeholder {
-                            color: var(--nextui-colors-textLight);
+                            color: var(--mui-palette-text-secondary);
                         }
                     }
 
@@ -179,10 +179,10 @@
                         svg {
                             width: 20px;
                             height: 20px;
-                            color: var(--nextui-colors-textLight) !important;
+                            color: var(--mui-palette-text-secondary) !important;
 
                             &:hover {
-                                color: var(--nextui-colors-text) !important;
+                                color: var(--mui-palette-text-primary) !important;
                                 cursor: pointer;
                             }
                         }
