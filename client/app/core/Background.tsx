@@ -94,7 +94,7 @@ export default function Background(props: { zIndex?: number }) {
                     bottom: 0,
                     right: 0,
                     zIndex: props.zIndex ? props.zIndex - 1 : -1,
-                    background: (theme) => theme.palette.background.default,
+                    background: "var(--mui-palette-background-default)",
                     overflow: "hidden",
                 }}
             >
