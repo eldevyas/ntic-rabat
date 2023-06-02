@@ -317,4 +317,14 @@ class UserController extends Controller
             'message' => 'User updated successfully'
         ], 200);
     }
+
+
+
+    public function getUsers(Request $request)
+    {
+        $users = User::all();
+        return response()->json([
+            'users' => $users
+        ], 200);
+    }
 }

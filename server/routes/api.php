@@ -37,6 +37,9 @@ Route::put('/annonces/{id}', [AnnonceController::class, 'update'])->middleware('
 
 Route::post('/login', [UserController::class, 'login']);
 
+// Get all users
+Route::get('/users', [UserController::class, 'getUsers']);
+
 // login with token
 Route::post('/register', [UserController::class, 'register']);
 
