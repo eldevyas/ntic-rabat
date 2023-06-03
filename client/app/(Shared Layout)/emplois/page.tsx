@@ -68,3 +68,5 @@ export default async function EmploisPage({
         />
     );
 }
+
+export const revalidate = 60; // revalidate this segment every 60 seconds

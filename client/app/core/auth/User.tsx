@@ -15,14 +15,15 @@ import {
     Calendar,
     Login,
     People,
-    Calling,
+    CallCalling as Calling,
     Logout,
-    Password,
-    Chat,
+    Lock as Password,
+    DeviceMessage as Chat,
     User as UserIcon,
-} from "react-iconly";
-import { IconButton, useColorScheme } from "@mui/material";
-import { MdDarkMode, MdLightMode } from "react-icons/md";
+    CloudSunny as MdLightMode,
+    Moon as MdDarkMode,
+} from "iconsax-react";
+import { IconButton, MenuList, useColorScheme } from "@mui/material";
 
 const User = () => {
     const Router = useRouter();
@@ -72,8 +73,9 @@ const User = () => {
                         description="Consultez ou modifiez votre profil public 🖼️"
                         icon={
                             <UserIcon
-                                primaryColor={"var(--mui-palette-primary-main)"}
-                                set="bulk"
+                                size="28"
+                                variant="Bulk"
+                                color={"var(--mui-palette-primary-main)"}
                             />
                         }
                     >
@@ -85,8 +87,9 @@ const User = () => {
                         description="Consultez ou modifiez votre profil public 🖼️"
                         icon={
                             <Chat
-                                primaryColor={"var(--mui-palette-primary-main)"}
-                                set="bulk"
+                                size="28"
+                                variant="Bulk"
+                                color={"var(--mui-palette-primary-main)"}
                             />
                         }
                     >
@@ -117,8 +120,9 @@ const User = () => {
                         description="Pensez-vous quitter cet endroit incroyable pour de vrai ?"
                         icon={
                             <Logout
-                                primaryColor={"var(--nextui-colors-error)"}
-                                set="bulk"
+                                size="28"
+                                variant="Bulk"
+                                color={"var(--mui-palette-error-main)"}
                             />
                         }
                     >
@@ -197,8 +201,9 @@ const MobileMenuWithAuth = () => {
                         color="secondary"
                         icon={
                             <Home
-                                primaryColor={"var(--mui-palette-primary-main)"}
-                                set="bulk"
+                                size="28"
+                                variant="Bulk"
+                                color={"var(--mui-palette-primary-main)"}
                             />
                         }
                         description="Rien à faire là-bas frèrot 😶‍🌫️"
@@ -210,8 +215,9 @@ const MobileMenuWithAuth = () => {
                         color="secondary"
                         icon={
                             <Calendar
-                                primaryColor={"var(--mui-palette-primary-main)"}
-                                set="bulk"
+                                size="28"
+                                variant="Bulk"
+                                color={"var(--mui-palette-primary-main)"}
                             />
                         }
                         description="Consultez le planning de tous les cours aux NTIC Rabat, vous pouvez voir la météo aussi 😍"
@@ -223,8 +229,9 @@ const MobileMenuWithAuth = () => {
                         color="secondary"
                         icon={
                             <People
-                                primaryColor={"var(--mui-palette-primary-main)"}
-                                set="bulk"
+                                size="28"
+                                variant="Bulk"
+                                color={"var(--mui-palette-primary-main)"}
                             />
                         }
                         description="Facebook du NTIC 📲"
@@ -237,8 +244,9 @@ const MobileMenuWithAuth = () => {
                         description="Consultez ou modifiez votre profil public 🖼️"
                         icon={
                             <UserIcon
-                                primaryColor={"var(--mui-palette-primary-main)"}
-                                set="bulk"
+                                size="28"
+                                variant="Bulk"
+                                color={"var(--mui-palette-primary-main)"}
                             />
                         }
                     >
@@ -249,8 +257,9 @@ const MobileMenuWithAuth = () => {
                         color="secondary"
                         icon={
                             <Calling
-                                primaryColor={"var(--mui-palette-primary-main)"}
-                                set="bulk"
+                                size="28"
+                                variant="Bulk"
+                                color={"var(--mui-palette-primary-main)"}
                             />
                         }
                     >
@@ -262,7 +271,21 @@ const MobileMenuWithAuth = () => {
                         key="#!"
                         color="default"
                         description="Changer le mode de couleurs."
-                        icon={mode == "dark" ? <MdDarkMode /> : <MdLightMode />}
+                        icon={
+                            mode == "dark" ? (
+                                <MdDarkMode
+                                    size="28"
+                                    variant="Bulk"
+                                    color="var(--mui-palette-primary-main)"
+                                />
+                            ) : (
+                                <MdLightMode
+                                    size="28"
+                                    variant="Bulk"
+                                    color="var(--mui-palette-primary-main)"
+                                />
+                            )
+                        }
                     >
                         <Text
                             b
@@ -281,8 +304,9 @@ const MobileMenuWithAuth = () => {
                         description="Pensez-vous quitter cet endroit incroyable pour de vrai ?"
                         icon={
                             <Logout
-                                primaryColor={"var(--nextui-colors-error)"}
-                                set="bulk"
+                                size="28"
+                                variant="Bulk"
+                                color={"var(--mui-palette-primary-main)"}
                             />
                         }
                     >
@@ -329,8 +353,8 @@ const MobileMenuWithoutAuth = () => {
                     }}
                 >
                     <Category
-                        set="bulk"
-                        primaryColor={"var(--mui-palette-primary-main)"}
+                        variant="Bulk"
+                        color={"var(--mui-palette-primary-main)"}
                     />
                 </IconButton>
             </Dropdown.Trigger>
@@ -351,8 +375,8 @@ const MobileMenuWithoutAuth = () => {
                         color="default"
                         icon={
                             <Home
-                                primaryColor={"var(--mui-palette-primary-main)"}
-                                set="bulk"
+                                variant="Bulk"
+                                color={"var(--mui-palette-primary-main)"}
                             />
                         }
                     >
@@ -363,8 +387,8 @@ const MobileMenuWithoutAuth = () => {
                         color="default"
                         icon={
                             <Calendar
-                                primaryColor={"var(--mui-palette-primary-main)"}
-                                set="bulk"
+                                variant="Bulk"
+                                color={"var(--mui-palette-primary-main)"}
                             />
                         }
                         description="Consultez le planning de tous les cours aux NTIC Rabat, vous pouvez voir la météo aussi 😍"
@@ -376,8 +400,8 @@ const MobileMenuWithoutAuth = () => {
                         color="default"
                         icon={
                             <People
-                                primaryColor={"var(--mui-palette-primary-main)"}
-                                set="bulk"
+                                variant="Bulk"
+                                color={"var(--mui-palette-primary-main)"}
                             />
                         }
                         description="Facebook du NTIC 📲"
@@ -389,8 +413,8 @@ const MobileMenuWithoutAuth = () => {
                         color="default"
                         icon={
                             <Calling
-                                primaryColor={"var(--mui-palette-primary-main)"}
-                                set="bulk"
+                                variant="Bulk"
+                                color={"var(--mui-palette-primary-main)"}
                             />
                         }
                     >
@@ -402,7 +426,21 @@ const MobileMenuWithoutAuth = () => {
                         key="Color Mode"
                         color="default"
                         description="Changer le mode de couleurs."
-                        icon={mode == "dark" ? <MdDarkMode /> : <MdLightMode />}
+                        icon={
+                            mode == "dark" ? (
+                                <MdDarkMode
+                                    size="28"
+                                    variant="Bulk"
+                                    color="var(--mui-palette-primary-main)"
+                                />
+                            ) : (
+                                <MdLightMode
+                                    size="28"
+                                    variant="Bulk"
+                                    color="var(--mui-palette-primary-main)"
+                                />
+                            )
+                        }
                     >
                         <Text b color="inherit" css={{ d: "flex" }}>
                             Mode {mode == "dark" ? "sombre" : "lumineux"}
@@ -416,8 +454,8 @@ const MobileMenuWithoutAuth = () => {
                         description="Frèrot, ne t'inscris pas."
                         icon={
                             <Login
-                                set="bulk"
-                                primaryColor={"var(--nextui-colors-secondary)"}
+                                variant="Bulk"
+                                color={"var(--mui-palette-secondary-main)"}
                             />
                         }
                     >
@@ -429,8 +467,9 @@ const MobileMenuWithoutAuth = () => {
                         description="Soyez courtois."
                         icon={
                             <Password
-                                primaryColor={"var(--nextui-colors-secondary)"}
-                                set="bulk"
+                                size="28"
+                                variant="Bulk"
+                                color={"var(--mui-palette-secondary-main)"}
                             />
                         }
                     >
@@ -467,29 +506,26 @@ const CustomDropdown = () => {
         setAnchorEl(null);
     };
 
-    const handleItemClick = (action: any) => {
-        // Perform the corresponding action or navigation based on the selected item
-        switch (action) {
+    const handleItemClick = (ACTION: string) => {
+        switch (ACTION) {
             case "Color Mode":
-                // Handle color mode change
+                setMode(mode == "dark" ? "light" : "dark");
+                handleClose();
                 break;
-            case "/":
-                // Handle navigation to Accueil
-                break;
-            // Handle other menu item actions and navigation cases
             default:
+                Router.push(ACTION);
+                handleClose();
                 break;
         }
-
-        handleClose();
     };
 
     return (
         <>
             <IconButton color="primary" onClick={handleClick}>
                 <Category
-                    set="bulk"
-                    primaryColor={"var(--mui-palette-primary-main)"}
+                    size="28"
+                    variant="Bulk"
+                    color={"var(--mui-palette-primary-main)"}
                 />
             </IconButton>
             <Menu
@@ -498,30 +534,142 @@ const CustomDropdown = () => {
                 onClose={handleClose}
                 elevation={0}
                 sx={{
-                    backdropFilter: "blur(5px)",
+                    backdropFilter: "blur(2.5px)",
+                    ".MuiPaper-root": {
+                        backgroundColor:
+                            "var(--mui-palette-background-default)",
+                        padding: "0.5rem",
+                        borderRadius: "0.75rem",
+                        ".MuiList-root": {
+                            // padding: 0,
+                            ".MuiMenuItem-root": {
+                                borderRadius: "0.75rem",
+                            },
+                        },
+                    },
                 }}
             >
                 {/* Render dropdown menu items */}
-                <MenuItem onClick={() => handleItemClick("Color Mode")}>
-                    <ListItemIcon>
-                        {mode === "dark" ? <MdDarkMode /> : <MdLightMode />}
-                    </ListItemIcon>
-                    <ListItemText
-                        primary={`Mode ${
-                            mode === "dark" ? "sombre" : "lumineux"
-                        }`}
-                    />
-                </MenuItem>
-                <MenuItem onClick={() => handleItemClick("/")}>
-                    <ListItemIcon>
-                        <Home />
-                    </ListItemIcon>
-                    <ListItemText
-                        primary="Accueil"
-                        secondary="this is secondary."
-                    />
-                </MenuItem>
-                {/* Render other dropdown menu items */}
+                <MenuList>
+                    <MenuItem
+                        onClick={() => handleItemClick("/")}
+                        selected={anchorEl === "/"}
+                    >
+                        <ListItemIcon>
+                            <Home
+                                size="28"
+                                variant="Bulk"
+                                color={"var(--mui-palette-primary-main)"}
+                            />
+                        </ListItemIcon>
+                        <ListItemText
+                            primary="Accueil"
+                            secondary="this is secondary."
+                        />
+                    </MenuItem>
+                    <MenuItem
+                        onClick={() => handleItemClick("/emplois")}
+                        selected={anchorEl === "/emplois"}
+                    >
+                        <ListItemIcon>
+                            <Category
+                                size="28"
+                                variant="Bulk"
+                                color={"var(--mui-palette-primary-main)"}
+                            />
+                        </ListItemIcon>
+                        <ListItemText
+                            primary="Emplois"
+                            secondary="this is secondary."
+                        />
+                    </MenuItem>
+                    <MenuItem
+                        onClick={() => handleItemClick("/connect")}
+                        selected={anchorEl === "/connect"}
+                    >
+                        <ListItemIcon>
+                            <Category
+                                size="28"
+                                variant="Bulk"
+                                color={"var(--mui-palette-primary-main)"}
+                            />
+                        </ListItemIcon>
+                        <ListItemText
+                            primary="Connect"
+                            secondary="this is secondary."
+                        />
+                    </MenuItem>
+                    <MenuItem
+                        onClick={() => handleItemClick("//#contact")}
+                        selected={anchorEl === "//#contact"}
+                    >
+                        <ListItemIcon>
+                            <Category
+                                size="28"
+                                variant="Bulk"
+                                color={"var(--mui-palette-primary-main)"}
+                            />
+                        </ListItemIcon>
+                        <ListItemText
+                            primary="Contact"
+                            secondary="this is secondary."
+                        />
+                    </MenuItem>
+                </MenuList>
+                <MenuList subheader="Actions">
+                    <MenuItem onClick={() => handleItemClick("Color Mode")}>
+                        <ListItemIcon>
+                            {mode == "dark" ? (
+                                <MdDarkMode
+                                    size="28"
+                                    variant="Bulk"
+                                    color="var(--mui-palette-primary-main)"
+                                />
+                            ) : (
+                                <MdLightMode
+                                    size="28"
+                                    variant="Bulk"
+                                    color="var(--mui-palette-primary-main)"
+                                />
+                            )}
+                        </ListItemIcon>
+                        <ListItemText
+                            primary={`Mode ${
+                                mode === "dark" ? "sombre" : "lumineux"
+                            }`}
+                            secondary="Changer le mode de couleurs."
+                        />
+                    </MenuItem>
+                </MenuList>
+                <MenuList subheader="Espace Stagiaires">
+                    <MenuItem color="secondary">
+                        <ListItemIcon>
+                            <Login
+                                size="28"
+                                variant="Bulk"
+                                color={"var(--mui-palette-primary-main)"}
+                            />
+                        </ListItemIcon>
+                        <ListItemText
+                            primary={`S'inscrire`}
+                            secondary="Frèrot, ne t'inscris pas."
+                        />
+                    </MenuItem>
+                    <MenuItem color="secondary">
+                        <ListItemIcon>
+                            <Password
+                                size="28"
+                                variant="Bulk"
+                                color={"var(--mui-palette-primary-main)"}
+                            />
+                        </ListItemIcon>
+                        <ListItemText
+                            primary={`Se Connecter`}
+                            color="secondary"
+                            secondary="Soyez courtois."
+                        />
+                    </MenuItem>
+                </MenuList>
             </Menu>
         </>
     );
