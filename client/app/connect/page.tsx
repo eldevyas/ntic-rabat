@@ -9,9 +9,6 @@ import axios from "axios";
 import { useDispatch } from "react-redux";
 
 export default function Page() {
-    // const store = configureStore({
-    //     reducer: Reducers,
-    // });
     useEffect(() => {
         axios
             .get(`${process.env.SERVER_PUBLIC_API_URL}/users`)

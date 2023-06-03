@@ -18,6 +18,7 @@ import { MdDarkMode, MdLightMode } from "react-icons/md";
 import { useSession } from "next-auth/react";
 import { useRouter, usePathname } from "next/navigation";
 import UserAvatar from "@/app/core/auth/User";
+import { useSelector } from "react-redux";
 export default function Header() {
     const [value, setValue] = React.useState(0);
 
@@ -26,9 +27,20 @@ export default function Header() {
     };
 
     const { data: session }: any = useSession();
+    const { users } = useSelector((state: any) => state.Reducers);
+    const [searchedUsers, setSearchedUsers] = React.useState([]);
 
     const Router = useRouter();
     const Pathname: string = usePathname() as string;
+    const SearchUsers = (name: string) => {
+        setSearchedUsers(
+            users.filter((user: any) => {
+                return user.name.toLowerCase().includes(name.toLowerCase());
+            })
+        );
+        console.log("searchedUsers", searchedUsers);
+        console.log("name", name);
+    };
 
     return (
         <Box
@@ -65,6 +77,9 @@ export default function Header() {
                     placeholder="Rechercher..."
                     size="small"
                     fullWidth
+                    onChange={(e) => {
+                        SearchUsers(e.target.value);
+                    }}
                     variant="outlined"
                     sx={{ width: "auto", fontSize: "0.85rem" }}
                     InputProps={{
