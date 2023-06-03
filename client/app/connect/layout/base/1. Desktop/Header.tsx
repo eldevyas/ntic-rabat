@@ -74,7 +74,7 @@ export default function Header() {
                 <TextField
                     id="search"
                     type="search"
-                    placeholder="Rechercher..."
+                    placeholder="Rechercher...(check console)"
                     size="small"
                     fullWidth
                     onChange={(e) => {
