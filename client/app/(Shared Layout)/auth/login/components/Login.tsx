@@ -189,36 +189,6 @@ const LoginComponent = () => {
                                 loadingPosition="center"
                                 loading
                                 sx={{
-                                    cursor: "default !important",
-                                    minHeight: "50px",
-                                    backgroundColor:
-                                        "var(--mui-palette-primary-main) !important",
-                                    background:
-                                        "var(--mui-palette-primary-main) !important",
-                                    width: "100%",
-                                    marginBottom: "0.75rem",
-                                }}
-                            />
-                        ) : (
-                            // <Button
-                            //     variant={"contained"}
-                            //     color={"primary"}
-                            //     onClick={() => {
-                            //         handleLogin();
-                            //     }}
-                            //     sx={{
-                            //         width: "100%",
-                            //         marginBottom: "0.75rem",
-                            //     }}
-                            // >
-                            //     Se Connecter
-                            // </Button>
-                            <LoadingButton
-                                variant="contained"
-                                color="primary"
-                                loadingPosition="center"
-                                loading
-                                sx={{
                                     cursor: "loading !important",
                                     minHeight: "50px",
                                     backgroundColor:
@@ -229,6 +199,20 @@ const LoginComponent = () => {
                                     marginBottom: "0.75rem",
                                 }}
                             />
+                        ) : (
+                            <Button
+                                variant={"contained"}
+                                color={"primary"}
+                                onClick={() => {
+                                    handleLogin();
+                                }}
+                                sx={{
+                                    width: "100%",
+                                    marginBottom: "0.75rem",
+                                }}
+                            >
+                                Se Connecter
+                            </Button>
                         )}
                         <Button
                             variant={"outlined"}

@@ -58,7 +58,7 @@
                         justify-content: flex-start;
                         align-items: flex;
                         gap: $GlobalGap / 2;
-                        color: var(--nextui-colors-text);
+                        color: var(--mui-palette-text-primary);
                         text-align: center;
                         margin: $GlobalGap 0;
                     }
@@ -90,7 +90,7 @@
                             display: flex;
                             justify-content: center;
                             align-items: center;
-                            // border: 1px solid var(--nextui-colors-textLight);
+                            // border: 1px solid var(--mui-palette-text-secondary);
 
                             &:not(:first-child) {
                                 margin-top: 15px;
@@ -115,10 +115,10 @@
                                     background-color: var(--nextui-colors-error);
 
                                     // border
-                                    // border: 2.5px solid var(--nextui-colors-textLight);
+                                    // border: 2.5px solid var(--mui-palette-text-secondary);
 
                                     svg {
-                                        color: var(--nextui-colors-text);
+                                        color: var(--mui-palette-text-primary);
                                     }
                                 }
 
@@ -148,7 +148,7 @@
                                 outline: none;
                                 font-size: 0.85rem;
                                 font-weight: 700;
-                                color: var(--nextui-colors-textLight);
+                                color: var(--mui-palette-text-secondary);
                                 text-align: left;
                                 padding: 0;
                                 border-radius: $FormsRadius;
@@ -163,7 +163,7 @@
                                     outline: none !important;
                                     font-size: inherit;
                                     font-weight: inherit;
-                                    color: var(--nextui-colors-textLight);
+                                    color: var(--mui-palette-text-secondary);
                                     text-align: left;
                                     padding: 0;
                                     border-radius: $FormsRadius;
@@ -189,11 +189,11 @@
                                         box-shadow: none !important;
                                         font-size: inherit;
                                         font-weight: inherit;
-                                        color: var(--nextui-colors-text);
+                                        color: var(--mui-palette-text-primary);
                                         text-align: left;
                                         z-index: 0 !important;
                                         border-radius: $FormsRadius;
-                                        border: 1px solid var(--nextui-colors-textLight);
+                                        border: 1px solid var(--mui-palette-text-secondary);
 
                                         // aria invalid
                                         &[aria-invalid='true'] {
@@ -300,10 +300,10 @@
                                 svg {
                                     width: 20px;
                                     height: 20px;
-                                    color: var(--nextui-colors-textLight);
+                                    color: var(--mui-palette-text-secondary);
 
                                     &:hover {
-                                        color: var(--nextui-colors-text);
+                                        color: var(--mui-palette-text-primary);
                                     }
                                 }
                             }

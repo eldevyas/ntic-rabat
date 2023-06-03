@@ -72,7 +72,7 @@ export default function Header() {
                             <InputAdornment position="end">
                                 <Search
                                     set="two-tone"
-                                    primaryColor="var(--nextui-colors-text)"
+                                    primaryColor="var(--mui-palette-text-primary)"
                                     size="medium"
                                 />
                             </InputAdornment>

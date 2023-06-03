@@ -582,17 +582,21 @@ export default function BasicInformation(props: any) {
                 </div>
             </div>
 
-            {userNameIsChecking || emailIsChecking ? (
+            {props.isLoading || userNameIsChecking || emailIsChecking ? (
                 <LoadingButton
                     variant="contained"
                     color="primary"
-                    // className="btnPrimary Loading"
                     loadingPosition="center"
                     loading
                     sx={{
-                        cursor: "default !important",
+                        cursor: "loading !important",
+                        minHeight: "50px",
+                        backgroundColor:
+                            "var(--mui-palette-primary-main) !important",
+                        background:
+                            "var(--mui-palette-primary-main) !important",
                         width: "100%",
-                        minHeight: 50,
+                        marginBottom: "0.75rem",
                     }}
                 />
             ) : (
