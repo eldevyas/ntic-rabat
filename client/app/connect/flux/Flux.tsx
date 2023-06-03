@@ -49,17 +49,6 @@ export default function Flux() {
             setContainerHeight(containerHeight);
         };
 
-        // axios
-        //     .get(`${process.env.SERVER_PUBLIC_API_URL}/users`)
-        //     .then((res: any) => {
-        //         setUsers(res.data.users);
-        //         console.log(res.data.users);
-        //         setIsLoading(false);
-        //     })
-        //     .catch((err: any) => {
-        //         console.log(err);
-        //     });
-
         calculateContainerHeight();
         window.addEventListener("resize", calculateContainerHeight);
 
