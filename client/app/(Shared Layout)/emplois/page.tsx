@@ -6,6 +6,7 @@ export const metadata = {
         "Consultez les emplois de tous les groupes de l'institut sur notre page dédiée. Restez informé des horaires de cours, des examens et des activités en un seul endroit.",
 };
 async function GetPlanning(GroupID: string) {
+    "use server";
     const Hostname = process.env.NEXT_PUBLIC_HOSTNAME;
     if (!GroupID || GroupID == "") return [];
     try {
@@ -23,6 +24,7 @@ async function GetPlanning(GroupID: string) {
 }
 
 async function GetWeather() {
+    "use server";
     const Hostname = process.env.NEXT_PUBLIC_HOSTNAME;
     try {
         const Response = await fetch(`${Hostname}/api/weather`, {
@@ -40,6 +42,7 @@ async function GetWeather() {
 }
 
 async function GetGroups() {
+    "use server";
     const Hostname = process.env.NEXT_PUBLIC_HOSTNAME;
     try {
         const Response = await fetch(`${Hostname}/api/groups/v2`, {
