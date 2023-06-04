@@ -5,8 +5,8 @@ import CenterLink from "./../utils/MiddleLink";
 import { useSession } from "next-auth/react";
 import User from "../../../core/auth/User";
 import { Box, Button, useColorScheme } from "@mui/material";
-import { MdDarkMode, MdLightMode } from "react-icons/md";
 import Link from "next/link";
+import { CloudSunny, Moon } from "iconsax-react";
 
 export default function DesktopHeader(props: any) {
     const { data: session }: any = useSession();
@@ -17,8 +17,8 @@ export default function DesktopHeader(props: any) {
     const { mode, setMode } = useColorScheme();
 
     const MiddleLinks: {
-        href: String;
-        text: String;
+        href: string;
+        text: string;
         icon: any;
     }[] = props.links;
 
@@ -96,26 +96,49 @@ export default function DesktopHeader(props: any) {
                                         );
                                     }}
                                     sx={{
+                                        border: 1,
                                         height: "100%",
+                                        borderColor:
+                                            "var(--mui-palette-text-secondary)",
+                                        color: "var(--mui-palette-text-secondary)",
+                                        fontWeight: "bold",
+                                        textTransform: "none",
+                                        "&:hover": {
+                                            color: "var(--mui-palette-text-primary)",
+                                            borderColor:
+                                                "var(--mui-palette-text-primary)",
+                                        },
                                     }}
                                 >
                                     {mode == "dark" ? (
-                                        <MdDarkMode />
+                                        <Moon
+                                            size="28"
+                                            variant="Bulk"
+                                            color="var(--mui-palette-text-primary)"
+                                        />
                                     ) : (
-                                        <MdLightMode />
+                                        <CloudSunny
+                                            size="28"
+                                            variant="Bulk"
+                                            color="var(--mui-palette-text-primary)"
+                                        />
                                     )}
                                 </Button>
                             )}
-                            <CenterLink
-                                key={index > 2 ? index + 1 : index}
+                            <Link
                                 href={middleLink.href}
-                                text={middleLink.text}
-                                icon={middleLink.icon}
-                                variant={"outlined"}
-                                color={"white"}
+                                key={index > 2 ? index + 1 : index}
                             >
-                                {middleLink.text}
-                            </CenterLink>
+                                <CenterLink
+                                    href={middleLink.href}
+                                    text={middleLink.text}
+                                    icon={middleLink.icon}
+                                    variant={"outlined"}
+                                    color={"white"}
+                                >
+                                    {middleLink.text}
+                                </CenterLink>
+                            </Link>
                         </>
                     );
                 })}

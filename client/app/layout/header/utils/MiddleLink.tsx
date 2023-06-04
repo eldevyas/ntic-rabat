@@ -14,18 +14,12 @@ export default function Link(props: any) {
         setActive(false);
     }, [Pathname]);
 
-    useEffect(() => {
-        Router.prefetch(props.href);
-    }, []);
-
     return (
         <>
             {active ? (
                 <Button
                     color="black"
                     variant="contained"
-                    key={props.key}
-                    onClick={() => Router.push(props.href)}
                     sx={{
                         border: 1,
                         borderColor: "var(--mui-palette-black-contrastText)",
@@ -42,7 +36,6 @@ export default function Link(props: any) {
                     {props.children || props.text}
                 </Button>
             ) : (
-                // <Link href={props.href} key={props.key}>
                 <Button
                     variant={props.variant}
                     color={props.color}
@@ -60,7 +53,6 @@ export default function Link(props: any) {
                 >
                     {props.children}
                 </Button>
-                // </Link>
             )}
         </>
     );
