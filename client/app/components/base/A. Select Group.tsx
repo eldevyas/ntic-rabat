@@ -48,6 +48,13 @@ const SelectGroup = () => {
         };
     });
 
+    // Prefetch all Groups
+    React.useEffect(() => {
+        Groups.forEach((Group) => {
+            router.prefetch(`/emplois?GroupID=${Group.name}`);
+        });
+    }, []);
+
     let groupedOptions = [
         {
             label: "Développement Digitale",
