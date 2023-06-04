@@ -16,10 +16,12 @@ import "./Style.scss";
 import { Box, Button, Typography } from "@mui/material";
 import { Check, DirectInbox, DirectboxSend, Logout } from "iconsax-react";
 import axios from "axios";
+import { useRouter } from "next/navigation";
 
 export default function VerificationPage() {
     // Auth Session
     const { data: session, status, update } = useSession();
+    const Router = useRouter();
 
     // ...
     const CodeInputRef = useRef<HTMLInputElement>(null);
@@ -37,6 +39,11 @@ export default function VerificationPage() {
         }
         console.clear();
     }, [Code]);
+
+    useEffect(() => {
+        // Prefetch Connect Page
+        Router.prefetch("/connect");
+    }, []);
 
     const getCode = (value: string) => {
         const code = value.split("");

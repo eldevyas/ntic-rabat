@@ -77,9 +77,11 @@ $FormsRadius: 0.75rem;
 
 html,
 body {
+    position: "relative";
     max-width: 100vw;
     overflow-x: hidden;
-    background: none !important;
+    background: var(--mui-palette-common-background) !important;
+    z-index: -100 !important;
 }
 
 a {

@@ -28,6 +28,11 @@ const login = () => {
         }
     }, [status]);
 
+    useEffect(() => {
+        // Prefetch Connect Page
+        Router.prefetch("/connect");
+    }, []);
+
     return (
         <>
             {status === "authenticated" || session || status === "loading" ? (

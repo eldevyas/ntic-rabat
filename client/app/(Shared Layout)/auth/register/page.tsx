@@ -28,6 +28,12 @@ const Register = () => {
         }
     }, [status]);
 
+    useEffect(() => {
+        // Prefetch Connect Page
+        Router.prefetch("/connect");
+        Router.prefetch("/auth/confirm-email");
+    }, []);
+
     return (
         <>
             {status === "authenticated" || session || status === "loading" ? (
@@ -51,7 +57,7 @@ const Register = () => {
                             <RegisterComponent />
                         </div>
                     </Box>
-                </Box> 
+                </Box>
             )}
         </>
     );

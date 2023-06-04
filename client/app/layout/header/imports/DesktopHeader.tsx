@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import { useRouter, usePathname } from "next/navigation";
-import MiddleLink from "./../utils/MiddleLink";
+import CenterLink from "./../utils/MiddleLink";
 import { useSession } from "next-auth/react";
 import User from "../../../core/auth/User";
 import { Box, Button, useColorScheme } from "@mui/material";
@@ -106,8 +106,8 @@ export default function DesktopHeader(props: any) {
                                     )}
                                 </Button>
                             )}
-                            <MiddleLink
-                                key={index >= 2 ? index + 1 : index}
+                            <CenterLink
+                                key={index > 2 ? index + 1 : index}
                                 href={middleLink.href}
                                 text={middleLink.text}
                                 icon={middleLink.icon}
@@ -115,7 +115,7 @@ export default function DesktopHeader(props: any) {
                                 color={"white"}
                             >
                                 {middleLink.text}
-                            </MiddleLink>
+                            </CenterLink>
                         </>
                     );
                 })}

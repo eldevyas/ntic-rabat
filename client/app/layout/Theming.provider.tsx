@@ -3,7 +3,7 @@
 import { NextUIProvider as NextProvider } from "@nextui-org/react";
 import { ThemeProvider } from "@mui/material/styles";
 import { NextUI_Theme } from "@/themes/NexUI";
-import { MUI_CSS_Theme, MUI_Theme } from "@/themes/MUI";
+import { MUI_CSS_Theme } from "@/themes/MUI";
 import CssBaseline from "@mui/material/CssBaseline";
 //
 //
