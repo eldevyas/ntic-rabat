@@ -18,22 +18,11 @@ export async function middleware(Request: NextRequest, Response: NextResponse) {
             }
         }
     }
-
-    if (Request.nextUrl.pathname.endsWith('/connect')) {
-        return NextResponse.rewrite(new URL('/connect/flux', Request.url));
-    }
 }
 
 // Configuration
 export const config = {
     matcher: [
-        /*
-         * Match all request paths except for the ones starting with:
-         * - api (API routes)
-         * - _next/static (static files)
-         * - _next/image (image optimization files)
-         * - favicon.ico (favicon file)
-         */
-        '/((?!api|_next/static|_next/image|favicon.ico).*)',
+        '/connect',
     ],
 };
