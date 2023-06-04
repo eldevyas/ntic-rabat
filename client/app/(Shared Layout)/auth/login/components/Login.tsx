@@ -44,11 +44,15 @@ const LoginComponent = () => {
 
             try {
                 setLoading(true);
-                const res: any = await signIn("credentials", {
-                    email: Credentials.email,
-                    password: Credentials.password,
-                    redirect: false,
-                });
+                const res: any = await signIn(
+                    "credentials",
+                    {
+                        email: Credentials.email,
+                        password: Credentials.password,
+                        redirect: false,
+                    },
+                    { callbackUrl: "/connect" }
+                );
                 if (res.status !== 200 && !res.ok) {
                     // Inspect Error codes
                     if (res.status === 401) {

@@ -42,26 +42,27 @@ $HorizontalPadding: 5%;
     padding: 1rem 2rem;
 }
 
-$FormsRadius: 0.7rem;
+$FormsRadius: 0.75rem;
 
 // Scrollbar styling
 ::-webkit-scrollbar {
     width: 10px;
     background-color: var(--C4);
-    border-radius: 0;
+    border-radius: 0.75rem;
 }
 
 ::-webkit-scrollbar-track {
     background-color: var(--mui-palette-common-background);
-    border-radius: 0;
+    border-radius: 0.75rem;
 }
 
 ::-webkit-scrollbar-thumb {
-    border-radius: 0;
-    background-color: $C2;
+    border-radius: 0.75rem;
+    background-color: var(--mui-palette-primary-dark),
+    ;
 
     &:hover {
-        background-color: lighten($C2, 10%);
+        background-color: var(--mui-palette-primary-main);
         cursor: grabbing !important;
     }
 }

@@ -1,46 +1,41 @@
 import { NextResponse } from 'next/server';
 import axios from "axios";
 
+export async function POST(Request: Request) {
+    const data = await Request.json();
+    console.log(data);
+    // Get Email and Code from Request
+    const Email = data.email;
+    const Code = data.code;
 
-export async function GET(request: Request | any) {
-    const { searchParams } = new URL(request.url);
-    const email = searchParams.get("email");
-    const code = searchParams.get("code");
+    console.table({ Email, Code })
 
 
     let VERIFY_EMAIL_ENDPOINT = process.env.SERVER_PUBLIC_HOSTNAME + "/api/auth/verify-email";
     console.log(`Verify email url: ${VERIFY_EMAIL_ENDPOINT}`);
-    // // if has localhost, switch it to 0.0.0.0
-    // if (VERIFY_EMAIL_ENDPOINT.includes("localhost")) {
-    //     VERIFY_EMAIL_ENDPOINT = VERIFY_EMAIL_ENDPOINT.replace("localhost", "0.0.0.0");
 
-    if (!email || !code) {
-        return new Response(JSON.stringify({
+    if (!Email || !Code || Email.length === 0 || Code.length === 0) {
+        return new NextResponse(JSON.stringify({
             message: `Please provide the user's email and the confirmation code for this request.`,
             status: "Error"
         }), {
-            status: 401,
+            status: 422,
         });
     }
-    // }
 
     const response = await axios
         .post(
             VERIFY_EMAIL_ENDPOINT,
             {
-                email: email,
-                code: code,
+                email: Email,
+                code: Code,
             },
             { headers: { "Content-Type": "application/json" } }
         )
         .then((res: any) => {
             if (res.status === 200) {
-                // Change req session user verified email
-                if (request.session != null) {
-                    request.session.user.email_verified = true;
-                }
                 return {
-                    message: `Email Verification Successful`,
+                    message: `Email Verification Successful.`,
                     status: "Verified"
                 };
             } else {
@@ -50,8 +45,7 @@ export async function GET(request: Request | any) {
                 }
             }
         })
-        .catch((err: any) => {
-            console.log(err);
+        .catch(() => {
             return {
                 message: 'Email Verification Failed because of a server error.',
                 status: "Error",
@@ -61,12 +55,12 @@ export async function GET(request: Request | any) {
     let status = 200;
 
     if (response?.status === "Error") {
-        status = 400;
+        status = 500;
     } else if (response?.status === "Not Verified") {
         status = 401;
     }
 
-    return new Response(JSON.stringify(response), {
+    return new NextResponse(JSON.stringify(response), {
         status: status,
     });
 }

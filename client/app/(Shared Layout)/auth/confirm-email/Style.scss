@@ -7,6 +7,7 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
+
     .Content {
         @include GlobalPadding();
         width: 100%;
@@ -18,24 +19,30 @@
         align-items: center;
         background-color: transparent;
         gap: $GlobalGap;
+
         .Text {
             text-align: start;
+
             .Title {
                 font-size: auto;
                 font-weight: 800;
                 margin-bottom: 1rem;
                 font-size: auth;
             }
+
             .Paragraph {
                 font-size: auth;
                 font-weight: 500;
                 margin-bottom: 1rem;
                 color: rgba(0, 0, 0, 0.5);
+
                 .Bold {
                     font-weight: 800;
                     color: inherit;
+
                     &:is(a) {
                         color: $C3;
+
                         // hover
                         &:hover {
                             color: rgba($C3, 0.75);
@@ -44,12 +51,14 @@
                 }
             }
         }
+
         .CodeContainer {
             display: flex;
             justify-content: center;
             align-items: center;
             width: 100%;
             position: relative;
+
             .Code {
                 font-size: 2rem;
                 font-weight: 800;
@@ -59,6 +68,7 @@
                 min-height: 100px;
                 width: 100%;
                 gap: $GlobalGap;
+
                 .CodeNumber {
                     width: 100%;
                     height: auto;
@@ -69,23 +79,29 @@
                     justify-content: center;
                     font-size: 2rem;
                     font-weight: 800;
-                    background-color: white;
-                    color: rgba($C1, 0.25);
-                    box-shadow: 0 0px 250px 0px rgba(0, 0, 0, 0.25);
+                    background-color: var(--mui-palette-background-paper);
+                    color: var(--mui-palette-text-secondary);
                 }
+
                 .Empty {
                     outline: none;
+                    color: var(--mui-palette-primary-main);
+                    border: 1px solid var(--mui-palette-primary-light);
                 }
+
                 .Filled {
-                    color: $C2;
-                    background-color: rgba($color: $C2, $alpha: 0.2);
+                    color: var(--mui-palette-primary-main);
+                    background-color: var(--mui-palette-primary-light);
+                    border: 1px solid var(--mui-palette-primary-main);
                 }
+
                 .Current {
-                    color: $C4;
-                    background-color: $C2;
-                    color: $C4;
+                    color: var(--mui-palette-primary-light);
+                    background-color: var(--mui-palette-primary-main);
+                    border: 1px solid var(--mui-palette-primary-light);
                 }
             }
+
             .CodeInput {
                 position: absolute;
                 top: 0;
@@ -93,29 +109,6 @@
                 opacity: 0;
                 width: 100%;
                 height: 100%;
-                border: none;
-                border-radius: $FormsRadius;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                font-size: 2rem;
-                font-weight: 800;
-                background-color: white;
-                color: $C1;
-                box-shadow: 0 0px 250px 0px rgba(0, 0, 0, 0.25);
-            }
-        }
-        .Buttons {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: stretch;
-            width: 100%;
-            gap: $GlobalGap;
-            overflow: hidden;
-            .Loading {
-                background-color: rgba($C2, 0.25);
-                padding: 20px;
             }
         }
     }

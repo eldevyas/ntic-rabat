@@ -13,15 +13,21 @@ import * as Display from "@/services/displayAlert";
 //
 // Styling
 import "./Style.scss";
+import { Box, Button, Typography } from "@mui/material";
+import { Check, DirectInbox, DirectboxSend, Logout } from "iconsax-react";
+import axios from "axios";
 
 export default function VerificationPage() {
-    const { data: session, status }: any = useSession();
+    // Auth Session
+    const { data: session, status, update } = useSession();
 
+    // ...
     const CodeInputRef = useRef<HTMLInputElement>(null);
     const [Code, setCode] = useState<string[]>(["-", "-", "-", "-", "-"]);
     // Email
     const [Email, setEmail] = useState<string>(session?.user?.email || "");
     const [isLoading, setLoading] = useState(false);
+    const [isLoadingRequest, setLoadingRequest] = useState(false);
 
     useEffect(() => {
         CodeInputRef.current?.focus();
@@ -62,26 +68,56 @@ export default function VerificationPage() {
     };
 
     const handleCodeConfirmation = async () => {
-        if (CodeInputRef.current?.value.length === 5) {
-            let ConfirmationValidated = await AuthService.ConfirmEmailAddress(
-                CodeInputRef.current.value,
-                Email
+        if (CodeInputRef.current?.value.length !== 5) {
+            return Display.pushFailure(
+                "Veuillez entrer un code de confirmation valide."
             );
-            if (ConfirmationValidated == true) {
-                Display.pushSuccess(
-                    "Votre adresse e-mail a été confirmée avec succès."
-                );
-                // User shall log out and sign in again
-                Display.pushInfo(
-                    "Vous devez vous déconnecter et vous connecter à nouveau pour que les changements prennent effet."
-                );
-                signOut();
-            } else {
-                Display.pushFailure(
-                    "Le code de confirmation est invalide. Veuillez réessayer."
-                );
-            }
         }
+
+        if (Email === "") {
+            // Email from session
+            if (session?.user?.email) {
+                setEmail(session?.user?.email);
+            }
+            return Display.pushWarning("Aucun e-mail n'a été trouvé.");
+        }
+
+        setLoadingRequest(true);
+        await fetch("/api/auth/confirm-email", {
+            method: "POST",
+            body: JSON.stringify({
+                code: CodeInputRef.current.value,
+                email: Email,
+            }),
+            headers: {
+                "Content-Type": "application/json",
+            },
+        })
+            .then((Result) => {
+                setLoadingRequest(true);
+                if (Result.status === 200) {
+                    Display.pushSuccess(
+                        "Votre adresse e-mail a été confirmée avec succès."
+                    );
+                    update({
+                        user: {
+                            email_verified: true,
+                        },
+                    });
+                    setLoadingRequest(false);
+                } else {
+                    setLoadingRequest(false);
+                    Display.pushFailure(
+                        "Le code de confirmation est invalide. Veuillez réessayer."
+                    );
+                }
+            })
+            .catch(() => {
+                setLoadingRequest(false);
+                Display.pushFailure(
+                    "Une erreur s'est produite lors de la confirmation de votre adresse e-mail. Veuillez réessayer."
+                );
+            });
     };
 
     // Function to handle code re-sending
@@ -125,9 +161,33 @@ export default function VerificationPage() {
             </Head>
 
             <div className="Content">
-                <div className="Text">
-                    <h1 className="Title">Confirmez votre e-mail.</h1>
-                    <p className="Paragraph">
+                <Box
+                    sx={{
+                        textAlign: "center",
+                    }}
+                >
+                    <DirectInbox
+                        size="64"
+                        color="var(--mui-palette-primary-main)"
+                        variant="Bulk"
+                    />
+                    <Typography
+                        variant="h4"
+                        component="h1"
+                        color="primary.main"
+                        fontWeight={"bold"}
+                        textAlign={"center"}
+                        alignItems="center"
+                        gutterBottom
+                    >
+                        Confirmez votre Email{" "}
+                    </Typography>
+                    <Typography
+                        variant="body1"
+                        component="p"
+                        color="text.secondary"
+                        gutterBottom
+                    >
                         Veuillez confirmer votre adresse e-mail en vérifiant
                         votre boîte de réception sur{" "}
                         <a
@@ -136,18 +196,39 @@ export default function VerificationPage() {
                             target="_blank"
                             rel="noopener noreferrer"
                         >
-                            Microsoft
+                            <Typography
+                                variant="body1"
+                                component="span"
+                                color="secondary.main"
+                                fontWeight={"bold"}
+                            >
+                                Microsoft
+                            </Typography>
                         </a>{" "}
-                        à l'adresse <span className="Bold">{Email}</span>.
-                    </p>
+                        à l'adresse{" "}
+                        <Typography
+                            variant="body1"
+                            component="span"
+                            color="secondary.main"
+                            fontWeight={"bold"}
+                        >
+                            {Email}
+                        </Typography>
+                        .
+                    </Typography>
 
-                    <p className="Paragraph">
+                    <Typography
+                        variant="body1"
+                        component="p"
+                        color="text.secondary"
+                        gutterBottom
+                    >
                         Nous avons envoyé votre code d'accès à cette adresse. Si
                         vous ne trouvez pas notre message dans votre boîte de
                         réception, veuillez vérifier vos dossiers de courrier
                         indésirable. Merci!
-                    </p>
-                </div>
+                    </Typography>
+                </Box>
                 <div className="CodeContainer">
                     <div className="Code">
                         {Code.map((code, index) => (
@@ -193,38 +274,114 @@ export default function VerificationPage() {
                     />
                 </div>
 
-                <div className="Buttons">
-                    <OutlinedButton color="LightBlue" onClick={signOut}>
-                        Se déconnecter
-                    </OutlinedButton>
-                    {isLoading ? (
+                <Box
+                    sx={{
+                        width: "100%",
+                        display: "flex",
+                        flexDirection: "column",
+                        justifyContent: "center",
+                        alignItems: "center",
+                    }}
+                >
+                    {isLoadingRequest ? (
                         <LoadingButton
-                            variant="text"
-                            className="btnPrimary Loading"
+                            variant="contained"
                             loadingPosition="center"
                             loading
                             sx={{
-                                cursor: "default !important",
+                                cursor: "loading !important",
+                                minHeight: "50px",
+                                backgroundColor:
+                                    "var(--mui-palette-primary-main) !important",
+                                background:
+                                    "var(--mui-palette-primary-main) !important",
+                                width: "100%",
+                                marginBottom: "0.75rem",
+                                color: "white",
+                                svg: {
+                                    color: "white",
+                                    fill: "white",
+                                },
                             }}
                         />
                     ) : (
-                        <>
-                            <OutlinedButton
-                                color="LightBlue"
-                                onClick={handleCodeResending}
-                            >
-                                Re-envoyer le code
-                            </OutlinedButton>
-                        </>
+                        <Button
+                            color="primary"
+                            variant="contained"
+                            onClick={handleCodeConfirmation}
+                            startIcon={
+                                <Check variant="Bulk" size="28" color="white" />
+                            }
+                            sx={{
+                                width: "100%",
+                                marginBottom: "0.75rem",
+                            }}
+                        >
+                            Confirmer
+                        </Button>
                     )}
-
-                    <DefaultButton
-                        color="Blue"
-                        onClick={handleCodeConfirmation}
+                    {isLoading ? (
+                        <LoadingButton
+                            variant="contained"
+                            loadingPosition="center"
+                            loading
+                            sx={{
+                                cursor: "loading !important",
+                                minHeight: "50px",
+                                backgroundColor:
+                                    "var(--mui-palette-primary-main) !important",
+                                background:
+                                    "var(--mui-palette-primary-main) !important",
+                                width: "100%",
+                                marginBottom: "0.75rem",
+                                color: "white",
+                                svg: {
+                                    color: "white",
+                                    fill: "white",
+                                },
+                            }}
+                        />
+                    ) : (
+                        <Button
+                            color="primary"
+                            variant="outlined"
+                            onClick={handleCodeResending}
+                            sx={{
+                                width: "100%",
+                                marginBottom: "0.75rem",
+                            }}
+                            startIcon={
+                                <DirectboxSend
+                                    variant="Bulk"
+                                    size="28"
+                                    color="var(--mui-palette-primary-main)"
+                                />
+                            }
+                        >
+                            Re-envoyer le code
+                        </Button>
+                    )}
+                    <Button
+                        color="primary"
+                        variant="outlined"
+                        startIcon={
+                            <Logout
+                                variant="Bulk"
+                                size="28"
+                                color="var(--mui-palette-primary-main)"
+                            />
+                        }
+                        onClick={() => {
+                            signOut();
+                        }}
+                        sx={{
+                            width: "100%",
+                            marginBottom: "0.75rem",
+                        }}
                     >
-                        Confirmer
-                    </DefaultButton>
-                </div>
+                        Se déconnecter
+                    </Button>
+                </Box>
             </div>
         </div>
     );

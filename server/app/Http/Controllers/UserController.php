@@ -50,13 +50,20 @@ class UserController extends Controller
             'password' => $input['password'],
             'role_id' => $input['role_id'],
         ]);
-
         $token = $user->createToken('api-application')->accessToken;
 
-        // send email verification
-        $this->sendEmailVerification($request);
+        try {
+            // send email verification
+            $this->sendEmailVerification($request);
 
-        return response()->json(['token' => $token], 201);
+            return response()->json(['token' => $token, 'user' => $user], 201);
+        } catch (\Exception $e) {
+            // Handle the exception
+            // You can log the error, notify the administrator, or perform any other necessary actions
+
+            // Return a response to the user indicating the successful creation of the token
+            return response()->json(['token' => $token, 'message' => 'Email verification failed', 'user' => $user], 201);
+        }
     }
 
 
@@ -309,8 +316,6 @@ class UserController extends Controller
             ], 401);
         }
     }
-
-
     public function Update(Request $request)
     {
         $email = $request->email;
@@ -321,9 +326,6 @@ class UserController extends Controller
             'message' => 'User updated successfully'
         ], 200);
     }
-
-
-
     public function getUsers(Request $request)
     {
         $users = User::all();

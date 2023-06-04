@@ -1,11 +1,12 @@
 import React from "react";
 import Image from "next/image";
 import { useRouter, usePathname } from "next/navigation";
-import Link from "./../utils/MiddleLink";
+import MiddleLink from "./../utils/MiddleLink";
 import { useSession } from "next-auth/react";
 import User from "../../../core/auth/User";
 import { Box, Button, useColorScheme } from "@mui/material";
 import { MdDarkMode, MdLightMode } from "react-icons/md";
+import Link from "next/link";
 
 export default function DesktopHeader(props: any) {
     const { data: session }: any = useSession();
@@ -61,14 +62,15 @@ export default function DesktopHeader(props: any) {
                     },
                 }}
             >
-                <Image
-                    src="/Logo.png"
-                    width={100}
-                    height={100}
-                    alt="Logo"
-                    priority
-                    onClick={() => Router.push("/")}
-                />
+                <Link href="/">
+                    <Image
+                        src="/Logo.png"
+                        width={100}
+                        height={100}
+                        alt="Logo"
+                        priority
+                    />
+                </Link>
             </Box>
             <Box
                 sx={{
@@ -104,7 +106,7 @@ export default function DesktopHeader(props: any) {
                                     )}
                                 </Button>
                             )}
-                            <Link
+                            <MiddleLink
                                 key={index >= 2 ? index + 1 : index}
                                 href={middleLink.href}
                                 text={middleLink.text}
@@ -113,7 +115,7 @@ export default function DesktopHeader(props: any) {
                                 color={"white"}
                             >
                                 {middleLink.text}
-                            </Link>
+                            </MiddleLink>
                         </>
                     );
                 })}
@@ -135,30 +137,28 @@ export default function DesktopHeader(props: any) {
                             <User />
                         ) : (
                             <>
-                                <Button
-                                    variant="outlined"
-                                    color="secondary"
-                                    onClick={() => {
-                                        Router.push("/auth/register");
-                                    }}
-                                    sx={{
-                                        minWidth: 135,
-                                    }}
-                                >
-                                    {"S'inscrire"}
-                                </Button>
-                                <Button
-                                    variant="contained"
-                                    color="secondary"
-                                    onClick={() => {
-                                        Router.push("/auth/login");
-                                    }}
-                                    sx={{
-                                        minWidth: 135,
-                                    }}
-                                >
-                                    Se Connecter
-                                </Button>
+                                <Link href="/auth/register">
+                                    <Button
+                                        variant="outlined"
+                                        color="secondary"
+                                        sx={{
+                                            minWidth: 135,
+                                        }}
+                                    >
+                                        {"S'inscrire"}
+                                    </Button>
+                                </Link>
+                                <Link href="/auth/login">
+                                    <Button
+                                        variant="contained"
+                                        color="secondary"
+                                        sx={{
+                                            minWidth: 135,
+                                        }}
+                                    >
+                                        Se Connecter
+                                    </Button>
+                                </Link>
                             </>
                         )
                     }

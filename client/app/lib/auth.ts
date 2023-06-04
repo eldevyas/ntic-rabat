@@ -9,7 +9,7 @@ export const authOptions: NextAuthOptions = {
         signIn: '/auth/login',
         signOut: '/auth/register',
         error: '/auth/error', // Error code passed in query string as ?error=
-        verifyRequest: '/auth/verify-request', // (used for check email message)
+        verifyRequest: '/auth/confirm-email', // (used for check email message)
     },
     session: {
         strategy: "jwt",
@@ -23,10 +23,9 @@ export const authOptions: NextAuthOptions = {
                 session.user.id = token.uid;
                 session.user.username = token.username;
                 session.user.token = token.token;
-                session.user.profile_picture = token.profile_picture;
+                session.user.avatar = token.avatar;
                 session.user.email_verified = token.email_verified;
                 session.user.role = token.role;
-
             }
             return session;
         },
@@ -35,7 +34,7 @@ export const authOptions: NextAuthOptions = {
                 token.uid = user.id;
                 // user token
                 token.accessToken = user.token;
-                token.profile_picture = user.profile_picture;
+                token.avatar = user.avatar;
                 token.email_verified = user.email_verified;
                 token.role = user.role as string;
                 token.username = user.username;

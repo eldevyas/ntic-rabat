@@ -33,7 +33,7 @@ export default function Loading() {
                 flexDirection: "column",
                 justifyContent: "center",
                 alignItems: "center",
-                background: (theme) => theme.palette.background.default,
+                background: "var(--mui-palette-background-default)",
             }}
         >
             <Box

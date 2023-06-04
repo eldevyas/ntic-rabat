@@ -93,17 +93,21 @@ const ConfirmEmailAddress = async (code: string, email: string) => {
         {
             code,
             email
-        }).then(
-            response => {
-                // Return response
-                return response;
-            },
-        ).catch(
-            error => {
-                // Return error
-                return error;
-            }
-        );
+        }, {
+        headers: {
+            "Content-Type": "application/json"
+        }
+    }).then(
+        response => {
+            // Return response
+            return response;
+        },
+    ).catch(
+        error => {
+            // Return error
+            return error;
+        }
+    );
 
     if (response.status == 200) {
         return true;
