@@ -19,6 +19,7 @@ import { useSession } from "next-auth/react";
 import { useRouter, usePathname } from "next/navigation";
 import UserAvatar from "@/app/core/auth/User";
 import { useSelector } from "react-redux";
+import Link from "next/link";
 export default function Header() {
     const [value, setValue] = React.useState(0);
 
@@ -79,7 +80,7 @@ export default function Header() {
                 <TextField
                     id="search"
                     type="search"
-                    placeholder="Rechercher...(check console)"
+                    placeholder="Rechercher..."
                     size="small"
                     fullWidth
                     onChange={(e) => {
@@ -125,32 +126,37 @@ export default function Header() {
                         >
                             {searchedUsers.map((user: any) => {
                                 return (
-                                    <Box
-                                        sx={{
-                                            display: "flex",
-                                            alignItems: "center",
-                                            justifyContent: "space-between",
-                                            gap: "0.5rem",
-                                            padding: "0.5rem 1rem",
-                                            borderRadius: "0.3rem",
-                                            '&:hover': {
-                                                backgroundColor: "var(--nextui-colors-accents1)",
-                                                cursor: "pointer",
-                                            }
-                                        }}
+                                    <Link href={`/user/${user.username}`}
+                                        style={{ textDecoration: "none", color: "inherit" }}
                                     >
-                                        <Avatar
-                                            src={user.avatar}
-                                            size="md"
-                                            text={user.name}
-                                        />
-                                        <Typography
-                                            variant="body1"
-                                            sx={{ fontSize: "0.9rem" }}
+                                        <Box
+                                            sx={{
+                                                display: "flex",
+                                                alignItems: "center",
+                                                justifyContent: "space-between",
+                                                gap: "0.5rem",
+                                                padding: "0.5rem 1rem",
+                                                borderRadius: "0.3rem",
+                                                '&:hover': {
+                                                    backgroundColor: "var(--nextui-colors-accents1)",
+                                                    cursor: "pointer",
+                                                }
+                                            }}
                                         >
-                                            {user.name}
-                                        </Typography>
-                                    </Box>
+                                            <Avatar
+                                                src={user.avatar}
+                                                size="lg"
+                                                text={user.name}
+                                            />
+                                            <Typography
+                                                variant="body1"
+                                                sx={{ fontSize: "0.9rem" }}
+                                            >
+                                                {user.name}
+                                            </Typography>
+                                        </Box>
+                                    </Link>
+
                                 );
                             })}
                         </Box>
