@@ -11,8 +11,9 @@ import {
 import { Avatar } from "@nextui-org/react";
 import { Chat, Home, User } from "react-iconly";
 import { MdDarkMode, MdLightMode } from "react-icons/md";
-import { useSession } from "next-auth/react";
+import { useSession, signOut } from "next-auth/react";
 import { useRouter, usePathname } from "next/navigation";
+
 
 interface Props {
     children: JSX.Element[] | JSX.Element;
@@ -136,10 +137,9 @@ export default function SideBar() {
                         justifyContent: "flex-start",
                         alignItems: "center",
                         borderBottom: (theme) =>
-                            `1px solid ${
-                                theme.palette.mode == "dark"
-                                    ? "rgba(0, 0, 0, 0.25)"
-                                    : "rgba(255, 255, 255, 0.25)"
+                            `1px solid ${theme.palette.mode == "dark"
+                                ? "rgba(0, 0, 0, 0.25)"
+                                : "rgba(255, 255, 255, 0.25)"
                             }`,
                     }}
                 >
@@ -204,10 +204,9 @@ export default function SideBar() {
                             padding: "1rem",
                             marginBottom: "2.5rem",
                             borderBottom: (theme) =>
-                                `1px solid ${
-                                    theme.palette.mode == "dark"
-                                        ? "rgba(0, 0, 0, 0.25)"
-                                        : "rgba(255, 255, 255, 0.25)"
+                                `1px solid ${theme.palette.mode == "dark"
+                                    ? "rgba(0, 0, 0, 0.25)"
+                                    : "rgba(255, 255, 255, 0.25)"
                                 }`,
                         }}
                     >
@@ -354,10 +353,9 @@ export default function SideBar() {
                     padding: "1rem",
                     gap: "0.5rem",
                     borderTop: (theme) =>
-                        `1px solid ${
-                            theme.palette.mode == "dark"
-                                ? "rgba(0, 0, 0, 0.25)"
-                                : "rgba(255, 255, 255, 0.25)"
+                        `1px solid ${theme.palette.mode == "dark"
+                            ? "rgba(0, 0, 0, 0.25)"
+                            : "rgba(255, 255, 255, 0.25)"
                         }`,
                 }}
             >
@@ -375,7 +373,8 @@ export default function SideBar() {
                     variant={mode == "dark" ? "contained" : "contained"}
                     color={mode == "dark" ? "error" : "error"}
                     onClick={() => {
-                        Router.push("/");
+                        signOut();
+                        Router.push("/emplois");
                     }}
                     fullWidth
                     sx={{ fontSize: "0.85rem" }}

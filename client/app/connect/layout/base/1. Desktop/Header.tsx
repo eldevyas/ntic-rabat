@@ -33,13 +33,16 @@ export default function Header() {
     const Router = useRouter();
     const Pathname: string = usePathname() as string;
     const SearchUsers = (name: string) => {
-        setSearchedUsers(
-            users.filter((user: any) => {
-                return user.name.toLowerCase().includes(name.toLowerCase());
-            })
-        );
-        console.log("searchedUsers", searchedUsers);
-        console.log("name", name);
+
+        if (name.length > 0) {
+            setSearchedUsers(
+                users.filter((user: any) => {
+                    return user.name.toLowerCase().includes(name.toLowerCase());
+                })
+            );
+        } else {
+            setSearchedUsers([]);
+        }
     };
 
     return (
@@ -69,6 +72,8 @@ export default function Header() {
                     alignItems: "center",
                     justifyContent: "flex-end",
                     gap: "0.5rem",
+                    width: "20rem",
+                    position: "relative",
                 }}
             >
                 <TextField
@@ -81,7 +86,7 @@ export default function Header() {
                         SearchUsers(e.target.value);
                     }}
                     variant="outlined"
-                    sx={{ width: "auto", fontSize: "0.85rem" }}
+                    sx={{ width: "100%", fontSize: "0.85rem" }}
                     InputProps={{
                         endAdornment: (
                             <InputAdornment position="end">
@@ -94,6 +99,63 @@ export default function Header() {
                         ),
                     }}
                 />
+                {
+                    searchedUsers.length > 0 && (
+                        <Box
+                            sx={{
+
+                                position: "absolute",
+                                top: "100%",
+                                left: "0",
+                                padding: "0.5rem 0",
+                                height: "auto",
+                                display: "flex",
+                                flexDirection: "column",
+                                justifyContent: "space-between",
+                                // gap: "0.8rem",
+                                color: (theme) => theme.palette.text.primary,
+                                zIndex: "100",
+                                backgroundColor: "var(--nextui-colors-accents0)",
+                                backdropFilter: "blur(5rem)",
+                                maxHeight: "12rem",
+                                overflowY: "scroll",
+                                width: "100%",
+                                borderRadius: "0.5rem",
+                            }}
+                        >
+                            {searchedUsers.map((user: any) => {
+                                return (
+                                    <Box
+                                        sx={{
+                                            display: "flex",
+                                            alignItems: "center",
+                                            justifyContent: "space-between",
+                                            gap: "0.5rem",
+                                            padding: "0.5rem 1rem",
+                                            borderRadius: "0.3rem",
+                                            '&:hover': {
+                                                backgroundColor: "var(--nextui-colors-accents1)",
+                                                cursor: "pointer",
+                                            }
+                                        }}
+                                    >
+                                        <Avatar
+                                            src={user.avatar}
+                                            size="md"
+                                            text={user.name}
+                                        />
+                                        <Typography
+                                            variant="body1"
+                                            sx={{ fontSize: "0.9rem" }}
+                                        >
+                                            {user.name}
+                                        </Typography>
+                                    </Box>
+                                );
+                            })}
+                        </Box>
+                    )
+                }
             </Box>
 
             <Box

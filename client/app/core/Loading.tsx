@@ -109,7 +109,7 @@ export default function Loading() {
                     maxWidth={400}
                     color={"text.secondary"}
                 >
-                    Conçu et développé par{" "}
+                    Conçu est développé par{" "}
                     <Typography
                         variant={"caption"}
                         component={"span"}
