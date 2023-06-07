@@ -19,7 +19,7 @@ const DropZoneStyle = styled('div')(({ theme }) => ({
     padding: theme.spacing(5, 0),
     borderRadius: theme.shape.borderRadius,
     transition: theme.transitions.create('padding'),
-    backgroundColor: theme.palette.background.neutral,
+    backgroundColor: theme.palette.background.default,
     border: `1px dashed ${theme.palette.grey[500]}`,
     '&:hover': {
         opacity: 0.72,
