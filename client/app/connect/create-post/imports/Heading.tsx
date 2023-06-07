@@ -44,17 +44,10 @@ export default function Heading() {
                         Connect
                     </Link>
                     <Typography color="text.primary">Flux</Typography>
-                    <Typography color="text.primary">Posts</Typography>
+                    <Typography color="text.primary">Create Post</Typography>
                 </Breadcrumbs>
             </Box>
-            <Link href="/create-post"><Button
-                variant="contained"
-                color="secondary"
-                sx={{ width: "auto", maxHeight: "fit-content" }}
-            >
-                Créer un poste
-            </Button>
-            </Link>
+
         </Box>
     );
 }

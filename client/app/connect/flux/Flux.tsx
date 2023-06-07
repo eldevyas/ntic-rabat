@@ -7,6 +7,7 @@ import axios from "axios";
 import Skeleton from "@mui/material/Skeleton";
 import { useRouter } from "next/navigation";
 import { useSelector } from "react-redux";
+import Feed from "./core/A. Feed";
 
 export default function Flux() {
     const Posts = [];
@@ -158,7 +159,10 @@ export default function Flux() {
                             theme.palette.background.default,
                     }}
                 >
-                    {Posts.length > 0 ? <></> : <EmptyFluxPage />}
+                    {/* {Posts.length > 0 ? <>
+                        <Feed />
+                    </> : <EmptyFluxPage />} */}
+                    <Feed />
                 </Box>
             </Box>
             {!isMobile && (
