@@ -47,7 +47,7 @@ export default function Heading() {
                     <Typography color="text.primary">Posts</Typography>
                 </Breadcrumbs>
             </Box>
-            <Link href="/create-post"><Button
+            <Link href="/connect/create-post"><Button
                 variant="contained"
                 color="secondary"
                 sx={{ width: "auto", maxHeight: "fit-content" }}

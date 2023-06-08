@@ -1,36 +1,45 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
 import EmptyFluxPage from "@/app/pages/A. Empty State/FluxPage";
 import { Box, TextField, Typography } from "@mui/material";
 import Heading from "./components/1. Heading";
 import PostGrid from "./components/2. Posts";
+import axios from "axios";
 export default function Feed() {
+    const [posts, setPosts]: any = React.useState([]);
+    // use Effect that awaits the posts from the server
+    useEffect(() => {
+        axios
+            .get(`${process.env.SERVER_PUBLIC_API_URL}/posts`)
+            .then((response) => {
+                setPosts(response.data);
+                console.log(response.data);
+
+            })
+            .catch((error) => {
+                console.error("Error fetching posts:", error);
+            });
+    }, []);
+
+
     const PostsData = [
-        {
-            Id: "A1",
-            Banner: "https://images.unsplash.com/photo-1682686578707-140b042e8f19?ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=775&q=80",
-            Author: {
-                Name: "Yassine C.",
-                Avatar: "https://images.unsplash.com/photo-1682686578707-140b042e8f19?ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=775&q=80",
-            },
-            Date: "02 June 2023",
-            Title: "This is a post to be posted.",
-            Likes: 322,
-            Comments: 56,
-        },
-        {
-            Id: "A2",
-            Banner: "https://images.unsplash.com/photo-1682686578707-140b042e8f19?ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=775&q=80",
-            Author: {
-                Name: "Yassine C.",
-                Avatar: "https://images.unsplash.com/photo-1682686578707-140b042e8f19?ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=775&q=80",
-            },
-            Date: "02 June 2023",
-            Title: "This is another post to be posted.",
-            Likes: 322,
-            Comments: 56,
-        },
+        posts.map((post: any) => {
+            return {
+
+                Id: post.id || "1",
+                user: {
+                    Name: post.user.name || "John Doe",
+                    Avatar: "https://images.unsplash.com/photo-1682686578707-140b042e8f19?ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=775&q=80",
+                },
+                Title: post.title || "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Don",
+                Banner: post.cover || "https://images.unsplash.com/photo-1682686578707-140b042e8f19?ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=775&q=80",
+                Date: post.date || "Aujourd'hui",
+                Likes: post.likes.length,
+                Comments: post.comments.length,
+                // Content: post.content,
+            };
+        }),
     ];
 
     return (
@@ -48,9 +57,9 @@ export default function Feed() {
             }}
         >
             <Heading />
-            {PostsData.length > 0 ? (
+            {posts.length > 0 ? (
                 <>
-                    <PostGrid Posts={PostsData} />
+                    <PostGrid Posts={posts} />
                     <EmptyFluxPage />
                 </>
             ) : (

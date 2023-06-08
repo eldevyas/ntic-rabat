@@ -1,14 +1,18 @@
 export type PostType = {
-    Id: string;
-    Banner: string;
-    Author: {
-        Name: string;
-        Avatar: string;
+    id: string;
+    cover: string;
+    user: {
+        name: string;
+        avatar: string;
+        id: string;
+        username: string;
     };
-    Date: string;
-    Title: string;
-    Likes: number;
-    Comments: number;
+    created_at: string;
+    updated_at: string;
+    title: string;
+    likes: any;
+    comments: any;
+    content: string;
 };
 
 export type PostsType = PostType[];

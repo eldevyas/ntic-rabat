@@ -22,6 +22,8 @@ import UploadSingleFile from './UploadImage';
 import LoadingButton from '@mui/lab/LoadingButton/LoadingButton';
 import axios from 'axios';
 import dynamic from 'next/dynamic';
+import * as Display from '../../../../services/displayAlert'
+import { useRouter } from 'next/navigation';
 
 // Conditionally import JoditEditor only on the client-side
 // let JoditEditor: any = null;
@@ -46,6 +48,7 @@ const NewPostForm = () => {
     const [title, setTitle]: any = useState('');
     const [description, setDescription]: any = useState('');
     const [cover, setCover]: any = useState(null);
+    const Router = useRouter();
     const handleContentChange = (newContent: any) => {
         setContent(newContent);
     };
@@ -95,7 +98,16 @@ const NewPostForm = () => {
         }
         ).then((res) => {
             if (res.status == 201) {
-                console.log(res.data)
+                Display.pushSuccess('Post Created')
+                setTitle('')
+                setDescription('')
+                setContent('')
+                setCover(null)
+
+                Router.push('/connect')
+            }
+            else {
+                Display.pushFailure('Failed to create post , try again')
             }
         }
         ).catch((err) => {

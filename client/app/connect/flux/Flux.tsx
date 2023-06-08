@@ -17,7 +17,6 @@ export default function Flux() {
     const Router = useRouter();
     // get the state
     const { users } = useSelector((state: any) => state.Reducers);
-
     React.useEffect(() => {
         const handleResize = () => {
             setIsMobile(window.innerWidth <= 600);
@@ -223,61 +222,63 @@ export default function Flux() {
                                 },
                             }}
                         >
-                            {users.map((user: any) => (
-                                <Box
-                                    className="User"
-                                    sx={{
-                                        display: "flex",
-                                        flexDirection: "row",
-                                        justifyContent: "flex-start",
-                                        alignItems: "center",
-                                        gap: "0.5rem",
-                                        "&:hover": {
-                                            cursor: "pointer",
-                                        },
-                                    }}
-                                    onClick={() =>
-                                        Router.push(`/user/${user.username}`)
-                                    }
-                                >
-                                    <Avatar
-                                        alt="Anonymous"
-                                        src="/broken-image.jpg"
-                                        sizes="large"
-                                    />
+                            {
+                                // if the users array is not empty
+                                users.map((user: any) => (
                                     <Box
-                                        className="Name"
+                                        className="User"
                                         sx={{
                                             display: "flex",
-                                            flexDirection: "column",
-                                            justifyContent: "center",
-                                            alignItems: "flex-start",
+                                            flexDirection: "row",
+                                            justifyContent: "flex-start",
+                                            alignItems: "center",
+                                            gap: "0.5rem",
+                                            "&:hover": {
+                                                cursor: "pointer",
+                                            },
                                         }}
+                                        onClick={() =>
+                                            Router.push(`/user/${user.username}`)
+                                        }
                                     >
-                                        <Typography
-                                            variant="body2"
-                                            fontWeight="bold"
+                                        <Avatar
+                                            alt="Anonymous"
+                                            src="/broken-image.jpg"
+                                            sizes="large"
+                                        />
+                                        <Box
+                                            className="Name"
                                             sx={{
-                                                color: (theme) =>
-                                                    theme.palette.text.primary,
+                                                display: "flex",
+                                                flexDirection: "column",
+                                                justifyContent: "center",
+                                                alignItems: "flex-start",
                                             }}
                                         >
-                                            {user.name}
-                                        </Typography>
-                                        <Typography
-                                            variant="caption"
-                                            fontWeight="medium"
-                                            sx={{
-                                                color: (theme) =>
-                                                    theme.palette.text
-                                                        .secondary,
-                                            }}
-                                        >
-                                            {user.email}
-                                        </Typography>
+                                            <Typography
+                                                variant="body2"
+                                                fontWeight="bold"
+                                                sx={{
+                                                    color: (theme) =>
+                                                        theme.palette.text.primary,
+                                                }}
+                                            >
+                                                {user.name}
+                                            </Typography>
+                                            <Typography
+                                                variant="caption"
+                                                fontWeight="medium"
+                                                sx={{
+                                                    color: (theme) =>
+                                                        theme.palette.text
+                                                            .secondary,
+                                                }}
+                                            >
+                                                {user.email}
+                                            </Typography>
+                                        </Box>
                                     </Box>
-                                </Box>
-                            ))}
+                                ))}
                         </Box>
                     </Box>
                 </Box>

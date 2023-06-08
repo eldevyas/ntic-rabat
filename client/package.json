@@ -14,8 +14,8 @@
         "@emotion/styled": "^11.10.5",
         "@floating-ui/dom": "^1.1.0",
         "@heroicons/react": "^2.0.18",
+        "@iconify-icons/eva": "^1.2.6",
         "@iconify/icons-ic": "^1.2.13",
-        "@iconify/react": "^4.1.0",
         "@mui/icons-material": "^5.11.16",
         "@mui/lab": "^5.0.0-alpha.116",
         "@mui/material": "^5.11.2",
@@ -69,6 +69,7 @@
         "yup": "^1.2.0"
     },
     "devDependencies": {
+        "@iconify/react": "^4.1.0",
         "@types/draft-js": "^0.11.11",
         "@types/draftjs-to-html": "^0.8.1",
         "@types/html-to-draftjs": "^1.4.0",
