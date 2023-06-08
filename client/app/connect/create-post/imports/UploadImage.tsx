@@ -30,12 +30,18 @@ const DropZoneStyle = styled('div')(({ theme }) => ({
 UploadSingleFile.propTypes = {
     error: PropTypes.bool,
     file: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
-    sx: PropTypes.object
+    sx: PropTypes.object,
+    maxSize: PropTypes.number,
+    accept: PropTypes.string,
+    onDrop: PropTypes.func
 };
 
-export default function UploadSingleFile({ error, file, sx, ...other }: any) {
+export default function UploadSingleFile({ error, file, sx, maxSize, accept, onDrop, ...other }: any) {
     const { getRootProps, getInputProps, isDragActive, isDragReject, fileRejections } = useDropzone({
         multiple: false,
+        maxSize,
+        onDrop,
+        accept,
         ...other
     });
 
