@@ -11,6 +11,7 @@ import {
     Stack,
     TextField,
     Typography,
+    Button,
     FormHelperText,
 } from '@mui/material';
 import React, { useRef } from 'react';
@@ -18,6 +19,8 @@ import JoditEditor from "jodit-react"
 import { useColorScheme } from '@mui/material';
 import './test.scss'
 import UploadSingleFile from './UploadImage';
+import LoadingButton from '@mui/lab/LoadingButton/LoadingButton';
+import axios from 'axios';
 
 
 
@@ -31,51 +34,9 @@ const LabelStyle = styled(Typography)(({ theme }: any) => ({
 
 const NewPostForm = () => {
     const [content, setContent]: any = useState('');
-    const Editor = ({ placeholder }: any, props: any) => {
-        const { mode } = useColorScheme();
-        const editor = useRef(null);
-
-
-        return (
-            <JoditEditor
-                ref={editor}
-                value={content}
-                config={{
-                    // if them is dark , set the theme to dark
-                    theme: mode == "dark" ? "dark" : "default",
-                    buttons: [
-                        'source', '|',
-                        'bold',
-                        'underline',
-                        'italic', '|',
-                        'ul',
-                        'ol', '|',
-                        // 'outdent', 'indent',  '|',
-                        'font',
-                        'fontsize',
-                        'brush',
-                        // 'paragraph', '|',
-                        'image',
-                        'video',
-                        'table',
-                        'link', '|',
-                        'align', 'undo', 'redo', '|',
-                        'hr',
-                        'eraser',
-                        // 'copyformat', '|',
-                        // 'symbol',
-                        // 'fullsize',
-                        // 'print',
-                        // 'about'
-                    ],
-                }}
-                onBlur={
-                    (newContent) => setContent(newContent)
-                }
-
-            />
-        );
-    };
+    const [title, setTitle]: any = useState('');
+    const [description, setDescription]: any = useState('');
+    const [cover, setCover]: any = useState(null);
 
     const NewBlogSchema = Yup.object().shape({
         title: Yup.string().required('Title is required'),
@@ -83,7 +44,6 @@ const NewPostForm = () => {
         content: Yup.string().min(1000).required('Content is required'),
         cover: Yup.mixed().required('Cover is required')
     });
-
     const formik = useFormik({
         initialValues: {
             title: '',
@@ -99,20 +59,43 @@ const NewPostForm = () => {
         },
         validationSchema: NewBlogSchema,
         onSubmit: async (values, { setSubmitting, resetForm }) => {
-            try {
-                console.log(values);
-            } catch (error) {
-                console.error(error);
-                setSubmitting(false);
-            }
+            console.log(values)
         }
     });
+
+
+
+    const Test = (e: any) => {
+        e.preventDefault()
+        console.log("title", title)
+        console.log("description", description)
+        console.log("content", content)
+        console.log("cover", cover)
+        // axios.post(`${process.env.SERVER_PUBLIC_API_URL}/posts`, {
+        //     title: title,
+        //     description: description,
+        //     content: content,
+        //     cover: cover
+        // }).then((res) => {
+        //     console.log(res)
+        // }
+        // ).catch((err) => {
+        //     console.log(err)
+        // })
+        axios.get(`http://localhost:8000/api/posts`).then((res) => {
+            console.log(res)
+        }).catch((err) => {
+            console.log(err)
+        })
+
+    }
     const { errors, values, touched, handleSubmit, isSubmitting, setFieldValue, getFieldProps }: any = formik;
 
     const handleDrop = useCallback(
         (acceptedFiles: any) => {
             const file = acceptedFiles[0];
             if (file) {
+                setCover(file);
                 setFieldValue('cover', {
                     ...file,
                     preview: URL.createObjectURL(file)
@@ -121,13 +104,61 @@ const NewPostForm = () => {
         },
         [setFieldValue]
     );
-    console.log("content from the form", content)
+
+
+    const Editor = ({ placeholder }: any, props: any) => {
+        const { mode } = useColorScheme();
+        const editor = useRef(null);
+        const postDetails = [{
+            title: '',
+            description: '',
+            content: '',
+            cover: null,
+        }]
+
+
+
+        return (
+            <JoditEditor
+                // ref={editor}
+                value={content}
+                config={{
+                    theme: mode == "dark" ? "dark" : "default",
+                    buttons: [
+                        'source', '|',
+                        'bold',
+                        'underline',
+                        'italic', '|',
+                        'ul',
+                        'ol', '|',
+                        'font',
+                        'fontsize',
+                        'brush',
+                        'image',
+                        'video',
+                        'table',
+                        'link', '|',
+                        'align', 'undo', 'redo', '|',
+                        'hr',
+                        'eraser',
+                    ],
+                }}
+                onBlur={
+                    (newContent) => setContent(newContent)
+                }
+                {...props}
+
+            />
+        );
+    };
+
+
 
 
 
     return (
         <FormikProvider value={formik} >
-            <Form noValidate autoComplete="off" onSubmit={handleSubmit} style={{ width: "100%" }}>
+            <Form noValidate autoComplete="off" onSubmit={(e) => Test(e)} style={{ width: "100%" }}>
                 <Grid container spacing={2}>
                     <Grid item xs={12} md={12} lg={12}  >
                         <Card sx={{ p: 3, width: "100%" }}>
@@ -135,9 +166,8 @@ const NewPostForm = () => {
                                 <TextField
                                     fullWidth
                                     label="Post Title"
-                                    {...getFieldProps('title')}
-                                    error={Boolean(touched.title && errors.title)}
-                                    helperText={touched.title && errors.title}
+                                    value={title}
+                                    onChange={(e) => setTitle(e.target.value)}
                                 />
 
                                 <TextField
@@ -146,14 +176,14 @@ const NewPostForm = () => {
                                     minRows={3}
                                     maxRows={5}
                                     label="Description"
-                                    {...getFieldProps('description')}
-                                    error={Boolean(touched.description && errors.description)}
-                                    helperText={touched.description && errors.description}
+                                    value={description}
+                                    onChange={(e) => setDescription(e.target.value)}
                                 />
 
                                 <div>
                                     <LabelStyle>Content</LabelStyle>
-                                    <Editor />
+                                    <Editor
+                                    />
                                     {touched.content && errors.content && (
                                         <FormHelperText error sx={{ px: 2, textTransform: 'capitalize' }}>
                                             {touched.content && errors.content}
@@ -178,8 +208,24 @@ const NewPostForm = () => {
                                 </div>
                             </Stack>
                         </Card>
+                        <Stack direction="row" justifyContent="flex-end" sx={{ mt: 3 }}>
+                            <Button
+                                fullWidth
+                                type="button"
+                                color="inherit"
+                                variant="outlined"
+                                size="large"
+                                sx={{ mr: 1.5 }}
+                            >
+                                Preview
+                            </Button>
+                            <LoadingButton fullWidth type="submit" variant="contained" size="large"
+                            // loading={isSubmitting}
+                            >
+                                Post
+                            </LoadingButton>
+                        </Stack>
                     </Grid>
-                    {/* content preview */}
                 </Grid>
             </Form>
         </FormikProvider>

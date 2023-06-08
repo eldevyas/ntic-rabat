@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use App\Models\Role;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 
 class PostsController extends Controller
 {
@@ -17,7 +19,6 @@ class PostsController extends Controller
     public function index()
     {
         $posts = Post::with(['user', 'comments', 'likes'])->get();
-
         return response()->json($posts, 200);
     }
 
@@ -44,17 +45,36 @@ class PostsController extends Controller
      */
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
-            'content' => 'required',
-        ]);
+        if ($request->hasFile('cover')) {
+            $file = $request->file('cover');
+            $fileName = time() . '_' . Str::random(10) . '_' . $file->getClientOriginalName();
+            $file->storeAs('public/images', $fileName);
+
+            // Store the photo path in the database , and change the name of the photo to the current timestamp
+            $photoPath = 'images/' . $fileName;
+            // Perform database insertion logic here
+        } else {
+            return response()->json(['error' => 'No image found'], 403);
+        }
 
         $post = new Post([
-            'content' => $validatedData['content'],
+            'content' => $request->content,
+            'description' => $request->description,
+            'title' => $request->title,
+            'user_id' => Auth::user()->id,
+            "type" => "post",
+
         ]);
-        $post->user_id = auth()->id();
+
+        $post->cover = $photoPath; // Append the cover property
+        $post->cover = asset('storage/' . $post->cover);
         $post->save();
+
+        // Append the cover property to the created post
+
         return response()->json($post, Response::HTTP_CREATED);
     }
+
 
     /**
      * Display the specified resource.

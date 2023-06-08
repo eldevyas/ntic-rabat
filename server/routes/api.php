@@ -74,3 +74,14 @@ Route::middleware('auth:api')->group(function () {
     Route::post('/user/update-profile', [UserController::class, 'UpdateProfile']);
     Route::post('/user/update-password', [UserController::class, 'UpdatePassword']);
 });
+
+
+
+Route::prefix('posts')->group(function () {
+    Route::get('/', [PostsController::class, 'index']);
+    Route::get('/team', [PostsController::class, 'TeamPosts']);
+    Route::post('/', [PostsController::class, 'store'])->middleware('auth:api');
+    Route::get('/{post}', [PostsController::class, 'show']);
+    Route::delete('/{post}', [PostsController::class, 'destroy']);
+    Route::put('/{post}', [PostsController::class, 'update']);
+});

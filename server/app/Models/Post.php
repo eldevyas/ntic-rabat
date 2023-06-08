@@ -14,6 +14,8 @@ class Post extends Model
         'title',
         'content',
         'type',
+        'cover',
+        'description',
     ];
     public function user()
     {

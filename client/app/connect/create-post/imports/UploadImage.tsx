@@ -1,4 +1,4 @@
-import { isString } from 'lodash';
+import { isString, pad } from 'lodash';
 import PropTypes from 'prop-types';
 import { useDropzone } from 'react-dropzone';
 // material
@@ -83,7 +83,7 @@ export default function UploadSingleFile({ error, file, sx, ...other }: any) {
                     display: 'flex',
                     flexDirection: 'column',
                     height: '100%',
-                    padding: '3rem 1rem ',
+                    padding: '5rem 3rem ',
                 }}
             >
                 <input {...getInputProps()} />
@@ -113,9 +113,12 @@ export default function UploadSingleFile({ error, file, sx, ...other }: any) {
                             top: 8,
                             borderRadius: 1,
                             objectFit: 'cover',
+                            overflow: 'hidden',
+                            backgroundColor: 'background.default',
                             position: 'absolute',
                             width: 'calc(100% - 16px)',
-                            height: 'calc(100% - 16px)'
+                            height: 'calc(100% - 16px)',
+                            padding: '0',
                         }}
                     />
                 )}

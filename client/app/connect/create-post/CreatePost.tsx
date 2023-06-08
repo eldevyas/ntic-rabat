@@ -33,7 +33,7 @@ const CreatePost = () => {
             }}
             >
                 <Box sx={{
-                    width: "max-content",
+                    width: "100%",
                     display: "flex",
                     flexDirection: "column",
                     justifyContent: "start",
@@ -46,7 +46,9 @@ const CreatePost = () => {
                         sx={{
                             fontWeight: "bold",
                             fontSize: "1.5rem",
-                            color: "rgba(0, 0, 0, 0.87)",
+                            color: (theme) => theme.palette.mode == "light"
+                                ? theme.palette.primary.main
+                                : theme.palette.primary.light,
                             lineHeight: "1.334",
                             width: "100%",
                         }}
@@ -54,10 +56,11 @@ const CreatePost = () => {
                     <Typography
                         variant="body1"
                         component="p"
+                        color="text.primary"
                         sx={{
                             fontWeight: "normal",
                             fontSize: "1rem",
-                            color: "rgba(0, 0, 0, 0.6)",
+
                             lineHeight: "1.5",
                             width: "100%",
                             // don't break line 
@@ -70,7 +73,7 @@ const CreatePost = () => {
                 <NewPostForm />
             </Box>
 
-        </Box>
+        </Box >
     )
 }
 
