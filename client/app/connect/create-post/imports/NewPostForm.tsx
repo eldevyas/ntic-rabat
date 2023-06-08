@@ -15,12 +15,21 @@ import {
     FormHelperText,
 } from '@mui/material';
 import React, { useRef } from 'react';
-import JoditEditor from "jodit-react"
+// import JoditEditor from "jodit-react"
 import { useColorScheme } from '@mui/material';
 import './test.scss'
 import UploadSingleFile from './UploadImage';
 import LoadingButton from '@mui/lab/LoadingButton/LoadingButton';
 import axios from 'axios';
+import dynamic from 'next/dynamic';
+
+// Conditionally import JoditEditor only on the client-side
+// let JoditEditor: any = null;
+
+// if (typeof window !== 'undefined') {
+//     JoditEditor = require('jodit-react');
+// }
+
 
 
 
@@ -89,7 +98,7 @@ const NewPostForm = () => {
         })
 
     }
-    const { errors, values, touched, handleSubmit, isSubmitting, setFieldValue, getFieldProps }: any = formik;
+    const { errors, values, touched, setFieldValue }: any = formik;
 
     const handleDrop = useCallback(
         (acceptedFiles: any) => {
@@ -106,21 +115,14 @@ const NewPostForm = () => {
     );
 
 
-    const Editor = ({ placeholder }: any, props: any) => {
+    const JoditEditor = dynamic(() => import('jodit-react'), { ssr: false });
+    const Editor = (props: any) => {
         const { mode } = useColorScheme();
-        const editor = useRef(null);
-        const postDetails = [{
-            title: '',
-            description: '',
-            content: '',
-            cover: null,
-        }]
 
 
 
         return (
             <JoditEditor
-                // ref={editor}
                 value={content}
                 config={{
                     theme: mode == "dark" ? "dark" : "default",
@@ -144,7 +146,7 @@ const NewPostForm = () => {
                     ],
                 }}
                 onBlur={
-                    (newContent) => setContent(newContent)
+                    (newContent: any) => setContent(newContent)
                 }
                 {...props}
 

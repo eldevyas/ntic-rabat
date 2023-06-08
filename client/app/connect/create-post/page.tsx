@@ -1,7 +1,7 @@
 'use client'
 import React from 'react'
 import { Box, Typography } from '@mui/material'
-import CreatePost from './CreatePost'
+import CreatePost from './components/CreatePost'
 import Head from 'next/head'
 const Page = () => {
     return (

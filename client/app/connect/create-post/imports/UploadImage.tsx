@@ -36,12 +36,9 @@ UploadSingleFile.propTypes = {
     onDrop: PropTypes.func
 };
 
-export default function UploadSingleFile({ error, file, sx, maxSize, accept, onDrop, ...other }: any) {
+export default function UploadSingleFile({ error, file, sx, ...other }: any) {
     const { getRootProps, getInputProps, isDragActive, isDragReject, fileRejections } = useDropzone({
         multiple: false,
-        maxSize,
-        onDrop,
-        accept,
         ...other
     });
 

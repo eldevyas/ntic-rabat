@@ -1,8 +1,8 @@
 
 import React from 'react'
 import { Box, Typography } from '@mui/material'
-import Heading from './imports/Heading'
-import NewPostForm from './imports/NewPostForm'
+import Heading from '../imports/Heading'
+import NewPostForm from '../imports/NewPostForm'
 
 const CreatePost = () => {
     return (
