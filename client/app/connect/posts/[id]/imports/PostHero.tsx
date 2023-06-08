@@ -126,10 +126,10 @@ export default function BlogPostHero({ post, ...other }: any) {
             <CoverImgStyle alt="post cover" src={cover} />
             <PostInfos>
 
-                <TitleStyle variant="h3" component="h2">
+                <TitleStyle variant="h3" >
                     {title}
                 </TitleStyle>
-                <DescriptionStyle variant="body1" component="body1">
+                <DescriptionStyle variant="body1" >
                     {description}
                 </DescriptionStyle>
             </PostInfos>
@@ -164,6 +164,6 @@ export default function BlogPostHero({ post, ...other }: any) {
                     ))}
                 </SpeedDial>
             </FooterStyle>
-        </RootStyle>
+        </RootStyle >
     );
 }

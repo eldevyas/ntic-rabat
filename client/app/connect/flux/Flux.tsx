@@ -274,7 +274,9 @@ export default function Flux() {
                                                             .secondary,
                                                 }}
                                             >
-                                                {user.email}
+                                                {
+                                                    user.email.length > 18 ? user.email.slice(0, 18) + "..." : user.email
+                                                }
                                             </Typography>
                                         </Box>
                                     </Box>

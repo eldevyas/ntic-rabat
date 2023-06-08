@@ -24,6 +24,7 @@ import axios from 'axios';
 import dynamic from 'next/dynamic';
 import * as Display from '../../../../services/displayAlert'
 import { useRouter } from 'next/navigation';
+import { useSession } from 'next-auth/react';
 
 // Conditionally import JoditEditor only on the client-side
 // let JoditEditor: any = null;
@@ -44,6 +45,8 @@ const LabelStyle = styled(Typography)(({ theme }: any) => ({
 }));
 
 const NewPostForm = () => {
+    const { data }: any = useSession();
+
     const [content, setContent]: any = useState('');
     const [title, setTitle]: any = useState('');
     const [description, setDescription]: any = useState('');
@@ -91,9 +94,7 @@ const NewPostForm = () => {
         axios.post(`http://localhost:8000/api/posts`, formData, {
             headers: {
                 'Content-Type': 'multipart/form-data',
-
-                'authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiI1IiwianRpIjoiNTIxNjFkN2Y0MmFiYjZhYzdmNzE5NjI5NmQ2ZjJjOTY3M2ZiYmI0OTdjNmNiZDM0Mjk3YzIwNTNiMDBhY2Q5YzUzMTFmOGRjMTQyNjU0MjIiLCJpYXQiOjE2ODYxODQ3NjYuODkxMzgzLCJuYmYiOjE2ODYxODQ3NjYuODkxMzg2LCJleHAiOjE3MTc4MDcxNjYuODc5Nzc3LCJzdWIiOiIxNyIsInNjb3BlcyI6W119.eGhyokuHPcM_wEc7gDauaGihIH8Lt5IT8fxSFvA9bnzOBBXYnkm5BeFcV-D4OezPubeLePC359Oxr6y-kJeQ6cSgRE3ZoGwVgI_vU2ivohYZKjFH1ah5Cp_LybfiypIYrw9s_DaSINuIA4KwhGbJSW_IvnVzCX6naLh5L60casjS6blMrJbvNnu2t0xEVhazOVV-m1ibRSCW10lnnJMPRG-NjInTKDBdl7Oj569B3Ya76ulSQOv4WOqsHy9wgsyr33x0TkHv6vkNzFXnrSkG_GEJs-qqXZ2ZzBWEtZxbHM_ZN-KsDW-DeeEwSlukHbOorLOtS7vPMr-5w3peFfMcv2Oj4lUvV1GDbPrtBvPCu1lglLuPybI3UwK_nom9vM1jZke33TE0btZGmqIHUhym8E7E7snu0A2SHiyhvu9g3O3HA67d91vIBR66pPk7Z3ekU6Q34gDMsJpbkVct5Yowzkk9WbJaCOwDJ9WBmBdBOXNqh_goW89qMjz7BhOogVBl2JxKQqcTwZDx2-XBXt_YB0KjGQUiRoJN5Malv5TijGsK_j8oHwzFGebdFb9FUboaXUmHxsUII4llgeA2SZb_WNQ_rYRFlTWBF_XoQH43jUXBydLGvUzsDofqpWUGUWX5bkdjCCPutf9cJzoTJUCORY_X60P0xS1DzPKAzUjbIVA'
-
+                'authorization': 'Bearer ' + data?.user?.token
             }
         }
         ).then((res) => {
@@ -113,7 +114,7 @@ const NewPostForm = () => {
         ).catch((err) => {
             console.log(err)
         })
-        console.log(formData)
+        console.log(data.user.token)
     }
     const { errors, values, touched, setFieldValue }: any = formik;
 
