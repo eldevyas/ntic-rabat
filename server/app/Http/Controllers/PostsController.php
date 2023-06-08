@@ -63,7 +63,6 @@ class PostsController extends Controller
             'title' => $request->title,
             'user_id' => Auth::user()->id,
             "type" => "post",
-
         ]);
 
         $post->cover = $photoPath; // Append the cover property
