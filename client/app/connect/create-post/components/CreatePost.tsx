@@ -3,6 +3,7 @@ import React from 'react'
 import { Box, Typography } from '@mui/material'
 import Heading from '../imports/Heading'
 import NewPostForm from '../imports/NewPostForm'
+import { BackButton } from '@/app/core/Button'
 
 const CreatePost = () => {
     return (
@@ -32,44 +33,7 @@ const CreatePost = () => {
 
             }}
             >
-                <Box sx={{
-                    width: "100%",
-                    display: "flex",
-                    flexDirection: "column",
-                    justifyContent: "start",
-                    alignItems: "start",
-                }}
-                >
-                    <Typography
-                        variant="h6"
-                        component="h2"
-                        sx={{
-                            fontWeight: "bold",
-                            fontSize: "1.5rem",
-                            color: (theme) => theme.palette.mode == "light"
-                                ? theme.palette.primary.main
-                                : theme.palette.primary.light,
-                            lineHeight: "1.334",
-                            width: "100%",
-                        }}
-                    >Details</Typography>
-                    <Typography
-                        variant="body1"
-                        component="p"
-                        color="text.primary"
-                        sx={{
-                            fontWeight: "normal",
-                            fontSize: "1rem",
-
-                            lineHeight: "1.5",
-                            width: "100%",
-                            // don't break line 
-                            whiteSpace: "nowrap",
-
-                        }}
-
-                    >Title, short description, image...</Typography>
-                </Box>
+                <BackButton />
                 <NewPostForm />
             </Box>
 
