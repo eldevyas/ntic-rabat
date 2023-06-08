@@ -120,7 +120,7 @@ class PostsController extends Controller
         $post->updated_at = now();
         $post->content = $request->content;
         $post->save();
-        return response($post);
+        return response($post, 201);
     }
 
     /**
