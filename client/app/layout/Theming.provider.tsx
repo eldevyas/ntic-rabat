@@ -79,7 +79,7 @@ export const ThemingProvider = ({ children }: Props) => {
         <>
             {getInitColorSchemeScript()}
             <RootStyleRegistry>
-                <CssVarsProvider theme={MUI_CSS_Theme}>
+                <CssVarsProvider defaultMode="system" theme={MUI_CSS_Theme}>
                     <StylingProvider>{children}</StylingProvider>
                 </CssVarsProvider>
             </RootStyleRegistry>
