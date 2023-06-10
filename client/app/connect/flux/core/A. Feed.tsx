@@ -14,7 +14,6 @@ export default function Feed() {
             .get(`${process.env.SERVER_PUBLIC_API_URL}/posts`)
             .then((response) => {
                 setPosts(response.data);
-                console.log(response.data);
 
             })
             .catch((error) => {

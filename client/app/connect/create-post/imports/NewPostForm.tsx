@@ -67,9 +67,6 @@ const NewPostForm = () => {
             metaKeywords: ['Logan']
         },
         validationSchema: NewBlogSchema,
-        onSubmit: async (values, { setSubmitting, resetForm }) => {
-            console.log(values)
-        }
     });
 
 
@@ -103,9 +100,8 @@ const NewPostForm = () => {
             }
         }
         ).catch((err) => {
-            console.log(err)
+            Display.pushFailure('Failed to create post , try again')
         })
-        console.log(data.user.token)
     }
     const { errors, values, touched, setFieldValue }: any = formik;
 

@@ -10,16 +10,6 @@ import Feed from "@/app/connect/flux/core/A. Feed";
 export default function EmptyFluxPage() {
     const Router = useRouter();
     const [posts, setPosts] = React.useState<any[]>([]);
-    // useEffect(() => {
-    //     var API = process.env.SERVER_PUBLIC_API_URL;
-    //     const fetchPosts = async () => {
-    //         const res = await fetch(`${API}/posts}`);
-    //         const posts = await res.json();
-    //         setPosts(posts);
-    //         console.log(posts);
-    //     };
-    //     fetchPosts();
-    // }, []);
     return (
         <Box
             sx={{

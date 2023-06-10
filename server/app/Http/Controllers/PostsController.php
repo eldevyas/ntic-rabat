@@ -18,7 +18,7 @@ class PostsController extends Controller
      */
     public function index()
     {
-        $posts = Post::with(['user', 'comments', 'likes'])->get();
+        $posts = Post::with(['user', 'comments', 'likes'])->orderBy('created_at', 'desc')->get();
         return response()->json($posts, 200);
     }
 
@@ -29,8 +29,6 @@ class PostsController extends Controller
      */
     public function TeamPosts()
     {
-        // $teamPosts = Post::with(['user','comments','likes']);
-        // get all posts where user role = 2
         $teamPosts = Post::with(['user', 'comments', 'likes'])->whereHas('user', function ($query) {
             $query->where('role_id', '=', Role::whereName('admin')->firstOrFail()->id);
         })->get();
