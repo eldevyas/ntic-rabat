@@ -1,3 +1,4 @@
+
 'use client';
 import React, { useEffect } from 'react'
 import { useParams } from "next/navigation";
@@ -10,6 +11,10 @@ import { Icon } from '@iconify/react';
 import { useSession } from 'next-auth/react';
 import { Checkbox } from '@mui/material';
 import { AvatarGroup } from '@mui/material';
+import { DefaultButton } from '@/app/core/Button';
+import { TextField } from '@mui/material';
+import * as Display from "@/services/displayAlert";
+import LoadingButton from '@mui/lab/LoadingButton/LoadingButton';
 
 const Page = () => {
 
@@ -17,6 +22,8 @@ const Page = () => {
     const { data }: any = useSession();
     const [post, setPost]: any = React.useState({});
     const [isRefreshing, setIsRefreshing] = React.useState(false);
+    const [comment, setComment] = React.useState('');
+    const [isCommenting, setIsCommenting] = React.useState(false);
     useEffect(() => {
         axios.get(`${process.env.SERVER_PUBLIC_API_URL}/posts/${id}`)
             .then((response) => {
@@ -49,6 +56,35 @@ const Page = () => {
 
         } else {
             console.log('not liked')
+        }
+    }
+    const handleComment = () => {
+        setIsCommenting(true);
+        if (comment.length > 1) {
+            axios.post(`${process.env.SERVER_PUBLIC_API_URL}/posts/${id}/comment`, {
+                body: comment
+            }
+                , {
+                    headers: {
+                        Authorization: `Bearer ${data.user.token}`
+                    }
+                })
+                .then((response) => {
+                    setIsRefreshing(!isRefreshing);
+                    Display.pushSuccess('Commented successfully');
+                    setComment('');
+                    setIsCommenting(false);
+                }).catch((error) => {
+                    Display.pushFailure('Error commenting');
+                    setIsRefreshing(!isRefreshing);
+                    setComment('');
+                    setIsCommenting(false);
+                }
+
+                )
+        } else {
+            Display.pushFailure('Comment must be at least 2 characters long');
+            setIsCommenting(false);
         }
     }
 
@@ -119,10 +155,47 @@ const Page = () => {
 
                 </Box>
                 <Box className="Comments" sx={{
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "space-between",
+                    gap: "1rem",
+                    padding: "1rem",
 
                 }}>
-                    <Typography variant="h6">Comments : </Typography>
+                    <Typography variant="h5" sx={{
+                        fontWeight: "bold",
+                    }}
 
+                    >Comments : </Typography>
+                    <TextField name="comment" id="comment" fullWidth
+                        multiline
+                        minRows={3}
+                        maxRows={5}
+                        placeholder="Write a comment ..." sx={{
+                            width: "100%",
+                            outline: "none",
+                            resize: "none",
+
+                        }}
+                        value={comment}
+                        onChange={(e) => setComment(e.target.value)}
+
+                    ></TextField >
+
+                    <LoadingButton
+                        onClick={handleComment}
+                        loading={isCommenting}
+                        loadingPosition="center"
+                        variant="contained"
+                        color="primary"
+                        sx={{
+                            width: "fit-content",
+                            alignSelf: "flex-end",
+                        }}
+
+                    >
+                        Comment
+                    </LoadingButton>
                 </Box>
             </Box>
         </Box>

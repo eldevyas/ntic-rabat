@@ -75,8 +75,9 @@ Route::middleware('auth:api')->group(function () {
     Route::post('/user/update-password', [UserController::class, 'UpdatePassword']);
 });
 
-
+// Likes and comments routes
 Route::post('/posts/{post}/like', [LikesController::class, 'like'])->middleware('auth:api');
+Route::post('/posts/{post}/comment', [CommentsController::class, 'store'])->middleware('auth:api');
 
 
 Route::prefix('posts')->group(function () {
