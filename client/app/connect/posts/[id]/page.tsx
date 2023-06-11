@@ -108,6 +108,30 @@ const Page = () => {
             setIsCommenting(false);
         }
     }
+    const formatDate = (createdAt: any) => {
+        const ONE_MINUTE = 60 * 1000; // milliseconds
+        const ONE_HOUR = 60 * ONE_MINUTE;
+        const ONE_DAY = 24 * ONE_HOUR;
+        const ONE_WEEK = 7 * ONE_DAY;
+
+        const currentTime = new Date().getTime();
+        const createdTime = new Date(createdAt).getTime();
+        const elapsedTime = currentTime - createdTime;
+
+        if (elapsedTime < ONE_HOUR) {
+            const minutes = Math.floor(elapsedTime / ONE_MINUTE);
+            return `${minutes} mins ago`;
+        } else if (elapsedTime < ONE_DAY) {
+            const hours = Math.floor(elapsedTime / ONE_HOUR);
+            return `${hours} hrs ago`;
+        } else if (elapsedTime < ONE_WEEK) {
+            const days = Math.floor(elapsedTime / ONE_DAY);
+            return `${days} days ago`;
+        } else {
+            const date = new Date(createdAt);
+            return date.toDateString();
+        }
+    };
 
     return (
         <Box sx={{
@@ -253,7 +277,9 @@ const Page = () => {
                                             fontSize: "0.8rem",
                                             color: (theme: any) => theme.palette.mode === "light" ? theme.palette.text.secondary : theme.palette.text.primary,
 
-                                        }}>{comment.created_at}</Typography>
+                                        }}>{
+                                                formatDate(comment.created_at)                                                // new Date(comment.created_at).toLocaleDateString('fr-FR', {
+                                            }</Typography>
                                         <Typography variant="body1"
                                             sx={{
                                                 fontWeight: "500",
