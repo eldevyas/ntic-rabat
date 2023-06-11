@@ -17,7 +17,8 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained();
             $table->string('title')->nullable();
-            $table->text('content');
+            // make a content column , has the largest type of text
+            $table->longText('content')->nullable();
             $table->string('type')->default('post');
             $table->timestamps();
         });

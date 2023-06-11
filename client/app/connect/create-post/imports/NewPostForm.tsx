@@ -15,7 +15,7 @@ import {
     FormHelperText,
 } from '@mui/material';
 import React, { useRef } from 'react';
-// import JoditEditor from "jodit-react"
+import JoditEditor from "jodit-react"
 import { useColorScheme } from '@mui/material';
 import './test.scss'
 import UploadSingleFile from './UploadImage';
@@ -26,6 +26,7 @@ import * as Display from '../../../../services/displayAlert'
 import { useRouter } from 'next/navigation';
 import { useSession } from 'next-auth/react';
 import BlogNewPostPreview from './NewPostPreview';
+
 
 const LabelStyle = styled(Typography)(({ theme }: any) => ({
     ...theme.typography.subtitle2,
@@ -105,6 +106,7 @@ const NewPostForm = () => {
         ).catch((err) => {
             console.log(err)
         })
+        // console.log(content)
     }
     const { errors, values, touched, setFieldValue }: any = formik;
 
@@ -123,40 +125,46 @@ const NewPostForm = () => {
     );
 
 
-    const JoditEditor = dynamic(() => import("jodit-react"), { ssr: false });
+    // const JoditEditor = dynamic(() => import("jodit-react"), { ssr: false });
     const Editor = ({ content, onContentChange, ...props }: any) => {
         const { mode } = useColorScheme();
 
-
-
         return (
-            <JoditEditor
-                value={content}
-                config={{
-                    theme: mode == "dark" ? "dark" : "default",
-                    buttons: [
-                        'source', '|',
-                        'bold',
-                        'underline',
-                        'italic', '|',
-                        'ul',
-                        'ol', '|',
-                        'font',
-                        'fontsize',
-                        'brush',
-                        'image',
-                        'video',
-                        'table',
-                        'link', '|',
-                        'align', 'undo', 'redo', '|',
-                        'hr',
-                        'eraser',
-                    ],
-                }}
-                onBlur={onContentChange}
-            // {...props}
+            <>
+                {typeof window !== 'undefined' && (
+                    <JoditEditor
+                        value={content}
+                        config={{
+                            theme: mode == "dark" ? "dark" : "default",
+                            buttons: [
+                                'source', '|',
+                                'bold',
+                                'underline',
+                                'italic', '|',
+                                'ul',
+                                'ol', '|',
+                                'font',
+                                'fontsize',
+                                'brush',
+                                'image',
+                                'video',
+                                'table',
+                                'link', '|',
+                                'align', 'undo', 'redo', '|',
+                                'hr',
+                                'eraser',
+                            ],
+                            uploader: {
+                                insertImageAsBase64URI: true,
+                            }
 
-            />
+                        }}
+                        onBlur={onContentChange}
+                    // {...props}
+
+                    />
+                )}
+            </>
         );
     };
 

@@ -8,6 +8,7 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class PostsController extends Controller
 {
@@ -18,7 +19,12 @@ class PostsController extends Controller
      */
     public function index()
     {
+        // and we want to show the user who made the like
         $posts = Post::with(['user', 'comments', 'likes'])->orderBy('created_at', 'desc')->get();
+        // with comments, we also want to show the user who made the comment
+        $posts->load('comments.user');
+        $posts->load('likes.user');
+
         return response()->json($posts, 200);
     }
 
@@ -85,8 +91,23 @@ class PostsController extends Controller
         $post = Post::with(['user', 'comments', 'likes'])->findOrFail($post->id);
         // with comments, we also want to show the user who made the comment
         $post->comments->load('user');
+        $post->likes->load('user');
         // with likes, we also want to show the user who made the like
         return response()->json($post, 200);
+    }
+    public function uploadImage(Request $request)
+    {
+        if ($request->hasFile('image')) {
+            $file = $request->file('image');
+            $fileName = time() . '_' . Str::random(10) . '_' . $file->getClientOriginalName();
+            $filePath = 'public/images/' . $fileName;
+            Storage::putFileAs('public/images', $file, $fileName);
+
+            // Return the image URL or any other response as needed
+            return response()->json(['url' => asset('storage/' . $filePath)]);
+        }
+
+        return response()->json(['error' => 'No image found'], 403);
     }
 
     /**

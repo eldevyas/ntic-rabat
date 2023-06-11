@@ -76,6 +76,8 @@ Route::middleware('auth:api')->group(function () {
 });
 
 
+Route::post('/posts/{post}/like', [LikesController::class, 'like'])->middleware('auth:api');
+
 
 Route::prefix('posts')->group(function () {
     Route::get('/', [PostsController::class, 'index']);
@@ -85,3 +87,6 @@ Route::prefix('posts')->group(function () {
     Route::delete('/{post}', [PostsController::class, 'destroy']);
     Route::put('/{post}', [PostsController::class, 'update']);
 });
+
+
+Route::post('/upload-image', [PostsController::class, 'uploadImage']);

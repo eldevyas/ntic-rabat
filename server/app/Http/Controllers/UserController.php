@@ -49,8 +49,10 @@ class UserController extends Controller
             'email' => $input['email'],
             'password' => $input['password'],
             'role_id' => $input['role_id'],
+            'avatar' => 'default.png',
         ]);
         $token = $user->createToken('api-application')->accessToken;
+        // return response()->json(['user' => $user], 201);
 
         try {
             // send email verification
@@ -58,10 +60,7 @@ class UserController extends Controller
 
             return response()->json(['token' => $token, 'user' => $user], 201);
         } catch (\Exception $e) {
-            // Handle the exception
-            // You can log the error, notify the administrator, or perform any other necessary actions
 
-            // Return a response to the user indicating the successful creation of the token
             return response()->json(['token' => $token, 'message' => 'Email verification failed', 'user' => $user], 201);
         }
     }

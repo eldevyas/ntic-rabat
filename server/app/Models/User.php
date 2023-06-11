@@ -56,7 +56,7 @@ class User extends Authenticatable
         parent::boot();
 
         static::creating(function ($user) {
-            $user->role_id = Role::whereName('stagiaire')->firstOrFail()->id;
+            $user->role_id = Role::whereName('stagiaire')->first()->id;
         });
     }
 }

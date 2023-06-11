@@ -32,7 +32,6 @@ class LikesController extends Controller
         // check if the user has already liked the post
         $like = $post->likes()->where('user_id', auth()->id())->first();
         if ($like) {
-            // if the user has already liked the post, delete the like
             $like->delete();
             return response(null, Response::HTTP_NO_CONTENT);
         }
