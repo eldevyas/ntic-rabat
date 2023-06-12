@@ -122,6 +122,7 @@ const CardVariantTwo = ({ PostData }: { PostData: PostType }) => {
     return (
         <Card variant="outlined">
             <CardHeader
+
                 avatar={<Avatar src={P.user.avatar} alt={P.user.name} />}
                 title={P.user.name}
             />
