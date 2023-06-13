@@ -68,6 +68,8 @@ class UserController extends Controller
 
     public function sendEmailVerification(Request $request)
     {
+        // delete all email verifications codes
+        DB::table('email_verifications')->where('email', $request->email)->delete();
         $token = Str::random(60);
         $code = rand(10000, 99999);
         DB::table('email_verifications')->insert([
@@ -207,31 +209,31 @@ class UserController extends Controller
             'message' => 'Password reset successfully'
         ], 200);
     }
-    public function verifyEmailToken(Request $request)
-    {
-        if (!$request->token || !$request->email) {
-            return response()->json([
-                'message' => 'Invalid request'
-            ], 400);
-        }
-        $token = urldecode($request->token);
-        $email = urldecode($request->email);
-        $email = Crypt::decrypt($email);
-        $user_token = DB::table('email_verifications')->where('email', $email)->where('token', $token)
-            ->first();
-        if (!$user_token) {
-            return response()->json([
-                'message' => 'Invalid token'
-            ], 404);
-        } else {
-            $user = User::where('email', $email)->first();
-            $user->email_verified_at = Carbon::now();
-            $user->save();
-            return response()->json([
-                'message' => 'Email verified successfully'
-            ], 200);
-        }
-    }
+    // public function verifyEmailToken(Request $request)
+    // {
+    //     if (!$request->token || !$request->email) {
+    //         return response()->json([
+    //             'message' => 'Invalid request'
+    //         ], 400);
+    //     }
+    //     $token = urldecode($request->token);
+    //     $email = urldecode($request->email);
+    //     $email = Crypt::decrypt($email);
+    //     $user_token = DB::table('email_verifications')->where('email', $email)->where('token', $token)
+    //         ->first();
+    //     if (!$user_token) {
+    //         return response()->json([
+    //             'message' => 'Invalid token'
+    //         ], 404);
+    //     } else {
+    //         $user = User::where('email', $email)->first();
+    //         $user->email_verified_at = Carbon::now();
+    //         $user->save();
+    //         return response()->json([
+    //             'message' => 'Email verified successfully'
+    //         ], 200);
+    //     }
+    // }
     public function verifyEmailCode(Request $request)
     {
         if (!$request->code || !$request->email) {
@@ -243,7 +245,6 @@ class UserController extends Controller
         $email = $request->email;
         $user_token = DB::table('email_verifications')->where('email', $email)->where('code', $code)
             ->first();
-
         $Debug_Response = [
             "Response" => $user_token,
             "Email of Request" => $email,
