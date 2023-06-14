@@ -92,7 +92,6 @@ class PostsController extends Controller
         // with comments, we also want to show the user who made the comment
         $post->comments->load('user');
         $post->likes->load('user');
-        // with likes, we also want to show the user who made the like
         return response()->json($post, 200);
     }
     public function uploadImage(Request $request)
