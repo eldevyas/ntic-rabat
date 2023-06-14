@@ -30,82 +30,63 @@ const SOCIALS = [
 ];
 
 const RootStyle = styled('div')(({ theme }: any) => ({
-    height: 400,
-    position: 'relative',
+    height: '100%',
     backgroundSize: 'cover',
     backgroundRepeat: 'no-repeat',
     backgroundPosition: 'center',
     borderRadius: '1rem',
     display: 'flex',
     flexDirection: 'column',
-    justifyContent: 'flex-end',
-    '&:before': {
-        top: 0,
-        zIndex: 9,
-        content: "''",
-        width: '100%',
-        height: 380,
-        borderRadius: '1rem',
+    justifyContent: 'space-between',
+    position: 'initial',
+    padding: '1rem 0 5rem 0',
+    borderBottom: `1px dotted  ${theme.palette.divider}`,
 
-        position: 'absolute',
-        backgroundColor: alpha(theme.palette.grey[900], 0.72)
-    }
 }));
 
 const TitleStyle = styled(Typography)(({ theme }: any) => ({
-    // top: 0,
-    zIndex: 10,
     width: '100%',
     padding: theme.spacing(1),
-    color: theme.palette.common.white,
+    color: (theme) => theme.palette.mode === 'light' ? 'black' : 'white',
 
 }));
 const DescriptionStyle = styled(Typography)(({ theme }: any) => ({
-    zIndex: 10,
     width: '100%',
     padding: theme.spacing(1),
-    color: theme.palette.common.white,
+    color: (theme) => theme.palette.mode === 'light' ? 'black' : 'white',
+
 }));
 
 const FooterStyle = styled('div')(({ theme }: any) => ({
-    bottom: "15%",
-    zIndex: 10,
     width: '100%',
     display: 'flex',
-    // display: 'flex',
-    position: 'absolute',
     alignItems: 'center',
-    paddingLeft: theme.spacing(3),
-    paddingRight: theme.spacing(2),
+    // paddingLeft: theme.spacing(3),
+    // paddingRight: theme.spacing(2),
     paddingBottom: theme.spacing(3),
-    justifyContent: 'space-between',
+    justifyContent: 'center',
     [theme.breakpoints.up('sm')]: {
         alignItems: 'center',
-        paddingRight: theme.spacing(3)
+        // paddingRight: theme.spacing(3)
     },
+    padding: theme.spacing(1),
     // [theme.breakpoints.up('lg')]: {
     //     padding: theme.spacing(10)
     // }
 }));
 
 const CoverImgStyle = styled('img')({
-    top: 0,
-    zIndex: 8,
     width: '100%',
     height: '100%',
     objectFit: 'cover',
-    position: 'absolute',
     maxHeight: 380,
     borderRadius: '1rem'
 });
 const PostInfos = styled('div')(({ theme }: any) => ({
     display: 'flex',
     flexDirection: 'column',
-    position: 'absolute',
-    top: 0,
-    zIndex: 10,
     gap: '0.7rem',
-    paddingLeft: theme.spacing(3),
+    // paddingLeft: theme.spacing(3),
     maxWidth: '80%',
 
 }));
@@ -135,10 +116,13 @@ export default function BlogPostHero({ post, ...other }: any) {
             </PostInfos>
 
             <FooterStyle>
-                <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                <Box sx={{ display: 'flex', alignItems: 'center', flexDirection: 'row' }}>
                     <Avatar alt={user?.name} src={user?.avatar} sx={{ width: 48, height: 48 }} />
-                    <Box sx={{ ml: 2 }}>
-                        <Typography variant="subtitle1" sx={{ color: 'common.white' }}>
+                    <Box sx={{ ml: 2, display: 'flex', flexDirection: 'row', alignItems: 'center', gap: '0.8rem' }}>
+                        <Typography variant="subtitle1" sx={{
+                            color: (theme) => theme.palette.mode === 'light' ? 'black' : 'white',
+
+                        }}>
                             {user?.name}
                         </Typography>
                         <Typography variant="body2" sx={{ color: 'grey.500' }}>

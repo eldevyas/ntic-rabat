@@ -135,7 +135,8 @@ const Page = () => {
 
     return (
         <Box sx={{
-            display: "flex", flexDirection: "column",
+            display: "flex",
+            flexDirection: "column",
             justifyContent: "center",
             padding: "0.6rem 1rem",
             width: "80%",
