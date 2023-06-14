@@ -14,8 +14,31 @@ import Link from "next/link";
 
 const CardVariantOne = ({ PostData }: { PostData: PostType }) => {
     const P = PostData;
-    const date = new Date(P.created_at);
-    const humanDate = date.toLocaleString();
+    const formatDate = (createdAt: any) => {
+        const ONE_MINUTE = 60 * 1000; // milliseconds
+        const ONE_HOUR = 60 * ONE_MINUTE;
+        const ONE_DAY = 24 * ONE_HOUR;
+        const ONE_WEEK = 7 * ONE_DAY;
+
+        const currentTime = new Date().getTime();
+        const createdTime = new Date(createdAt).getTime();
+        const elapsedTime = currentTime - createdTime;
+
+        if (elapsedTime < ONE_HOUR) {
+            const minutes = Math.floor(elapsedTime / ONE_MINUTE);
+            return `${minutes} mins ago`;
+        } else if (elapsedTime < ONE_DAY) {
+            const hours = Math.floor(elapsedTime / ONE_HOUR);
+            return `${hours} hrs ago`;
+        } else if (elapsedTime < ONE_WEEK) {
+            const days = Math.floor(elapsedTime / ONE_DAY);
+            return `${days} days ago`;
+        } else {
+            const date = new Date(createdAt);
+            return date.toDateString();
+        }
+    };
+    const humanDate = formatDate(P.created_at);
     return (
         <Link href={`/connect/posts/${P.id}`}>
             <Card variant="outlined"
@@ -71,8 +94,31 @@ const CardVariantOne = ({ PostData }: { PostData: PostType }) => {
 
 const CardVariantTwo = ({ PostData }: { PostData: PostType }) => {
     const P = PostData;
-    const date = new Date(P.created_at);
-    const humanDate = date.toLocaleString();
+    const formatDate = (createdAt: any) => {
+        const ONE_MINUTE = 60 * 1000; // milliseconds
+        const ONE_HOUR = 60 * ONE_MINUTE;
+        const ONE_DAY = 24 * ONE_HOUR;
+        const ONE_WEEK = 7 * ONE_DAY;
+
+        const currentTime = new Date().getTime();
+        const createdTime = new Date(createdAt).getTime();
+        const elapsedTime = currentTime - createdTime;
+
+        if (elapsedTime < ONE_HOUR) {
+            const minutes = Math.floor(elapsedTime / ONE_MINUTE);
+            return `${minutes} mins ago`;
+        } else if (elapsedTime < ONE_DAY) {
+            const hours = Math.floor(elapsedTime / ONE_HOUR);
+            return `${hours} hrs ago`;
+        } else if (elapsedTime < ONE_WEEK) {
+            const days = Math.floor(elapsedTime / ONE_DAY);
+            return `${days} days ago`;
+        } else {
+            const date = new Date(createdAt);
+            return date.toDateString();
+        }
+    };
+    const humanDate = formatDate(P.created_at);
     return (
         <Card variant="outlined">
             <CardHeader
@@ -84,14 +130,7 @@ const CardVariantTwo = ({ PostData }: { PostData: PostType }) => {
             />
             <CardContent>
                 <Typography variant="body2" color="textSecondary">
-                    {
-                        // get the difference between the current date and the post date
-                        // and display it in a human readable format
-
-                        humanDate
-
-
-                    }
+                    {humanDate}
                 </Typography>
                 <Typography variant="h6" component="div">
                     {P.title}

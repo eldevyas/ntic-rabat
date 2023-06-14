@@ -28,6 +28,16 @@ const SOCIALS = [
     //     icon: <Icon icon={twitterFill} width={20} height={20} color="#1C9CEA" />
     // }
 ];
+const formatDate = (createdAt: any) => {
+    // change it to a date in this format , dd , Month , yyyy
+    const date = new Date(createdAt);
+    const month = date.toLocaleString('default', { month: 'long' });
+    const day = date.getDate();
+    const year = date.getFullYear();
+    return `${day} ${month} ${year}`;
+
+
+};
 
 const RootStyle = styled('div')(({ theme }: any) => ({
     height: '100%',
@@ -39,19 +49,24 @@ const RootStyle = styled('div')(({ theme }: any) => ({
     flexDirection: 'column',
     justifyContent: 'space-between',
     position: 'initial',
-    padding: '1rem 0 5rem 0',
+    // padding: '1rem 0 5rem 0',
     borderBottom: `1px dotted  ${theme.palette.divider}`,
+    width: '100%',
 
 }));
 
 const TitleStyle = styled(Typography)(({ theme }: any) => ({
     width: '100%',
+    textAlign: 'center',
+    fontWeight: '700',
     padding: theme.spacing(1),
     color: (theme) => theme.palette.mode === 'light' ? 'black' : 'white',
 
 }));
 const DescriptionStyle = styled(Typography)(({ theme }: any) => ({
     width: '100%',
+    textAlign: 'center',
+    fontWeight: '400',
     padding: theme.spacing(1),
     color: (theme) => theme.palette.mode === 'light' ? 'black' : 'white',
 
@@ -61,15 +76,12 @@ const FooterStyle = styled('div')(({ theme }: any) => ({
     width: '100%',
     display: 'flex',
     alignItems: 'center',
-    // paddingLeft: theme.spacing(3),
-    // paddingRight: theme.spacing(2),
-    paddingBottom: theme.spacing(3),
     justifyContent: 'center',
     [theme.breakpoints.up('sm')]: {
         alignItems: 'center',
         // paddingRight: theme.spacing(3)
     },
-    padding: theme.spacing(1),
+    padding: theme.spacing(4),
     // [theme.breakpoints.up('lg')]: {
     //     padding: theme.spacing(10)
     // }
@@ -87,7 +99,8 @@ const PostInfos = styled('div')(({ theme }: any) => ({
     flexDirection: 'column',
     gap: '0.7rem',
     // paddingLeft: theme.spacing(3),
-    maxWidth: '80%',
+    maxWidth: '90%',
+    margin: 'auto',
 
 }));
 
@@ -110,7 +123,7 @@ export default function BlogPostHero({ post, ...other }: any) {
                 <TitleStyle variant="h3" >
                     {title}
                 </TitleStyle>
-                <DescriptionStyle variant="body1" >
+                <DescriptionStyle variant="h6" >
                     {description}
                 </DescriptionStyle>
             </PostInfos>
@@ -126,27 +139,12 @@ export default function BlogPostHero({ post, ...other }: any) {
                             {user?.name}
                         </Typography>
                         <Typography variant="body2" sx={{ color: 'grey.500' }}>
-                            {post.created_at}
+                            {
+                                formatDate(post.created_at)
+                            }
                         </Typography>
                     </Box>
                 </Box>
-
-                <SpeedDial
-                    direction={isMobile ? 'up' : 'left'}
-                    ariaLabel="Share post"
-                    icon={<Icon icon="material-symbols:share" />}
-                    sx={{ '& .MuiSpeedDial-fab': { width: 48, height: 48 } }}
-                >
-                    {SOCIALS.map((action) => (
-                        <SpeedDialAction
-                            key={action.name}
-                            icon={action.icon}
-                            tooltipTitle={action.name}
-                            tooltipPlacement="top"
-                            FabProps={{ color: 'default' }}
-                        />
-                    ))}
-                </SpeedDial>
             </FooterStyle>
         </RootStyle >
     );

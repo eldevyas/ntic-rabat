@@ -1,8 +1,10 @@
 import { BackButton } from '@/app/core/Button'
 import { Box, Button } from '@mui/material'
 import React from 'react'
+import { useRouter } from 'next/navigation'
 
 const PostHeader = () => {
+    const Router = useRouter()
     return (
         <Box
             sx={{
@@ -14,7 +16,11 @@ const PostHeader = () => {
                 justifyContent: "space-between",
             }}
         >
-            <BackButton />
+            <BackButton
+                onClick={() => {
+                    Router.push("/connect/")
+                }}
+            />
 
         </Box>
     )

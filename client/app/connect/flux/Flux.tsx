@@ -82,7 +82,7 @@ export default function Flux() {
                     padding: "1rem",
                 }}
             >
-                <Box
+                {/* <Box
                     className="Create"
                     sx={{
                         position: "relative",
@@ -144,7 +144,7 @@ export default function Flux() {
                             />
                         </Box>
                     </Box>
-                </Box>
+                </Box> */}
                 <Box
                     className="Posts"
                     sx={{
