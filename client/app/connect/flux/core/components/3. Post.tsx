@@ -46,7 +46,6 @@ const CardVariantOne = ({ PostData }: { PostData: PostType }) => {
                     display: "flex",
                     flexDirection: "column",
                     height: "100%",
-
                     cursor: "pointer",
                 }}
             >
@@ -129,7 +128,6 @@ const CardVariantTwo = ({ PostData }: { PostData: PostType }) => {
             />
             <CardMedia component="img" src={P.cover} alt="Post Banner"
                 height="200px"
-                width="100%"
             />
             <CardContent>
                 <Typography variant="body2" color="textSecondary">
