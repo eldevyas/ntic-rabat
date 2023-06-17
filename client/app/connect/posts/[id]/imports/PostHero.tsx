@@ -60,7 +60,7 @@ const TitleStyle = styled(Typography)(({ theme }: any) => ({
     textAlign: 'center',
     fontWeight: '700',
     padding: theme.spacing(1),
-    color: (theme) => theme.palette.mode === 'light' ? 'black' : 'white',
+    color: theme.palette.common.white,
 
 }));
 const DescriptionStyle = styled(Typography)(({ theme }: any) => ({
@@ -68,7 +68,7 @@ const DescriptionStyle = styled(Typography)(({ theme }: any) => ({
     textAlign: 'center',
     fontWeight: '400',
     padding: theme.spacing(1),
-    color: (theme) => theme.palette.mode === 'light' ? 'black' : 'white',
+    color: theme.palette.common.white,
 
 }));
 
