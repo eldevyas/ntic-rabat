@@ -1,14 +1,13 @@
 "use client";
-import EmptyFluxPage from "@/app/pages/A. Empty State/FluxPage";
-import { Box, TextField, Typography } from "@mui/material";
+// import EmptyFluxPage from "@/app/pages/A. Empty State/FluxPage";
+import { Box, Typography } from "@mui/material";
 import React from "react";
 import Avatar from "@mui/material/Avatar";
-import axios from "axios";
-import Skeleton from "@mui/material/Skeleton";
 import { useRouter } from "next/navigation";
 import { useSelector } from "react-redux";
 import Feed from "./core/A. Feed";
-
+import Link from "next/link";
+import Users from "./core/components/4. Users";
 export default function Flux() {
     const Posts = [];
     const [isMobile, setIsMobile] = React.useState(false);
@@ -158,9 +157,6 @@ export default function Flux() {
                             theme.palette.background.default,
                     }}
                 >
-                    {/* {Posts.length > 0 ? <>
-                        <Feed />
-                    </> : <EmptyFluxPage />} */}
                     <Feed />
                 </Box>
             </Box>
@@ -224,63 +220,13 @@ export default function Flux() {
                         >
                             {
                                 // if the users array is not empty
-                                users.map((user: any) => (
-                                    <Box
-                                        className="User"
-                                        sx={{
-                                            display: "flex",
-                                            flexDirection: "row",
-                                            justifyContent: "flex-start",
-                                            alignItems: "center",
-                                            gap: "0.5rem",
-                                            "&:hover": {
-                                                cursor: "pointer",
-                                            },
-                                        }}
-                                        onClick={() =>
-                                            Router.push(`/user/${user.username}`)
-                                        }
-                                    >
-                                        <Avatar
-                                            alt="Anonymous"
-                                            src="/broken-image.jpg"
-                                            sizes="large"
-                                        />
-                                        <Box
-                                            className="Name"
-                                            sx={{
-                                                display: "flex",
-                                                flexDirection: "column",
-                                                justifyContent: "center",
-                                                alignItems: "flex-start",
-                                            }}
-                                        >
-                                            <Typography
-                                                variant="body2"
-                                                fontWeight="bold"
-                                                sx={{
-                                                    color: (theme) =>
-                                                        theme.palette.text.primary,
-                                                }}
-                                            >
-                                                {user.name}
-                                            </Typography>
-                                            <Typography
-                                                variant="caption"
-                                                fontWeight="medium"
-                                                sx={{
-                                                    color: (theme) =>
-                                                        theme.palette.text
-                                                            .secondary,
-                                                }}
-                                            >
-                                                {
-                                                    user.email.length > 18 ? user.email.slice(0, 18) + "..." : user.email
-                                                }
-                                            </Typography>
-                                        </Box>
-                                    </Box>
-                                ))}
+                                users.length > 0 ? (
+                                    <Users users={users} />
+                                ) : (
+                                    <Typography variant="body1">
+                                        Aucun utilisateur
+                                    </Typography>)
+                            }
                         </Box>
                     </Box>
                 </Box>

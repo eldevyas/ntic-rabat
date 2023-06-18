@@ -53,7 +53,7 @@ const CardVariantOne = ({ PostData }: { PostData: PostType }) => {
                     style={{ height: "200px" }}
                 />
                 <CardHeader
-                    avatar={<Avatar src={P.user.avatar} alt={P.user.name} />}
+                    avatar={<Avatar src={`/assets/avatars/${P.user.avatar}`} alt={P.user.name} />}
                     title={P.user.name}
                 />
                 <CardContent
@@ -122,8 +122,7 @@ const CardVariantTwo = ({ PostData }: { PostData: PostType }) => {
     return (
         <Card variant="outlined">
             <CardHeader
-
-                avatar={<Avatar src={P.user.avatar} alt={P.user.name} />}
+                avatar={<Avatar src={`/assets/avatars/${P.user.avatar}`} alt={P.user.name} />}
                 title={P.user.name}
             />
             <CardMedia component="img" src={P.cover} alt="Post Banner"

@@ -4,21 +4,23 @@ namespace App\Http\Controllers;
 
 use Carbon\Carbon;
 
+use App\Models\Post;
 use App\Models\Role;
 use App\Models\User;
+use App\Models\Social;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Mail\emailVerification;
-use App\Mail\forgetPasswordEmail;
 // import forgetPasswordEmail
+use App\Mail\forgetPasswordEmail;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
 // import emailVerification
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Crypt;
-use Illuminate\Support\Facades\Validator;
 use Intervention\Image\Facades\Image;
+use Illuminate\Support\Facades\Validator;
 
 
 class UserController extends Controller
@@ -111,6 +113,10 @@ class UserController extends Controller
     public function show($username)
     {
         $user = User::where('username', $username)->first();
+        $userSocials = Social::where('user_id', $user->id)->get();
+        if ($userSocials->count() > 0) {
+            $user->socials = $userSocials;
+        }
         if ($user) {
             return response()->json($user, 200);
         } else {

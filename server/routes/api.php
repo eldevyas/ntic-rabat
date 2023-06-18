@@ -1,13 +1,14 @@
 <?php
 
-use App\Http\Controllers\AnnonceController;
-use App\Http\Controllers\CommentsController;
-use App\Http\Controllers\LikesController;
-use App\Http\Controllers\PostsController;
-use App\Http\Controllers\UserController;
-use App\Http\Middleware\CheckResetPasswordToken;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\LikesController;
+use App\Http\Controllers\PostsController;
+use App\Http\Controllers\SocialController;
+use App\Http\Controllers\AnnonceController;
+use App\Http\Controllers\CommentsController;
+use App\Http\Middleware\CheckResetPasswordToken;
 
 // Import CheckResetPasswordToken middleware
 
@@ -88,6 +89,12 @@ Route::prefix('posts')->group(function () {
     Route::delete('/{post}', [PostsController::class, 'destroy']);
     Route::put('/{post}', [PostsController::class, 'update']);
 });
-
-
 Route::post('/upload-image', [PostsController::class, 'uploadImage']);
+
+
+// Socials
+Route::middleware('auth:api')->group(function () {
+    Route::post('/socials', [SocialController::class, 'store']);
+    Route::put('/socials/', [SocialController::class, 'update']);
+    Route::delete('/socials/{id}', [SocialController::class, 'destroy']);
+});

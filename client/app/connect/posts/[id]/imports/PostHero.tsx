@@ -61,7 +61,6 @@ const TitleStyle = styled(Typography)(({ theme }: any) => ({
     fontWeight: '700',
     padding: theme.spacing(1),
     color: theme.palette.common.white,
-
 }));
 const DescriptionStyle = styled(Typography)(({ theme }: any) => ({
     width: '100%',
@@ -120,30 +119,44 @@ export default function BlogPostHero({ post, ...other }: any) {
             <CoverImgStyle alt="post cover" src={cover} />
             <PostInfos>
 
-                <TitleStyle variant="h3" >
+                <TitleStyle variant="h3"
+                    sx={{
+                        color: (theme) =>
+                            theme.palette.mode == "light" ? "#101010" : "#F5F5F5",
+                    }}
+                >
                     {title}
                 </TitleStyle>
-                <DescriptionStyle variant="h6" >
+                <DescriptionStyle variant="h6"
+                    sx={{
+                        color: (theme) =>
+                            theme.palette.mode == "light" ? "#101010" : "#F5F5F5",
+                    }}
+                >
                     {description}
                 </DescriptionStyle>
             </PostInfos>
 
             <FooterStyle>
-                <Box sx={{ display: 'flex', alignItems: 'center', flexDirection: 'row' }}>
-                    <Avatar alt={user?.name} src={user?.avatar} sx={{ width: 48, height: 48 }} />
-                    <Box sx={{ ml: 2, display: 'flex', flexDirection: 'row', alignItems: 'center', gap: '0.8rem' }}>
+                <Box sx={{ display: 'flex', alignItems: 'center', flexDirection: 'row', gap: '1rem' }}>
+                    <Box sx={{ ml: 2, display: 'flex', flexDirection: 'row', alignItems: 'center', gap: '0.8rem', cursor: 'pointer' }}
+                        onClick={() => {
+                            window.open(`/connect/user/${user.username}`, '_blank');
+                        }}
+                    >
+                        <Avatar alt={user?.name} src={`/assets/avatars/${user?.avatar}`} sx={{ width: 48, height: 48 }} />
                         <Typography variant="subtitle1" sx={{
                             color: (theme) => theme.palette.mode === 'light' ? 'black' : 'white',
 
                         }}>
                             {user?.name}
                         </Typography>
-                        <Typography variant="body2" sx={{ color: 'grey.500' }}>
-                            {
-                                formatDate(post.created_at)
-                            }
-                        </Typography>
                     </Box>
+                    <Typography variant="body2" sx={{ color: 'grey.500' }}>
+                        {
+                            formatDate(post.created_at)
+                        }
+                    </Typography>
                 </Box>
             </FooterStyle>
         </RootStyle >

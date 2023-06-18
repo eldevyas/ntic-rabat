@@ -26,6 +26,7 @@ import * as Display from '../../../../services/displayAlert'
 import { useRouter } from 'next/navigation';
 import { useSession } from 'next-auth/react';
 import BlogNewPostPreview from './NewPostPreview';
+import Jodit from './utils/JoditEditor';
 
 
 const LabelStyle = styled(Typography)(({ theme }: any) => ({
@@ -125,45 +126,17 @@ const NewPostForm = () => {
     );
 
 
-    const JoditEditor = dynamic(() => import("jodit-react"), { ssr: false });
+    const Jodit = dynamic(() => import('./utils/JoditEditor'), { ssr: false })
     const Editor = ({ content, onContentChange, ...props }: any) => {
         const { mode } = useColorScheme();
 
         return (
             <>
-                {typeof window !== 'undefined' && (
-                    <JoditEditor
-                        value={content}
-                        config={{
-                            theme: mode == "dark" ? "dark" : "default",
-                            buttons: [
-                                'source', '|',
-                                'bold',
-                                'underline',
-                                'italic', '|',
-                                'ul',
-                                'ol', '|',
-                                'font',
-                                'fontsize',
-                                'brush',
-                                'image',
-                                'video',
-                                'table',
-                                'link', '|',
-                                'align', 'undo', 'redo', '|',
-                                'hr',
-                                'eraser',
-                            ],
-                            uploader: {
-                                insertImageAsBase64URI: true,
-                            }
-
-                        }}
-                        onBlur={onContentChange}
-                    // {...props}
-
-                    />
-                )}
+                <Jodit
+                    content={content}
+                    onContentChange={onContentChange}
+                    mode={mode}
+                />
             </>
         );
     };
