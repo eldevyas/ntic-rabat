@@ -4,14 +4,12 @@ import React, { useEffect } from 'react'
 import { useParams } from "next/navigation";
 import axios from 'axios';
 import { Avatar, Box, CardMedia, Typography } from '@mui/material';
-import Image from 'next/image';
 import PostHeader from './imports/PostHeader';
 import BlogPostHero from './imports/PostHero';
 import { Icon } from '@iconify/react';
 import { useSession } from 'next-auth/react';
 import { Checkbox } from '@mui/material';
 import { AvatarGroup } from '@mui/material';
-import { DefaultButton } from '@/app/core/Button';
 import { TextField } from '@mui/material';
 import * as Display from "@/services/displayAlert";
 import LoadingButton from '@mui/lab/LoadingButton/LoadingButton';
@@ -158,6 +156,8 @@ const Page = () => {
                 <Typography
                     variant="h5"
                     dangerouslySetInnerHTML={{ __html: post.content }}
+                    className='postContent'
+
                 >
 
                 </Typography>

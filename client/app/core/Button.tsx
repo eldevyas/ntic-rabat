@@ -66,6 +66,6 @@ export function BackButton(props: any) {
             onClick={() => window.history.back()}
             {...props}
             variant="outlined" startIcon={<KeyboardArrowLeftIcon />}
-        >Back</Button>
+        >Retour</Button>
     )
 }

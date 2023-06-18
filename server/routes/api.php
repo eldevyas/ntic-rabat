@@ -70,6 +70,9 @@ Route::post('auth/resend-confirmation', [UserController::class, 'sendEmailVerifi
 // View user profile
 Route::get('/user/{username}', [UserController::class, 'show']);
 
+// Get User Posts
+Route::get('/user/{username}/posts/{limit}', [UserController::class, 'getUserPosts']);
+
 // Update user profile
 Route::middleware('auth:api')->group(function () {
     Route::post('/user/update-profile', [UserController::class, 'UpdateProfile']);
@@ -90,6 +93,7 @@ Route::prefix('posts')->group(function () {
     Route::put('/{post}', [PostsController::class, 'update']);
 });
 Route::post('/upload-image', [PostsController::class, 'uploadImage']);
+
 
 
 // Socials
