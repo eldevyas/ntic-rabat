@@ -8,18 +8,25 @@ import PostGrid from "./components/2. Posts";
 import axios from "axios";
 export default function Feed() {
     const [posts, setPosts]: any = React.useState([]);
+    const [postsLimit, setPostsLimit] = React.useState(7);
+    const [isRefresh, setRefresh] = React.useState(false);
     // use Effect that awaits the posts from the server
     useEffect(() => {
+        setRefresh(true);
         axios
-            .get(`${process.env.SERVER_PUBLIC_API_URL}/posts`)
+            .get(`${process.env.SERVER_PUBLIC_API_URL}/posts/${postsLimit}}`)
             .then((response) => {
                 setPosts(response.data);
+                setRefresh(false);
 
             })
             .catch((error) => {
                 console.error("Error fetching posts:", error);
+                setRefresh(false)
             });
-    }, []);
+        setRefresh(false)
+
+    }, [postsLimit]);
 
 
     const PostsData = [
@@ -58,7 +65,12 @@ export default function Feed() {
             <Heading />
             {posts.length > 0 ? (
                 <>
-                    <PostGrid Posts={posts} />
+                    <PostGrid Posts={posts} Limit={postsLimit} setLimit={
+                        () => setPostsLimit(postsLimit + 6)
+
+                    }
+                        Refresh={isRefresh}
+                    />
                     <EmptyFluxPage />
                 </>
             ) : (

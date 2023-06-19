@@ -84,6 +84,7 @@ Route::post('/posts/{post}/like', [LikesController::class, 'like'])->middleware(
 Route::post('/posts/{post}/comment', [CommentsController::class, 'store'])->middleware('auth:api');
 
 
+
 Route::prefix('posts')->group(function () {
     Route::get('/', [PostsController::class, 'index']);
     Route::get('/team', [PostsController::class, 'TeamPosts']);
@@ -91,6 +92,8 @@ Route::prefix('posts')->group(function () {
     Route::get('/{post}', [PostsController::class, 'show']);
     Route::delete('/{post}', [PostsController::class, 'destroy']);
     Route::put('/{post}', [PostsController::class, 'update']);
+    // get limited posts
+    Route::get('/{limit}', [PostsController::class, 'getLimitedPosts']);
 });
 Route::post('/upload-image', [PostsController::class, 'uploadImage']);
 

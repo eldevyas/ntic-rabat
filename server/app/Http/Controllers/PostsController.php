@@ -153,4 +153,13 @@ class PostsController extends Controller
 
         return response(null, Response::HTTP_NO_CONTENT);
     }
+    public function getLimitedPosts($limit)
+    {
+        $posts = Post::with(['user', 'comments', 'likes'])->orderBy('created_at', 'desc')->limit($limit)->get();
+        // with comments, we also want to show the user who made the comment
+        $posts->load('comments.user');
+        $posts->load('likes.user');
+
+        return response()->json($posts, 200);
+    }
 }
