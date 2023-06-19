@@ -3,8 +3,8 @@ import { useParams } from "next/navigation";
 import React, { useEffect } from "react";
 import { Avatar, Box, Typography, Grid } from "@mui/material";
 import { BackButton, IconButton } from "@/app/core/Button";
-import { Icon } from "@iconify/react";
-import { useTheme } from "@mui/material";
+import { Icon } from "@iconify/react"
+import { useTheme } from '@mui/material/styles';
 import UserInfos from "./components/UserInfos";
 import PostGrid from "../../flux/core/components/2. Posts";
 import axios from "axios";

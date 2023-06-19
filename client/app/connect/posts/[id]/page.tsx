@@ -145,7 +145,7 @@ const Page = () => {
             backgroundColor: (theme: any) => theme.palette.mode === "light" ? theme.palette.background.default : theme.palette.background.paper,
             height: "100%",
         }}>
-            <PostHeader />
+            <PostHeader postId={post.id} posterUsername={post.user?.username} />
             <BlogPostHero post={post} />
             <Box
                 sx={{
@@ -229,7 +229,7 @@ const Page = () => {
 
                         }}
                         value={comment}
-                        onChange={(e) => setComment(e.target.value)}
+                        onChange={(e: any) => setComment(e.target.value)}
 
                     ></TextField >
 

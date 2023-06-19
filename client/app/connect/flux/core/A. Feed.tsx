@@ -14,11 +14,11 @@ export default function Feed() {
     useEffect(() => {
         setRefresh(true);
         axios
-            .get(`${process.env.SERVER_PUBLIC_API_URL}/posts/${postsLimit}}`)
+            .get(`${process.env.SERVER_PUBLIC_API_URL}/posts/limited/${postsLimit}`)
             .then((response) => {
                 setPosts(response.data);
                 setRefresh(false);
-
+                console.log("Feed posrs", response.data);
             })
             .catch((error) => {
                 console.error("Error fetching posts:", error);

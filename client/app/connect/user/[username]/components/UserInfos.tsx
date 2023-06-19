@@ -2,7 +2,7 @@ import React from 'react'
 import { Avatar, Box, Typography } from "@mui/material";
 import { BackButton, IconButton } from "@/app/core/Button";
 import { Icon } from "@iconify/react";
-import { useTheme } from "@mui/material";
+import { useTheme } from '@mui/material/styles';
 
 const UserInfos = (props: any) => {
     const theme = useTheme();

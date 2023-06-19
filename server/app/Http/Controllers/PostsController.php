@@ -149,9 +149,14 @@ class PostsController extends Controller
      */
     public function destroy(Post $post)
     {
-        $post->delete();
 
-        return response(null, Response::HTTP_NO_CONTENT);
+        if (Auth::id() !== $post->user_id) {
+            return response()->json(['error' => 'You can only delete your own posts.'], 403);
+        }
+        if (Auth::id() == $post->user_id) {
+            $post->delete();
+            return response()->json(['message' => 'Post deleted'], 200);
+        }
     }
     public function getLimitedPosts($limit)
     {

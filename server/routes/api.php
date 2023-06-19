@@ -90,11 +90,12 @@ Route::prefix('posts')->group(function () {
     Route::get('/team', [PostsController::class, 'TeamPosts']);
     Route::post('/', [PostsController::class, 'store'])->middleware('auth:api');
     Route::get('/{post}', [PostsController::class, 'show']);
-    Route::delete('/{post}', [PostsController::class, 'destroy']);
+    Route::delete('/{post}', [PostsController::class, 'destroy'])->middleware('auth:api');
     Route::put('/{post}', [PostsController::class, 'update']);
     // get limited posts
-    Route::get('/{limit}', [PostsController::class, 'getLimitedPosts']);
 });
+Route::get('/posts/limited/{limit}', [PostsController::class, 'getLimitedPosts']);
+
 Route::post('/upload-image', [PostsController::class, 'uploadImage']);
 
 

@@ -7,7 +7,6 @@ import Link from "next/link";
 
 const User = (props: any) => {
     const user = props.user
-    console.log(user)
     return (
         <div>
 
@@ -43,7 +42,7 @@ const User = (props: any) => {
                             variant="body2"
                             fontWeight="bold"
                             sx={{
-                                color: (theme) =>
+                                color: (theme: any) =>
                                     theme.palette.text.primary,
                             }}
                         >
@@ -53,7 +52,7 @@ const User = (props: any) => {
                             variant="caption"
                             fontWeight="medium"
                             sx={{
-                                color: (theme) =>
+                                color: (theme: any) =>
                                     theme.palette.text
                                         .secondary,
                             }}

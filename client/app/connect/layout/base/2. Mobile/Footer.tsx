@@ -1,5 +1,7 @@
 import React from "react";
-import { Box, Tabs, Tab, styled } from "@mui/material";
+import { Box, Tabs, Tab } from "@mui/material";
+import { styled } from '@mui/system';
+
 import Image from "next/image";
 import { Chat, Home, User } from "react-iconly";
 import { useTheme } from "@nextui-org/react";

@@ -4,7 +4,9 @@ import React from "react";
 import Gallery from "@/app/components/base/B. Gallery";
 import Link from "next/link";
 import { ShieldDone, Edit, Heart2, Work, ArrowDownSquare } from "react-iconly";
-import { Box, Button, Grid, Typography, useTheme } from "@mui/material";
+import { Box, Button, Grid, Typography } from "@mui/material";
+import { useTheme } from '@mui/material/styles';
+
 
 const Cards: {
     title: string;
@@ -13,39 +15,39 @@ const Cards: {
     href?: string;
     color: string;
 }[] = [
-    {
-        title: "Se détendre et apprendre",
-        description:
-            "Nous offrons à nos stagiaires un espace relaxant pour se concentrer et apprendre, en veillant à ce qu'ils se sentent à l'aise pendant leur période de formation.",
-        icon: ShieldDone,
-        href: "#EspaceEquippe",
-        color: "black",
-    },
-    {
-        title: "La pensée créative",
-        description:
-            "Tous nos stagiaires font de bonnes notes, en raison de leur discipline d'apprentissage et de leur créativité de travail. Ils ont fait de notre institut une bonne communauté.",
-        icon: Edit,
-        href: "#LaPenseCreative",
-        color: "primary",
-    },
-    {
-        title: "Certificat puissant",
-        description:
-            "Ce qui rend notre institut si puissant, c'est le fait que nous avons la main sur de nombreuses entreprises et que nous avons des niveaux élevés d'insertions sur le marché du travail.",
-        icon: Work,
-        href: "#CertificatPuissant",
-        color: "secondary",
-    },
-    {
-        title: "Des bons formateurs",
-        description:
-            "Nous amenons les meilleurs formateurs dans nos salles de classe, ils établissent une bonne relation avec les stagiaires et ils leur envoient les informations de manière cool.",
-        icon: Heart2,
-        href: "#FormateursProfessionnels",
-        color: "white",
-    },
-];
+        {
+            title: "Se détendre et apprendre",
+            description:
+                "Nous offrons à nos stagiaires un espace relaxant pour se concentrer et apprendre, en veillant à ce qu'ils se sentent à l'aise pendant leur période de formation.",
+            icon: ShieldDone,
+            href: "#EspaceEquippe",
+            color: "black",
+        },
+        {
+            title: "La pensée créative",
+            description:
+                "Tous nos stagiaires font de bonnes notes, en raison de leur discipline d'apprentissage et de leur créativité de travail. Ils ont fait de notre institut une bonne communauté.",
+            icon: Edit,
+            href: "#LaPenseCreative",
+            color: "primary",
+        },
+        {
+            title: "Certificat puissant",
+            description:
+                "Ce qui rend notre institut si puissant, c'est le fait que nous avons la main sur de nombreuses entreprises et que nous avons des niveaux élevés d'insertions sur le marché du travail.",
+            icon: Work,
+            href: "#CertificatPuissant",
+            color: "secondary",
+        },
+        {
+            title: "Des bons formateurs",
+            description:
+                "Nous amenons les meilleurs formateurs dans nos salles de classe, ils établissent une bonne relation avec les stagiaires et ils leur envoient les informations de manière cool.",
+            icon: Heart2,
+            href: "#FormateursProfessionnels",
+            color: "white",
+        },
+    ];
 
 const Card = (Props: {
     title: string;
@@ -75,19 +77,19 @@ const Card = (Props: {
         Props.color == "black"
             ? `primary.main`
             : Props.color == "white"
-            ? theme.palette.mode == "dark"
-                ? `${Props.color}.main`
-                : `${Props.color}.contrastText`
-            : `${Props.color}.main`;
+                ? theme.palette.mode == "dark"
+                    ? `${Props.color}.main`
+                    : `${Props.color}.contrastText`
+                : `${Props.color}.main`;
 
     const BackgroundColor =
         Props.color == "black"
             ? `#000`
             : Props.color == "white"
-            ? theme.palette.mode == "light"
-                ? `#fff`
-                : "#000"
-            : `${Props.color}.light`;
+                ? theme.palette.mode == "light"
+                    ? `#fff`
+                    : "#000"
+                : `${Props.color}.light`;
 
     return (
         <Box
@@ -128,10 +130,10 @@ const Card = (Props: {
                         Props.color == "black"
                             ? `#fff`
                             : Props.color == "white"
-                            ? theme.palette.mode == "dark"
-                                ? `#000`
+                                ? theme.palette.mode == "dark"
+                                    ? `#000`
+                                    : `#fff`
                                 : `#fff`
-                            : `#fff`
                     }
                     size="xlarge"
                 />
@@ -169,10 +171,10 @@ const Card = (Props: {
                             Props.color == "black"
                                 ? `primary.main`
                                 : Props.color == "white"
-                                ? theme.palette.mode == "light"
-                                    ? "black"
-                                    : `white.main`
-                                : `${Props.color}.main`,
+                                    ? theme.palette.mode == "light"
+                                        ? "black"
+                                        : `white.main`
+                                    : `${Props.color}.main`,
                         background: "none !important",
                     }}
                     variant="outlined"
@@ -180,10 +182,10 @@ const Card = (Props: {
                         Props.color == "black"
                             ? "primary"
                             : Props.color == "white"
-                            ? theme.palette.mode == "light"
-                                ? "black"
-                                : "white"
-                            : (Props.color as any)
+                                ? theme.palette.mode == "light"
+                                    ? "black"
+                                    : "white"
+                                : (Props.color as any)
                     }
                     endIcon={
                         <ArrowDownSquare
@@ -192,10 +194,10 @@ const Card = (Props: {
                                 Props.color == "black"
                                     ? `var(--mui-palette-primary-main)`
                                     : Props.color == "white"
-                                    ? theme.palette.mode == "dark"
-                                        ? `#fff`
-                                        : `#000`
-                                    : `var(--nextui-colors-${Props.color})`
+                                        ? theme.palette.mode == "dark"
+                                            ? `#fff`
+                                            : `#000`
+                                        : `var(--nextui-colors-${Props.color})`
                             }
                         />
                     }
