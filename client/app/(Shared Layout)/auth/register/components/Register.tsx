@@ -5,6 +5,10 @@ import Auth from "@/services/authServices";
 import { useRouter } from "next/navigation";
 import { signIn } from "next-auth/react";
 import { Box, Typography } from "@mui/material";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { auth } from "@/firebase/config";
+import signUp from "@/firebase/auth/signup"
+
 
 export default function RegisterComponent(props: any) {
     const Router = useRouter();
@@ -17,7 +21,8 @@ export default function RegisterComponent(props: any) {
         password: "",
         passwordConfirmation: "",
     });
- 
+
+
     const handleRegistration = (Credentials: any) => {
         setCredentials(Credentials);
         let Register = Auth.Register(Credentials);
@@ -38,6 +43,7 @@ export default function RegisterComponent(props: any) {
                 );
                 if (res) {
                     Router.push("/auth/confirm-email");
+                    signUp(Credentials.email, Credentials.password)
                 }
             });
         }

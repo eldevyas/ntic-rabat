@@ -13,6 +13,7 @@ import { signIn, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { Typography } from "@mui/material";
+import firebaseSignin from "@/firebase/auth/signin";
 
 const LoginComponent = () => {
     const Router = useRouter();
@@ -77,6 +78,7 @@ const LoginComponent = () => {
                     );
                 } else {
                     Display.pushSuccess("Connexion réussie!");
+                    firebaseSignin(Credentials.email, Credentials.password)
                 }
             } finally {
                 setLoading(false);
