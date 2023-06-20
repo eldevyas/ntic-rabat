@@ -9,23 +9,17 @@ import DialogAnimate from './utils/DialogAnimate';
 import Markdown from './utils/Markdown';
 import Scrollbar from './utils/ScrollBar';
 import EmptyContent from './utils/EmptyContent';
+import './test.scss';
 
 // ----------------------------------------------------------------------
 
 const HeroStyle = styled('div')(({ theme }) => ({
-    paddingTop: '56%',
-    position: 'relative',
-    backgroundSize: 'cover',
-    backgroundPosition: 'center',
-    backgroundRepeat: 'no-repeat',
-    '&:before': {
-        top: 0,
-        content: "''",
-        width: '100%',
-        height: '100%',
-        position: 'absolute',
-        backgroundColor: alpha(theme.palette.grey[900], 0.72)
-    }
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: '100%',
+    flexDirection: 'column',
+
 }));
 
 // ----------------------------------------------------------------------
@@ -37,22 +31,11 @@ PreviewHero.propTypes = {
 
 function PreviewHero({ title, cover }: any) {
     return (
-        <HeroStyle sx={{ backgroundImage: `url(${cover})` }}>
-            <Container
-                sx={{
-                    top: 0,
-                    left: 0,
-                    right: 0,
-                    margin: 'auto',
-                    position: 'absolute',
-                    pt: { xs: 3, lg: 10 },
-                    color: 'common.white'
-                }}
-            >
-                <Typography variant="h2" component="h1">
-                    {title}
-                </Typography>
-            </Container>
+        <HeroStyle >
+            <img src={`${cover}`} />
+            <Typography variant="h2" component="h1">
+                {title}
+            </Typography>
         </HeroStyle>
     );
 }
@@ -75,8 +58,9 @@ export default function BlogNewPostPreview({ formik, openPreview, onClosePreview
 
     return (
         <DialogAnimate
+
             open={openPreview} onClose={onClosePreview}>
-            <DialogActions sx={{ py: 2, px: 3 }}>
+            <DialogActions sx={{ py: 2, px: 3, }}>
                 <Typography variant="subtitle1" sx={{ flexGrow: 1 }}>
                     Preview Post
                 </Typography>
@@ -95,18 +79,72 @@ export default function BlogNewPostPreview({ formik, openPreview, onClosePreview
             {hasContent ? (
                 <Scrollbar>
                     {hasHero && <PreviewHero title={title} cover={cover} />}
-                    <Container>
-                        <Box sx={{ mt: 5, mb: 10 }}>
-                            <Typography variant="h6" sx={{ mb: 5 }}>
+                    <Container
+
+                    >
+                        <Box sx={{ mt: 5 }}>
+                            <Typography variant="h6" sx={{ mb: 5, minHeight: '100%', height: '100%' }}>
                                 {description}
                             </Typography>
-                            <Markdown children={content} />
+                            <Markdown children={content}
+                                sx={{
+                                    minHeight: '100%',
+                                    height: '100%',
+                                    overflow: 'hidden',
+                                    // zIndex: 1000,
+                                    '& img': {
+                                        width: '100%',
+                                        height: 'auto',
+                                        borderRadius: '8px',
+                                    },
+                                    '& p': {
+                                        fontSize: '1.2rem',
+                                        lineHeight: '1.5',
+                                        letterSpacing: '0.00938em',
+                                        color: '#fff',
+                                    },
+                                    '& h1': {
+                                        fontSize: '2.5rem',
+                                        lineHeight: '1.5',
+                                        letterSpacing: '0.00938em',
+                                        color: '#fff',
+                                    },
+                                    '& h2': {
+                                        fontSize: '2rem',
+                                        lineHeight: '1.5',
+                                        letterSpacing: '0.00938em',
+                                        color: '#fff',
+                                    },
+                                    '& ol': {
+                                        fontSize: '1.2rem',
+                                        lineHeight: '1.5',
+                                        letterSpacing: '0.00938em',
+                                        color: '#fff',
+                                        listStyleType: 'decimal',
+                                    },
+                                    '& ul': {
+                                        fontSize: '1.2rem',
+                                        lineHeight: '1.5',
+                                        letterSpacing: '0.00938em',
+                                        color: '#fff',
+                                        listStyleType: 'disc',
+                                    },
+                                    '& li': {
+                                        fontSize: '1.2rem',
+                                        lineHeight: '1.5',
+                                        letterSpacing: '0.00938em',
+                                        color: '#fff',
+                                        // listStyleType: 'disc',
+                                    },
+                                }}
+                            />
                         </Box>
                     </Container>
                 </Scrollbar>
             ) : (
                 <EmptyContent title="Empty content" />
-            )}
-        </DialogAnimate>
+            )
+            }
+        </DialogAnimate >
     );
 }

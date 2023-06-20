@@ -31,13 +31,16 @@ export const varFadeInUp = {
 
 export default function DialogAnimate({ open = false, animate, onClose, children, ...other }: any) {
     return (
-        <AnimatePresence>
+        <AnimatePresence
+
+        >
             {open && (
                 <Dialog
                     fullWidth
                     fullHeight
                     scroll="body"
                     maxWidth="xs"
+
                     open={open}
                     onClose={onClose}
                     PaperComponent={motion.div}
@@ -46,8 +49,9 @@ export default function DialogAnimate({ open = false, animate, onClose, children
                             borderRadius: 2,
                             bgcolor: 'background.paper',
                             height: '90%',
-                            overflowY: 'scroll',
-                            zIndex: 1000,
+                            minHeight: '90%',
+                            overflow: 'hidden',
+                            // zIndex: 1000,
                         },
                         ...(animate || varFadeInUp)
                     }}

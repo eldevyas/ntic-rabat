@@ -1,6 +1,7 @@
 import * as Yup from 'yup';
 import { useCallback, useState } from 'react';
 import { Form, FormikProvider, useFormik } from 'formik';
+import { Box } from '@mui/material';
 // material
 import { styled } from '@mui/material/styles';
 
@@ -28,8 +29,10 @@ import { useSession } from 'next-auth/react';
 import BlogNewPostPreview from './NewPostPreview';
 import Jodit from './utils/JoditEditor';
 import Link from 'next/link';
-import { IconButton } from '@/app/core/Button';
+import { DefaultButton, IconButton } from '@/app/core/Button';
 import { Icon } from '@iconify/react';
+import QuillEditor from './utils/QuillEditor';
+import { Quill } from 'react-quill';
 
 
 const LabelStyle = styled(Typography)(({ theme }: any) => ({
@@ -137,7 +140,10 @@ const NewPostForm = () => {
             <>
                 <Jodit
                     content={content}
-                    onContentChange={onContentChange}
+                    onContentChange={(e: any) => {
+                        onContentChange(e)
+                        console.log('changed', content)
+                    }}
                     mode={mode}
                 />
             </>
@@ -153,7 +159,7 @@ const NewPostForm = () => {
         setOpen(false);
     };
 
-
+    const [EditorChoice, setEditorChoice] = useState(true);
 
     return (
         <>
@@ -180,16 +186,59 @@ const NewPostForm = () => {
                                         onChange={(e) => setDescription(e.target.value)}
                                     />
 
-                                    <div>
+                                    <Box
+                                        sx={{
+                                            display: 'flex',
+                                            // alignItems: 'center',
+                                            flexDirection: 'column',
+                                            gap: '1rem'
+                                        }}
+                                    >
+
                                         <LabelStyle>Content</LabelStyle>
-                                        <Editor content={content} onContentChange={handleContentChange}
-                                        />
+                                        {
+                                            EditorChoice ? (
+                                                <QuillEditor
+                                                    content={content}
+                                                    onContentChange={(e: any) => {
+                                                        setContent(e)
+                                                        console.log('changed', content)
+                                                    }
+                                                    }
+                                                />
+                                            ) : (
+
+                                                <Editor content={content} onContentChange={
+                                                    (e: any) => {
+                                                        setContent(e)
+                                                    }
+                                                }
+                                                />
+                                            )
+                                        }
+                                        {/* <QuillEditor
+                                            content={content}
+                                            onContentChange={(e: any) => {
+                                                setContent(e)
+                                                console.log('changed', content)
+                                            }
+                                            }
+                                        /> */}
+
+                                        <DefaultButton
+                                            variant="contained"
+                                            color="inherit"
+                                            onClick={() => setEditorChoice(!EditorChoice)}
+                                            sx={{ width: "fit-content", alignSelf: "flex-end" }}
+                                        >
+                                            Change Editor
+                                        </DefaultButton>
                                         {touched.content && errors.content && (
                                             <FormHelperText error sx={{ px: 2, textTransform: 'capitalize' }}>
                                                 {touched.content && errors.content}
                                             </FormHelperText>
                                         )}
-                                    </div>
+                                    </Box>
 
                                     <div>
                                         <LabelStyle>Cover</LabelStyle>

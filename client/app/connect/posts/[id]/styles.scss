@@ -1,0 +1,156 @@
+ul {
+    list-style-type: disc !important;
+}
+* {
+    margin: 0;
+}
+
+ol {
+    list-style-type: decimal !important;
+}
+table {
+    border-collapse: collapse;
+}
+
+td,
+th {
+    border: 1px solid #ccc;
+    padding: 8px;
+}
+pre {
+    background-color: #f4f4f4;
+    padding: 10px;
+    overflow-x: auto;
+}
+
+code {
+    font-family: "Courier New", Courier, monospace;
+}
+/* Styling for the container of the post content */
+
+/* Styling for headings */
+.postContent h1 {
+    font-size: 24px;
+    font-weight: bold;
+    /* Add additional styles for h1 if desired */
+}
+
+.postContent h2 {
+    font-size: 20px;
+    font-weight: bold;
+    /* Add additional styles for h2 if desired */
+}
+
+.postContent h3 {
+    font-size: 18px;
+    font-weight: bold;
+    /* Add additional styles for h3 if desired */
+}
+
+/* Styling for paragraphs */
+.postContent p {
+    /* Add additional styles for paragraphs if desired */
+}
+
+/* Styling for ordered lists */
+.postContent ol {
+    // margin-bottom: 10px;
+    /* Add additional styles for ordered lists if desired */
+}
+
+/* Styling for unordered lists */
+.postContent ul {
+    /* Add additional styles for unordered lists if desired */
+}
+
+/* Styling for list items */
+.postContent li {
+    // margin-bottom: 5px;
+    /* Add additional styles for list items if desired */
+}
+
+/* Styling for code blocks */
+.postContent pre {
+    background-color: #f4f4f4;
+    overflow-x: auto;
+    /* Add additional styles for code blocks if desired */
+}
+
+.postContent code {
+    font-family: "Courier New", Courier, monospace;
+    /* Add additional styles for code elements if desired */
+}
+
+/* Styling for links */
+.postContent a {
+    color: #007bff;
+    text-decoration: underline;
+    /* Add additional styles for links if desired */
+}
+
+/* Styling for bold text */
+.postContent strong {
+    font-weight: bold;
+    /* Add additional styles for bold text if desired */
+}
+
+/* Styling for italic text */
+.postContent em {
+    font-style: italic;
+    /* Add additional styles for italic text if desired */
+}
+
+/* Styling for strike-through text */
+.postContent s {
+    text-decoration: line-through;
+    /* Add additional styles for strike-through text if desired */
+}
+
+/* Styling for blockquotes */
+.postContent blockquote {
+    // padding: 10px;
+    border-left: 3px solid #ccc;
+    font-size: 1rem;
+    /* Add additional styles for blockquotes if desired */
+    &::before {
+        content: "\201C";
+        font-size: 1rem;
+        margin-right: 0.25em;
+    }
+}
+
+/* Styling for images */
+.postContent img {
+    max-width: 100%;
+    height: auto;
+    /* Add additional styles for images if desired */
+}
+
+/* Styling for horizontal rules */
+.postContent hr {
+    border: none;
+    border-top: 1px solid #ccc;
+    /* Add additional styles for horizontal rules if desired */
+}
+
+.postContent code {
+    background-color: #f4f4f4;
+    font-family: "Courier New", Courier, monospace;
+    /* Add additional styles for inline code if desired */
+}
+
+/* Styling for code blocks */
+.postContent pre {
+    background-color: #0c1e31;
+    overflow-x: auto;
+    /* Add additional styles for code blocks if desired */
+    color: #f4f4f4;
+}
+
+.postContent pre code {
+    display: block;
+    background-color: #f4f4f4;
+
+    font-family: "Courier New", Courier, monospace;
+    /* Add additional styles for code block contents if desired */
+}

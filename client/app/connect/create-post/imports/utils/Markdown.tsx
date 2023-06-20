@@ -20,6 +20,12 @@ const MarkdownWrapperStyle = styled('div')(({ theme }: any) => {
                 lineHeight: 2
             }
         },
+        '& ul': {
+            listStyleType: 'disc',
+        },
+        '& ol': {
+            listStyleType: 'decimal',
+        },
 
         // Blockquote
         '& blockquote': {

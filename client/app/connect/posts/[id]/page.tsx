@@ -15,6 +15,7 @@ import * as Display from "@/services/displayAlert";
 import LoadingButton from '@mui/lab/LoadingButton/LoadingButton';
 import { IconButton } from '@/app/core/Button';
 import Link from 'next/link';
+import './styles.scss';
 
 const Page = () => {
 
@@ -132,6 +133,7 @@ const Page = () => {
             return date.toDateString();
         }
     };
+
 
     return (
         <Box sx={{
