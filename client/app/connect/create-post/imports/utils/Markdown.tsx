@@ -12,7 +12,6 @@ const MarkdownWrapperStyle = styled('div')(({ theme }: any) => {
     const isLight = theme.palette.mode === 'light';
 
     return {
-        // List
         '& ul, & ol': {
             ...theme.typography.body1,
             paddingLeft: theme.spacing(5),
