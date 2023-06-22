@@ -6,7 +6,7 @@ import { app } from "../config";
 const auth = getAuth(firebase_app);
 
 export default async function signUp(email, password) {
-    const db: any = getFirestore(app);
+    const db = getFirestore(app);
     let result = null,
         error = null;
     try {
