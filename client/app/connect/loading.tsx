@@ -17,7 +17,7 @@ export default function Loading() {
                 gap: "1rem",
             }}
         >
-            Chargement... Skeleton atbi
+            Chargement...
         </Box>
     );
 }

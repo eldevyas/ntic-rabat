@@ -374,7 +374,7 @@ export default function SideBar() {
                     color={mode == "dark" ? "error" : "error"}
                     onClick={() => {
                         signOut();
-                        Router.push("/emplois");
+                        Router.push("/");
                     }}
                     fullWidth
                     sx={{ fontSize: "0.85rem" }}

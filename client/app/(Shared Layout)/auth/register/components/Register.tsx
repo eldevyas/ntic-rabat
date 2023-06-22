@@ -8,6 +8,7 @@ import { Box, Typography } from "@mui/material";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "@/firebase/config";
 import signUp from "@/firebase/auth/signup"
+import userChat from "@/firebase/auth/usersChat";
 
 
 export default function RegisterComponent(props: any) {
@@ -42,8 +43,9 @@ export default function RegisterComponent(props: any) {
                     { callbackUrl: "/auth/confirm-email" }
                 );
                 if (res) {
-                    Router.push("/auth/confirm-email");
                     signUp(Credentials.email, Credentials.password)
+                    userChat(Credentials.email)
+                    Router.push("/auth/confirm-email");
                 }
             });
         }
