@@ -22,6 +22,9 @@ export default function RegisterComponent(props: any) {
         password: "",
         passwordConfirmation: "",
     });
+    async function signUpFun(email: any, password: any, username: any) {
+        await signUp(email, password, username)
+    }
 
 
     const handleRegistration = (Credentials: any) => {
@@ -42,9 +45,12 @@ export default function RegisterComponent(props: any) {
                     },
                     { callbackUrl: "/auth/confirm-email" }
                 );
+                console.log("IDK", res)
                 if (res) {
-                    signUp(Credentials.email, Credentials.password)
-                    userChat(Credentials.email)
+                    console.log("user id : ", res.user.id)
+
+                    signUpFun(Credentials.email, Credentials.password, Credentials.username)
+                    // userChat(res.user.username)
                     Router.push("/auth/confirm-email");
                 }
             });

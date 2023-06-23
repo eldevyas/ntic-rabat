@@ -17,7 +17,7 @@ const ChatWindow = () => {
     const [chats, setChats]: any = React.useState([]);
     useEffect(() => {
         const getChats = () => {
-            const unsub = onSnapshot(doc(db, "userChats", data.user.email), (doc: any) => {
+            const unsub = onSnapshot(doc(db, "usersChat", data.user.email), (doc: any) => {
                 setChats(doc.data());
                 console.log(doc.data());
             })
@@ -39,8 +39,9 @@ const ChatWindow = () => {
     }
 
 
-    const handleSelectUser = async (email: string) => {
-        const combinedEmails = data?.user?.email > email ? data?.user?.email + email : email + data?.user?.email;
+    const handleSelectUser = async (username: string) => {
+        const combinedEmails = data?.user?.username > username ? data?.user?.username + username : username + data?.user?.username;
+        console.log(combinedEmails);
         try {
             const res = await getDoc(doc(db, 'chats', combinedEmails));
             if (!res.exists()) {
@@ -48,20 +49,21 @@ const ChatWindow = () => {
                 await setDoc(doc(db, 'chats', combinedEmails), { messages: [] });
                 // create user chats
                 // check if there's user chats with the current user email
-                const userChats = await getDoc(doc(db, 'userChats', data?.user?.email));
-                await updateDoc(doc(db, 'userChats', data?.user?.email), {
-                    [combinedEmails + ".userInfo"]: {
-                        email: email,
-                    },
-                    [combinedEmails + ".date"]: serverTimestamp(),
-                });
-                await updateDoc(doc(db, 'userChats', email), {
-                    [combinedEmails + ".userInfo"]: {
-                        email: data?.user?.email,
-                    },
-                    [combinedEmails + ".date"]: serverTimestamp(),
-                });
             }
+            const userChats = await getDoc(doc(db, 'usersChat', data?.user?.email));
+            await updateDoc(doc(db, 'usersChat', data?.user?.username), {
+                [combinedEmails + ".userInfo"]: {
+                    username: username,
+                },
+                [combinedEmails + ".date"]: serverTimestamp(),
+            });
+            await updateDoc(doc(db, 'usersChat', username), {
+                [combinedEmails + ".userInfo"]: {
+                    username: data?.user?.username,
+                },
+                [combinedEmails + ".date"]: serverTimestamp(),
+            });
+
         } catch (err) {
             console.log(err);
         }
@@ -172,7 +174,7 @@ const ChatWindow = () => {
                                                         cursor: "pointer",
                                                     }
                                                 }}
-                                                onClick={() => { handleSelectUser(user.email) }}
+                                                onClick={() => { handleSelectUser(user.username) }}
                                             >
                                                 <Avatar
                                                     src={user.avatar}

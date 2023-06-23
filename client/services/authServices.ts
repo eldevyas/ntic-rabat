@@ -3,7 +3,6 @@ import { useRouter } from "next/router";
 import * as Display from "../services/displayAlert";
 import axios from "axios";
 
-
 const APP_URL = process.env.NEXT_PUBLIC_HOSTNAME;
 const SERVER_URL = process.env.SERVER_PUBLIC_HOSTNAME;
 const LOGIN_ENDPOINT = `${SERVER_URL}/api/login`;
@@ -52,7 +51,8 @@ const Register = (credentials: any) => {
                     Display.pushSuccess(
                         `Félicitations, votre compte a été créé avec succès ! Pour des raisons de sécurité, veuillez vous connecter et confirmer votre adresse électronique en cliquant sur le lien d'activation que nous venons de vous envoyer.`
                     );
-                    return true;
+
+                    return response.data;
                 } else {
                     Display.pushFailure(
                         "Désolé, une erreur est survenue lors de votre inscription. Veuillez réessayer plus tard ou contactez votre administration pour obtenir de l'aide."
@@ -68,7 +68,6 @@ const Register = (credentials: any) => {
                             Désolé, votre inscription a échoué en raison d'une erreur de validation. Veuillez vérifier les informations saisies et réessayer.
                         `);
                     return false;
-
                 } else {
                     Display.pushFailure(
                         "Désolé, une erreur est survenue lors de votre inscription. Veuillez réessayer plus tard ou contactez votre administration pour obtenir de l'aide."
@@ -89,38 +88,38 @@ const Register = (credentials: any) => {
 // Confirm Email address
 const ConfirmEmailAddress = async (code: string, email: string) => {
     // Call API
-    let response = await axios.post("/api/auth/confirm-email",
-        {
-            code,
-            email
-        }, {
-        headers: {
-            "Content-Type": "application/json"
-        }
-    }).then(
-        response => {
+    let response = await axios
+        .post(
+            "/api/auth/confirm-email",
+            {
+                code,
+                email,
+            },
+            {
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            }
+        )
+        .then((response) => {
             // Return response
             return response;
-        },
-    ).catch(
-        error => {
+        })
+        .catch((error) => {
             // Return error
             return error;
-        }
-    );
+        });
 
     if (response.status == 200) {
         return true;
     } else {
         return false;
     }
-}
-
-
+};
 
 const AuthService = {
     Register: Register,
-    ConfirmEmailAddress: ConfirmEmailAddress
-}
+    ConfirmEmailAddress: ConfirmEmailAddress,
+};
 
 export default AuthService;
