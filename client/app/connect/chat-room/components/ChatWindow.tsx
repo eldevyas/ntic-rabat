@@ -1,30 +1,24 @@
-import { Box, Input, Typography } from '@mui/material'
+import { Box, Input, TextareaAutosize, Typography } from '@mui/material'
 import { useSession } from 'next-auth/react'
-import React, { useRef, useEffect } from 'react'
+import React, { useRef, useEffect, useContext } from 'react'
 import Avatar from '@mui/material/Avatar';
 import { Icon } from '@iconify/react';
 import InputBase from '@mui/material/InputBase';
 import RecentChats from './RecentChats';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { doc, getDoc, getFirestore, onSnapshot, serverTimestamp, setDoc, updateDoc } from 'firebase/firestore';
 import { app } from "@/firebase/config"
+import { ChatContext } from '@/context/ChatContext';
+import { DefaultButton } from '@/app/core/Button';
 
 
 
 const ChatWindow = () => {
     const { data }: any = useSession()
+    const { userChat }: any = useContext(ChatContext)
 
-    const [chats, setChats]: any = React.useState([]);
-    useEffect(() => {
-        const getChats = () => {
-            const unsub = onSnapshot(doc(db, "usersChat", data.user.email), (doc: any) => {
-                setChats(doc.data());
-                console.log(doc.data());
-            })
-            return unsub;
-        }
-        data?.user?.email && getChats();
-    }, [])
+    // const [chats, setChats]: any = React.useState([]);
+
     const { users } = useSelector((state: any) => state.Reducers);
     const [searchedUsers, setSearchedUsers] = React.useState([]);
     const wrapperRef: any = useRef(null);
@@ -38,6 +32,15 @@ const ChatWindow = () => {
         setSearchedUsers(searchedUsers);
     }
 
+    const [message, setMessage] = React.useState('');
+    const handleKeyDown = (event: any) => {
+        if (event.key === 'Enter' && !event.shiftKey) {
+            event.preventDefault();
+            // Submit the form or perform any other action
+            console.log('Form submitted with message:', message);
+            setMessage('');
+        }
+    };
 
     const handleSelectUser = async (username: string) => {
         const combinedEmails = data?.user?.username > username ? data?.user?.username + username : username + data?.user?.username;
@@ -49,21 +52,27 @@ const ChatWindow = () => {
                 await setDoc(doc(db, 'chats', combinedEmails), { messages: [] });
                 // create user chats
                 // check if there's user chats with the current user email
+                console.log(data?.user)
+                // const userChats = await getDoc(doc(db, 'usersChat', data?.user?.email));
+                await updateDoc(doc(db, 'usersChat', data?.user?.username), {
+                    [combinedEmails + ".userInfo"]: {
+                        username: username,
+                        name: users.find((user: any) => user.username === username).name,
+                        email: users.find((user: any) => user.username === username).email,
+                        avatar: users.find((user: any) => user.username === username).avatar,
+                    },
+                    [combinedEmails + ".date"]: serverTimestamp(),
+                });
+                await updateDoc(doc(db, 'usersChat', username), {
+                    [combinedEmails + ".userInfo"]: {
+                        username: data?.user?.username,
+                        name: data?.user?.name,
+                        email: data?.user?.email,
+                        avatar: data?.user?.avatar,
+                    },
+                    [combinedEmails + ".date"]: serverTimestamp(),
+                });
             }
-            const userChats = await getDoc(doc(db, 'usersChat', data?.user?.email));
-            await updateDoc(doc(db, 'usersChat', data?.user?.username), {
-                [combinedEmails + ".userInfo"]: {
-                    username: username,
-                },
-                [combinedEmails + ".date"]: serverTimestamp(),
-            });
-            await updateDoc(doc(db, 'usersChat', username), {
-                [combinedEmails + ".userInfo"]: {
-                    username: data?.user?.username,
-                },
-                [combinedEmails + ".date"]: serverTimestamp(),
-            });
-
         } catch (err) {
             console.log(err);
         }
@@ -78,6 +87,8 @@ const ChatWindow = () => {
                 height: '100%',
                 minHeight: '75vh',
                 borderRadius: '1rem',
+                display: 'flex',
+                flexDirection: 'row',
             }}
         >
             <Box className="LEFT"
@@ -193,20 +204,94 @@ const ChatWindow = () => {
                             )
                         }
                     </Box>
-                    {chats?.userInfos?.email}
+                    {/* {chats?.userInfos?.email} */}
                 </Box>
+                <RecentChats />
             </Box>
             <Box className="Conversation__Right"
                 sx={{
                     width: '100%',
+                    height: '100%',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    minHeight: '75vh',
                 }}
             >
-                <Box className="Conversation__Header">
-                    {/* AVATAR + NAME */}
+                <Box className="Conversation__Header"
+                    sx={{
+                        display: 'flex',
+                        flexDirection: 'row',
+                        alignItems: 'center',
+                        gap: '0.8rem',
+                        padding: '0.7rem 1rem',
+                        borderBottom: '1px solid #ccc',
+                    }}
+                >
+                    <Avatar src={`/assets/avatars/default.png`}
+                        sx={{
+                            height: 50,
+                            width: 50,
+                        }}
+                    />
+                    <Box sx={{
+                        display: "flex",
+                        flexDirection: 'column',
+                    }}>
+
+                        <Typography
+                            variant="body1"
+                            sx={{
+                                fontWeight: '400',
+                            }}
+                        >
+                            {userChat?.user.name}
+                        </Typography>
+                        <Typography
+                            variant="body2"
+                            sx={{
+                                fontWeight: '300',
+                            }}
+                        >
+                            {userChat?.user.email}
+                        </Typography>
+                    </Box>
+
                 </Box>
-                <Box className="Conversation__Messages">
+                <Box className="Conversation__Messages"
+                    sx={{
+                        flex: '1', // Take up remaining vertical space
+                        overflowY: 'scroll', // Add scroll if needed
+                    }}
+                >
+                    <p style={{ height: '100%' }}>
+                        WTF
+                    </p>
                 </Box>
-                <Box className="Conversation__Footer">
+                <Box className="Conversation__Footer"
+                    sx={{
+                        display: 'flex',
+                        flexDirection: 'row',
+                        alignItems: 'center',
+                        gap: '0.8rem',
+                        padding: '0.7rem 1rem',
+                        justifyContent: 'space-between',
+                        borderTop: '1px solid #ccc',
+                        height: 'fit-content',
+                    }}
+                >
+
+                    <textarea placeholder='Tapez Un Message'
+                        style={{
+                            resize: 'none',
+                            border: 'none',
+                            width: '100%'
+                        }}
+                        onChange={(e: any) => setMessage(e.target.value)}
+                        value={message}
+                        onKeyDown={handleKeyDown}
+
+                    />
+                    {/* <DefaultButton size='small' color='secondary' variant='contained'>Envoyer</DefaultButton> */}
                 </Box>
             </Box>
 
