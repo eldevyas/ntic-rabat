@@ -90,7 +90,7 @@ const NewPostForm = () => {
         formData.append('content', content);
         formData.append('cover', cover);
 
-        axios.post(`http://localhost:8000/api/posts`, formData, {
+        axios.post(`https://api.asonts.com/api/posts`, formData, {
             headers: {
                 'Content-Type': 'multipart/form-data',
                 'authorization': 'Bearer ' + data?.user?.token
