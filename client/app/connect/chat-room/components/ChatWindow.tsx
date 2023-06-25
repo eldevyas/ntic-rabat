@@ -1,21 +1,28 @@
-import { Box, Input, TextareaAutosize, Typography } from '@mui/material'
+import { Box, Typography } from '@mui/material'
 import { useSession } from 'next-auth/react'
 import React, { useRef, useEffect, useContext } from 'react'
 import Avatar from '@mui/material/Avatar';
-import { Icon } from '@iconify/react';
 import InputBase from '@mui/material/InputBase';
 import RecentChats from './RecentChats';
-import { useDispatch, useSelector } from 'react-redux';
-import { doc, getDoc, getFirestore, onSnapshot, serverTimestamp, setDoc, updateDoc } from 'firebase/firestore';
+import { useSelector } from 'react-redux';
+import { Timestamp, arrayUnion, doc, getDoc, getFirestore, onSnapshot, serverTimestamp, setDoc, updateDoc } from 'firebase/firestore';
 import { app } from "@/firebase/config"
 import { ChatContext } from '@/context/ChatContext';
-import { DefaultButton } from '@/app/core/Button';
+import Chat from './utils/Chat';
+import { v4 as uuid } from 'uuid';
+import { Icon } from '@iconify/react';
+import { getDownloadURL, getStorage, ref, uploadBytesResumable } from "firebase/storage";
+
+
+
 
 
 
 const ChatWindow = () => {
     const { data }: any = useSession()
-    const { userChat }: any = useContext(ChatContext)
+    const { userChat, dispatch }: any = useContext(ChatContext)
+    const storage = getStorage();
+
 
     // const [chats, setChats]: any = React.useState([]);
 
@@ -32,19 +39,109 @@ const ChatWindow = () => {
         setSearchedUsers(searchedUsers);
     }
 
+    // const [image, setImage]: any = React.useState(null);
     const [message, setMessage] = React.useState('');
-    const handleKeyDown = (event: any) => {
+    const handleUploadImage = (image: any) => {
+        if (image) {
+            const storageRef = ref(storage, uuid());
+            const uploadTask = uploadBytesResumable(storageRef, image);
+            uploadTask.on('state_changed',
+                (snapshot) => {
+                    // Observe state change events such as progress, pause, and resume
+                    // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+                    const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                    console.log('Upload is ' + progress + '% done');
+                    switch (snapshot.state) {
+                        case 'paused':
+                            console.log('Upload is paused');
+                            break;
+                        case 'running':
+                            console.log('Upload is running');
+                            break;
+                    }
+                },
+                (error) => {
+                    // Handle unsuccessful uploads
+                    console.log(error);
+                },
+                () => {
+                    getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
+                        await updateDoc(doc(db, 'chats', userChat.chatId), {
+                            messages: arrayUnion({
+                                id: uuid(),
+                                image: downloadURL,
+                                senderId: data?.user?.username,
+                                date: Timestamp.now()
+                            })
+                        })
+                        await updateDoc(doc(db, 'usersChat', data?.user?.username), {
+                            [userChat.chatId + ".lastMessage"]: {
+                                sender: data?.user?.username,
+                                image: downloadURL
+
+                            },
+                            [userChat.chatId + ".date"]: serverTimestamp(),
+                        });
+                        await updateDoc(doc(db, 'usersChat', userChat.user.username), {
+                            [userChat.chatId + ".lastMessage"]: {
+                                sender: data?.user?.username,
+                                image: downloadURL
+                            },
+                            [userChat.chatId + ".date"]: serverTimestamp(),
+                        });
+                    });
+                }
+            );
+        }
+    }
+    const handleKeyDown = async (event: any) => {
         if (event.key === 'Enter' && !event.shiftKey) {
             event.preventDefault();
-            // Submit the form or perform any other action
-            console.log('Form submitted with message:', message);
             setMessage('');
+
+            // Submit the form or perform any other action
+            await updateDoc(doc(db, 'chats', userChat.chatId), {
+                messages: arrayUnion({
+                    id: uuid(),
+                    text: message,
+                    senderId: data?.user?.username,
+                    date: Timestamp.now()
+                })
+            })
+                .then(() => {
+                    console.log("Document successfully updated!");
+                })
+                .catch((error: any) => {
+                    // The document probably doesn't exist.
+                    console.error("Error updating document: ", error);
+                });
+
+            await updateDoc(doc(db, 'usersChat', data?.user?.username), {
+                [userChat.chatId + ".lastMessage"]: {
+                    sender: data?.user?.username,
+                    text: message,
+
+                },
+                [userChat.chatId + ".date"]: serverTimestamp(),
+            });
+            await updateDoc(doc(db, 'usersChat', userChat.user.username), {
+                [userChat.chatId + ".lastMessage"]: {
+                    sender: data?.user?.username,
+                    text: message,
+                },
+                [userChat.chatId + ".date"]: serverTimestamp(),
+            });
+
         }
     };
 
     const handleSelectUser = async (username: string) => {
+        dispatch({
+            type: 'CHANGE_USER',
+            payload: users.find((user: any) => user.username === username),
+        })
+
         const combinedEmails = data?.user?.username > username ? data?.user?.username + username : username + data?.user?.username;
-        console.log(combinedEmails);
         try {
             const res = await getDoc(doc(db, 'chats', combinedEmails));
             if (!res.exists()) {
@@ -52,7 +149,6 @@ const ChatWindow = () => {
                 await setDoc(doc(db, 'chats', combinedEmails), { messages: [] });
                 // create user chats
                 // check if there's user chats with the current user email
-                console.log(data?.user)
                 // const userChats = await getDoc(doc(db, 'usersChat', data?.user?.email));
                 await updateDoc(doc(db, 'usersChat', data?.user?.username), {
                     [combinedEmails + ".userInfo"]: {
@@ -76,6 +172,7 @@ const ChatWindow = () => {
         } catch (err) {
             console.log(err);
         }
+
     }
 
 
@@ -208,92 +305,115 @@ const ChatWindow = () => {
                 </Box>
                 <RecentChats />
             </Box>
-            <Box className="Conversation__Right"
-                sx={{
-                    width: '100%',
-                    height: '100%',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    minHeight: '75vh',
-                }}
-            >
-                <Box className="Conversation__Header"
+            {userChat.user.name ? (
+
+                <Box className="Conversation__Right"
                     sx={{
+                        width: '100%',
                         display: 'flex',
-                        flexDirection: 'row',
-                        alignItems: 'center',
-                        gap: '0.8rem',
-                        padding: '0.7rem 1rem',
-                        borderBottom: '1px solid #ccc',
+                        flexDirection: 'column',
+                        height: '75vh',
                     }}
                 >
-                    <Avatar src={`/assets/avatars/default.png`}
+                    <Box className="Conversation__Header"
                         sx={{
-                            height: 50,
-                            width: 50,
+                            display: 'flex',
+                            flexDirection: 'row',
+                            alignItems: 'center',
+                            gap: '0.8rem',
+                            padding: '0.7rem 1rem',
+                            borderBottom: '1px solid #ccc',
                         }}
-                    />
-                    <Box sx={{
-                        display: "flex",
-                        flexDirection: 'column',
-                    }}>
+                    >
+                        <Avatar src={`/assets/avatars/default.png`}
+                            sx={{
+                                height: 50,
+                                width: 50,
+                            }}
+                        />
+                        <Box sx={{
+                            display: "flex",
+                            flexDirection: 'column',
+                        }}>
 
-                        <Typography
-                            variant="body1"
-                            sx={{
-                                fontWeight: '400',
+                            <Typography
+                                variant="body1"
+                                sx={{
+                                    fontWeight: '400',
+                                }}
+                            >
+                                {userChat?.user.name}
+                            </Typography>
+                            <Typography
+                                variant="body2"
+                                sx={{
+                                    fontWeight: '300',
+                                }}
+                            >
+                                {userChat?.user.email}
+                            </Typography>
+                        </Box>
+
+                    </Box>
+                    <Box className="Conversation__Messages"
+                        sx={{
+                            flex: '1', // Take up remaining vertical space
+                            overflowY: 'scroll', // Add scroll if needed
+                        }}
+                    >
+                        <Chat />
+                    </Box>
+                    <Box className="Conversation__Footer"
+                        sx={{
+                            display: 'flex',
+                            flexDirection: 'row',
+                            alignItems: 'center',
+                            gap: '0.8rem',
+                            padding: '0.7rem 1rem',
+                            justifyContent: 'space-between',
+                            borderTop: '1px solid #ccc',
+                            height: 'fit-content',
+                        }}
+                    >
+
+                        <textarea placeholder='Tapez un message'
+                            style={{
+                                resize: 'none',
+                                border: 'none',
+                                width: '100%'
                             }}
-                        >
-                            {userChat?.user.name}
-                        </Typography>
-                        <Typography
-                            variant="body2"
-                            sx={{
-                                fontWeight: '300',
-                            }}
-                        >
-                            {userChat?.user.email}
-                        </Typography>
+                            onChange={(e: any) => setMessage(e.target.value)}
+                            value={message}
+                            onKeyDown={handleKeyDown}
+                            rows={1.5}
+
+                        />
+                        <input type="file" id='imageFile'
+                            accept='image/*'
+                            style={{ display: 'none' }} onChange={(e: any) => {
+                                handleUploadImage(e.target.files[0])
+                            }} />
+                        <label htmlFor="imageFile" style={{ cursor: 'pointer' }}>
+                            <Icon icon="fluent:image-add-24-regular" width={22} height={22} cursor='pointer' />
+                        </label>
+
+                        {/* <DefaultButton size='small' color='secondary' variant='contained'>Envoyer</DefaultButton> */}
+                    </Box>
+                </Box>
+            )
+                : (
+                    <Box sx={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        flexDirection: 'column',
+                        justifyContent: 'center',
+                        height: '75vh',
+                        width: '100%',
+                    }}>
+                        <Typography variant='body1'>Sélectionnez un utilisateur pour commencer à chatter</Typography>
                     </Box>
 
-                </Box>
-                <Box className="Conversation__Messages"
-                    sx={{
-                        flex: '1', // Take up remaining vertical space
-                        overflowY: 'scroll', // Add scroll if needed
-                    }}
-                >
-                    <p style={{ height: '100%' }}>
-                        WTF
-                    </p>
-                </Box>
-                <Box className="Conversation__Footer"
-                    sx={{
-                        display: 'flex',
-                        flexDirection: 'row',
-                        alignItems: 'center',
-                        gap: '0.8rem',
-                        padding: '0.7rem 1rem',
-                        justifyContent: 'space-between',
-                        borderTop: '1px solid #ccc',
-                        height: 'fit-content',
-                    }}
-                >
-
-                    <textarea placeholder='Tapez Un Message'
-                        style={{
-                            resize: 'none',
-                            border: 'none',
-                            width: '100%'
-                        }}
-                        onChange={(e: any) => setMessage(e.target.value)}
-                        value={message}
-                        onKeyDown={handleKeyDown}
-
-                    />
-                    {/* <DefaultButton size='small' color='secondary' variant='contained'>Envoyer</DefaultButton> */}
-                </Box>
-            </Box>
+                )}
 
         </Box>
     )

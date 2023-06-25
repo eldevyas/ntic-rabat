@@ -16,8 +16,7 @@ const RecentChats = () => {
     useEffect(() => {
         const getChats = () => {
             const unsub = onSnapshot(doc(db, "usersChat", data?.user?.username), (doc: any) => {
-                setChats(Object.entries(doc.data()));
-                console.log("chats state : ", chats);
+                doc.data() && setChats(Object.entries(doc.data()));
                 setLoading(false);
             })
             return unsub;
@@ -48,7 +47,7 @@ const RecentChats = () => {
 
         }} >
             {
-                !loading ? (chats.map((chat: any) => {
+                !loading ? (chats.sort((a: any, b: any) => b[1].date - a[1].date).map((chat: any) => {
                     return (
                         <Box className="Chat"
                             sx={{
@@ -80,6 +79,7 @@ const RecentChats = () => {
                                 flexDirection: 'column',
                                 // gap: '0.4rem',
                                 justifyContent: 'space-between',
+                                width: "100%",
                             }}>
                                 <Box sx={{
                                     display: 'flex',
@@ -88,19 +88,21 @@ const RecentChats = () => {
                                     alignItems: 'start',
                                     // gap: '0.5rem',
                                     justifyContent: 'space-between',
-                                    width: '90%',
+                                    width: '100%',
 
                                 }}>
-                                    <Typography variant="body1" sx={{
+                                    <Typography variant="body2" sx={{
                                         fontWeight: '500',
+                                        whiteSpace: 'nowrap',
                                     }}>
                                         {chat[1].userInfo.name}
                                     </Typography>
                                     <Typography variant="body2" sx={{
                                         color: (theme) => theme.palette.mode === 'dark' ? theme.palette.grey[300] : theme.palette.grey[900],
                                         fontWeight: '300',
+                                        whiteSpace: 'nowrap',
                                     }}>
-                                        3 hours
+                                        {chat[1].lastMessage ? new Date(chat[1].date?.toDate()).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : null}
                                     </Typography>
                                 </Box>
                                 <Typography variant="body2" sx={{
@@ -108,11 +110,21 @@ const RecentChats = () => {
                                     // if the window is small, the text will be cut
                                     overflow: 'hidden',
                                     maxWidth: '75%',
+                                    width: '75%',
+                                    minWidth: '75%',
                                     textOverflow: 'ellipsis',
                                     whiteSpace: 'nowrap',
                                     color: (theme) => theme.palette.mode === 'dark' ? theme.palette.grey[500] : theme.palette.grey[700],
                                 }}>
-                                    You : Wafeeen Asahbi , 9rbna nkmlo ...
+                                    {
+                                        chat[1].lastMessage ?
+                                            chat[1].lastMessage?.sender === data?.user?.username ? `You : ${chat[1].lastMessage.text ? chat[1].lastMessage.text : (
+                                                chat[1].lastMessage?.image ? "image" : null
+                                            )}` : `${chat[1].lastMessage.text ? chat[1].lastMessage.text : (
+                                                chat[1].lastMessage?.image ? "image" : null
+                                            )}`
+                                            : "No messages yet"
+                                    }
                                 </Typography>
                             </Box>
 
