@@ -77,7 +77,9 @@ const ChatWindow = () => {
                         await updateDoc(doc(db, 'usersChat', data?.user?.username), {
                             [userChat.chatId + ".lastMessage"]: {
                                 sender: data?.user?.username,
-                                image: downloadURL
+                                image: downloadURL,
+                                senderName: data?.user?.name.split(' ')[0]
+
 
                             },
                             [userChat.chatId + ".date"]: serverTimestamp(),
@@ -85,7 +87,9 @@ const ChatWindow = () => {
                         await updateDoc(doc(db, 'usersChat', userChat.user.username), {
                             [userChat.chatId + ".lastMessage"]: {
                                 sender: data?.user?.username,
-                                image: downloadURL
+                                image: downloadURL,
+                                senderName: data?.user?.name.split(' ')[0]
+
                             },
                             [userChat.chatId + ".date"]: serverTimestamp(),
                         });
@@ -120,6 +124,7 @@ const ChatWindow = () => {
                 [userChat.chatId + ".lastMessage"]: {
                     sender: data?.user?.username,
                     text: message,
+                    senderName: data?.user?.name.split(' ')[0]
 
                 },
                 [userChat.chatId + ".date"]: serverTimestamp(),
@@ -128,6 +133,8 @@ const ChatWindow = () => {
                 [userChat.chatId + ".lastMessage"]: {
                     sender: data?.user?.username,
                     text: message,
+                    senderName: data?.user?.name.split(' ')[0]
+
                 },
                 [userChat.chatId + ".date"]: serverTimestamp(),
             });

@@ -6,6 +6,7 @@ import { useSession } from 'next-auth/react'
 import { doc, getDoc, getFirestore, onSnapshot, serverTimestamp, setDoc, updateDoc } from 'firebase/firestore';
 import { app } from "@/firebase/config"
 import { ChatContext } from '@/context/ChatContext';
+import { Icon } from '@iconify/react';
 
 
 const RecentChats = () => {
@@ -115,16 +116,32 @@ const RecentChats = () => {
                                     textOverflow: 'ellipsis',
                                     whiteSpace: 'nowrap',
                                     color: (theme) => theme.palette.mode === 'dark' ? theme.palette.grey[500] : theme.palette.grey[700],
+                                    display: 'flex',
+                                    flexDirection: 'row',
+                                    gap: '0.2rem',
+                                    alignItems: 'center',
                                 }}>
-                                    {
+                                    {/* {
                                         chat[1].lastMessage ?
                                             chat[1].lastMessage?.sender === data?.user?.username ? `You : ${chat[1].lastMessage.text ? chat[1].lastMessage.text : (
-                                                chat[1].lastMessage?.image ? "image" : null
+                                                chat[1].lastMessage?.image ? (<><Icon icon="mdi-light:image" />    </>) : null
                                             )}` : `${chat[1].lastMessage.text ? chat[1].lastMessage.text : (
                                                 chat[1].lastMessage?.image ? "image" : null
                                             )}`
                                             : "No messages yet"
+                                    } */}
+                                    {
+                                        chat[1].lastMessage ?
+                                            chat[1].lastMessage?.sender === data?.user?.username ? 'You :' : `${chat[1].lastMessage?.senderName} : `
+                                            : "No messages yet"
                                     }
+                                    <span
+
+                                    >{
+                                            chat[1].lastMessage ?
+                                                chat[1].lastMessage.image ? (<span style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: '0.2rem' }}><Icon icon="mdi-light:image" /> Image    </span>) : chat[1].lastMessage.text
+                                                : null
+                                        }</span>
                                 </Typography>
                             </Box>
 
