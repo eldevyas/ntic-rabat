@@ -30,6 +30,7 @@ export default function Feed() {
 
 
     const PostsData = [
+        posts &&
         posts.map((post: any) => {
             return {
 

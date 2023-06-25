@@ -35,8 +35,8 @@ export default function PostGrid({ Posts, Limit = false, setLimit = false, Refre
                 }
             </Grid>
             {
-
-                Posts.length > Limit - 1 ?
+                Posts &&
+                    Posts.length > Limit - 1 ?
                     <LoadingButton
                         onClick={setLimit}
                         loadingPosition="center"
