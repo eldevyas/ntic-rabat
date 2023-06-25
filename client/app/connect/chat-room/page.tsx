@@ -23,7 +23,10 @@ export default function Page() {
                     padding: '1rem',
                 }}
             >
-                <ChatWindow />
+                {
+                    typeof window !== 'undefined' &&
+                    <ChatWindow />
+                }
             </Box>
         </ChatContextProvider>
     );
