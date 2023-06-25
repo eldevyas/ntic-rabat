@@ -11,7 +11,6 @@ import "./Login.scss";
 const login = () => {
     const { data: session, status }: any = useSession();
     const Router = useRouter();
-
     useEffect(() => {
         if (
             status === "authenticated" &&

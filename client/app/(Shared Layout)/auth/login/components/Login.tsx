@@ -77,7 +77,7 @@ const LoginComponent = () => {
                         "Nom d'utilisateur ou mot de passe incorrect."
                     );
                 } else {
-                    firebaseSignin(Credentials.email, Credentials.password)
+                    // firebaseSignin(Credentials.email, Credentials.password)
                     Display.pushSuccess("Connexion réussie!");
                 }
             } finally {
