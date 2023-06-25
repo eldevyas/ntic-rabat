@@ -405,7 +405,8 @@ const ChatWindow = () => {
                             style={{
                                 resize: 'none',
                                 border: 'none',
-                                width: '100%'
+                                width: '100%',
+                                backgroundColor: 'transparent',
                             }}
                             onChange={(e: any) => setMessage(e.target.value)}
                             value={message}
