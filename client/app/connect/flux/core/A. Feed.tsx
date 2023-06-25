@@ -64,33 +64,35 @@ export default function Feed() {
             }}
         >
             <Heading />
-            {posts.length > 0 ? (
-                <>
-                    <PostGrid Posts={posts} Limit={postsLimit} setLimit={
-                        () => setPostsLimit(postsLimit + 6)
+            {
+                posts &&
+                    posts.length > 0 ? (
+                    <>
+                        <PostGrid Posts={posts} Limit={postsLimit} setLimit={
+                            () => setPostsLimit(postsLimit + 6)
 
-                    }
-                        Refresh={isRefresh}
-                    />
-                    <EmptyFluxPage />
-                </>
-            ) : (
-                <Box
-                    className="Posts"
-                    sx={{
-                        position: "relative",
-                        width: "100%",
-                        height: "100%",
-                        display: "flex",
-                        flexDirection: "column",
-                        borderRadius: "0.75rem",
-                        backgroundColor: (theme) =>
-                            theme.palette.background.default,
-                    }}
-                >
-                    <EmptyFluxPage />
-                </Box>
-            )}
+                        }
+                            Refresh={isRefresh}
+                        />
+                        <EmptyFluxPage />
+                    </>
+                ) : (
+                    <Box
+                        className="Posts"
+                        sx={{
+                            position: "relative",
+                            width: "100%",
+                            height: "100%",
+                            display: "flex",
+                            flexDirection: "column",
+                            borderRadius: "0.75rem",
+                            backgroundColor: (theme) =>
+                                theme.palette.background.default,
+                        }}
+                    >
+                        <EmptyFluxPage />
+                    </Box>
+                )}
         </Box>
     );
 }

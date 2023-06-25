@@ -139,6 +139,7 @@ const Username = () => {
                     }}
                 >
                     {
+                        posts &&
                         posts.length > 0 &&
                         <PostGrid Posts={posts} Refresh={refresh} Limit={postsLimit} setLimit={() => {
                             setPostsLimit(postsLimit + 3)
