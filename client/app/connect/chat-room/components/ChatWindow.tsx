@@ -19,6 +19,25 @@ import { getDownloadURL, getStorage, ref, uploadBytesResumable } from "firebase/
 
 
 const ChatWindow = () => {
+    const wrapperRef: any = useRef(null);
+
+    useEffect(() => {
+        // Function to handle clicks outside the component
+        const handleClickOutside = (event: any) => {
+            if (wrapperRef.current && !wrapperRef.current.contains(event.target)) {
+                // Clicked outside the component, clear searchedUsers state
+                setSearchedUsers([]);
+            }
+        };
+
+        // Add event listener when the component mounts
+        document.addEventListener('mousedown', handleClickOutside);
+
+        // Clean up the event listener when the component unmounts
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, []);
     const { data }: any = useSession()
     const { userChat, dispatch }: any = useContext(ChatContext)
     const storage = getStorage();
@@ -28,7 +47,6 @@ const ChatWindow = () => {
 
     const { users } = useSelector((state: any) => state.Reducers);
     const [searchedUsers, setSearchedUsers] = React.useState([]);
-    const wrapperRef: any = useRef(null);
     const db: any = getFirestore(app);
 
     const handleSearch = (e: any) => {
@@ -403,8 +421,6 @@ const ChatWindow = () => {
                         <label htmlFor="imageFile" style={{ cursor: 'pointer' }}>
                             <Icon icon="fluent:image-add-24-regular" width={22} height={22} cursor='pointer' />
                         </label>
-
-                        {/* <DefaultButton size='small' color='secondary' variant='contained'>Envoyer</DefaultButton> */}
                     </Box>
                 </Box>
             )

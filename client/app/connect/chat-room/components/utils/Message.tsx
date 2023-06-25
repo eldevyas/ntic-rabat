@@ -50,10 +50,18 @@ export const OwnMessage = ({ message }: any) => {
                             margin: '0.1rem 1rem',
                             borderRadius: '0.5rem',
                             alignSelf: 'flex-end',
-                            height: '100%'
+                            height: '100%',
+                            maxWidth: '70%'
                         }}>
 
-                        <Typography variant="body2" sx={{ color: (theme) => theme.palette.primary.contrastText }}>{message.text}</Typography>
+                        <Typography variant="body2" sx={{
+                            color: (theme) => theme.palette.primary.contrastText,
+                            // maxWidth: '400px',
+                            // break line withot cutting words
+                            wordBreak: 'break-word',
+                            whiteSpace: 'pre-wrap',
+
+                        }}>{message.text}</Typography>
 
                     </Box>
             }
@@ -107,11 +115,23 @@ export const Message = ({ message }: any) => {
                         margin: '0.1rem 1rem',
                         borderRadius: '0.5rem',
                         alignSelf: 'flex-start',
-                        height: '100%'
+                        height: '100%',
+                        maxWidth: '70%'
+
                     }}>
 
                     <Typography variant="body2"
-                        sx={{ color: (theme) => theme.palette.grey[800] }}
+                        sx={{
+
+                            color: (theme) => theme.palette.grey[800],
+                            // max width is 300px , and if the text is more than that, it will break into new line
+                            // maxWidth: '300px',
+                            wordBreak: 'break-word',
+                            whiteSpace: 'pre-wrap',
+
+
+
+                        }}
                     >{message.text}</Typography>
 
 

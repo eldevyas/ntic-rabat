@@ -3,7 +3,7 @@ import { Box, Typography } from "@mui/material";
 import Avatar from '@mui/material/Avatar';
 import { useSession } from 'next-auth/react'
 
-import { doc, getDoc, getFirestore, onSnapshot, serverTimestamp, setDoc, updateDoc } from 'firebase/firestore';
+import { doc, getFirestore, onSnapshot } from 'firebase/firestore';
 import { app } from "@/firebase/config"
 import { ChatContext } from '@/context/ChatContext';
 import { Icon } from '@iconify/react';
@@ -41,6 +41,7 @@ const RecentChats = () => {
             overflowY: 'scroll',
             maxHeight: '75vh',
             overflowX: 'hidden',
+            maxWidth: '100%',
             // design the scrollbar
             '&::-webkit-scrollbar': {
                 width: '0.2rem',
@@ -57,6 +58,7 @@ const RecentChats = () => {
                                 gap: '0.6rem',
                                 alignItems: 'center',
                                 width: '100%',
+                                maxWidth: '330px',
                                 padding: '0.5rem 1rem',
                                 '&:hover': {
                                     backgroundColor: (theme) => theme.palette.mode === 'dark' ? theme.palette.grey[900] : theme.palette.grey[100],
@@ -81,6 +83,7 @@ const RecentChats = () => {
                                 // gap: '0.4rem',
                                 justifyContent: 'space-between',
                                 width: "100%",
+                                maxWidth: '80%',
                             }}>
                                 <Box sx={{
                                     display: 'flex',
@@ -139,7 +142,11 @@ const RecentChats = () => {
 
                                     >{
                                             chat[1].lastMessage ?
-                                                chat[1].lastMessage.image ? (<span style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: '0.2rem' }}><Icon icon="mdi-light:image" /> Image    </span>) : chat[1].lastMessage.text
+                                                chat[1].lastMessage.image ? (<span style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: '0.2rem' }}><Icon icon="mdi-light:image" /> Image    </span>) : (<span
+                                                    style={{
+                                                        maxWidth: '100px',
+                                                    }}
+                                                >{chat[1].lastMessage.text}</span>)
                                                 : null
                                         }</span>
                                 </Typography>

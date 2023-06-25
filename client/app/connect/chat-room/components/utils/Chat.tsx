@@ -26,7 +26,10 @@ const Chat = () => {
                 messages &&
                 messages.map((message: any) => (
                     <div key={message.uuid}
-                        style={{ display: 'flex', flexDirection: 'column', gap: '0.rem', width: '100%', margin: '0.5rem 0' }}
+                        style={{
+                            display: 'flex', flexDirection: 'column', gap: '0.rem', width: '100%', margin: '0.5rem 0',
+
+                        }}
                     >
                         {
                             message.senderId === data?.user?.username ? (

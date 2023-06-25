@@ -34,7 +34,7 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts"
-, "app/connect/not-found.tsx"  ],
+, "app/connect/not-found.tsx", "context/ChatContext.js"  ],
   "exclude": [
     "node_modules"
   ]
