@@ -11,7 +11,7 @@ export async function POST(Request: Request) {
     console.table({ Email, Code });
 
     // THERE'S AN ERROR USING LOCALHOST !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    let VERIFY_EMAIL_ENDPOINT = "http://127.0.0.1:8000/api/auth/verify-email";
+    let VERIFY_EMAIL_ENDPOINT = "http://api.asonts.com/api/auth/verify-email";
     console.log(`Verify email url: ${VERIFY_EMAIL_ENDPOINT}`);
 
     if (!Email || !Code || Email.length === 0 || Code.length === 0) {
