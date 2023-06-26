@@ -34,11 +34,7 @@ const Page = () => {
                 setPost(response.data);
                 setLikes(response.data.likes.length);
                 if (data.user) {
-                    response.data.likes.map((like: any) => {
-                        if (like.userId === data.user.id) {
-                            setIsLiked(true);
-                        }
-                    }
+                    setIsLiked(response.data.likes.find((like: any) => like.user_id == data?.user?.id)
                     )
                 }
 
@@ -47,15 +43,16 @@ const Page = () => {
                 console.error("Error fetching posts:", error);
             }
             )
+        console.log(data?.user)
 
-    }, [isRefreshing])
+    }, [isRefreshing, data])
 
     const handleLike = () => {
 
         if (isLiked) {
             setLikes(likes - 1);
             setIsLiked(!isLiked);
-        } if (isLiked === false) {
+        } else {
             setLikes(likes + 1);
             setIsLiked(!isLiked);
         }
@@ -180,17 +177,15 @@ const Page = () => {
                         gap: "0.5rem",
                         alignItems: "center",
                     }}>
-                        {post.likes && data?.user ? (
+                        {post.likes && data?.user && (
 
                             <Checkbox
-                                defaultChecked={post.likes && post.likes.find((like: any) => like.user_id === data?.user?.id) ? true : false}
+                                defaultChecked={isLiked}
                                 onChange={handleLike}
                                 icon={<Icon icon="ph:heart" fontSize={24} style={{ cursor: 'pointer' }} />}
                                 checkedIcon={<Icon icon="ph:heart-fill" fontSize={24} color='red' style={{ cursor: 'pointer' }} />}
-                            />) : (
-                            <Icon icon="ph:heart" fontSize={24} style={{ cursor: 'pointer' }} color='red' />
+                            />)
 
-                        )
                         }
                         <Typography variant="h6">{likes}</Typography>
 

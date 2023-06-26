@@ -150,10 +150,13 @@ class PostsController extends Controller
     public function destroy(Post $post)
     {
 
-        if (Auth::id() !== $post->user_id) {
+        if (Auth::id() != $post->user_id) {
             return response()->json(['error' => 'You can only delete your own posts.'], 403);
         }
         if (Auth::id() == $post->user_id) {
+            // delete comments and likes associated with the post
+            $post->comments()->delete();
+            $post->likes()->delete();
             $post->delete();
             return response()->json(['message' => 'Post deleted'], 200);
         }
