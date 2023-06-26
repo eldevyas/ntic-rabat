@@ -42,7 +42,7 @@ export default function ResetPassword(props: any) {
         }
         try {
             const res = await fetch(
-                "http://localhost:8000/api/reset-password",
+                "https://api.asonts.com/api/reset-password",
                 {
                     method: "POST",
                     headers: {
