@@ -10,7 +10,7 @@ async function GetPlanning(GroupID: string) {
     const Hostname = process.env.NEXT_PUBLIC_HOSTNAME;
     if (!GroupID || GroupID == "") return [];
     try {
-        const Response = await fetch(`${Hostname}/api/groups/v2/${GroupID}`, {
+        const Response = await fetch(`/api/groups/v2/${GroupID}`, {
             next: { revalidate: 10 },
         });
         if (Response.ok) {
@@ -27,7 +27,7 @@ async function GetWeather() {
     "use server";
     const Hostname = process.env.NEXT_PUBLIC_HOSTNAME;
     try {
-        const Response = await fetch(`${Hostname}/api/weather`, {
+        const Response = await fetch(`/api/weather`, {
             // Revalidate every 1 hour
             next: { revalidate: 60 * 60 },
         });
@@ -45,7 +45,7 @@ async function GetGroups() {
     "use server";
     const Hostname = process.env.NEXT_PUBLIC_HOSTNAME;
     try {
-        const Response = await fetch(`${Hostname}/api/groups/v2`, {
+        const Response = await fetch(`/api/groups/v2`, {
             // Revalidate every 2 months
             next: { revalidate: 60 * 60 * 24 * 30 * 2 },
         });
