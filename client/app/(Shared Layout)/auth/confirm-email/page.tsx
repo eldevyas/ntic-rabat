@@ -112,6 +112,8 @@ export default function VerificationPage() {
                         },
                     });
                     setLoadingRequest(false);
+                    Router.push('/connect');
+                    
                 } else {
                     setLoadingRequest(false);
                     Display.pushFailure(
