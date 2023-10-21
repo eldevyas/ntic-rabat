@@ -47,7 +47,7 @@ async function GetGroups() {
     try {
         const Response = await fetch(`https://ntic-rabat.vercel.app/api/groups/v2`, {
             // Revalidate every 2 months
-            next: { revalidate: 60 * 60 * 24 * 30 * 2 },
+            next: { revalidate: 60 },
         });
         if (Response.ok) {
             const Groups = await Response.json();
